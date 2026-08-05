@@ -1,0 +1,13 @@
+{
+  "entries": [
+  {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "ANVILCRAFT_TOFUS_THINKING_TOFU",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "dev/anvilcraft/tofusthinking/TofuEnumExtensions",
+        "method": "Rarity_TOFU"
+      }
+    }
+  ]
+}

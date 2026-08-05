@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "anvilcraft_tofus_thinking:item/star_of_the_sea"
+  }
+}

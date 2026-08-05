@@ -1,0 +1,7 @@
+{
+	"parent": "anvilcraft_tofus_thinking:block/smart_power_converter",
+	"textures": {
+		"0": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+		"particle": "anvilcraft_tofus_thinking:block/smart_power_converter_overload"
+	}
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "anvilcraft:royal_steel_ingot"
+  },
+  "base": {
+    "item": "anvilcraft_tofus_thinking:amethyst_hammer"
+  },
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:royal_steel_hammer"
+  },
+  "template": {
+    "item": "anvilcraft:royal_steel_upgrade_smithing_template"
+  }
+}

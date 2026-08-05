@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "anvilcraft_tofus_thinking:block/stable_prismarine_bricks_side",
+    "end": "anvilcraft_tofus_thinking:block/stable_prismarine_bricks_top"
+  }
+}

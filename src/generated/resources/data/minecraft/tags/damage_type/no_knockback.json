@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "anvilcraft_tofus_thinking:rewind",
+      "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:ex_rewind",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=true": {
+      "model": "anvilcraft_tofus_thinking:block/nutrient_extractor_off"
+    },
+    "powered=false": {
+      "model": "anvilcraft_tofus_thinking:block/nutrient_extractor"
+    }
+  }
+}

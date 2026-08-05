@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:sculk_shrieker"
+  },
+  "base": {
+    "item": "anvilcraft:royal_anvil_hammer"
+  },
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:sonic_boom_staff"
+  },
+  "template": {
+    "item": "anvilcraft:capacitor_empty"
+  }
+}

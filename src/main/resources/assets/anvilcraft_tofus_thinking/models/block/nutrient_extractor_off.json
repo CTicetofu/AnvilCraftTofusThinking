@@ -1,0 +1,7 @@
+{
+	"parent": "anvilcraft_tofus_thinking:block/nutrient_extractor",
+	"textures": {
+		"particle": "anvilcraft_tofus_thinking:block/nutrient_extractor_off",
+		"side": "anvilcraft_tofus_thinking:block/nutrient_extractor_off"
+	}
+}

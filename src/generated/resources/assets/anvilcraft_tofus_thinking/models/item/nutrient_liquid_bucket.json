@@ -1,0 +1,5 @@
+{
+  "parent": "neoforge:item/bucket_drip",
+  "fluid": "anvilcraft_tofus_thinking:nutrient_liquid",
+  "loader": "neoforge:fluid_container"
+}

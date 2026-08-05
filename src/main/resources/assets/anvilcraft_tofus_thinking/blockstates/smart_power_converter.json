@@ -1,0 +1,82 @@
+{
+    "variants": {
+        "powered=false,overload=false,facing=down": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter"
+        },
+        "powered=false,overload=false,facing=up": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter",
+            "x": 180
+        },
+        "powered=false,overload=false,facing=north": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter",
+            "x": 270
+        },
+        "powered=false,overload=false,facing=east": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter",
+            "x": 270,
+            "y": 90
+        },
+        "powered=false,overload=false,facing=south": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter",
+            "x": 270,
+            "y": 180
+        },
+        "powered=false,overload=false,facing=west": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter",
+            "x": 270,
+            "y": 270
+        },
+        "powered=true,overload=false,facing=down": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload"
+        },
+        "powered=true,overload=false,facing=up": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 180
+        },
+        "powered=true,overload=false,facing=north": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 270
+        },
+        "powered=true,overload=false,facing=east": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 270,
+            "y": 90
+        },
+        "powered=true,overload=false,facing=south": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 270,
+            "y": 180
+        },
+        "powered=true,overload=false,facing=west": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 270,
+            "y": 270
+        },
+        "overload=true,facing=down": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload"
+        },
+        "overload=true,facing=up": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 180
+        },
+        "overload=true,facing=north": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 270
+        },
+        "overload=true,facing=east": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 270,
+            "y": 90
+        },
+        "overload=true,facing=south": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 270,
+            "y": 180
+        },
+        "overload=true,facing=west": {
+            "model": "anvilcraft_tofus_thinking:block/smart_power_converter_overload",
+            "x": 270,
+            "y": 270
+        }
+    }
+}

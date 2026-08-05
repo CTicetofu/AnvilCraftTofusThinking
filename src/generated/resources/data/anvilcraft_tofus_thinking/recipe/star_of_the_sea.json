@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:nether_star"
+    },
+    "B": {
+      "item": "minecraft:nautilus_shell"
+    },
+    "C": {
+      "item": "minecraft:heart_of_the_sea"
+    }
+  },
+  "pattern": [
+    "BCB",
+    "BAB",
+    " B "
+  ],
+  "result": {
+    "components": {
+      "minecraft:enchantments": {
+        "levels": {
+          "minecraft:breach": 4,
+          "minecraft:efficiency": 3,
+          "minecraft:smite": 2
+        }
+      }
+    },
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:star_of_the_sea"
+  }
+}

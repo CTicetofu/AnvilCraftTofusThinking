@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:conduit"
+    },
+    "B": {
+      "item": "minecraft:sea_lantern"
+    },
+    "C": {
+      "item": "anvilcraft:induction_light"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "components": {
+      "minecraft:enchantments": {
+        "levels": {
+          "minecraft:breach": 4,
+          "minecraft:efficiency": 3,
+          "minecraft:smite": 2
+        }
+      }
+    },
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:conduit_staff"
+  }
+}

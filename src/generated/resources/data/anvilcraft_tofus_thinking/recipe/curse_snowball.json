@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:cursed_gold_nugget"
+    },
+    "B": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BAB",
+    " B "
+  ],
+  "result": {
+    "count": 4,
+    "id": "anvilcraft_tofus_thinking:curse_snowball"
+  }
+}

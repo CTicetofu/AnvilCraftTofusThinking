@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "anvilcraft_tofus_thinking:item/amethyst_hammer"
+  }
+}
