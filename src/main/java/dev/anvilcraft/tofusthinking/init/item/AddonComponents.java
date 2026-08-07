@@ -10,6 +10,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public class AddonComponents {
     public static final DeferredRegister<DataComponentType<?>> DR = DeferredRegister.create(
             Registries.DATA_COMPONENT_TYPE, AnvilCraftTofusThinking.MOD_ID
@@ -37,6 +38,10 @@ public class AddonComponents {
     public static final DataComponentType<Boolean> IS_ACTIVE = register(
             "is_active",
             it -> it.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL)
+    );
+    public static final DataComponentType<Byte> TYPE_NUMBER = register(
+            "type_number",
+            it -> it.persistent(Codec.BYTE).networkSynchronized(ByteBufCodecs.BYTE)
     );
     public static final DataComponentType<Integer> STORED_ENERGY = register(
             "stored_energy",

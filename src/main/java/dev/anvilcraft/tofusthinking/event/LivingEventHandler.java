@@ -5,7 +5,6 @@ import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
-import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.item.weapon.StarOfTheSea;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -24,7 +23,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
-import net.neoforged.neoforge.event.level.NoteBlockEvent;
 
 @EventBusSubscriber
 public class LivingEventHandler {
@@ -46,14 +44,19 @@ public class LivingEventHandler {
             event.setBlocked(true);
             boolean perfectBlock = player.getTicksUsingItem() >= 5 && player.getTicksUsingItem() <= 20;
             if(!source.is(DamageTypeTags.BYPASSES_SHIELD) || (perfectBlock && source.is(AddonDamageTypeTags.CAN_PERFECT_BLOCK))){
+                ItemStack stack = player.getUseItem();
                 if(perfectBlock && source.getDirectEntity() instanceof LivingEntity attacker){
-                    ItemStack stack = player.getUseItem();
-                    if(stack.getOrDefault(AddonComponents.EFFECT_TICK,0) != player.tickCount){
+                    if(stack.getOrDefault(AddonComponents.EFFECT_TICK,0) != player.tickCount && source.getEntity() != player){
                         float amount = event.getOriginalBlockedDamage();
                         amount += player.getUsedItemHand() == InteractionHand.MAIN_HAND ? (float)attacker.getAttributeValue(Attributes.ATTACK_DAMAGE) : 0;
+                        if(player.invulnerableTime <= 10 || source.is(DamageTypeTags.BYPASSES_COOLDOWN)){attacker.invulnerableTime = 0;}
+                        player.invulnerableTime = Math.min(player.invulnerableTime,15);
                         attacker.hurt(AddonDamageTypes.counter(player.level(),player), amount);
                         stack.set(AddonComponents.EFFECT_TICK,player.tickCount);
                     }
+                }
+                if(perfectBlock && source.is(AddonDamageTypeTags.CAN_PERFECT_BLOCK)){
+                    StarOfTheSea.dealAbsorb(stack,source);
                 }
             } else {
                 event.setBlockedDamage(event.getBlockedDamage() * 0.5F);

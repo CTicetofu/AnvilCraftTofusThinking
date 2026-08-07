@@ -47,7 +47,16 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.wither_immune","免疫凋灵破坏");
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","对亡灵生物额外造成50%伤害");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","打断目标使用物品的状态");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","在合适的时机举起可以反伤攻击者");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","在合适的时机举起可以反伤攻击者 \n也可以借此吸收某些魔法或者时间的力量");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_0","空");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_1","音爆");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_1","进度为满时在物品栏界面可右键激活音爆法杖");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_2","回溯");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_2","回溯");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_3","回溯?");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_3","回溯?");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_4","被时间遗忘");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_4","被时间遗忘");
 
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","在物品栏界面右键以改变是否为 %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","自动攻击模式");
@@ -57,6 +66,7 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");
+        add("tooltip.anvilcraft_tofus_thinking.progress","进度: %s %%");
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"诅咒雪球");

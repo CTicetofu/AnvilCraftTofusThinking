@@ -14,6 +14,12 @@ public class AddonDamageTypeTagLoader {
                 .addOptional(AddonDamageTypes.REWIND.location());
 
         provider.addTag(AddonDamageTypeTags.CAN_PERFECT_BLOCK)
+                .add(DamageTypes.SONIC_BOOM)
+                .add(DamageTypes.MAGIC)
+                .add(DamageTypes.INDIRECT_MAGIC)
+                .add(DamageTypes.THORNS);
+
+        provider.addTag(AddonDamageTypeTags.SONIC_BOOM)
                 .add(DamageTypes.SONIC_BOOM);
 
         provider.addTag(DamageTypeTags.BYPASSES_ARMOR)

@@ -47,7 +47,16 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.wither_immune","Immune to Wither");
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","Deal an additional 50% damage to undead creatures");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","Interrupting the target's use of an item");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","Used at the right time, it can backfire on the attacker");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","Used at the right time, it can backfire on the attacker. \nIt can also be used to absorb certain magic or the power of time");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_0","Empty");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_1","Sonic Boom");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_1","When full progress, right-click to activate the Sonic Boom Staff in the inventory");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_2","Rewind");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_2","Rewind");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_3","Rewind?");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_3","Rewind?");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_4","Lost In Time");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_4","Lost In Time");
 
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","Right-click in the inventory to toggle whether it is in %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","Auto Attack Mode");
@@ -57,6 +66,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");
+        add("tooltip.anvilcraft_tofus_thinking.progress","Progress: %s %%");
 
     }
     private void entityName(){

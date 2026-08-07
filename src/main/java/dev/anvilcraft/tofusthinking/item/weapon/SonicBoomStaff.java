@@ -170,5 +170,8 @@ public class SonicBoomStaff extends Item implements IToolProgress {
     public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         tooltipComponents.add(TooltipUtil.getItemEnergyTooltip(stack, Screen.hasShiftDown()));
         tooltipComponents.add(TooltipUtil.getItemNeedEnergy(getSingleNeedEnergy(), Screen.hasShiftDown()));
+        if(!stack.getOrDefault(AddonComponents.IS_ACTIVE,false)){
+            tooltipComponents.add(TooltipUtil.NOT_ACTIVE);
+        }
     }
 }
