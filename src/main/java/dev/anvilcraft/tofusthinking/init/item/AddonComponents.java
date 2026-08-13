@@ -2,12 +2,14 @@ package dev.anvilcraft.tofusthinking.init.item;
 
 import com.mojang.serialization.Codec;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.UUID;
 import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
@@ -50,6 +52,10 @@ public class AddonComponents {
     public static final DataComponentType<Integer> MAX_ENERGY = register(
             "max_energy",
             (builder) -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT)
+    );
+    public static final DataComponentType<UUID> UUID = register(
+            "uuid",
+            (builder) -> builder.persistent(UUIDUtil.CODEC).networkSynchronized(UUIDUtil.STREAM_CODEC)
     );
     private static <T> DataComponentType<T> register(String name, Consumer<DataComponentType.Builder<T>> customizer) {
         var builder = DataComponentType.<T>builder();

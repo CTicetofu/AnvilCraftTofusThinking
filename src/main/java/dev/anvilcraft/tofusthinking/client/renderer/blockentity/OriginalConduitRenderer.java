@@ -5,7 +5,6 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.anvilcraft.tofusthinking.block.entity.OriginalConduitBlockEntity;
 import dev.anvilcraft.tofusthinking.client.init.AddonModelLayers;
 import net.minecraft.client.Camera;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -82,11 +81,11 @@ public class OriginalConduitRenderer implements BlockEntityRenderer<OriginalCond
         float f = (float)blockEntity.tickCount + partialTick;
         if (!blockEntity.isActive()) {
             float f5 = blockEntity.getActiveRotation(0.0F);
-            VertexConsumer vertexconsumer1 = SHELL_TEXTURE.buffer(bufferSource, RenderType::entitySolid);
+            VertexConsumer vertex1 = SHELL_TEXTURE.buffer(bufferSource, RenderType::entitySolid);
             poseStack.pushPose();
-            poseStack.translate(0.5F, 0.5F, 0.5F);
+            poseStack.translate(0.495F, 0.495F, 0.495F);
             poseStack.mulPose(new Quaternionf().rotationY(f5 * (float) (Math.PI / 180.0)));
-            this.shell.render(poseStack, vertexconsumer1, packedLight, packedOverlay);
+            this.shell.render(poseStack, vertex1, packedLight, packedOverlay);
             poseStack.popPose();
         } else {
             float f1 = blockEntity.getActiveRotation(partialTick) * (180.0F / (float)Math.PI);

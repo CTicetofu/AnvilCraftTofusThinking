@@ -1,8 +1,10 @@
 package dev.anvilcraft.tofusthinking.item.weapon;
 
 import dev.anvilcraft.tofusthinking.client.ClientUtil;
+import dev.anvilcraft.tofusthinking.entity.livingEntity.StrangeWither;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
+import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.item.IToolProgress;
@@ -11,12 +13,15 @@ import dev.dubhe.anvilcraft.init.entity.ModDamageTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
@@ -131,15 +136,25 @@ public class StarOfTheSea extends Item implements IToolProgress {
     }
 
     @Override
+    public boolean canBeHurtBy(@NotNull ItemStack stack, @NotNull DamageSource source) {
+        return source.is(DamageTypeTags.BYPASSES_INVULNERABILITY);
+    }
+
+    @Override
+    public boolean isFoil(@NotNull ItemStack stack) {
+        return super.isFoil(stack) || isFinished(stack);
+    }
+
+    @Override
     public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.star_of_the_sea").withStyle(ChatFormatting.GRAY));
         byte number = getNumber(stack);
-        tooltipComponents.add(Component.translatable(String.format("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_%d",number)).withStyle(ChatFormatting.AQUA));
-        if(number <= 0){return;}
         AbsorptionType type = AbsorptionType.values()[number];
+        tooltipComponents.add(Component.translatable(String.format("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_%s",type.info)).withStyle(ChatFormatting.AQUA));
+        if(number == 0){return;}
         int maxProgress = type.maxProgress;
         int percentage = maxProgress > 0 ? stack.getOrDefault(AddonComponents.PROGRESS,0) * 100 / maxProgress : 0;
-        tooltipComponents.add(Component.translatable(String.format("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_%d",number)).withStyle(ChatFormatting.YELLOW));
+        tooltipComponents.add(Component.translatable(String.format("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_%s",type.info)).withStyle(ChatFormatting.YELLOW));
         tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.progress",Component.literal(String.valueOf(percentage)).withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY));
     }
 
@@ -184,7 +199,26 @@ public class StarOfTheSea extends Item implements IToolProgress {
         return 0xFFFFF68F;
     }
 
-    public static void dealAbsorb(ItemStack stack,DamageSource source){
+    @Override
+    public @NotNull InteractionResult interactLivingEntity(@NotNull ItemStack stack, @NotNull Player player, @NotNull LivingEntity interactionTarget, @NotNull InteractionHand usedHand) {
+        if(!player.level().isClientSide && getNumber(stack) == 4 && interactionTarget instanceof WitherBoss wither){
+            if(wither.getInvulnerableTicks() > 0){
+                float rate = wither.getHealth() / wither.getMaxHealth();
+                StrangeWither newWither = new StrangeWither(AddonEntities.STRANGE_WITHER.get(),wither.level());
+                newWither.makeInvulnerable();
+                newWither.setHealth(Math.max(20,rate * newWither.getMaxHealth()));
+                newWither.setInvulnerableTicks((int) (220 * (1 - rate)));
+                newWither.setPos(wither.position());
+                wither.level().addFreshEntity(newWither);
+                wither.discard();
+                clear(stack);
+                return InteractionResult.SUCCESS;
+            }
+        }
+        return super.interactLivingEntity(stack, player, interactionTarget, usedHand);
+    }
+
+    public static void dealAbsorb(ItemStack stack, DamageSource source){
         byte index = getNumber(stack);
         AbsorptionType[] types = AbsorptionType.values();
         if(index > 0){
@@ -202,14 +236,25 @@ public class StarOfTheSea extends Item implements IToolProgress {
     }
 
     public static void addNumberProgress(ItemStack stack,byte number){
-        if(number != getNumber(stack)){return;}
         AbsorptionType[] types = AbsorptionType.values();
         if(number < 0 || number > types.length){return;}
         AbsorptionType type = types[number];
         int progress = stack.getOrDefault(AddonComponents.PROGRESS,0);
         if(progress <= type.maxProgress){
-            stack.set(AddonComponents.PROGRESS,Math.min(progress + type.singleIncreaseProgress,type.maxProgress));
+            if(number == getNumber(stack)){
+                stack.set(AddonComponents.PROGRESS,Math.min(progress + type.singleIncreaseProgress,type.maxProgress));
+            } else {
+                stack.set(AddonComponents.TYPE_NUMBER,number);
+                stack.set(AddonComponents.PROGRESS,type.singleIncreaseProgress);
+            }
         }
+    }
+
+    public static boolean isFinished(ItemStack stack){
+        byte number = getNumber(stack);
+        if(number == 0){return false;}
+        AbsorptionType type = AbsorptionType.values()[number];
+        return stack.getOrDefault(AddonComponents.PROGRESS,0) >= type.maxProgress;
     }
 
     public static void clear(ItemStack stack){
@@ -227,22 +272,24 @@ public class StarOfTheSea extends Item implements IToolProgress {
     }
 
     enum AbsorptionType{
-        NONE(damageSource -> false,0,0,0),
-        SONIC_BOOM(damageSource -> damageSource.is(AddonDamageTypeTags.SONIC_BOOM),100,1,25),
-        REWIND(damageSource -> damageSource.is(AddonDamageTypeTags.REWIND),1000,100,5),
-        REWIND_REMAIN(damageSource -> false,1000,0,1000),
-        LOST_IN_TIME(damageSource -> damageSource.is(ModDamageTypes.LOST_IN_TIME),100,0,100),
-        FANG(damageSource -> false,100,0,100);
+        NONE(damageSource -> false,0,0,0,"none"),
+        SONIC_BOOM(damageSource -> damageSource.is(AddonDamageTypeTags.SONIC_BOOM),100,1,25,"sonic_boom"),
+        REWIND(damageSource -> false,1000,0,180,"rewind"),
+        REWIND_REMAIN(damageSource -> false,1000,0,1000,"rewind_remain"),
+        LOST_IN_TIME(damageSource -> damageSource.is(ModDamageTypes.LOST_IN_TIME),100,0,100,"lost_in_time"),
+        FANG(damageSource -> false,100,0,100,"fang");
 
         final Predicate<DamageSource> sourcePredicate;
         final int maxProgress;
         final int lossPreSecond;
         final int singleIncreaseProgress;
-        AbsorptionType(Predicate<DamageSource> sourcePredicate, int maxProgress, int lossPreSecond, int singleIncreaseProgress){
+        final String info;
+        AbsorptionType(Predicate<DamageSource> sourcePredicate, int maxProgress, int lossPreSecond, int singleIncreaseProgress, String info){
             this.sourcePredicate = sourcePredicate;
             this.maxProgress = maxProgress;
             this.lossPreSecond = lossPreSecond;
             this.singleIncreaseProgress = singleIncreaseProgress;
+            this.info = info;
         }
     }
 }

@@ -25,6 +25,8 @@ public class AddonDamageTypes {
             ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("ex_rewind"));
     public static final ResourceKey<DamageType> COUNTER =
             ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("counter"));
+    public static final ResourceKey<DamageType> BOUNCE_WITHER_SKULL =
+            ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("bounce_wither_skull"));
 
     @ApiStatus.Internal
     public static void bootstrap(BootstrapContext<DamageType> ctx) {
@@ -33,6 +35,7 @@ public class AddonDamageTypes {
         ctx.register(REWIND_ATTACK,new DamageType("tofusThinking.rewind_attack", DamageScaling.NEVER,0.0F));
         ctx.register(EX_REWIND,new DamageType("tofusThinking.ex_rewind", DamageScaling.NEVER,0.0F));
         ctx.register(COUNTER,new DamageType("tofusThinking.counter", DamageScaling.NEVER,0.0F));
+        ctx.register(BOUNCE_WITHER_SKULL,new DamageType("tofusThinking.bounce_wither_skull", DamageScaling.NEVER,0.0F));
     }
 
     public static ExtraDamageSource rewind(Level level){
@@ -49,6 +52,10 @@ public class AddonDamageTypes {
 
     public static DamageSource counter(Level level, Entity attacker){
         return source(COUNTER,level,attacker,attacker);
+    }
+
+    public static DamageSource bounceWitherSkull(Level level,Entity directEntity,Entity causingEntity){
+        return source(BOUNCE_WITHER_SKULL,level,directEntity,causingEntity);
     }
 
     public static DamageSource source(ResourceKey<DamageType> key, LevelReader level, @Nullable Entity directEntity, @Nullable Entity causingEntity){

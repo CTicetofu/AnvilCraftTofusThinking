@@ -3,6 +3,10 @@
     "minecraft:sonic_boom",
     "minecraft:magic",
     "minecraft:indirect_magic",
-    "minecraft:thorns"
+    "minecraft:thorns",
+    {
+      "id": "anvilcraft:lost_in_time",
+      "required": false
+    }
   ]
 }

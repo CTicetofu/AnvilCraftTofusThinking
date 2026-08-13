@@ -1,0 +1,28 @@
+{
+  "type": "anvilcraft:anvil_collision",
+  "anvil": {
+    "blocks": "anvilcraft:ember_anvil"
+  },
+  "consume": true,
+  "hitBlock": {
+    "blocks": "anvilcraft:corrupted_beacon"
+  },
+  "output_items": [],
+  "speed": 256,
+  "transform_blocks": [
+    {
+      "input": {
+        "blocks": "minecraft:conduit",
+        "properties": [
+          {
+            "waterlogged": "false"
+          }
+        ]
+      },
+      "max_count": 2,
+      "output": {
+        "block": "anvilcraft_tofus_thinking:original_conduit"
+      }
+    }
+  ]
+}

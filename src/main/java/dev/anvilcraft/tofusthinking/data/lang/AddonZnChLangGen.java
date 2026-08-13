@@ -48,15 +48,15 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","对亡灵生物额外造成50%伤害");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","打断目标使用物品的状态");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","在合适的时机举起可以反伤攻击者 \n也可以借此吸收某些魔法或者时间的力量");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_0","空");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_1","音爆");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_1","进度为满时在物品栏界面可右键激活音爆法杖");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_2","回溯");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_2","回溯");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_3","回溯?");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_3","回溯?");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_4","被时间遗忘");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_4","被时间遗忘");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_none","空");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_sonic_boom","音爆");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_sonic_boom","进度为满时在物品栏界面可右键激活音爆法杖");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind","回溯");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind","进度为满时在物品栏界面可点击潮涌核心将其原初化");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind_remain","回溯之残留");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","点击潮涌核心法杖将其原初化");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_lost_in_time","迷失时间");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","注入到准备状态的凋灵使其变异");
 
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","在物品栏界面右键以改变是否为 %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","自动攻击模式");
@@ -70,6 +70,8 @@ public class AddonZnChLangGen extends LanguageProvider {
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"诅咒雪球");
+        add(AddonEntities.STRANGE_WITHER.get(),"奇怪的凋灵");
+        add(AddonEntities.STRANGE_WITHER_SKULL.get(),"奇怪的凋灵之首");
     }
 
     private void addOther(){

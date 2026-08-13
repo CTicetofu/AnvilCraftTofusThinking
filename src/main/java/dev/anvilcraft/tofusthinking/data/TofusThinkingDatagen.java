@@ -5,6 +5,7 @@ import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.data.lang.AddonEnUsLangGen;
 import dev.anvilcraft.tofusthinking.data.lang.AddonZnChLangGen;
+import dev.anvilcraft.tofusthinking.data.recipe.TofuThinkingRecipeHandler;
 import dev.anvilcraft.tofusthinking.data.tags.AddonTagsHandler;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import net.minecraft.advancements.Criterion;
@@ -40,6 +41,9 @@ public class TofusThinkingDatagen {
         genInit.add(Registries.DAMAGE_TYPE, AddonDamageTypes::bootstrap);
 
         REGISTRUM.addDataGenerator(ProviderType.DAMAGE_TYPE_TAGS, AddonTagsHandler::initDamageType);
+        REGISTRUM.addDataGenerator(ProviderType.ENTITY_TAGS, AddonTagsHandler::initEntityType);
+
+        REGISTRUM.addDataGenerator(ProviderType.RECIPE, TofuThinkingRecipeHandler::init);
     }
 
     public static Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike itemLike) {

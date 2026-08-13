@@ -48,15 +48,15 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","Deal an additional 50% damage to undead creatures");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","Interrupting the target's use of an item");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","Used at the right time, it can backfire on the attacker. \nIt can also be used to absorb certain magic or the power of time");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_0","Empty");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_1","Sonic Boom");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_1","When full progress, right-click to activate the Sonic Boom Staff in the inventory");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_2","Rewind");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_2","Rewind");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_3","Rewind?");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_3","Rewind?");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_4","Lost In Time");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_4","Lost In Time");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_none","Empty");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_sonic_boom","Sonic Boom");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_sonic_boom","When full progress, right-click to activate the Sonic Boom Staff in the inventory");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind","Rewind");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind","When full progress, right-click to original the Conduit in the inventory");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind_remain","Rewind?");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","Rewind?");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_lost_in_time","Lost In Time");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","Lost In Time");
 
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","Right-click in the inventory to toggle whether it is in %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","Auto Attack Mode");
@@ -71,6 +71,8 @@ public class AddonEnUsLangGen extends LanguageProvider {
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"Curse Snowball");
+        add(AddonEntities.STRANGE_WITHER.get(),"Strange Wither");
+        add(AddonEntities.STRANGE_WITHER_SKULL.get(),"Strange Wither Skull");
     }
     private void addOther(){
         add(AddonFluids.NUTRIENT_LIQUID_TYPE.get().getDescriptionId(),"Nutrient Liquid");

@@ -15,6 +15,10 @@
     {
       "id": "anvilcraft_tofus_thinking:counter",
       "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:bounce_wither_skull",
+      "required": false
     }
   ]
 }

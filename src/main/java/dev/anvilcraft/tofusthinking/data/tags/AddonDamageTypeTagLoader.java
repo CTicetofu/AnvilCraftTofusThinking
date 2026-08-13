@@ -3,6 +3,7 @@ package dev.anvilcraft.tofusthinking.data.tags;
 import dev.anvilcraft.lib.v2.registrum.providers.RegistrumTagsProvider;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
+import dev.dubhe.anvilcraft.init.entity.ModDamageTypes;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -17,7 +18,8 @@ public class AddonDamageTypeTagLoader {
                 .add(DamageTypes.SONIC_BOOM)
                 .add(DamageTypes.MAGIC)
                 .add(DamageTypes.INDIRECT_MAGIC)
-                .add(DamageTypes.THORNS);
+                .add(DamageTypes.THORNS)
+                .addOptional(ModDamageTypes.LOST_IN_TIME.location());
 
         provider.addTag(AddonDamageTypeTags.SONIC_BOOM)
                 .add(DamageTypes.SONIC_BOOM);
@@ -26,7 +28,8 @@ public class AddonDamageTypeTagLoader {
                 .addOptional(AddonDamageTypes.REWIND.location())
                 .addOptional(AddonDamageTypes.REWIND_ATTACK.location())
                 .addOptional(AddonDamageTypes.EX_REWIND.location())
-                .addOptional(AddonDamageTypes.COUNTER.location());
+                .addOptional(AddonDamageTypes.COUNTER.location())
+                .addOptional(AddonDamageTypes.BOUNCE_WITHER_SKULL.location());
 
         provider.addTag(DamageTypeTags.BYPASSES_ENCHANTMENTS)
                 .addOptional(AddonDamageTypes.REWIND_ATTACK.location())

@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.block.entity;
 
 import com.google.common.collect.Lists;
+import dev.anvilcraft.tofusthinking.block.OriginalConduitBlock;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
@@ -113,6 +114,10 @@ public class OriginalConduitBlockEntity extends BlockEntity {
         List<BlockPos> list = blockEntity.effectBlocks;
         if (i % 40L == 0L) {
             boolean flag = updateShape(level, pos, list,blockEntity);
+            if(state.hasProperty(OriginalConduitBlock.OPEN) && state.getValue(OriginalConduitBlock.OPEN) != flag){
+                level.setBlockAndUpdate(pos,state.setValue(OriginalConduitBlock.OPEN,flag));
+            }
+
             if (flag != blockEntity.isActive) {
                 SoundEvent soundevent = flag ? SoundEvents.CONDUIT_ACTIVATE : SoundEvents.CONDUIT_DEACTIVATE;
                 level.playSound(null, pos, soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);

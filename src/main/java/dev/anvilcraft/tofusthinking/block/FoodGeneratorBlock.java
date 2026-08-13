@@ -116,14 +116,13 @@ public class FoodGeneratorBlock extends BaseEntityBlock implements IHammerRemova
         }
         super.onRemove(state, level, pos, newState, movedByPiston);
     }
-    //先偷个懒，谁动战利品表自己想办法去
+    //先偷个懒
     @Override
     protected @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootParams.@NotNull Builder params) {
         List<ItemStack> stacks = super.getDrops(state, params);
         if(stacks.size() == 1 && params.getOptionalParameter(LootContextParams.BLOCK_ENTITY) instanceof FoodGeneratorBlockEntity blockEntity){
             ItemStack stack = stacks.getFirst();
             if(stack.is(AddonBlocks.NUTRIENT_EXTRACTOR.asItem()) && stack.getCount() == 1 && blockEntity.getLevel() != null){
-                //CompoundTag blockEntityData = blockEntity.saveWithoutMetadata(blockEntity.getLevel().registryAccess());
                 CompoundTag tankTag = blockEntity.onlySaveTank(blockEntity.getLevel());
                 stack.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(tankTag));
             }
