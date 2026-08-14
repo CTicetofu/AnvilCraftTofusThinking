@@ -1,0 +1,28 @@
+{
+  "type": "anvilcraft:stamping_unique_items",
+  "ingredients": [
+    {
+      "tag": "curios:charm"
+    },
+    {
+      "tag": "curios:charm"
+    },
+    {
+      "tag": "curios:charm"
+    },
+    {
+      "tag": "curios:charm"
+    },
+    {
+      "tag": "curios:charm"
+    },
+    {
+      "tag": "curios:charm"
+    }
+  ],
+  "results": [
+    {
+      "id": "anvilcraft_tofus_thinking:charm_amulet"
+    }
+  ]
+}
