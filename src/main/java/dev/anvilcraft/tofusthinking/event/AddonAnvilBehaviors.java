@@ -1,9 +1,9 @@
 package dev.anvilcraft.tofusthinking.event;
 
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
-import dev.anvilcraft.tofusthinking.anvil.NutrientExtractBehavior;
-import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
+import dev.anvilcraft.tofusthinking.anvil.RewindLivingEntityBehavior;
 import dev.dubhe.anvilcraft.api.event.AnvilBehaviorRegisterEvent;
+import net.minecraft.tags.BlockTags;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 
@@ -11,6 +11,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 public class AddonAnvilBehaviors {
     @SubscribeEvent
     public static void register(AnvilBehaviorRegisterEvent event) {
-        event.registerBehavior(AddonBlocks.NUTRIENT_EXTRACTOR.get(),new NutrientExtractBehavior());
+        event.registerBehavior(state -> state.is(BlockTags.CAULDRONS), new RewindLivingEntityBehavior());
     }
 }

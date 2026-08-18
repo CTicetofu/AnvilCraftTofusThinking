@@ -34,6 +34,7 @@ public class ConduitStaffRender extends BlockEntityWithoutLevelRenderer {
     @Override
     public void renderByItem(@NotNull ItemStack stack, @NotNull ItemDisplayContext context, @NotNull PoseStack poseStack, @NotNull MultiBufferSource buffer, int light, int overlay) {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+        poseStack.pushPose();
 
         BakedModel models = itemRenderer.getItemModelShaper().getModelManager().getModel(ModelResourceLocation.standalone(AnvilCraftTofusThinking.of("item/conduit_staff_model")));
         for (var model : models.getRenderPasses(stack, true)) {
@@ -49,5 +50,6 @@ public class ConduitStaffRender extends BlockEntityWithoutLevelRenderer {
         OriginalConduitItemRenderer.renderConduit(blockEntity,poseStack,buffer,light,overlay);
         poseStack.translate(0,-0.1,0);
         FluidRenderHelper.INSTANCE.renderFluidBox(water, 0.01F, 0.01F, 0.01F, 0.99F, 0.99F, 0.99F, buffer, poseStack, light, true, false);
+        poseStack.popPose();
     }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "anvilcraft_tofus_thinking:time_warp",
+  "ingredients": [
+    {
+      "items": "anvilcraft:transcendence_resonator"
+    }
+  ],
+  "results": [
+    {
+      "id": "anvilcraft:ember_metal_resonator"
+    },
+    {
+      "id": "anvilcraft:frost_metal_resonator"
+    }
+  ]
+}

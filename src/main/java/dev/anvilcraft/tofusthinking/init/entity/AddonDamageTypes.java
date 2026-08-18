@@ -33,7 +33,7 @@ public class AddonDamageTypes {
 
         ctx.register(REWIND,new DamageType("tofusThinking.rewind", DamageScaling.NEVER,0.0F));
         ctx.register(REWIND_ATTACK,new DamageType("tofusThinking.rewind_attack", DamageScaling.NEVER,0.0F));
-        ctx.register(EX_REWIND,new DamageType("tofusThinking.ex_rewind", DamageScaling.NEVER,0.0F));
+        ctx.register(EX_REWIND,new DamageType("tofusThinking.rewind", DamageScaling.NEVER,0.0F));
         ctx.register(COUNTER,new DamageType("tofusThinking.counter", DamageScaling.NEVER,0.0F));
         ctx.register(BOUNCE_WITHER_SKULL,new DamageType("tofusThinking.bounce_wither_skull", DamageScaling.NEVER,0.0F));
     }

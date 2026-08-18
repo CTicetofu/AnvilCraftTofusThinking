@@ -1,0 +1,13 @@
+{
+  "type": "anvilcraft_tofus_thinking:time_warp",
+  "ingredients": [
+    {
+      "items": "anvilcraft:corrupted_beacon"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:beacon"
+    }
+  ]
+}

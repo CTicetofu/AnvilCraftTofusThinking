@@ -10,10 +10,10 @@ import org.jetbrains.annotations.Nullable;
 public class ExtraDamageSource extends DamageSource {
 
     private float extraHurtAmount = 0;
-    private float extraHurtRate = 1;
+    private float extraHurtRate = 1F;
 
     private float extraDamageAmount = 0;
-    private float extraDamageRate = 1;
+    private float extraDamageRate = 1F;
 
     private DeathAction onDeath = DeathAction.NONE;
 

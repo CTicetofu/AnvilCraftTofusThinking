@@ -1,0 +1,16 @@
+{
+  "type": "anvilcraft_tofus_thinking:time_warp",
+  "ingredients": [
+    {
+      "items": "minecraft:prismarine_bricks"
+    },
+    {
+      "items": "minecraft:prismarine_crystals"
+    }
+  ],
+  "results": [
+    {
+      "id": "anvilcraft_tofus_thinking:stable_prismarine_bricks"
+    }
+  ]
+}

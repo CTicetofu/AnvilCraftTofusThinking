@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import dev.anvilcraft.tofusthinking.block.OriginalConduitBlock;
 import dev.anvilcraft.tofusthinking.block.entity.OriginalConduitBlockEntity;
 import dev.anvilcraft.tofusthinking.client.init.AddonModelLayers;
 import net.minecraft.client.Camera;
@@ -17,6 +18,7 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -79,7 +81,9 @@ public class OriginalConduitRenderer implements BlockEntityRenderer<OriginalCond
 
     public void render(OriginalConduitBlockEntity blockEntity, float partialTick, @NotNull PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         float f = (float)blockEntity.tickCount + partialTick;
-        if (!blockEntity.isActive()) {
+        BlockState state = blockEntity.getBlockState();
+        boolean active = blockEntity.isActive() || (state.hasProperty(OriginalConduitBlock.OPEN) && state.getValue(OriginalConduitBlock.OPEN));
+        if (!active) {
             float f5 = blockEntity.getActiveRotation(0.0F);
             VertexConsumer vertex1 = SHELL_TEXTURE.buffer(bufferSource, RenderType::entitySolid);
             poseStack.pushPose();

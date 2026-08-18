@@ -82,8 +82,15 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonMobEffects.DULL.get().getDescriptionId(),"Dull");
 
         add("death.attack.tofusThinking.rewind","%s has never been born");
+        add("death.attack.tofusThinking.rewind_attack","%s has not been proven to exist by %s");
+        add("death.attack.tofusThinking.tofusThinking.bounce_wither_skull","%s was killed by the wither skull %s had launch");
         add("death.attack.tofusThinking.counter","%s impulsively attacked %s");
 
         add(AddonItemGroups.ITEM_TAB_ID,"AnvilCraft: Tofu's Thinking");
+
+        add("gui.anvilcraft_tofus_thinking.category.rewind","Rewind");
+        add("gui.anvilcraft_tofus_thinking.category.rewind.need_activated","Need Activated");
+
+        add("jei.anvilcraft_tofus_thinking.info.original_conuit","By default, the Star Of The Sea is used to absorb the blue Wither Head of a strange Wither and inject it into an Conduit to obtain it. In its original state, it is difficult to control precisely and is not suitable for direct use as a wand material.");
     }
 }

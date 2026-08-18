@@ -1,0 +1,16 @@
+{
+  "type": "anvilcraft_tofus_thinking:time_warp",
+  "ingredients": [
+    {
+      "items": "anvilcraft:transcendence_heavy_halberd"
+    }
+  ],
+  "results": [
+    {
+      "id": "anvilcraft:ember_metal_heavy_halberd"
+    },
+    {
+      "id": "anvilcraft:frost_metal_heavy_halberd"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "anvilcraft_tofus_thinking:time_warp",
+  "ingredients": [
+    {
+      "items": "anvilcraft:transcendence_anvil_hammer"
+    }
+  ],
+  "results": [
+    {
+      "id": "anvilcraft:ember_anvil_hammer"
+    },
+    {
+      "id": "anvilcraft:frost_anvil_hammer"
+    }
+  ]
+}

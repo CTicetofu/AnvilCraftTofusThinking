@@ -1,0 +1,16 @@
+{
+  "type": "anvilcraft_tofus_thinking:time_warp",
+  "ingredients": [
+    {
+      "items": "anvilcraft:transcendence_dragon_rod"
+    }
+  ],
+  "results": [
+    {
+      "id": "anvilcraft:ember_dragon_rod"
+    },
+    {
+      "id": "anvilcraft:frost_dragon_rod"
+    }
+  ]
+}

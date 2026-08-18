@@ -82,8 +82,15 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonMobEffects.DULL.get().getDescriptionId(),"呆滞");
 
         add("death.attack.tofusThinking.rewind","%s 从未诞生过");
+        add("death.attack.tofusThinking.rewind_attack","%s 未能被 %s 证明存在");
+        add("death.attack.tofusThinking.tofusThinking.bounce_wither_skull","%s 被 %s 发射的弹射凋灵骷髅头击杀");
         add("death.attack.tofusThinking.counter","%s 过于冲动的攻击了 %s");
 
         add(AddonItemGroups.ITEM_TAB_ID,"铁砧工艺: 豆之巧思");
+
+        add("gui.anvilcraft_tofus_thinking.category.rewind","回溯");
+        add("gui.anvilcraft_tofus_thinking.category.rewind.need_activated","需要激活");
+
+        add("jei.anvilcraft_tofus_thinking.info.original_conuit","默认情况下，使用海洋之星吸收奇怪的凋灵的蓝色凋灵之首后将其注入普通的潮涌核心获取，原始状态的它难以精细控制而不太适合直接作为法杖材料。");
     }
 }

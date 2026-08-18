@@ -11,9 +11,12 @@ import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -48,5 +51,13 @@ public class TofusThinkingDatagen {
 
     public static Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike itemLike) {
         return RegistrumRecipeProvider.has(itemLike);
+    }
+
+    public static String hasItem(TagKey<Item> item) {
+        return "has_" + item.location().getPath();
+    }
+
+    public static String hasItem(ItemLike item) {
+        return "has_" + BuiltInRegistries.ITEM.getKey(item.asItem()).getPath();
     }
 }

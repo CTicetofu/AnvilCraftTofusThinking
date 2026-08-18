@@ -5,6 +5,8 @@ import dev.anvilcraft.tofusthinking.block.OriginalConduitBlock;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
+import dev.anvilcraft.tofusthinking.init.entity.AddonEntityTypeTags;
+import dev.anvilcraft.tofusthinking.util.EntityUtil;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -48,6 +50,7 @@ public class OriginalConduitBlockEntity extends BlockEntity {
     private final List<BlockPos> effectBlocks = Lists.newArrayList();
     @Nullable
     private LivingEntity destroyTarget;
+    private int executeCooldown = 200;
     @Nullable
     private UUID destroyTargetUUID;
     private long nextAmbientSoundActivation;
@@ -69,6 +72,9 @@ public class OriginalConduitBlockEntity extends BlockEntity {
         } else {
             this.destroyTargetUUID = null;
         }
+        if(tag.contains("execute_cooldown")){
+            this.executeCooldown = tag.getInt("execute_cooldown");
+        }
     }
 
     @Override
@@ -77,6 +83,7 @@ public class OriginalConduitBlockEntity extends BlockEntity {
         if (this.destroyTarget != null) {
             tag.putUUID("Target", this.destroyTarget.getUUID());
         }
+        tag.putInt("execute_cooldown",this.executeCooldown);
     }
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -111,8 +118,9 @@ public class OriginalConduitBlockEntity extends BlockEntity {
     public static void serverTick(Level level, BlockPos pos, BlockState state, OriginalConduitBlockEntity blockEntity) {
         blockEntity.tickCount++;
         long i = level.getGameTime();
-        List<BlockPos> list = blockEntity.effectBlocks;
+        if(blockEntity.executeCooldown > 0){blockEntity.executeCooldown--;}
         if (i % 40L == 0L) {
+            List<BlockPos> list = blockEntity.effectBlocks;
             boolean flag = updateShape(level, pos, list,blockEntity);
             if(state.hasProperty(OriginalConduitBlock.OPEN) && state.getValue(OriginalConduitBlock.OPEN) != flag){
                 level.setBlockAndUpdate(pos,state.setValue(OriginalConduitBlock.OPEN,flag));
@@ -246,8 +254,10 @@ public class OriginalConduitBlockEntity extends BlockEntity {
             );
             level.getEntitiesOfClass(LivingEntity.class,new AABB(blockEntity.destroyTarget.blockPosition()).inflate(2),target -> target instanceof Enemy && target.isAlive()).forEach(
                     target -> {
-                        target.invulnerableTime = 0;
-                        target.hurt(AddonDamageTypes.rewind(level).withHurtInfo(10,0),15);
+                        EntityUtil.clearAllEffect(target);
+                        if(!target.getType().is(AddonEntityTypeTags.NOT_MUTI_ATTACK_ENTITY)){target.invulnerableTime = 0;}
+                        float rate = target.getType().is(AddonEntityTypeTags.NOT_ORIGINAL_ATTACK_ENTITY) ? 1 : Math.max(1, EntityUtil.getOriginMaxHealthRate(target));
+                        target.hurt(AddonDamageTypes.rewind(level),15 * rate);
                     }
             );
             blockEntity.destroyTarget.hurt(level.damageSources().magic(), 12.0F);
@@ -292,10 +302,10 @@ public class OriginalConduitBlockEntity extends BlockEntity {
 
         for (BlockPos blockpos : positions) {
             if (randomsource.nextInt(50) == 0) {
-                BlockPos blockpos1 = blockpos.subtract(pos);
-                float f = -0.5F + randomsource.nextFloat() + (float)blockpos1.getX();
-                float f1 = -2.0F + randomsource.nextFloat() + (float)blockpos1.getY();
-                float f2 = -0.5F + randomsource.nextFloat() + (float)blockpos1.getZ();
+                BlockPos blockPos1 = blockpos.subtract(pos);
+                float f = -0.5F + randomsource.nextFloat() + (float)blockPos1.getX();
+                float f1 = -2.0F + randomsource.nextFloat() + (float)blockPos1.getY();
+                float f2 = -0.5F + randomsource.nextFloat() + (float)blockPos1.getZ();
                 SimpleParticleType type = randomsource.nextBoolean() ? ParticleTypes.NAUTILUS : ParticleTypes.ENCHANT;
                 level.addParticle(type, vec3.x, vec3.y, vec3.z, f, f1, f2);
             }
@@ -310,6 +320,20 @@ public class OriginalConduitBlockEntity extends BlockEntity {
             SimpleParticleType type = randomsource.nextBoolean() ? ParticleTypes.NAUTILUS : ParticleTypes.ENCHANT;
             level.addParticle(type, vec31.x, vec31.y, vec31.z, vec32.x, vec32.y, vec32.z);
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void setBlockState(@NotNull BlockState blockState) {
+        super.setBlockState(blockState);
+    }
+
+    public int getExecuteCooldown() {
+        return executeCooldown;
+    }
+
+    public void resetExecuteCooldown(){
+        executeCooldown = 200;
     }
 
     public boolean isActive() {

@@ -12,6 +12,8 @@ import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItemGroups;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
+import dev.anvilcraft.tofusthinking.init.recipe.AddonRecipeInits;
+import dev.anvilcraft.tofusthinking.init.recipe.AddonRecipeTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -50,12 +52,13 @@ public class AnvilCraftTofusThinking {
         AddonBlockEntities.register();
         AddonMenuTypes.register();
         AddonComponents.register(modEventBus);
+        AddonRecipeTypes.register(modEventBus);
         AddonMobEffects.register(modEventBus);
 
         TofusThinkingDatagen.init();
 
         modEventBus.addListener(this::registerPayloads);
-
+        AddonRecipeInits.init(modEventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
     private void registerPayloads(RegisterPayloadHandlersEvent event) {

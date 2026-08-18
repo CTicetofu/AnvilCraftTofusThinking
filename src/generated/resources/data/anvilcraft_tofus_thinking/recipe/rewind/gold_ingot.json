@@ -1,0 +1,13 @@
+{
+  "type": "anvilcraft_tofus_thinking:time_warp",
+  "ingredients": [
+    {
+      "items": "anvilcraft:cursed_gold_ingot"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:gold_ingot"
+    }
+  ]
+}
