@@ -53,10 +53,12 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_sonic_boom","When full progress, right-click to activate the Sonic Boom Staff in the inventory");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind","Rewind");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind","When full progress, right-click to original the Conduit in the inventory");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind_remain","Rewind?");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","Rewind?");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind_remain","Rewind Remain");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","right-click to original the Conduit Staff in the inventory");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_lost_in_time","Lost In Time");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","Lost In Time");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","Injecting it into a prepared Wither causes it to mutate");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit","Another mutated power of Wither can restore some things to their original state");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_build","It can be activated as long as there is water and eight frame blocks within a 3x3 range on this layer \nWhen there are more than 8 Stable Prismarine Bricks, the effect will be triggered regardless of whether the surrounding living entity are in the rain or water");
 
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","Right-click in the inventory to toggle whether it is in %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","Auto Attack Mode");
@@ -92,5 +94,6 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("gui.anvilcraft_tofus_thinking.category.rewind.need_activated","Need Activated");
 
         add("jei.anvilcraft_tofus_thinking.info.original_conuit","By default, the Star Of The Sea is used to absorb the blue Wither Head of a strange Wither and inject it into an Conduit to obtain it. In its original state, it is difficult to control precisely and is not suitable for direct use as a wand material.");
+        add("jei.anvilcraft_tofus_thinking.info.charm_amulet","By default, it is obtained by stamping with six different charms on an anvil");
     }
 }

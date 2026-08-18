@@ -3,6 +3,7 @@ package dev.anvilcraft.tofusthinking.compat.jei;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.compat.jei.category.anvil.liquid.RewindCategory;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
+import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.recipe.anvil.RewindRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -42,6 +43,10 @@ public class TofusThinkingJeiPlugin implements IModPlugin {
         registration.addItemStackInfo(
                 AddonBlocks.ORIGINAL_CONDUIT.asStack(),
                 Component.translatable("jei.anvilcraft_tofus_thinking.info.original_conuit")
+        );
+        registration.addItemStackInfo(
+                AddonItems.CHARM_AMULET.asStack(),
+                Component.translatable("jei.anvilcraft_tofus_thinking.info.charm_amulet")
         );
 
         RewindCategory.registerRecipes(registration);

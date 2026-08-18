@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.item.tool;
 
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
+import dev.anvilcraft.tofusthinking.init.entity.AddonEntityTypeTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
@@ -31,7 +32,6 @@ import java.util.List;
 
 public class HammerItem extends TieredItem {
     public static ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
-    public static ResourceLocation SWEEP_ID = AnvilCraftTofusThinking.of("sweep");
     public HammerItem(Tier tier, Properties properties) {
         super(tier,properties.component(DataComponents.TOOL,createToolProperties(tier)));
     }
@@ -85,6 +85,7 @@ public class HammerItem extends TieredItem {
 
     @Override
     public float getAttackDamageBonus(@NotNull Entity target, float damage, @NotNull DamageSource damageSource) {
+        if(target.getType().is(AddonEntityTypeTags.DAMAGE_TEST_ENTITY)){return 0;}
         float addDamage = 0;
         if(target instanceof LivingEntity living && damageSource.getDirectEntity() instanceof Player player){
             addDamage += (float)(living.getArmorValue() * 0.5F + living.getAttributeValue(Attributes.ARMOR_TOUGHNESS) * 0.5F) * player.getAttackStrengthScale(0.5F);

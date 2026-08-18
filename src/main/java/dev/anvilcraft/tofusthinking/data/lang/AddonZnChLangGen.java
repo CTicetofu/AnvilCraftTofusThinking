@@ -57,6 +57,8 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","点击潮涌核心法杖将其原初化");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_lost_in_time","迷失时间");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","注入到准备状态的凋灵使其变异");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit","另一种异变的凋灵之力，可以将一些事物还原成本来的样子");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_build","只需要本层3*3范围有水和八个框架方块即可启动 \n当有大于8个坚固海晶石砖时，无论周围生物是否在雨中或者水中都会造成效果");
 
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","在物品栏界面右键以改变是否为 %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","自动攻击模式");
@@ -92,5 +94,6 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("gui.anvilcraft_tofus_thinking.category.rewind.need_activated","需要激活");
 
         add("jei.anvilcraft_tofus_thinking.info.original_conuit","默认情况下，使用海洋之星吸收奇怪的凋灵的蓝色凋灵之首后将其注入普通的潮涌核心获取，原始状态的它难以精细控制而不太适合直接作为法杖材料。");
+        add("jei.anvilcraft_tofus_thinking.info.charm_amulet","默认情况下，使用六个不同的护符经过铁砧冲压获得");
     }
 }
