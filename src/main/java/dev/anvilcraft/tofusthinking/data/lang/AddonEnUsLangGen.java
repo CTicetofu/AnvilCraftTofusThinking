@@ -58,8 +58,13 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_lost_in_time","Lost In Time");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","Injecting it into a prepared Wither causes it to mutate");
         add("tooltip.anvilcraft_tofus_thinking.original_conduit","Another mutated power of Wither can restore some things to their original state");
-        add("tooltip.anvilcraft_tofus_thinking.original_conduit_build","It can be activated as long as there is water and eight frame blocks within a 3x3 range on this layer \nWhen there are more than 8 Stable Prismarine Bricks, the effect will be triggered regardless of whether the surrounding living entity are in the rain or water");
-
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_build", """
+                It can be activated as long as there is water and eight frame blocks within a 3x3 range on this layer
+                When there are more than 8 Stable Prismarine Bricks
+                the effect will be triggered regardless of whether the surrounding living entity are in the rain or water
+                Attack nearby enemy monsters when there are no fewer than 24 frame blocks\
+                """);
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_warn","Don't let it be influenced by another kind of time power");
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","Right-click in the inventory to toggle whether it is in %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","Auto Attack Mode");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_auto","it automatically deals damage to nearby monsters when holding");

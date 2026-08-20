@@ -24,8 +24,8 @@ public class AddonBlocks {
     public static final BlockEntry<AdvancedConduitFrame> STABLE_PRISMARINE_BRICKS = REGISTRUM
             .block("stable_prismarine_bricks", AdvancedConduitFrame::new)
             .initialProperties(() -> Blocks.PRISMARINE_BRICKS)
-            .properties(p -> p.explosionResistance(1200))
-            .tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.WITHER_IMMUNE)
+            .properties(p -> p.explosionResistance(12000000))
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.WITHER_IMMUNE, BlockTags.DRAGON_IMMUNE)
             .blockstate(DataGenUtil::noExtraModelOrState)
             .item((block, properties) ->
                     new SimpleBlockItem(block,properties.fireResistant(),SimpleBlockItem.EXPLODE_IMMUNE).addComponent(Component.translatable("tooltip.anvilcraft_tofus_thinking.wither_immune").withStyle(ChatFormatting.AQUA))
@@ -36,8 +36,8 @@ public class AddonBlocks {
     public static final BlockEntry<OriginalConduitBlock> ORIGINAL_CONDUIT = REGISTRUM
             .block("original_conduit", OriginalConduitBlock::new)
             .initialProperties(() -> Blocks.CONDUIT)
-            .properties(p -> p.explosionResistance(48000))
-            .tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.WITHER_IMMUNE)
+            .properties(p -> p.explosionResistance(48000000))
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.WITHER_IMMUNE, BlockTags.DRAGON_IMMUNE)
             .blockstate(DataGenUtil::noExtraModelOrState)
             .item(OriginalConduitItem::new)
             .model(DataGenUtil::noExtraModelOrState)

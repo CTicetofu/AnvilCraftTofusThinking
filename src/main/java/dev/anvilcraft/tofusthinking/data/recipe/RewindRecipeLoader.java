@@ -48,11 +48,6 @@ public class RewindRecipeLoader {
                 .save(provider,path("beacon"));
 
         RewindRecipe.builder()
-                .requires(Blocks.CONDUIT)
-                .result(AddonBlocks.ORIGINAL_CONDUIT)
-                .save(provider,path("original_conduit"));
-
-        RewindRecipe.builder()
                 .requires(Blocks.PRISMARINE_BRICKS)
                 .requires(Items.PRISMARINE_CRYSTALS)
                 .result(AddonBlocks.STABLE_PRISMARINE_BRICKS)

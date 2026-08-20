@@ -3,6 +3,9 @@ package dev.anvilcraft.tofusthinking.block;
 import dev.anvilcraft.tofusthinking.block.entity.OriginalConduitBlockEntity;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ConduitBlock;
@@ -14,6 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -45,6 +49,11 @@ public class OriginalConduitBlock extends ConduitBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
         return createTickerHelper(blockEntityType, AddonBlockEntities.ORIGINAL_CONDUIT.get(), level.isClientSide ? OriginalConduitBlockEntity::clientTick : OriginalConduitBlockEntity::serverTick);
+    }
+
+    @Override
+    public boolean canEntityDestroy(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Entity entity) {
+        return (entity instanceof Player || entity.getType().is(Tags.EntityTypes.BOSSES)) && super.canEntityDestroy(state, level, pos, entity);
     }
 
 }

@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.anvilcraft.tofusthinking.block.OriginalConduitBlock;
 import dev.anvilcraft.tofusthinking.block.entity.OriginalConduitBlockEntity;
 import dev.anvilcraft.tofusthinking.client.event.ClientManageHandler;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
@@ -29,8 +30,8 @@ public class OriginalConduitItemRenderer extends BlockEntityWithoutLevelRenderer
         }
     };
 
-    public static final OriginalConduitBlockEntity blockEntity = new OriginalConduitBlockEntity(BlockPos.ZERO.offset(0,1,0), AddonBlocks.ORIGINAL_CONDUIT.get().defaultBlockState()).withActive();
-    public static final OriginalConduitBlockEntity huntBlockEntity = new OriginalConduitBlockEntity(BlockPos.ZERO.offset(0,2,0), AddonBlocks.ORIGINAL_CONDUIT.get().defaultBlockState()).withActive().withHunt();
+    public static final OriginalConduitBlockEntity blockEntity = new OriginalConduitBlockEntity(BlockPos.ZERO.offset(0,1,0), AddonBlocks.ORIGINAL_CONDUIT.get().defaultBlockState().setValue(OriginalConduitBlock.OPEN,true)).withActive();
+    public static final OriginalConduitBlockEntity huntBlockEntity = new OriginalConduitBlockEntity(BlockPos.ZERO.offset(0,2,0), AddonBlocks.ORIGINAL_CONDUIT.get().defaultBlockState().setValue(OriginalConduitBlock.OPEN,true)).withActive().withHunt();
     public static final OriginalConduitBlockEntity sleepBlockEntity = new OriginalConduitBlockEntity(BlockPos.ZERO.offset(0,3,0), AddonBlocks.ORIGINAL_CONDUIT.get().defaultBlockState());
     private static final BlockEntityRenderDispatcher blockEntityRenderDispatcher = Minecraft.getInstance().getBlockEntityRenderDispatcher();
 

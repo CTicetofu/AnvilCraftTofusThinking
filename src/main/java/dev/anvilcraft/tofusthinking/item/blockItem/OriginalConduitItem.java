@@ -1,5 +1,6 @@
 package dev.anvilcraft.tofusthinking.item.blockItem;
 
+import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.DamageTypeTags;
@@ -15,7 +16,7 @@ import java.util.List;
 public class OriginalConduitItem extends BlockItem {
 
     public OriginalConduitItem(Block block, Properties properties) {
-        super(block, properties);
+        super(block, properties.rarity(AnvilCraftTofusThinking.TOFU_RARITY));
     }
 
     @Override
@@ -28,5 +29,6 @@ public class OriginalConduitItem extends BlockItem {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.original_conduit").withStyle(ChatFormatting.GRAY));
         tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.original_conduit_build").withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.original_conduit_warn").withStyle(ChatFormatting.RED));
     }
 }

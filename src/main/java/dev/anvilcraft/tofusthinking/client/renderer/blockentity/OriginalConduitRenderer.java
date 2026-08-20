@@ -80,9 +80,11 @@ public class OriginalConduitRenderer implements BlockEntityRenderer<OriginalCond
     }
 
     public void render(OriginalConduitBlockEntity blockEntity, float partialTick, @NotNull PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+
         float f = (float)blockEntity.tickCount + partialTick;
+
         BlockState state = blockEntity.getBlockState();
-        boolean active = blockEntity.isActive() || (state.hasProperty(OriginalConduitBlock.OPEN) && state.getValue(OriginalConduitBlock.OPEN));
+        boolean active = state.hasProperty(OriginalConduitBlock.OPEN) && state.getValue(OriginalConduitBlock.OPEN);
         if (!active) {
             float f5 = blockEntity.getActiveRotation(0.0F);
             VertexConsumer vertex1 = SHELL_TEXTURE.buffer(bufferSource, RenderType::entitySolid);
@@ -92,6 +94,9 @@ public class OriginalConduitRenderer implements BlockEntityRenderer<OriginalCond
             this.shell.render(poseStack, vertex1, packedLight, packedOverlay);
             poseStack.popPose();
         } else {
+            int rate = Mth.clamp(blockEntity.getOverloadTimes(),1,4);
+            f *= rate * 2;
+            float scale = rate * 0.5F + 0.5F;
             float f1 = blockEntity.getActiveRotation(partialTick) * (180.0F / (float)Math.PI);
             float f2 = Mth.sin(f * 0.1F) / 2.0F + 0.5F;
             f2 = f2 * f2 + f2;
@@ -99,6 +104,7 @@ public class OriginalConduitRenderer implements BlockEntityRenderer<OriginalCond
             poseStack.translate(0.5F, 0.3F + f2 * 0.1F, 0.5F);
             Vector3f vector3f = new Vector3f(0.5F, 1.0F, 0.5F).normalize();
             poseStack.mulPose(new Quaternionf().rotationAxis(f1 * (float) (Math.PI / 180.0), vector3f));
+            poseStack.scale(scale,scale,scale);
             this.cage.render(poseStack, ACTIVE_SHELL_TEXTURE.buffer(bufferSource, RenderType::entityCutoutNoCull), packedLight, packedOverlay);
             poseStack.popPose();
             int i = blockEntity.tickCount / 66 % 3;
@@ -111,21 +117,22 @@ public class OriginalConduitRenderer implements BlockEntityRenderer<OriginalCond
             }
 
             VertexConsumer vertexconsumer = (i == 1 ? VERTICAL_WIND_TEXTURE : WIND_TEXTURE).buffer(bufferSource, RenderType::entityCutoutNoCull);
+            poseStack.scale(scale,scale,scale);
             this.wind.render(poseStack, vertexconsumer, packedLight, packedOverlay);
             poseStack.popPose();
             poseStack.pushPose();
             poseStack.translate(0.5F, 0.5F, 0.5F);
-            poseStack.scale(0.875F, 0.875F, 0.875F);
+            poseStack.scale(0.875F * scale, 0.875F * scale, 0.875F * scale);
             poseStack.mulPose(new Quaternionf().rotationXYZ((float) Math.PI, 0.0F, (float) Math.PI));
             this.wind.render(poseStack, vertexconsumer, packedLight, packedOverlay);
             poseStack.popPose();
             Camera camera = this.renderer.camera;
             poseStack.pushPose();
             poseStack.translate(0.5F, 0.3F + f2 * 0.1F, 0.5F);
-            poseStack.scale(0.5F, 0.5F, 0.5F);
+            poseStack.scale(0.5F * scale, 0.5F * scale, 0.5F * scale);
             float f3 = -camera.getYRot();
             poseStack.mulPose(new Quaternionf().rotationYXZ(f3 * (float) (Math.PI / 180.0), camera.getXRot() * (float) (Math.PI / 180.0), (float) Math.PI));
-            float f4 = 1.3333334F;
+            float f4 = 1.3333334F * (scale * 0.6F + 0.4F);
             poseStack.scale(f4, f4, f4);
             this.eye
                     .render(
