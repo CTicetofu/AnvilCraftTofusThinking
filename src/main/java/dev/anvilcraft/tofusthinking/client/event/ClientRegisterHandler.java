@@ -7,6 +7,7 @@ import dev.anvilcraft.tofusthinking.client.init.AddonModelLayers;
 import dev.anvilcraft.tofusthinking.client.renderer.SimpleClientFluidType;
 import dev.anvilcraft.tofusthinking.client.renderer.blockentity.FoodGeneratorRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.blockentity.OriginalConduitRenderer;
+import dev.anvilcraft.tofusthinking.client.renderer.blockentity.OverloadGeneratorRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.item.ConduitStaffRender;
 import dev.anvilcraft.tofusthinking.client.renderer.item.OriginalConduitItemRenderer;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
@@ -35,6 +36,7 @@ public class ClientRegisterHandler {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(AddonBlockEntities.ORIGINAL_CONDUIT.get(), OriginalConduitRenderer::new);
+        event.registerBlockEntityRenderer(AddonBlockEntities.OVERLOAD_GENERATOR.get(), OverloadGeneratorRenderer::new);
         event.registerBlockEntityRenderer(AddonBlockEntities.FOOD_GENERATOR.get(), FoodGeneratorRenderer::new);
     }
 

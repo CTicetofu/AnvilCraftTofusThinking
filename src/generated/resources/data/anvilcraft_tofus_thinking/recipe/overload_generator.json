@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:void_energy_collector"
+    },
+    "B": {
+      "item": "anvilcraft:cut_frost_metal_block"
+    },
+    "C": {
+      "item": "anvilcraft:amber_block"
+    },
+    "D": {
+      "item": "anvilcraft_tofus_thinking:stable_prismarine_bricks"
+    }
+  },
+  "pattern": [
+    "BDB",
+    "CAC",
+    "BDB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:overload_generator"
+  }
+}

@@ -48,6 +48,10 @@ public class TofusThinkingJeiPlugin implements IModPlugin {
                 AddonItems.CHARM_AMULET.asStack(),
                 Component.translatable("jei.anvilcraft_tofus_thinking.info.charm_amulet")
         );
+        registration.addItemStackInfo(
+                AddonBlocks.OVERLOAD_GENERATOR.asStack(),
+                Component.translatable("jei.anvilcraft_tofus_thinking.info.overload_generator")
+        );
 
         RewindCategory.registerRecipes(registration);
     }

@@ -1,0 +1,43 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"4": "anvilcraft:block/frost_metal_block",
+		"5": "anvilcraft:block/frost_metal_block_outline",
+		"particle": "anvilcraft:block/frost_metal_block"
+	},
+	"elements": [
+		{
+			"from": [0.5, 0.125, 0.5],
+			"to": [15.5, 1.875, 15.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0.5, 0, 0.5]},
+			"faces": {
+				"north": {"uv": [0, 14, 16, 16], "texture": "#4", "cullface": "north"},
+				"east": {"uv": [0, 14, 16, 16], "texture": "#4", "cullface": "east"},
+				"south": {"uv": [0, 14, 16, 16], "texture": "#4", "cullface": "south"},
+				"west": {"uv": [0, 14, 16, 16], "texture": "#4", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#4"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#4", "cullface": "down"}
+			}
+		},
+		{
+			"name": "cube_outline",
+			"from": [16.025, 2.025, 16.025],
+			"to": [0.075, 0.075, 0.075],
+			"shade": false,
+			"light_emission": 15,
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 2, 16]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 2], "rotation": 180, "texture": "#5"},
+				"east": {"uv": [0, 0, 16, 2], "rotation": 180, "texture": "#5"},
+				"south": {"uv": [0, 0, 16, 2], "rotation": 180, "texture": "#5"},
+				"west": {"uv": [0, 0, 16, 2], "rotation": 180, "texture": "#5"},
+				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#5"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#5"}
+			}
+		}
+	]
+}

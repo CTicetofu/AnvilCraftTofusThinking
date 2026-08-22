@@ -1,12 +1,11 @@
 package dev.anvilcraft.tofusthinking.init.block;
 
 import dev.anvilcraft.lib.v2.registrum.util.entry.BlockEntry;
-import dev.anvilcraft.tofusthinking.block.AdvancedConduitFrame;
-import dev.anvilcraft.tofusthinking.block.FoodGeneratorBlock;
-import dev.anvilcraft.tofusthinking.block.OriginalConduitBlock;
-import dev.anvilcraft.tofusthinking.block.SmartPowerConverterBlock;
+import dev.anvilcraft.tofusthinking.block.*;
+import dev.anvilcraft.tofusthinking.data.recipe.AddonBlockRecipeLoader;
 import dev.anvilcraft.tofusthinking.item.blockItem.OriginalConduitItem;
 import dev.anvilcraft.tofusthinking.item.blockItem.SimpleBlockItem;
+import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import net.minecraft.ChatFormatting;
@@ -70,6 +69,19 @@ public class AddonBlocks {
             .tag(ModItemTags.POWER_CONVERTER)
             .build()
             .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .register();
+
+    public static final BlockEntry<OverloadGeneratorBlock> OVERLOAD_GENERATOR = REGISTRUM
+            .block("overload_generator",OverloadGeneratorBlock::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .properties(p -> p.explosionResistance(160000).noOcclusion().isValidSpawn(Blocks::never).emissiveRendering(ModBlocks::always))
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.WITHER_IMMUNE, BlockTags.DRAGON_IMMUNE)
+            .blockstate(DataGenUtil::noExtraModelOrState)
+            .item((block, properties) ->
+                    new SimpleBlockItem(block,properties.fireResistant(),SimpleBlockItem.EXPLODE_IMMUNE).addComponent(Component.translatable("tooltip.anvilcraft_tofus_thinking.overload_generator").withStyle(ChatFormatting.GRAY))
+            )
+            .build()
+            .recipe(AddonBlockRecipeLoader::overloadGenerator)
             .register();
 
 

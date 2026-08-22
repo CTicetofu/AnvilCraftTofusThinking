@@ -39,6 +39,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonBlocks.ORIGINAL_CONDUIT.get(),"Originalization Conduit");
         add(AddonBlocks.NUTRIENT_EXTRACTOR.get(),"Nutrient Extractor");
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"Smart Power Converter");
+        add(AddonBlocks.OVERLOAD_GENERATOR.get(),"Overload Generator");
     }
     private void tooltipLang(){
         add("tooltip.anvilcraft_tofus_thinking.auto_can_storage","The nutritional value of storage: %1$d/%2$d");
@@ -65,6 +66,13 @@ public class AddonEnUsLangGen extends LanguageProvider {
                 Attack nearby enemy monsters when there are no fewer than 24 frame blocks\
                 """);
         add("tooltip.anvilcraft_tofus_thinking.original_conduit_warn","Don't let it be influenced by another kind of time power");
+        add("tooltip.anvilcraft_tofus_thinking.overload_generator", "The dangerous generator that utilizes the power of abnormal time acceleration. \nFor details, please refer to JEI");
+        add("jei.anvilcraft_tofus_thinking.info.overload_generator", """
+                When exposed to time acceleration (positioned above an activated Corruption Beacon), the number of overload times increases by one per second
+                The power generation is 2 raised to the power of (8 * n), where n represents the number of overload times, with a maximum of 4
+                Explode when overloaded more than 14 times or when the corrupted beacon below is not activated
+                In other cases, removing oneself will not cause an explosion\
+                """);
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","Right-click in the inventory to toggle whether it is in %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","Auto Attack Mode");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_auto","it automatically deals damage to nearby monsters when holding");

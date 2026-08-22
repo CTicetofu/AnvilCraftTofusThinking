@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "anvilcraft_tofus_thinking:overload_generator"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_void_energy_collector": {
+      "conditions": {
+        "items": [
+          {
+            "items": "anvilcraft:void_energy_collector"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_void_energy_collector"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "anvilcraft_tofus_thinking:overload_generator"
+    ]
+  }
+}

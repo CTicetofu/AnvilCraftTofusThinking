@@ -52,4 +52,5 @@ public class ConduitStaffRender extends BlockEntityWithoutLevelRenderer {
         FluidRenderHelper.INSTANCE.renderFluidBox(water, 0.01F, 0.01F, 0.01F, 0.99F, 0.99F, 0.99F, buffer, poseStack, light, true, false);
         poseStack.popPose();
     }
+
 }

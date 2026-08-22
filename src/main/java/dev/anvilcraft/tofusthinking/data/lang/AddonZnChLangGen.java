@@ -39,6 +39,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonBlocks.ORIGINAL_CONDUIT.get(),"原初化潮涌核心");
         add(AddonBlocks.NUTRIENT_EXTRACTOR.get(),"营养萃取器");
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"智能能量转换器");
+        add(AddonBlocks.OVERLOAD_GENERATOR.get(),"过载发电机");
     }
     private void tooltipLang(){
         add("tooltip.anvilcraft_tofus_thinking.auto_can_storage","存储的营养价值: %1$d/%2$d");
@@ -64,6 +65,13 @@ public class AddonZnChLangGen extends LanguageProvider {
                 框架方块不小于24个时攻击附近的敌怪\
                 """);
         add("tooltip.anvilcraft_tofus_thinking.original_conduit_warn","不要让它受到另一种时间之力的影响");
+        add("tooltip.anvilcraft_tofus_thinking.overload_generator", "使用异常时间加速之力的危险发电机，详情查看jei");
+        add("jei.anvilcraft_tofus_thinking.info.overload_generator", """
+                当受到时间加速（置于激活的腐化信标上方时）每秒增加一点过载次数
+                发电量为 2 ^ (8 * n) n为过载次数，且最大为4
+                当过载超过14次或者过载时下方不为激活的腐化信标时爆炸
+                其他情况下移除自身不会产生爆炸\
+                """);
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","在物品栏界面右键以改变是否为 %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","自动攻击模式");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_auto","持有时对自动对周围怪物造成伤害");

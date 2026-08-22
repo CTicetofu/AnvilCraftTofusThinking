@@ -28,5 +28,6 @@ public class AnvilCraftTofusThinkingClient {
     @SubscribeEvent
     public static void onModelBake(ModelEvent.RegisterAdditional event){
         event.register(ModelResourceLocation.standalone(AnvilCraftTofusThinking.of("item/conduit_staff_model")));
+        event.register(ModelResourceLocation.standalone(AnvilCraftTofusThinking.of("block/overload_generator_head")));
     }
 }
