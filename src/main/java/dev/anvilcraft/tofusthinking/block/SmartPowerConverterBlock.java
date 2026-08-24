@@ -31,9 +31,10 @@ public class SmartPowerConverterBlock extends BasePowerConverterBlock implements
     public static final VoxelShape SHAPE_DOWN = Block.box(4, 0, 4, 12, 9, 12);
     public static final VoxelShape SHAPE_UP = Block.box(4, 7, 4, 12, 16, 12);
     public static final VoxelShape SHAPE_NORTH = Block.box(4, 4, 0, 12, 12, 9);
-    public static final VoxelShape SHAPE_EASE = Block.box(7, 4, 4, 16, 12, 12);
+    public static final VoxelShape SHAPE_EAST = Block.box(7, 4, 4, 16, 12, 12);
     public static final VoxelShape SHAPE_SOUTH = Block.box(4, 4, 7, 12, 12, 16);
     public static final VoxelShape SHAPE_WEST = Block.box(0, 4, 4, 9, 12, 12);
+
     public SmartPowerConverterBlock(Properties properties) {
         super(properties,0);
     }
@@ -45,7 +46,7 @@ public class SmartPowerConverterBlock extends BasePowerConverterBlock implements
 
     @Override
     public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return new SmartPowerConverterBlockEntity(pos,state);
+        return new SmartPowerConverterBlockEntity(pos,state,4096);
     }
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
@@ -81,7 +82,7 @@ public class SmartPowerConverterBlock extends BasePowerConverterBlock implements
             case UP -> SHAPE_UP;
             case DOWN -> SHAPE_DOWN;
             case NORTH -> SHAPE_NORTH;
-            case EAST -> SHAPE_EASE;
+            case EAST -> SHAPE_EAST;
             case SOUTH -> SHAPE_SOUTH;
             case WEST -> SHAPE_WEST;
         };

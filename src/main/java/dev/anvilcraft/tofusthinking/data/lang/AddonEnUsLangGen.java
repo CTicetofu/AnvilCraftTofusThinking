@@ -39,6 +39,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonBlocks.ORIGINAL_CONDUIT.get(),"Originalization Conduit");
         add(AddonBlocks.NUTRIENT_EXTRACTOR.get(),"Nutrient Extractor");
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"Smart Power Converter");
+        add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"Smart Power Converter Extremely Big");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"Overload Generator");
     }
     private void tooltipLang(){
@@ -58,6 +59,9 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","right-click to original the Conduit Staff in the inventory");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_lost_in_time","Lost In Time");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","Injecting it into a prepared Wither causes it to mutate");
+
+        add("tooltip.anvilcraft_tofus_thinking.smart_power_converter"," Adjustable Power converter, with a maximum of %s kW");
+
         add("tooltip.anvilcraft_tofus_thinking.original_conduit","Another mutated power of Wither can restore some things to their original state");
         add("tooltip.anvilcraft_tofus_thinking.original_conduit_build", """
                 It can be activated as long as there is water and eight frame blocks within a 3x3 range on this layer

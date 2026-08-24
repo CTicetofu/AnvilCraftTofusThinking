@@ -64,11 +64,37 @@ public class AddonBlocks {
                 }
             }))
             .blockstate(DataGenUtil::noExtraModelOrState)
-            .item()
+            .item((block, properties) ->
+                    new SimpleBlockItem(block,properties.fireResistant())
+                            .addComponent(Component.translatable("tooltip.anvilcraft_tofus_thinking.smart_power_converter",Component.literal(String.valueOf(4096)).withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY))
+            )
             .model((ctx, provider) -> provider.blockItem(ctx))
             .tag(ModItemTags.POWER_CONVERTER)
             .build()
             .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .recipe(AddonBlockRecipeLoader::smartPowerConverter)
+            .register();
+
+    public static final BlockEntry<SmartPowerConverterExtremelyBigBlock> SMART_POWER_CONVERTER_EXTREMELY_BIG = REGISTRUM
+            .block("smart_power_converter_extremely_big",SmartPowerConverterExtremelyBigBlock::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .properties(p -> p.isValidSpawn(Blocks::never).lightLevel(state -> {
+                if (state.getValue(OVERLOAD) || state.getValue(BlockStateProperties.POWERED)) {
+                    return 6;
+                } else {
+                    return 15;
+                }
+            }))
+            .blockstate(DataGenUtil::noExtraModelOrState)
+            .item((block, properties) ->
+                    new SimpleBlockItem(block,properties.fireResistant())
+                            .addComponent(Component.translatable("tooltip.anvilcraft_tofus_thinking.smart_power_converter",Component.literal(String.valueOf(1048567)).withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY))
+            )
+            .model((ctx, provider) -> provider.blockItem(ctx))
+            .tag(ModItemTags.POWER_CONVERTER)
+            .build()
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .recipe(AddonBlockRecipeLoader::smartPowerConverterExtremelyBig)
             .register();
 
     public static final BlockEntry<OverloadGeneratorBlock> OVERLOAD_GENERATOR = REGISTRUM

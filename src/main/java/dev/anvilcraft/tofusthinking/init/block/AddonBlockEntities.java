@@ -21,7 +21,7 @@ public class AddonBlockEntities {
             .register();
 
     public static final BlockEntityEntry<SmartPowerConverterBlockEntity> SMART_POWER_CONVERTER = REGISTRUM.<SmartPowerConverterBlockEntity>blockEntity("smart_power_converter",SmartPowerConverterBlockEntity::new)
-            .validBlock(AddonBlocks.SMART_POWER_CONVERTER)
+            .validBlocks(AddonBlocks.SMART_POWER_CONVERTER,AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG)
             .register();
 
     public static final BlockEntityEntry<OverloadGeneratorBlockEntity> OVERLOAD_GENERATOR = REGISTRUM.<OverloadGeneratorBlockEntity>blockEntity("overload_generator", OverloadGeneratorBlockEntity::new)

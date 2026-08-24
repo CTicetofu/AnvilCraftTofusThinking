@@ -53,6 +53,14 @@ public class AddonComponents {
             "max_energy",
             (builder) -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT)
     );
+    public static final DataComponentType<Long> LONG_STORED_ENERGY = register(
+            "long_stored_energy",
+            (builder) -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG)
+    );
+    public static final DataComponentType<Long> LONG_MAX_ENERGY = register(
+            "long_max_energy",
+            (builder) -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG)
+    );
     public static final DataComponentType<UUID> UUID = register(
             "uuid",
             (builder) -> builder.persistent(UUIDUtil.CODEC).networkSynchronized(UUIDUtil.STREAM_CODEC)

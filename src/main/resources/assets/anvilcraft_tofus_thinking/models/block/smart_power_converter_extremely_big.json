@@ -1,0 +1,6 @@
+{
+  "parent": "anvilcraft:block/power_converter_extremely_big",
+  "textures": {
+		"1": "anvilcraft_tofus_thinking:block/smart_power_converter_extremely_big"
+	}
+}

@@ -39,6 +39,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonBlocks.ORIGINAL_CONDUIT.get(),"原初化潮涌核心");
         add(AddonBlocks.NUTRIENT_EXTRACTOR.get(),"营养萃取器");
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"智能能量转换器");
+        add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"智能极大能量转换器");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"过载发电机");
     }
     private void tooltipLang(){
@@ -58,6 +59,9 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","点击潮涌核心法杖将其原初化");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_lost_in_time","迷失时间");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","注入到准备状态的凋灵使其变异");
+
+        add("tooltip.anvilcraft_tofus_thinking.smart_power_converter","可更改功率的能量转换器，最大为 %s kW");
+
         add("tooltip.anvilcraft_tofus_thinking.original_conduit","另一种异变的凋灵之力，可以将一些事物还原成本来的样子");
         add("tooltip.anvilcraft_tofus_thinking.original_conduit_build", """
                 只需要本层3*3范围有水和八个框架方块即可启动

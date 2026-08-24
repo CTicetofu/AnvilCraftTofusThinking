@@ -1,5 +1,6 @@
 package dev.anvilcraft.tofusthinking.block.entity;
 
+import dev.anvilcraft.tofusthinking.api.energy.IExtraEnergyStorage;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.inventory.SimpleNumberConfigMenu;
@@ -35,17 +36,20 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
     private PowerGrid grid = null;
     private int inputPower;
     private int cooldown = 0;
-    int energy = 0;
-    public final int MAX_ENERGY = 1000000000;
+    long energy = 0;
+    private int maxInputPower = 2048;
+    private long maxEnergy = maxInputPower * 1000000L;
     public SmartPowerConverterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
 
-    public SmartPowerConverterBlockEntity(BlockPos pos, BlockState blockState){
+    public SmartPowerConverterBlockEntity(BlockPos pos, BlockState blockState,int max){
         this(AddonBlockEntities.SMART_POWER_CONVERTER.get(),pos,blockState);
+        this.maxInputPower = max;
+        this.maxEnergy = max * 1000000L;
     }
 
-    public @Nullable IEnergyStorage getEnergyStorage(@Nullable Direction side) {
+    public @Nullable IExtraEnergyStorage getEnergyStorage(@Nullable Direction side) {
         if (side == null) return new SmartPowerConverterEnergyStore();
         if (side == getBlockState().getValue(BasePowerConverterBlock.FACING)) return new SmartPowerConverterEnergyStore();
         return null;
@@ -55,7 +59,7 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
         super.saveAdditional(tag, provider);
         tag.putInt("InputPower", inputPower);
         tag.putInt("Cooldown", cooldown);
-        tag.putInt("Energy", energy);
+        tag.putLong("Energy", energy);
     }
 
     @Override
@@ -63,13 +67,13 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
         super.loadAdditional(tag, provider);
         inputPower = tag.getInt("InputPower");
         cooldown = tag.getInt("Cooldown");
-        energy = tag.getInt("Energy");
+        energy = tag.getLong("Energy");
     }
 
     @Override
     public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registries) {
         CompoundTag tag = super.getUpdateTag(registries);
-        tag.putInt("Energy", energy);
+        tag.putLong("Energy", energy);
         tag.putInt("InputPower", inputPower);
         return tag;
     }
@@ -93,8 +97,6 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
         handleUpdateTag(tag, registries);
     }
 
-    //原本的转换器是不是多算了1tick?
-
     @Override
     public void gridTick() {
         if (this.level != null) {
@@ -102,12 +104,11 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
             if (this.getBlockState().getValue(BasePowerConverterBlock.POWERED)) return;
         }
         if (getBlockState().getValue(BasePowerConverterBlock.OVERLOAD)) return;
-        int amountTick = (int) (inputPower
-                * AnvilCraft.CONFIG.powerConverter.powerConverterEfficiency
-                * (1 - AnvilCraft.CONFIG.powerConverter.powerConverterLoss)
-        );
-        int amount = amountTick * PowerGrid.GRID_TICK;
-        this.energy = Math.clamp(this.energy + amount,0, MAX_ENERGY);
+        long amountTick = (long) (inputPower
+                        * AnvilCraft.CONFIG.powerConverter.powerConverterEfficiency
+                        * (1 - AnvilCraft.CONFIG.powerConverter.powerConverterLoss));
+        long amount = amountTick * PowerGrid.GRID_TICK;
+        this.energy = Mth.clamp(this.energy + amount,0L, maxEnergy);
         setChanged();
     }
 
@@ -131,7 +132,8 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
                 face.getOpposite()
         );
         if (target != null && target.canReceive()) {
-            int accepted = target.receiveEnergy(this.energy, false);
+            int limited = (int)this.energy;
+            int accepted = target.receiveEnergy(limited, false);
             if (accepted > 0) {
                 this.energy -= accepted;
                 setChanged();
@@ -176,14 +178,14 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
         return inputPower;
     }
 
-    public int getMaxInputPower(){return 1048576;}
+    public int getMaxInputPower(){return maxInputPower;}
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int containerId, @NotNull Inventory playerInventory, @NotNull Player player) {
         return new SimpleNumberConfigMenu(containerId, this::setInputPower);
     }
 
-    class SmartPowerConverterEnergyStore implements IEnergyStorage {
+    class SmartPowerConverterEnergyStore implements IExtraEnergyStorage {
         @Override
         public int receiveEnergy(int maxReceive, boolean simulate) {
             return 0;
@@ -191,7 +193,7 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
 
         @Override
         public int extractEnergy(int maxExtract, boolean simulate) {
-            int r = Math.min(energy, maxExtract);
+            int r = Math.toIntExact(Math.min(energy, maxExtract));
             if (!simulate) {
                 energy -= r;
                 setChanged();
@@ -200,13 +202,13 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
         }
 
         @Override
-        public int getEnergyStored() {
+        public long getRealEnergyStored() {
             return energy;
         }
 
         @Override
-        public int getMaxEnergyStored() {
-            return MAX_ENERGY;
+        public long getRealMaxEnergyStored() {
+            return maxEnergy;
         }
 
         @Override

@@ -21,6 +21,7 @@ public class TooltipUtil {
         String rightNumber = full ? getFullFE(maxEnergy) : getSimpleFE(maxEnergy);
         return Component.literal(leftNumber).withColor(YELLOW).append(Component.literal("/").withColor(GRAY)).append(Component.literal(rightNumber).withColor(CRAY));
     }
+
     public static Component getItemNeedEnergy(int amount,boolean full){
         String number = full ? getFullFE(amount) : getSimpleFE(amount);
         return Component.translatable("tooltip.anvilcraft_tofus_thinking.need_energy",Component.literal(number).withColor(KHAKI1)).withColor(GRAY);
