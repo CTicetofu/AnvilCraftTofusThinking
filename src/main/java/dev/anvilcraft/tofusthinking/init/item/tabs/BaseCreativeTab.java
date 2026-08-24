@@ -31,6 +31,7 @@ public class BaseCreativeTab implements CreativeModeTab.DisplayItemsGenerator{
         Integer max = item.asItem().components().get(AddonComponents.MAX_ENERGY);
         if(max == null || max <= 0){return;}
         ItemStack stack = item.asItem().getDefaultInstance();
+        if(!stack.getOrDefault(AddonComponents.IS_ACTIVE,true)){stack.set(AddonComponents.IS_ACTIVE,true);}
         stack.set(AddonComponents.STORED_ENERGY,max);
         this.accept(stack);
     }

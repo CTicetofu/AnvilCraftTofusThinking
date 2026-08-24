@@ -10,6 +10,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+@SuppressWarnings("unused")
 public class AddonItemGroups {
     private static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AnvilCraftTofusThinking.MOD_ID);
@@ -22,7 +23,7 @@ public class AddonItemGroups {
                     .icon(AddonItems.STAR_OF_THE_SEA::asStack)
                     .displayItems(new ItemTab())
                     .title(Component.translatable(ITEM_TAB_ID))
-                    .withTabsBefore(ModItemGroups.ANVILCRAFT_BUILD_BLOCK.getId())
+                    .withTabsBefore(ModItemGroups.ANVILCRAFT_ITEMS.getId())
                     .build()
     );
 
