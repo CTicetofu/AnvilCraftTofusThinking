@@ -22,6 +22,7 @@ public class AnvilCraftTofusThinkingClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         ItemSlotClipping.register(AddonItems.CONDUIT_STAFF.get());
+        ItemSlotClipping.register(AddonItems.ORIGINAL_CONDUIT_STAFF.get());
         ItemSlotClipping.register(AddonItems.SONIC_BOOM_STAFF.get());
     }
 

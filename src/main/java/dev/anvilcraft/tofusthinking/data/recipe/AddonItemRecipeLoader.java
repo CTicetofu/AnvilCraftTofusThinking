@@ -4,6 +4,7 @@ import dev.anvilcraft.lib.v2.registrum.providers.DataGenContext;
 import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.data.TofusThinkingDatagen;
+import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.util.DataClass.EnchantmentKeyInstance;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
@@ -32,7 +33,7 @@ public class AddonItemRecipeLoader {
     }
 
     public static <T extends Item> void amethystHammer(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, enchant(ctx.get(),provider.getProvider(),new EnchantmentKeyInstance(Enchantments.SMITE,2),new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4)))
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, enchant(ctx.get(),provider.getProvider(),new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4)))
                 .pattern("BBB")
                 .pattern("BAB")
                 .pattern(" A ")
@@ -50,6 +51,17 @@ public class AddonItemRecipeLoader {
                 .save(provider, AnvilCraftTofusThinking.of("smithing/royal_steel_hammer"));
     }
 
+    public static <T extends Item> void amethystGoldenRIng(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, enchant(ctx.get(),provider.getProvider(),new EnchantmentKeyInstance(Enchantments.SMITE,2),new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4)))
+                .pattern("BAB")
+                .pattern("A A")
+                .pattern("BAB")
+                .define('A', Items.GOLD_INGOT)
+                .define('B', Items.AMETHYST_SHARD)
+                .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
+                .save(provider);
+    }
+
     public static <T extends Item> void starOfTheSea(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, enchant(ctx.get(),provider.getProvider(),new EnchantmentKeyInstance(Enchantments.SMITE,2),new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4)))
                 .pattern("BCB")
@@ -58,7 +70,7 @@ public class AddonItemRecipeLoader {
                 .define('A', Items.NETHER_STAR)
                 .define('B', Items.NAUTILUS_SHELL)
                 .define('C', Items.HEART_OF_THE_SEA)
-                .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.HEART_OF_THE_SEA))
+                .unlockedBy("has_heart_of_the_sea", RegistrumRecipeProvider.has(Items.HEART_OF_THE_SEA))
                 .save(provider);
     }
 
@@ -72,6 +84,17 @@ public class AddonItemRecipeLoader {
                 .define('C', ModBlocks.INDUCTION_LIGHT.asItem())
                 .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.CONDUIT))
                 .save(provider);
+    }
+
+    public static <T extends Item> void originalConduitStaff(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(ModItems.SUPER_CAPACITOR_EMPTY),
+                        Ingredient.of(AddonItems.CONDUIT_STAFF),
+                        Ingredient.of(AddonBlocks.ORIGINAL_CONDUIT.asItem()),
+                        RecipeCategory.TOOLS,ctx.get()
+                )
+                .unlocks("has_item", TofusThinkingDatagen.has(AddonBlocks.ORIGINAL_CONDUIT.asItem()))
+                .save(provider, AnvilCraftTofusThinking.of("smithing/original_conduit_staff"));
     }
 
     public static <T extends Item> void sonicBoomStaff(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){

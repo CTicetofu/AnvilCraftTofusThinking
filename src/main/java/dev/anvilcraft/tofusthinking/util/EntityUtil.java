@@ -5,17 +5,21 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.PartEntity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class EntityUtil {
+    public static Predicate<Entity> BELONG_PLAYER = entity -> entity instanceof OwnableEntity ownable && ownable.getOwner() instanceof Player;
 
     //这种实体破事最多了
     public static Entity getMainEntity(Entity entity){
@@ -61,12 +65,26 @@ public class EntityUtil {
     }
 
     public static void clearAllEffect(LivingEntity entity){
+        clearPredicateEffect(entity,instance -> true);
+    }
+
+    public static void clearPredicateEffect(LivingEntity entity,Predicate<MobEffectInstance> predicate){
         List<MobEffectInstance> list = new ArrayList<>(entity.getActiveEffects());
         for (MobEffectInstance ins : list) {
-            entity.removeEffect(ins.getEffect());
-            if (entity.hasEffect(ins.getEffect())) {
-                entity.getActiveEffectsMap().remove(ins.getEffect());
+            if(predicate.test(ins)){
+                entity.removeEffect(ins.getEffect());
+                if (entity.hasEffect(ins.getEffect())) {
+                    entity.getActiveEffectsMap().remove(ins.getEffect());
+                }
             }
         }
+    }
+
+    public static void eraseLivingEntity(LivingEntity entity){
+        EntityUtil.clearAllEffect(entity);
+        entity.stopRiding();
+        entity.stopUsingItem();
+        entity.getPassengers().forEach(Entity::stopRiding);
+        entity.levelCallback.onRemove(Entity.RemovalReason.DISCARDED);
     }
 }

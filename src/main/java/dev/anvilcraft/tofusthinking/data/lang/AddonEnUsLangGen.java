@@ -27,11 +27,13 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.AUTO_CAN.asItem(),"Auto Can");
         add(AddonItems.CHARM_AMULET.asItem(),"Charm Amulet");
         add(AddonItems.CURSE_SNOWBALL_ITEM.asItem(),"Curse Snowball");
+        add(AddonItems.AMETHYST_GOLDEN_RING.asItem(),"Amethyst Golden Ring");
         add(AddonItems.AMETHYST_HAMMER.asItem(),"Amethyst Hammer");
         add(AddonItems.ROYAL_STEEL_HAMMER.asItem(),"Royal Steel Hammer");
         add(AddonItems.NUTRIENT_LIQUID_BUCKET.asItem(),"Nutrient Liquid Bucket");
         add(AddonItems.STAR_OF_THE_SEA.asItem(),"Star of the Sea");
         add(AddonItems.CONDUIT_STAFF.asItem(),"Conduit Staff");
+        add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"Original Conduit Staff");
         add(AddonItems.SONIC_BOOM_STAFF.asItem(),"Sonic Boom Staff");
     }
     private void blockName(){
@@ -47,6 +49,9 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.auto_can","Right-click the item on food to absorb its nutritional value \nwhich will replenish the energy of the holder when carried");
         add("tooltip.anvilcraft_tofus_thinking.curse_snowball","Cause the target to be cursed and haunted");
         add("tooltip.anvilcraft_tofus_thinking.wither_immune","Immune to Wither");
+
+        add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 Fortune Level +1 Looting Level");
+        add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring2", "Piglins thinks you wear a gold thing");
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","Deal an additional 50% damage to undead creatures");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","Interrupting the target's use of an item");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","Used at the right time, it can backfire on the attacker. \nIt can also be used to absorb certain magic or the power of time");
@@ -56,7 +61,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind","Rewind");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind","When full progress, right-click to original the Conduit in the inventory");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind_remain","Rewind Remain");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","right-click to original the Conduit Staff in the inventory");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","right-click to original the Conduit in the inventory again");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_lost_in_time","Lost In Time");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","Injecting it into a prepared Wither causes it to mutate");
 
@@ -83,15 +88,37 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_normal","Deal damage to nearby creatures pointed by the crosshair");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_recovery","Restore energy slowly when in the rain or water");
 
+        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff","Advanced %s");
+        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_more_info",".Can use some blocks to right-click on the item in the inventory to change its energy, and hold [Ctrl] to view available items");
+        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_head","Available Glass Items:");
+        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_grip","Available Grip Items:");
+
+        add("tooltip.anvilcraft_tofus_thinking.ability_none","No Effect");
+        add("tooltip.anvilcraft_tofus_thinking.ability_tinned_glass","Weaken and cover the target");
+        add("tooltip.anvilcraft_tofus_thinking.ability_royal_glass","Reduce energy consumption by 80%");
+        add("tooltip.anvilcraft_tofus_thinking.ability_frost_glass","Refining ordinary mob with less than 200 HP into exp gems");
+        add("tooltip.anvilcraft_tofus_thinking.ability_ember_glass","Summon a meteor above the target point");
+        add("tooltip.anvilcraft_tofus_thinking.ability_curse_gold_block","Causes weakness, slowness, hunger, curse to the target, and clears positive effects");
+        add("tooltip.anvilcraft_tofus_thinking.ability_royal_steel_block","If there are no creatures at the target point, try automatically selecting nearby monsters as the center");
+        add("tooltip.anvilcraft_tofus_thinking.ability_frost_metal_block","Clear flames and freeze while in the inventory");
+        add("tooltip.anvilcraft_tofus_thinking.ability_ember_metal_block","Obtain fire resistance while in the inventory, and the holder can automatically recover energy in hot dimensions or flames");
+
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");
         add("tooltip.anvilcraft_tofus_thinking.progress","Progress: %s %%");
+        add("tooltip.anvilcraft_tofus_thinking.hold_shift_for_more","Hold  %s  for more info");
+        add("tooltip.anvilcraft_tofus_thinking.permanent", """
+                Permanent: Indestructible to the world's assaults
+                Wandering idly above the hollow Void
+                Everlasting within the crevice of Time\
+                """);
 
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"Curse Snowball");
         add(AddonEntities.STRANGE_WITHER.get(),"Strange Wither");
         add(AddonEntities.STRANGE_WITHER_SKULL.get(),"Strange Wither Skull");
+        add(AddonEntities.METEOR.get(),"Meteor");
     }
     private void addOther(){
         add(AddonFluids.NUTRIENT_LIQUID_TYPE.get().getDescriptionId(),"Nutrient Liquid");
@@ -99,6 +126,8 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonMobEffects.CURSE.get().getDescriptionId(),"Curse");
         add(AddonMobEffects.SHRINK.get().getDescriptionId(),"Shrink");
         add(AddonMobEffects.DULL.get().getDescriptionId(),"Dull");
+        add(AddonMobEffects.COVER.get().getDescriptionId(),"Cover");
+        add(AddonMobEffects.TEMPERATURE_TOLERANCE.get().getDescriptionId(),"Temperature Tolerance");
 
         add("death.attack.tofusThinking.rewind","%s has never been born");
         add("death.attack.tofusThinking.rewind_attack","%s has not been proven to exist by %s");

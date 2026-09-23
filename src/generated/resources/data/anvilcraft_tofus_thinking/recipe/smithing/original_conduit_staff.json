@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "anvilcraft_tofus_thinking:original_conduit"
+  },
+  "base": {
+    "item": "anvilcraft_tofus_thinking:conduit_staff"
+  },
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:original_conduit_staff"
+  },
+  "template": {
+    "item": "anvilcraft:supercapacitor_empty"
+  }
+}

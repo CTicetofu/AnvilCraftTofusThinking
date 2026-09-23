@@ -1,9 +1,11 @@
 package dev.anvilcraft.tofusthinking.init.entity;
 
 import dev.anvilcraft.lib.v2.registrum.util.entry.EntityEntry;
+import dev.anvilcraft.tofusthinking.client.renderer.entity.MeteorRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.entity.StrangeWitherSkullRenderer;
 import dev.anvilcraft.tofusthinking.entity.livingEntity.StrangeWither;
 import dev.anvilcraft.tofusthinking.entity.projectile.CurseSnowball;
+import dev.anvilcraft.tofusthinking.entity.projectile.Meteor;
 import dev.anvilcraft.tofusthinking.entity.projectile.StrangeWitherSkull;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.WitherBossRenderer;
@@ -31,5 +33,11 @@ public class AddonEntities {
             .<StrangeWitherSkull>entity("strange_wither_skull",StrangeWitherSkull::new, MobCategory.MISC)
             .properties(it -> it.sized(0.3125F,0.3125F).clientTrackingRange(4).updateInterval(10))
             .renderer(() -> StrangeWitherSkullRenderer::new)
+            .register();
+
+    public static final EntityEntry<? extends Meteor> METEOR = REGISTRUM
+            .<Meteor>entity("meteor",Meteor::new, MobCategory.MISC)
+            .properties(it -> it.sized(0.6F,0.6F).clientTrackingRange(4).updateInterval(10))
+            .renderer(() -> MeteorRenderer::new)
             .register();
 }

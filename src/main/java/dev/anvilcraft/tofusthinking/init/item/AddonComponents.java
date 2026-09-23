@@ -45,6 +45,14 @@ public class AddonComponents {
             "type_number",
             it -> it.persistent(Codec.BYTE).networkSynchronized(ByteBufCodecs.BYTE)
     );
+    public static final DataComponentType<String> HEAD_TYPE = register(
+            "head_type",
+            it -> it.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8)
+    );
+    public static final DataComponentType<String> GRIP_TYPE = register(
+            "grip_type",
+            it -> it.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8)
+    );
     public static final DataComponentType<Integer> STORED_ENERGY = register(
             "stored_energy",
             (builder) -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT)

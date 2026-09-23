@@ -6,10 +6,13 @@ import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.item.weapon.StarOfTheSea;
+import dev.anvilcraft.tofusthinking.mobEffect.NotApplyEffect;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -35,6 +38,17 @@ public class LivingEventHandler {
             if(source.is(AddonDamageTypeTags.REWIND)){event.setCanceled(true);}
         }
     }
+
+    @SubscribeEvent
+    public static void onLivingGetEffect(MobEffectEvent.Applicable event){
+        MobEffectInstance instance = event.getEffectInstance();
+        MobEffect effect = instance.getEffect().value();
+        LivingEntity target = event.getEntity();
+        if(effect instanceof NotApplyEffect notApplyEffect && notApplyEffect.isNotApply(instance,target)){
+            event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+        }
+    }
+
     @SubscribeEvent
     public static void onLivingBlock(LivingShieldBlockEvent event){
         LivingEntity entity = event.getEntity();
@@ -66,6 +80,10 @@ public class LivingEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGH,receiveCanceled = true)
     public static void onHighLivingInComing(LivingIncomingDamageEvent event){
         DamageSource source = event.getSource();
+        LivingEntity target = event.getEntity();
+        if(source.is(DamageTypeTags.IS_FIRE) || source.is(DamageTypeTags.IS_FREEZING)){
+            if(target.hasEffect(AddonMobEffects.TEMPERATURE_TOLERANCE)){event.setCanceled(true);}
+        }
         if(source instanceof ExtraDamageSource extra){
             float amount = event.getAmount();
             event.setAmount(amount * (extra.getExtraHurtRate()) + extra.getExtraHurtAmount());

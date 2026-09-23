@@ -19,6 +19,10 @@
     {
       "id": "anvilcraft_tofus_thinking:bounce_wither_skull",
       "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:meteor",
+      "required": false
     }
   ]
 }

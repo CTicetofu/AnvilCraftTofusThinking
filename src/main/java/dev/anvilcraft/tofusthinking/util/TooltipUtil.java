@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.util;
 
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.world.item.ItemStack;
 
 public class TooltipUtil {
@@ -9,10 +10,17 @@ public class TooltipUtil {
     public static int CRAY = 0x00FFFF;
     public static int GRAY = 0xA9A9A9;
     public static int KHAKI1 = 0xFFF68F;
+    public static int MEDIUM_TURQUOISE = 0x48D1CC;
+    public static int ROYAL_BLUE = 0x4169E1;
+    public static int WHITE_SMOKE = 0xF5F5F5;
+    public static int GREY31 = 0x4F4F4F;
+    public static int NAVAJO_WHITE_3 = 0xCDB38B;
     public static String[] energyUnitList = {"FE","KFE","MFE","GFE"};
     public static int[] energyBaseList = {1, 1000,1000000,1000000000};
 
     public static Component NOT_ACTIVE = Component.translatable("tooltip.anvilcraft_tofus_thinking.not_active").withColor(YELLOW);
+    public static Component PERMANENT = Component.translatable("tooltip.anvilcraft_tofus_thinking.permanent").withStyle(Style.EMPTY.withColor(MEDIUM_TURQUOISE));
+    public static Component HOLD_SHIFT_FOR_MORE = Component.translatable("tooltip.anvilcraft_tofus_thinking.hold_shift_for_more",Component.literal("[Shift]").withColor(WHITE_SMOKE)).withColor(GREY31);
 
     public static Component getItemEnergyTooltip(ItemStack stack, boolean full){
         int energy = stack.getOrDefault(AddonComponents.STORED_ENERGY,0);

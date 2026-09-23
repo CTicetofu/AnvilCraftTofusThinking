@@ -1,36 +1,27 @@
 package dev.anvilcraft.tofusthinking.init.item;
 
-import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
 import dev.anvilcraft.lib.v2.registrum.util.entry.ItemEntry;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
-import dev.anvilcraft.tofusthinking.data.TofusThinkingDatagen;
 import dev.anvilcraft.tofusthinking.data.recipe.AddonItemRecipeLoader;
 import dev.anvilcraft.tofusthinking.init.block.AddonFluids;
+import dev.anvilcraft.tofusthinking.item.curio.AmethystGoldenRing;
 import dev.anvilcraft.tofusthinking.item.curio.CurioBaseItem;
 import dev.anvilcraft.tofusthinking.item.food.AutoCanItem;
 import dev.anvilcraft.tofusthinking.item.tool.HammerItem;
-import dev.anvilcraft.tofusthinking.item.weapon.ConduitStaff;
-import dev.anvilcraft.tofusthinking.item.weapon.CurseSnowballItem;
-import dev.anvilcraft.tofusthinking.item.weapon.SonicBoomStaff;
-import dev.anvilcraft.tofusthinking.item.weapon.StarOfTheSea;
+import dev.anvilcraft.tofusthinking.item.weapon.*;
 import dev.anvilcraft.tofusthinking.util.DataClass.AttributeInstance;
 import dev.anvilcraft.tofusthinking.util.DataClass.EnchantmentKeyInstance;
-import dev.dubhe.anvilcraft.init.item.ModItems;
 import dev.dubhe.anvilcraft.item.ModTiers;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import top.theillusivec4.curios.api.SlotAttribute;
@@ -45,11 +36,26 @@ public class AddonItems {
     public static final ItemEntry<AutoCanItem> AUTO_CAN = REGISTRUM.item("auto_can",properties -> new AutoCanItem(properties.rarity(Rarity.UNCOMMON).stacksTo(1)))
             .model(DataGenUtil::noExtraModelOrState)
             .register();
+
     public static final ItemEntry<CurioBaseItem> CHARM_AMULET = REGISTRUM.item("charm_amulet",properties ->
             new CurioBaseItem(properties.stacksTo(1).rarity(Rarity.UNCOMMON)).withAttribute(new AttributeInstance(SlotAttribute.getOrCreate("charm"),3, AttributeModifier.Operation.ADD_VALUE)))
             .defaultModel()
             .tag(AddonItemTags.CURIOS_CHARM)
             .register();
+
+    public static final ItemEntry<AmethystGoldenRing> AMETHYST_GOLDEN_RING = REGISTRUM.item("amethyst_golden_ring", properties ->
+                    (AmethystGoldenRing) new AmethystGoldenRing(properties.stacksTo(1).rarity(Rarity.UNCOMMON))
+                            .withAttribute(
+                                    new AttributeInstance(Attributes.LUCK,1, AttributeModifier.Operation.ADD_VALUE),
+                                    new AttributeInstance(Attributes.MINING_EFFICIENCY,5, AttributeModifier.Operation.ADD_VALUE),
+                                    new AttributeInstance(Attributes.ARMOR_TOUGHNESS,2, AttributeModifier.Operation.ADD_VALUE)
+                            )
+            )
+            .defaultModel()
+            .tag(AddonItemTags.CURIOS_RING)
+            .recipe(AddonItemRecipeLoader::amethystGoldenRIng)
+            .register();
+
     public static final ItemEntry<CurseSnowballItem> CURSE_SNOWBALL_ITEM = REGISTRUM.item("curse_snowball",properties -> new CurseSnowballItem())
             .defaultModel()
             .recipe(AddonItemRecipeLoader::curseSnowball)
@@ -81,8 +87,16 @@ public class AddonItems {
                     new ConduitStaff(properties.stacksTo(1).rarity(Rarity.RARE)))
             .model(DataGenUtil::noExtraModelOrState)
             .recipe(AddonItemRecipeLoader::conduitStaff)
-            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE)
+            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.WEAPON_ENCHANTABLE)
             .register();
+
+    public static final ItemEntry<OriginalConduitStaff> ORIGINAL_CONDUIT_STAFF = REGISTRUM.item("original_conduit_staff",
+            properties -> new OriginalConduitStaff(properties.stacksTo(1).fireResistant().rarity(AnvilCraftTofusThinking.TOFU_RARITY)))
+            .model(DataGenUtil::noExtraModelOrState)
+            .recipe(AddonItemRecipeLoader::originalConduitStaff)
+            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.WEAPON_ENCHANTABLE)
+            .register();
+
 
     public static final ItemEntry<SonicBoomStaff> SONIC_BOOM_STAFF = REGISTRUM.item("sonic_boom_staff", properties ->
                     new SonicBoomStaff(properties.stacksTo(1).rarity(Rarity.RARE)))

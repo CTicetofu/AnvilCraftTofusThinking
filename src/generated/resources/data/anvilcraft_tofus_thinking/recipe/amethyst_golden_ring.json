@@ -3,27 +3,28 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:stick"
+      "item": "minecraft:gold_ingot"
     },
     "B": {
       "item": "minecraft:amethyst_shard"
     }
   },
   "pattern": [
-    "BBB",
     "BAB",
-    " A "
+    "A A",
+    "BAB"
   ],
   "result": {
     "components": {
       "minecraft:enchantments": {
         "levels": {
           "minecraft:breach": 4,
-          "minecraft:efficiency": 3
+          "minecraft:efficiency": 3,
+          "minecraft:smite": 2
         }
       }
     },
     "count": 1,
-    "id": "anvilcraft_tofus_thinking:amethyst_hammer"
+    "id": "anvilcraft_tofus_thinking:amethyst_golden_ring"
   }
 }

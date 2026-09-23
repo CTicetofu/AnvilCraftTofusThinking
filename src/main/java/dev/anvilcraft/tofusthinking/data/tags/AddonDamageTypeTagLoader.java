@@ -29,7 +29,8 @@ public class AddonDamageTypeTagLoader {
                 .addOptional(AddonDamageTypes.REWIND_ATTACK.location())
                 .addOptional(AddonDamageTypes.EX_REWIND.location())
                 .addOptional(AddonDamageTypes.COUNTER.location())
-                .addOptional(AddonDamageTypes.BOUNCE_WITHER_SKULL.location());
+                .addOptional(AddonDamageTypes.BOUNCE_WITHER_SKULL.location())
+                .addOptional(AddonDamageTypes.METEOR.location());
 
         provider.addTag(DamageTypeTags.BYPASSES_ENCHANTMENTS)
                 .addOptional(AddonDamageTypes.REWIND_ATTACK.location())
@@ -44,6 +45,9 @@ public class AddonDamageTypeTagLoader {
 
         provider.addTag(DamageTypeTags.BYPASSES_INVULNERABILITY)
                 .addOptional(AddonDamageTypes.EX_REWIND.location());
+
+        provider.addTag(Tags.DamageTypes.IS_MAGIC)
+                .addOptional(AddonDamageTypes.METEOR.location());
 
         provider.addTag(Tags.DamageTypes.IS_TECHNICAL)
                 .addOptional(AddonDamageTypes.EX_REWIND.location());

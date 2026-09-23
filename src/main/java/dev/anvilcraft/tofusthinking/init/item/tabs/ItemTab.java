@@ -18,5 +18,7 @@ public class ItemTab extends BaseCreativeTab{
         this.acceptFullEnergy(AddonItems.CONDUIT_STAFF);
         this.accept(AddonItems.SONIC_BOOM_STAFF);
         this.acceptFullEnergy(AddonItems.SONIC_BOOM_STAFF);
+        this.accept(AddonItems.ORIGINAL_CONDUIT_STAFF);
+        this.acceptFullEnergy(AddonItems.ORIGINAL_CONDUIT_STAFF);
     }
 }

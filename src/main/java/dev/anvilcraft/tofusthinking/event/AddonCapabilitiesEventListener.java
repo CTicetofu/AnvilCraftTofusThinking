@@ -5,8 +5,6 @@ import dev.anvilcraft.tofusthinking.api.energy.FEEnergyTool;
 import dev.anvilcraft.tofusthinking.block.entity.SmartPowerConverterBlockEntity;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
-import dev.dubhe.anvilcraft.block.entity.PowerConverterBlockEntity;
-import dev.dubhe.anvilcraft.init.block.ModBlockEntities;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -40,5 +38,6 @@ public class AddonCapabilitiesEventListener {
         );
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.SONIC_BOOM_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.CONDUIT_STAFF);
+        event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.ORIGINAL_CONDUIT_STAFF);
     }
 }

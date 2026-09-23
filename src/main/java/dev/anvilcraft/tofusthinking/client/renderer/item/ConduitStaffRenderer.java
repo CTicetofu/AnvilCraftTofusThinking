@@ -19,12 +19,12 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
-public class ConduitStaffRender extends BlockEntityWithoutLevelRenderer {
-    public ConduitStaffRender() {
+public class ConduitStaffRenderer extends BlockEntityWithoutLevelRenderer {
+    public ConduitStaffRenderer() {
         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
     }
     public static IClientItemExtensions CONDUIT_STAFF_EXTENSION = new IClientItemExtensions() {
-        private final BlockEntityWithoutLevelRenderer renderer = new ConduitStaffRender();
+        private final BlockEntityWithoutLevelRenderer renderer = new ConduitStaffRenderer();
         @Override
         public @NotNull BlockEntityWithoutLevelRenderer getCustomRenderer() {
             return renderer;
@@ -44,11 +44,15 @@ public class ConduitStaffRender extends BlockEntityWithoutLevelRenderer {
             }
         }
         poseStack.scale(0.5F,0.5F,0.5F);
-        poseStack.translate(0.5,1.85F,0.5);
+        poseStack.translate(0.5,1.8F,0.5);
+        poseStack.scale(1.1F,1.1F,1.1F);
         boolean auto = stack.getOrDefault(AddonComponents.AUTO_HUNT,false);
         OriginalConduitBlockEntity blockEntity = auto ? OriginalConduitItemRenderer.huntBlockEntity : OriginalConduitItemRenderer.blockEntity;
         OriginalConduitItemRenderer.renderConduit(blockEntity,poseStack,buffer,light,overlay);
-        poseStack.translate(0,-0.1,0);
+        poseStack.popPose();
+        poseStack.pushPose();
+        poseStack.scale(0.5F,0.5F,0.5F);
+        poseStack.translate(0.5,1.75F,0.5);
         FluidRenderHelper.INSTANCE.renderFluidBox(water, 0.01F, 0.01F, 0.01F, 0.99F, 0.99F, 0.99F, buffer, poseStack, light, true, false);
         poseStack.popPose();
     }

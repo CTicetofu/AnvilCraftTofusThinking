@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_heart_of_the_sea": {
+    "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:heart_of_the_sea"
+            "items": "anvilcraft_tofus_thinking:original_conduit"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "anvilcraft_tofus_thinking:star_of_the_sea"
+        "recipe": "anvilcraft_tofus_thinking:smithing/original_conduit_staff"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_heart_of_the_sea"
+      "has_item"
     ]
   ],
   "rewards": {
     "recipes": [
-      "anvilcraft_tofus_thinking:star_of_the_sea"
+      "anvilcraft_tofus_thinking:smithing/original_conduit_staff"
     ]
   }
 }

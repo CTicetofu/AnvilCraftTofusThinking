@@ -68,7 +68,8 @@ public class StarOfTheSea extends Item implements IToolProgress {
         if(action == ClickAction.SECONDARY && slot.allowModification(player) && !slot.getItem().isEmpty() && player.inventoryMenu.getCarried() == stack){
             ItemStack copy = stack.copy();
             ItemStack other = slot.getItem();
-            switch (copy.getOrDefault(AddonComponents.TYPE_NUMBER,ZERO)){
+            byte type = copy.getOrDefault(AddonComponents.TYPE_NUMBER,ZERO);
+            switch (type){
                 case 1:{
                     if(other.is(AddonItems.SONIC_BOOM_STAFF) && !other.getOrDefault(AddonComponents.IS_ACTIVE,false)){
                         other.set(AddonComponents.IS_ACTIVE,true);
@@ -76,7 +77,8 @@ public class StarOfTheSea extends Item implements IToolProgress {
                     }
                 }
                 break;
-                case 2:{
+                case 2:
+                case 3:{
                     if(other.is(Items.CONDUIT)){
                         if(other.getCount() == 1){
                             slot.set(AddonBlocks.ORIGINAL_CONDUIT.asStack());
@@ -84,7 +86,11 @@ public class StarOfTheSea extends Item implements IToolProgress {
                             other.shrink(1);
                             ItemUtil.giveEnoughItem(player,AddonBlocks.ORIGINAL_CONDUIT.asStack(),1);
                         }
-                        copy.set(AddonComponents.TYPE_NUMBER,(byte)3);
+                        if(type == 2){
+                            copy.set(AddonComponents.TYPE_NUMBER,(byte)3);
+                        } else {
+                            clear(copy);
+                        }
                     }
                 }
                 break;

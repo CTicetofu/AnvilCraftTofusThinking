@@ -8,8 +8,9 @@ import dev.anvilcraft.tofusthinking.client.renderer.SimpleClientFluidType;
 import dev.anvilcraft.tofusthinking.client.renderer.blockentity.FoodGeneratorRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.blockentity.OriginalConduitRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.blockentity.OverloadGeneratorRenderer;
-import dev.anvilcraft.tofusthinking.client.renderer.item.ConduitStaffRender;
+import dev.anvilcraft.tofusthinking.client.renderer.item.ConduitStaffRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.item.OriginalConduitItemRenderer;
+import dev.anvilcraft.tofusthinking.client.renderer.item.OriginalConduitStaffRenderer;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.block.AddonFluids;
@@ -43,7 +44,8 @@ public class ClientRegisterHandler {
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event){
         event.registerItem(OriginalConduitItemRenderer.ORIGINAL_CONDUIT_EXTENSION, AddonBlocks.ORIGINAL_CONDUIT.asItem());
-        event.registerItem(ConduitStaffRender.CONDUIT_STAFF_EXTENSION, AddonItems.CONDUIT_STAFF.get());
+        event.registerItem(ConduitStaffRenderer.CONDUIT_STAFF_EXTENSION, AddonItems.CONDUIT_STAFF.get());
+        event.registerItem(OriginalConduitStaffRenderer.ORIGINAL_CONDUIT_STAFF_EXTENSION, AddonItems.ORIGINAL_CONDUIT_STAFF.get());
 
         event.registerFluidType(new SimpleClientFluidType(ResourceLocation.fromNamespaceAndPath("neoforge", "block/milk_still"), 0xDFFFE4B5), AddonFluids.NUTRIENT_LIQUID_TYPE);
     }
@@ -52,6 +54,7 @@ public class ClientRegisterHandler {
     public static void onRegisterItemDecorations(RegisterItemDecorationsEvent event){
         event.register(AddonItems.SONIC_BOOM_STAFF.get(), EnergyBarRenderer.DEFAULT);
         event.register(AddonItems.CONDUIT_STAFF.get(), EnergyBarRenderer.DEFAULT);
+        event.register(AddonItems.ORIGINAL_CONDUIT_STAFF.get(), EnergyBarRenderer.DEFAULT);
     }
 
     @SubscribeEvent

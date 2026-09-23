@@ -2,7 +2,9 @@ package dev.anvilcraft.tofusthinking.init;
 
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.mobEffect.AddonMobEffect;
+import dev.anvilcraft.tofusthinking.mobEffect.CoverEffect;
 import dev.anvilcraft.tofusthinking.mobEffect.DullEffect;
+import dev.anvilcraft.tofusthinking.mobEffect.TemperatureTolerance;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -24,6 +26,8 @@ public class AddonMobEffects {
                     .addAttributeModifier(Attributes.MAX_HEALTH,AnvilCraftTofusThinking.of("shrink"),-0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
     public static final DeferredHolder<MobEffect, MobEffect> DULL = EFFECTS.register("dull", DullEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> COVER = EFFECTS.register("cover", CoverEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> TEMPERATURE_TOLERANCE = EFFECTS.register("temperature_tolerance", TemperatureTolerance::new);
 
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);

@@ -27,6 +27,8 @@ public class AddonDamageTypes {
             ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("counter"));
     public static final ResourceKey<DamageType> BOUNCE_WITHER_SKULL =
             ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("bounce_wither_skull"));
+    public static final ResourceKey<DamageType> METEOR =
+            ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("meteor"));
 
     @ApiStatus.Internal
     public static void bootstrap(BootstrapContext<DamageType> ctx) {
@@ -36,6 +38,7 @@ public class AddonDamageTypes {
         ctx.register(EX_REWIND,new DamageType("tofusThinking.rewind", DamageScaling.NEVER,0.0F));
         ctx.register(COUNTER,new DamageType("tofusThinking.counter", DamageScaling.NEVER,0.0F));
         ctx.register(BOUNCE_WITHER_SKULL,new DamageType("tofusThinking.bounce_wither_skull", DamageScaling.NEVER,0.0F));
+        ctx.register(METEOR,new DamageType("tofusThinking.meteor", DamageScaling.NEVER,0.0F));
     }
 
     public static ExtraDamageSource rewind(Level level){
@@ -48,6 +51,10 @@ public class AddonDamageTypes {
 
     public static ExtraDamageSource exRewind(Level level){
         return extraSource(EX_REWIND,level).withNotBlock(true).justDie();
+    }
+
+    public static ExtraDamageSource meteor(Level level, Entity directEntity, Entity causingEntity){
+        return extraSource(METEOR,level,directEntity,causingEntity);
     }
 
     public static DamageSource counter(Level level, Entity attacker){

@@ -27,11 +27,13 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.AUTO_CAN.asItem(),"自动罐头");
         add(AddonItems.CHARM_AMULET.asItem(),"护符护符");
         add(AddonItems.CURSE_SNOWBALL_ITEM.asItem(),"诅咒雪球");
+        add(AddonItems.AMETHYST_GOLDEN_RING.asItem(),"紫水晶金戒指");
         add(AddonItems.AMETHYST_HAMMER.asItem(),"紫水晶锤");
         add(AddonItems.ROYAL_STEEL_HAMMER.asItem(),"皇家钢锤");
         add(AddonItems.NUTRIENT_LIQUID_BUCKET.asItem(),"营养液桶");
         add(AddonItems.STAR_OF_THE_SEA.asItem(),"海洋之星");
         add(AddonItems.CONDUIT_STAFF.asItem(),"潮涌核心法杖");
+        add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"原初化潮涌核心法杖");
         add(AddonItems.SONIC_BOOM_STAFF.asItem(),"音爆法杖");
     }
     private void blockName(){
@@ -47,6 +49,10 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.auto_can","使用该物品右击食物以吸收营养价值 \n携带时为持有者补充能量");
         add("tooltip.anvilcraft_tofus_thinking.curse_snowball","使目标被诅咒缠身");
         add("tooltip.anvilcraft_tofus_thinking.wither_immune","免疫凋灵破坏");
+
+        add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 时运等级 +1 抢夺等级");
+        add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring2", "猪灵认为你穿戴了金制品");
+
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","对亡灵生物额外造成50%伤害");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","打断目标使用物品的状态");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","在合适的时机举起可以反伤攻击者 \n也可以借此吸收某些魔法或者时间的力量");
@@ -56,7 +62,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind","回溯");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind","进度为满时在物品栏界面可点击潮涌核心将其原初化");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind_remain","回溯之残留");
-        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","点击潮涌核心法杖将其原初化");
+        add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_rewind_remain","点击潮涌核心将其原初化");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_lost_in_time","迷失时间");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","注入到准备状态的凋灵使其变异");
 
@@ -78,18 +84,37 @@ public class AddonZnChLangGen extends LanguageProvider {
                 """);
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","在物品栏界面右键以改变是否为 %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","自动攻击模式");
+
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_auto","持有时对自动对周围怪物造成伤害");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_normal","对准星所指位置附近生物造成伤害");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_recovery","在雨中或者水中时缓慢恢复能量");
 
+        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff","更高级的 %s");
+        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_more_info","，可使用一些方块在物品栏右键该物品以更改能量，按住 [Ctrl] 查看可用物品");
+        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_head","可用玻璃材料：%s");
+        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_grip","可用把手材料：%s");
+
+        add("tooltip.anvilcraft_tofus_thinking.ability_none","无效果");
+        add("tooltip.anvilcraft_tofus_thinking.ability_tinned_glass","对目标造成虚弱，遮蔽");
+        add("tooltip.anvilcraft_tofus_thinking.ability_royal_glass","能量消耗降低80%");
+        add("tooltip.anvilcraft_tofus_thinking.ability_frost_glass","将200血以下的普通生物炼化为经验宝石");
+        add("tooltip.anvilcraft_tofus_thinking.ability_ember_glass","在目标点上方召唤流星");
+        add("tooltip.anvilcraft_tofus_thinking.ability_curse_gold_block","对目标造成虚弱，缓慢，饥饿，遮蔽，并清除正面效果");
+        add("tooltip.anvilcraft_tofus_thinking.ability_royal_steel_block","若目标点没有生物，则尝试自动选择附近的怪物作为中心");
+        add("tooltip.anvilcraft_tofus_thinking.ability_frost_metal_block","在物品栏时清除火焰和冻结");
+        add("tooltip.anvilcraft_tofus_thinking.ability_ember_metal_block","在物品栏时获得抗火，且持有者在炎热的维度或者火焰中也可自动恢复能量");
+
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");
         add("tooltip.anvilcraft_tofus_thinking.progress","进度: %s %%");
+        add("tooltip.anvilcraft_tofus_thinking.hold_shift_for_more","按住 %s 获取更多信息");
+        add("tooltip.anvilcraft_tofus_thinking.permanent","恒久：不灭于世界之侵，漫游于虚空之上，永存于时间之隙");
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"诅咒雪球");
         add(AddonEntities.STRANGE_WITHER.get(),"奇怪的凋灵");
         add(AddonEntities.STRANGE_WITHER_SKULL.get(),"奇怪的凋灵之首");
+        add(AddonEntities.METEOR.get(),"流星");
     }
 
     private void addOther(){
@@ -98,6 +123,8 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonMobEffects.CURSE.get().getDescriptionId(),"诅咒");
         add(AddonMobEffects.SHRINK.get().getDescriptionId(),"收缩");
         add(AddonMobEffects.DULL.get().getDescriptionId(),"呆滞");
+        add(AddonMobEffects.COVER.get().getDescriptionId(),"遮蔽");
+        add(AddonMobEffects.TEMPERATURE_TOLERANCE.get().getDescriptionId(),"温度耐受");
 
         add("death.attack.tofusThinking.rewind","%s 从未诞生过");
         add("death.attack.tofusThinking.rewind_attack","%s 未能被 %s 证明存在");

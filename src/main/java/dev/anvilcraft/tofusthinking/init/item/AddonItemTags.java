@@ -6,10 +6,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
-
+@SuppressWarnings("unused")
 public class AddonItemTags {
 
     public static final TagKey<Item> CURIOS_CHARM = createCurio("charm");
+    public static final TagKey<Item> CURIOS_RING = createCurio("ring");
     public static final TagKey<Item> NORMAL_MOVEMENT_WHEN_USE = create("normal_movement_when_use");
 
     public static TagKey<Item> createC(String name) {
