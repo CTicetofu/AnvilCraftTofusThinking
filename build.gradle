@@ -127,8 +127,8 @@ dependencies {
     compileOnly "dev.anvilcraft.resource:ageratum-neoforge-1.21.1:0.0.1+build.106"
     implementation "mezz.jei:jei-1.21.1-neoforge:19.39.0.368"
     implementation "maven.modrinth:jade:15.10.5+neoforge"
-    implementation  "dev.anvilcraft.lib:anvillib-neoforge-1.21.1:2.0.0+snapshot.515"
-    implementation "dev.dubhe:anvilcraft-neoforge-1.21.1:1.6.0+snapshot.2184"
+    implementation  "dev.anvilcraft.lib:anvillib-neoforge-1.21.1:2.0.0+snapshot.534"
+    implementation "dev.dubhe:anvilcraft-neoforge-1.21.1:1.6.0+snapshot.2333"
     implementation "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1"
     //compileOnly "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api"
 

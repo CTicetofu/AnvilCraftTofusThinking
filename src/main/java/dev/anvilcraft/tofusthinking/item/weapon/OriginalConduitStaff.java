@@ -143,7 +143,7 @@ public class OriginalConduitStaff extends ExtendItem {
         for (int i = 0; i < slotId;i++){
             if(items.get(i).is(AddonItems.ORIGINAL_CONDUIT_STAFF)){return false;}
         }
-        return true;
+        return !items.get(slotId).is(AddonItems.ORIGINAL_CONDUIT_STAFF) || items.get(slotId) == stack;
     }
 
     private static void dealAttack(Level level, LivingEntity attacker, ItemStack stack, HitResult hitResult){
