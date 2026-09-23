@@ -46,7 +46,7 @@ public class RewindLivingEntityBehavior implements IAnvilBehavior {
 
     public static void executeLivingEntity(LivingEntity entity){
         if(entity instanceof Player player){
-            if(player.isCreative()){return;}
+            if(player.isCreative() || player.isSpectator()){return;}
             dropEquipment(player);
             dropCurios(player,true);
             slayPlayer(player);

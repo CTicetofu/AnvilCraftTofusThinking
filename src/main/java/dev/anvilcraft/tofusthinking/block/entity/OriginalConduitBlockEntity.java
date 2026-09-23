@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.block.entity;
 
 import com.google.common.collect.Lists;
+import dev.anvilcraft.tofusthinking.anvil.RewindLivingEntityBehavior;
 import dev.anvilcraft.tofusthinking.block.OriginalConduitBlock;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
@@ -429,6 +430,8 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
                 level.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 3);
             }
         }
+        level.getEntitiesOfClass(LivingEntity.class,new AABB(pos).inflate(2)).forEach(RewindLivingEntityBehavior::executeLivingEntity);
+        level.getEntitiesOfClass(LivingEntity.class,new AABB(pos).inflate(9)).forEach(EntityUtil::clearAllEffect);
         level.explode(null,AddonDamageTypes.rewind(level).justDie().withNotBlock(true),ORIGINAL_EXPLOSION_CALCULATOR,pos.getCenter(),10, false,Level.ExplosionInteraction.BLOCK);
     }
 

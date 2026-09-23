@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.block.entity;
 
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
+import dev.anvilcraft.tofusthinking.util.EntityUtil;
 import dev.dubhe.anvilcraft.api.power.IPowerProducer;
 import dev.dubhe.anvilcraft.api.power.PowerGrid;
 import dev.dubhe.anvilcraft.block.CorruptedBeaconBlock;
@@ -11,12 +12,14 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.redstone.Redstone;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -98,6 +101,7 @@ public class OverloadGeneratorBlockEntity extends BlockEntity implements IPowerP
             if(state.getDestroySpeed(level,pos) < 0){continue;}
             level.destroyBlock(blockPos,false);
         }
+        level.getEntitiesOfClass(LivingEntity.class,new AABB(pos).inflate(4)).forEach(EntityUtil::clearAllEffect);
         level.explode(null, AddonDamageTypes.rewind(level).justDie().withNotBlock(true),ORIGINAL_EXPLOSION_CALCULATOR,pos.getCenter(),4, false,Level.ExplosionInteraction.BLOCK);
     }
 
