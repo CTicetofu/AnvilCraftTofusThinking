@@ -5,6 +5,7 @@ import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -17,10 +18,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OriginalConduitBlock extends ConduitBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
@@ -43,6 +48,15 @@ public class OriginalConduitBlock extends ConduitBlock {
     @Override
     protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return state.getValue(OPEN) ? RenderShape.ENTITYBLOCK_ANIMATED : RenderShape.MODEL;
+    }
+
+    @Override
+    protected @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootParams.@NotNull Builder params) {
+        List<ItemStack> stacks = super.getDrops(state, params);
+        if(params.getOptionalParameter(LootContextParams.BLOCK_ENTITY) instanceof OriginalConduitBlockEntity blockEntity){
+            if(blockEntity.isIrreversible()){return new ArrayList<>();}
+        }
+        return stacks;
     }
 
     @Nullable
