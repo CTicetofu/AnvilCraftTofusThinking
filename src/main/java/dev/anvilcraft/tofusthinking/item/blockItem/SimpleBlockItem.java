@@ -44,6 +44,8 @@ public class SimpleBlockItem extends BlockItem {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        tooltipComponents.addAll(components);
+        for(Component component : components){
+            tooltipComponents.add(component.copy());
+        }
     }
 }

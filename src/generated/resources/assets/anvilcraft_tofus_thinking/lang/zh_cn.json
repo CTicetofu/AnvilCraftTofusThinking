@@ -6,6 +6,7 @@
   "block.anvilcraft_tofus_thinking.smart_power_converter": "智能能量转换器",
   "block.anvilcraft_tofus_thinking.smart_power_converter_extremely_big": "智能极大能量转换器",
   "block.anvilcraft_tofus_thinking.stable_prismarine_bricks": "坚固海晶石砖",
+  "block.anvilcraft_tofus_thinking.tofu_anvil": "豆腐铁砧",
   "death.attack.tofusThinking.counter": "%s 过于冲动的攻击了 %s",
   "death.attack.tofusThinking.rewind": "%s 从未诞生过",
   "death.attack.tofusThinking.rewind_attack": "%s 未能被 %s 证明存在",
@@ -81,5 +82,9 @@
   "tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind": "回溯",
   "tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_rewind_remain": "回溯之残留",
   "tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_sonic_boom": "音爆",
+  "tooltip.anvilcraft_tofus_thinking.tofu_anvil_anvil": "忽略物品的惩戒等级%s",
+  "tooltip.anvilcraft_tofus_thinking.tofu_anvil_fall": "当上方磁铁消磁时，随机选择四面的铁砧的幻影落下",
+  "tooltip.anvilcraft_tofus_thinking.tofu_anvil_ignore_conflict": "，同时可忽略附魔间的冲突",
+  "tooltip.anvilcraft_tofus_thinking.tofu_anvil_use": "使用时随机选择四面的铁砧打开，如果失败则打开自身",
   "tooltip.anvilcraft_tofus_thinking.wither_immune": "免疫凋灵破坏"
 }

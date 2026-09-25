@@ -1,0 +1,8 @@
+{
+  "parent": "anvilcraft:block/spectral_anvil",
+  "textures": {
+    "particle": "anvilcraft_tofus_thinking:block/tofu_anvil",
+    "body": "anvilcraft_tofus_thinking:block/tofu_anvil",
+    "top": "anvilcraft_tofus_thinking:block/tofu_anvil_top"
+  }
+}

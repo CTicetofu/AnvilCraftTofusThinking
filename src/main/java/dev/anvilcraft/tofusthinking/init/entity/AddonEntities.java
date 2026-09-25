@@ -3,10 +3,12 @@ package dev.anvilcraft.tofusthinking.init.entity;
 import dev.anvilcraft.lib.v2.registrum.util.entry.EntityEntry;
 import dev.anvilcraft.tofusthinking.client.renderer.entity.MeteorRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.entity.StrangeWitherSkullRenderer;
+import dev.anvilcraft.tofusthinking.entity.FallingImitativeBlockEntity;
 import dev.anvilcraft.tofusthinking.entity.livingEntity.StrangeWither;
 import dev.anvilcraft.tofusthinking.entity.projectile.CurseSnowball;
 import dev.anvilcraft.tofusthinking.entity.projectile.Meteor;
 import dev.anvilcraft.tofusthinking.entity.projectile.StrangeWitherSkull;
+import net.minecraft.client.renderer.entity.FallingBlockRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.WitherBossRenderer;
 import net.minecraft.world.entity.MobCategory;
@@ -39,5 +41,11 @@ public class AddonEntities {
             .<Meteor>entity("meteor",Meteor::new, MobCategory.MISC)
             .properties(it -> it.sized(0.6F,0.6F).clientTrackingRange(4).updateInterval(10))
             .renderer(() -> MeteorRenderer::new)
+            .register();
+
+    public static final EntityEntry<? extends FallingImitativeBlockEntity> FALLING_SPECTRAL_BLOCK = REGISTRUM
+            .<FallingImitativeBlockEntity>entity("falling_imitative_block", FallingImitativeBlockEntity::new, MobCategory.MISC)
+            .properties(builder -> builder.sized(0.98f, 0.98f))
+            .renderer(() -> FallingBlockRenderer::new)
             .register();
 }

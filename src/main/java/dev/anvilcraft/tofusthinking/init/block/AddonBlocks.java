@@ -5,14 +5,21 @@ import dev.anvilcraft.tofusthinking.block.*;
 import dev.anvilcraft.tofusthinking.data.recipe.AddonBlockRecipeLoader;
 import dev.anvilcraft.tofusthinking.item.blockItem.OriginalConduitItem;
 import dev.anvilcraft.tofusthinking.item.blockItem.SimpleBlockItem;
+import dev.dubhe.anvilcraft.data.recipe.RegistrumBlockRecipeLoader;
+import dev.dubhe.anvilcraft.init.block.ModBlockTags;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 import static dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking.REGISTRUM;
 import static dev.dubhe.anvilcraft.api.power.IPowerComponent.OVERLOAD;
@@ -108,6 +115,20 @@ public class AddonBlocks {
             )
             .build()
             .recipe(AddonBlockRecipeLoader::overloadGenerator)
+            .register();
+
+    public static final BlockEntry<? extends Block> TOFU_ANVIL = REGISTRUM.block("tofu_anvil", TofuAnvilBlock::new)
+            .recipe(RegistrumBlockRecipeLoader::royalAnvil)
+            .properties(properties -> properties.mapColor(MapColor.METAL).isValidSpawn(Blocks::never).strength(1.0f, 1000f).sound(SoundType.ANVIL).pushReaction(PushReaction.NORMAL))
+            .blockstate(DataGenUtil::noExtraModelOrState)
+            .item((block, properties) ->
+                    new SimpleBlockItem(block,properties.fireResistant(),SimpleBlockItem.EXPLODE_IMMUNE)
+                            .addComponent(TofuAnvilBlock.TOFU_ANVIL_USE,TofuAnvilBlock.getConfigConflictComponent(),TofuAnvilBlock.TOFU_ANVIL_FALL)
+            )
+            .tag(ItemTags.ANVIL)
+            .build()
+            .tag(BlockTags.ANVIL, ModBlockTags.CANT_BROKEN_ANVIL, BlockTags.MINEABLE_WITH_PICKAXE)
+            .recipe(AddonBlockRecipeLoader::tofuAnvil)
             .register();
 
 

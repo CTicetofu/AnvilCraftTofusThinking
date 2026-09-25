@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "anvilcraft_tofus_thinking:block/tofu_anvil",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "anvilcraft_tofus_thinking:block/tofu_anvil",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "anvilcraft_tofus_thinking:block/tofu_anvil"
+    },
+    "facing=west": {
+      "model": "anvilcraft_tofus_thinking:block/tofu_anvil",
+      "y": 90
+    }
+  }
+}

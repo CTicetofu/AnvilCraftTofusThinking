@@ -43,6 +43,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"智能能量转换器");
         add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"智能极大能量转换器");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"过载发电机");
+        add(AddonBlocks.TOFU_ANVIL.get(),"豆腐铁砧");
     }
     private void tooltipLang(){
         add("tooltip.anvilcraft_tofus_thinking.auto_can_storage","存储的营养价值: %1$d/%2$d");
@@ -67,6 +68,11 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","注入到准备状态的凋灵使其变异");
 
         add("tooltip.anvilcraft_tofus_thinking.smart_power_converter","可更改功率的能量转换器，最大为 %s kW");
+
+        add("tooltip.anvilcraft_tofus_thinking.tofu_anvil_ignore_conflict","，同时可忽略附魔间的冲突");
+        add("tooltip.anvilcraft_tofus_thinking.tofu_anvil_use","使用时随机选择四面的铁砧打开，如果失败则打开自身");
+        add("tooltip.anvilcraft_tofus_thinking.tofu_anvil_anvil","忽略物品的惩戒等级%s");
+        add("tooltip.anvilcraft_tofus_thinking.tofu_anvil_fall","当上方磁铁消磁时，随机选择四面的铁砧的幻影落下");
 
         add("tooltip.anvilcraft_tofus_thinking.original_conduit","另一种异变的凋灵之力，可以将一些事物还原成本来的样子");
         add("tooltip.anvilcraft_tofus_thinking.original_conduit_build", """

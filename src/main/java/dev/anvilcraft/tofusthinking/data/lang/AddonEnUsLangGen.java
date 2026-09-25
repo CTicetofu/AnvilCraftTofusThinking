@@ -43,6 +43,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"Smart Power Converter");
         add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"Smart Power Converter Extremely Big");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"Overload Generator");
+        add(AddonBlocks.TOFU_ANVIL.get(),"Tofu Anvil");
     }
     private void tooltipLang(){
         add("tooltip.anvilcraft_tofus_thinking.auto_can_storage","The nutritional value of storage: %1$d/%2$d");
@@ -66,6 +67,11 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_effect_lost_in_time","Injecting it into a prepared Wither causes it to mutate");
 
         add("tooltip.anvilcraft_tofus_thinking.smart_power_converter"," Adjustable Power converter, with a maximum of %s kW");
+
+        add("tooltip.anvilcraft_tofus_thinking.tofu_anvil_ignore_conflict",",conflicts between enchantments can also be ignored");
+        add("tooltip.anvilcraft_tofus_thinking.tofu_anvil_use","Randomly select the four sides of the anvil to open during use, and if it fails, open itself");
+        add("tooltip.anvilcraft_tofus_thinking.tofu_anvil_anvil","Ignore the repair cost of the item%s");
+        add("tooltip.anvilcraft_tofus_thinking.tofu_anvil_fall","When the upper magnet demagnetizes, the phantom of randomly selected four sided anvil falls down");
 
         add("tooltip.anvilcraft_tofus_thinking.original_conduit","Another mutated power of Wither can restore some things to their original state");
         add("tooltip.anvilcraft_tofus_thinking.original_conduit_build", """

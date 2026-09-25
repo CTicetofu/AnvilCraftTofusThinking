@@ -45,6 +45,7 @@ public class TofusThinkingDatagen {
 
         REGISTRUM.addDataGenerator(ProviderType.DAMAGE_TYPE_TAGS, AddonTagsHandler::initDamageType);
         REGISTRUM.addDataGenerator(ProviderType.ENTITY_TAGS, AddonTagsHandler::initEntityType);
+        REGISTRUM.addDataGenerator(ProviderType.ITEM_TAGS, AddonTagsHandler::initItem);
 
         REGISTRUM.addDataGenerator(ProviderType.RECIPE, TofuThinkingRecipeHandler::init);
     }
