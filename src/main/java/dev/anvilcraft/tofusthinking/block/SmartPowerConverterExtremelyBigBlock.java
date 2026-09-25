@@ -1,15 +1,12 @@
 package dev.anvilcraft.tofusthinking.block;
 
-import dev.anvilcraft.tofusthinking.block.entity.SmartPowerConverterBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class SmartPowerConverterExtremelyBigBlock extends SmartPowerConverterBlock{
     public static final VoxelShape SHAPE_DOWN = Block.box(3, 0, 3, 13, 16, 13);
@@ -24,9 +21,10 @@ public class SmartPowerConverterExtremelyBigBlock extends SmartPowerConverterBlo
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return new SmartPowerConverterBlockEntity(pos,state,1048567);
+    public int getMaxInputPower() {
+        return 1048567;
     }
+
     @Override
     public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return switch (state.getValue(FACING)) {

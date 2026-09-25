@@ -73,7 +73,6 @@ public class AddonBlocks {
             .blockstate(DataGenUtil::noExtraModelOrState)
             .item((block, properties) ->
                     new SimpleBlockItem(block,properties.fireResistant())
-                            .addComponent(Component.translatable("tooltip.anvilcraft_tofus_thinking.smart_power_converter",Component.literal(String.valueOf(4096)).withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY))
             )
             .model((ctx, provider) -> provider.blockItem(ctx))
             .tag(ModItemTags.POWER_CONVERTER)
@@ -95,7 +94,6 @@ public class AddonBlocks {
             .blockstate(DataGenUtil::noExtraModelOrState)
             .item((block, properties) ->
                     new SimpleBlockItem(block,properties.fireResistant())
-                            .addComponent(Component.translatable("tooltip.anvilcraft_tofus_thinking.smart_power_converter",Component.literal(String.valueOf(1048567)).withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY))
             )
             .model((ctx, provider) -> provider.blockItem(ctx))
             .tag(ModItemTags.POWER_CONVERTER)
@@ -121,10 +119,7 @@ public class AddonBlocks {
             .recipe(RegistrumBlockRecipeLoader::royalAnvil)
             .properties(properties -> properties.mapColor(MapColor.METAL).isValidSpawn(Blocks::never).strength(1.0f, 1000f).sound(SoundType.ANVIL).pushReaction(PushReaction.NORMAL))
             .blockstate(DataGenUtil::noExtraModelOrState)
-            .item((block, properties) ->
-                    new SimpleBlockItem(block,properties.fireResistant(),SimpleBlockItem.EXPLODE_IMMUNE)
-                            .addComponent(TofuAnvilBlock.TOFU_ANVIL_USE,TofuAnvilBlock.getConfigConflictComponent(),TofuAnvilBlock.TOFU_ANVIL_FALL)
-            )
+            .item()
             .tag(ItemTags.ANVIL)
             .build()
             .tag(BlockTags.ANVIL, ModBlockTags.CANT_BROKEN_ANVIL, BlockTags.MINEABLE_WITH_PICKAXE)
