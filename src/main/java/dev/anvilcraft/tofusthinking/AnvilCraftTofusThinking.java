@@ -1,6 +1,9 @@
 package dev.anvilcraft.tofusthinking;
 
+import dev.anvilcraft.lib.v2.config.ConfigManager;
 import dev.anvilcraft.lib.v2.registrum.Registrum;
+import dev.anvilcraft.tofusthinking.config.AnvilCraftTofusThinkCommonConfig;
+import dev.anvilcraft.tofusthinking.config.AnvilCraftTofusThinkServerConfig;
 import dev.anvilcraft.tofusthinking.data.TofusThinkingDatagen;
 import dev.anvilcraft.tofusthinking.init.AddonMenuTypes;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
@@ -25,23 +28,25 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+
 @Mod(AnvilCraftTofusThinking.MOD_ID)
 public class AnvilCraftTofusThinking {
     public static final String MOD_ID = "anvilcraft_tofus_thinking";
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final AnvilCraftTofusThinkCommonConfig COMMON_CONFIG = ConfigManager.register(AnvilCraftTofusThinking.MOD_ID,AnvilCraftTofusThinkCommonConfig::new);
+    public static final AnvilCraftTofusThinkServerConfig SERVER_CONFIG = ConfigManager.register(AnvilCraftTofusThinking.MOD_ID,AnvilCraftTofusThinkServerConfig::new);
     public static final Registrum REGISTRUM = Registrum.create(MOD_ID).defaultCreativeTab((ResourceKey<CreativeModeTab>) null);
 
     public static ResourceLocation of(String path){
         return ResourceLocation.fromNamespaceAndPath(MOD_ID,path);
     }
 
-
+    @SuppressWarnings("unused")
     public AnvilCraftTofusThinking(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);
@@ -60,7 +65,6 @@ public class AnvilCraftTofusThinking {
 
         modEventBus.addListener(this::registerPayloads);
         AddonRecipeInits.init(modEventBus);
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
     private void registerPayloads(RegisterPayloadHandlersEvent event) {
         PayloadRegistrar registrar = event.registrar("1");

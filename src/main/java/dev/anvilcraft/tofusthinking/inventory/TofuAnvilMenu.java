@@ -1,5 +1,6 @@
 package dev.anvilcraft.tofusthinking.inventory;
 
+import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.init.AddonMenuTypes;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.core.Holder;
@@ -112,7 +113,7 @@ public class TofuAnvilMenu extends AnvilMenu {
                     ItemEnchantments rightEnchantments = EnchantmentHelper.getEnchantmentsForCrafting(stack2);
                     boolean cantEnchantThis = false;
 
-                    boolean ignoreConflict = getIgnoreConflict();
+                    boolean ignoreConflict = AnvilCraftTofusThinking.COMMON_CONFIG.canTofuAnvilIgnoreEnchantmentConflict;
 
                     for (Object2IntMap.Entry<Holder<Enchantment>> entry : rightEnchantments.entrySet()) {
                         Holder<Enchantment> holder = entry.getKey();
@@ -199,8 +200,6 @@ public class TofuAnvilMenu extends AnvilMenu {
         }
         return willEnchantmentLevel;
     }
-
-    private static boolean getIgnoreConflict(){return true;}
 
     private static int getLeftDamageValue(ItemStack itemstack, ItemStack stack2, ItemStack stack1) {
         int leftDurability1 = itemstack.getMaxDamage() - itemstack.getDamageValue();

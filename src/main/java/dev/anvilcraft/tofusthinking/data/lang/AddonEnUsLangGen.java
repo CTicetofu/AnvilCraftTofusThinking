@@ -1,6 +1,9 @@
 package dev.anvilcraft.tofusthinking.data.lang;
 
+import dev.anvilcraft.lib.v2.config.ConfigData;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
+import dev.anvilcraft.tofusthinking.config.AnvilCraftTofusThinkCommonConfig;
+import dev.anvilcraft.tofusthinking.config.AnvilCraftTofusThinkServerConfig;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.block.AddonFluids;
@@ -21,6 +24,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         blockName();
         tooltipLang();
         entityName();
+        addConfig();
         addOther();
     }
     private void itemName(){
@@ -125,6 +129,10 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonEntities.STRANGE_WITHER.get(),"Strange Wither");
         add(AddonEntities.STRANGE_WITHER_SKULL.get(),"Strange Wither Skull");
         add(AddonEntities.METEOR.get(),"Meteor");
+    }
+    private void addConfig(){
+        ConfigData.readConfigClass(this, AnvilCraftTofusThinkCommonConfig.class);
+        ConfigData.readConfigClass(this, AnvilCraftTofusThinkServerConfig.class);
     }
     private void addOther(){
         add(AddonFluids.NUTRIENT_LIQUID_TYPE.get().getDescriptionId(),"Nutrient Liquid");

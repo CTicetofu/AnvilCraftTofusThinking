@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.block.entity;
 
 import com.google.common.collect.Lists;
+import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.anvil.RewindLivingEntityBehavior;
 import dev.anvilcraft.tofusthinking.block.OriginalConduitBlock;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
@@ -432,7 +433,8 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
         }
         level.getEntitiesOfClass(LivingEntity.class,new AABB(pos).inflate(2)).forEach(RewindLivingEntityBehavior::executeLivingEntity);
         level.getEntitiesOfClass(LivingEntity.class,new AABB(pos).inflate(9)).forEach(EntityUtil::clearAllEffect);
-        level.explode(null,AddonDamageTypes.rewind(level).justDie().withNotBlock(true),ORIGINAL_EXPLOSION_CALCULATOR,pos.getCenter(),10, false,Level.ExplosionInteraction.BLOCK);
+        Level.ExplosionInteraction interaction = AnvilCraftTofusThinking.SERVER_CONFIG.originalConduitOverloadTakeDestructiveExplosion ? Level.ExplosionInteraction.BLOCK : Level.ExplosionInteraction.NONE;
+        level.explode(null,AddonDamageTypes.rewind(level).justDie().withNotBlock(true),ORIGINAL_EXPLOSION_CALCULATOR,pos.getCenter(),10, false,interaction);
     }
 
     public int getExecuteCooldown() {

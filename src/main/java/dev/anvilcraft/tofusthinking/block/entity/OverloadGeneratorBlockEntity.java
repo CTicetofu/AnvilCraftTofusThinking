@@ -1,5 +1,6 @@
 package dev.anvilcraft.tofusthinking.block.entity;
 
+import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.util.EntityUtil;
@@ -96,6 +97,10 @@ public class OverloadGeneratorBlockEntity extends BlockEntity implements IPowerP
 
     private void doOverloadDestruct(Level level, BlockPos pos){
         if(this.level == null || this.level.isClientSide){return;}
+        if(!AnvilCraftTofusThinking.SERVER_CONFIG.overloadGeneratorOverloadTakeDestruction){
+            level.destroyBlock(pos,false);
+            return;
+        }
         for (BlockPos blockPos:BlockPos.betweenClosed(pos.offset(1,1,1),pos.offset(-1,-1,-1))){
             BlockState state = level.getBlockState(blockPos);
             if(state.getDestroySpeed(level,pos) < 0){continue;}

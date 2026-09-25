@@ -1,5 +1,6 @@
 package dev.anvilcraft.tofusthinking.block;
 
+import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.entity.FallingImitativeBlockEntity;
 import dev.anvilcraft.tofusthinking.inventory.TofuAnvilMenu;
 import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
@@ -10,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
@@ -61,7 +63,8 @@ public class TofuAnvilBlock extends Block implements IHammerRemovable {
     public static final Component TOFU_ANVIL_FALL = Component.translatable("tooltip.anvilcraft_tofus_thinking.tofu_anvil_fall").withStyle(ChatFormatting.GRAY);
 
     public static Component getConfigConflictComponent(){
-        return Component.translatable("tooltip.anvilcraft_tofus_thinking.tofu_anvil_anvil",TOFU_ANVIL_IGNORE_CONFLICT.withStyle(ChatFormatting.GRAY)).withStyle(ChatFormatting.GRAY);
+        Style style = Style.EMPTY.withStrikethrough(!AnvilCraftTofusThinking.COMMON_CONFIG.canTofuAnvilIgnoreEnchantmentConflict);
+        return Component.translatable("tooltip.anvilcraft_tofus_thinking.tofu_anvil_anvil",TOFU_ANVIL_IGNORE_CONFLICT.withStyle(ChatFormatting.GRAY).withStyle(style)).withStyle(ChatFormatting.GRAY);
     }
 
 

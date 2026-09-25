@@ -1,5 +1,6 @@
 package dev.anvilcraft.tofusthinking.block;
 
+import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -22,7 +23,7 @@ public class SmartPowerConverterExtremelyBigBlock extends SmartPowerConverterBlo
 
     @Override
     public int getMaxInputPower() {
-        return 1048567;
+        return AnvilCraftTofusThinking.COMMON_CONFIG.smartPowerConverterExtremelyBigMaxInput;
     }
 
     @Override

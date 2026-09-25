@@ -21,6 +21,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         blockName();
         tooltipLang();
         entityName();
+        addConfig();
         addOther();
     }
     private void itemName(){
@@ -122,7 +123,14 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonEntities.STRANGE_WITHER_SKULL.get(),"奇怪的凋灵之首");
         add(AddonEntities.METEOR.get(),"流星");
     }
-
+    private void addConfig(){
+        add("anvilcraft_tofus_thinking.configuration.section.anvilcraft.tofus.thinking.common.toml","铁砧工艺：豆之思维 通用配置");
+        add("anvilcraft_tofus_thinking.configuration.section.anvilcraft.tofus.thinking.common.toml.title","铁砧工艺：豆之思维 通用配置");
+        add("anvilcraft_tofus_thinking.configuration.section.anvilcraft.tofus.thinking.server.toml","铁砧工艺：豆之思维 服务端配置");
+        add("anvilcraft_tofus_thinking.configuration.section.anvilcraft.tofus.thinking.server.toml.title","铁砧工艺：豆之思维 服务端配置");
+        addCommonConfig();
+        addServerConfig();
+    }
     private void addOther(){
         add(AddonFluids.NUTRIENT_LIQUID_TYPE.get().getDescriptionId(),"营养液");
 
@@ -137,12 +145,39 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("death.attack.tofusThinking.tofusThinking.bounce_wither_skull","%s 被 %s 发射的弹射凋灵骷髅头击杀");
         add("death.attack.tofusThinking.counter","%s 过于冲动的攻击了 %s");
 
-        add(AddonItemGroups.ITEM_TAB_ID,"铁砧工艺: 豆之巧思");
+        add(AddonItemGroups.ITEM_TAB_ID,"铁砧工艺: 豆之思维");
 
         add("gui.anvilcraft_tofus_thinking.category.rewind","回溯");
         add("gui.anvilcraft_tofus_thinking.category.rewind.need_activated","需要激活");
 
         add("jei.anvilcraft_tofus_thinking.info.original_conuit","默认情况下，使用海洋之星吸收奇怪的凋灵的蓝色凋灵之首后将其注入普通的潮涌核心获取，原始状态的它难以精细控制而不太适合直接作为法杖材料。");
         add("jei.anvilcraft_tofus_thinking.info.charm_amulet","默认情况下，使用六个不同的护符经过铁砧冲压获得");
+    }
+    private void addCommonConfig(){
+        sameAsTipConfig("can_tofu_anvil_ignore_enchantment_conflict","豆腐铁砧是否可以无视附魔冲突");
+        sameAsTipConfig("smart_power_converter_max_input","智能转换器的最大输入能量");
+        sameAsTipConfig("smart_power_converter_extremely_big_max_input","极大智能转换器的最大输入能量");
+    }
+    private void addServerConfig(){
+        configTrans("original_conduit_overload_take_destructive_explosion","原初化潮涌核心过载时是否造成破坏性爆炸");
+        configTipTrans("original_conduit_overload_take_destructive_explosion","启用时，原初化潮涌核心造成的爆炸会破坏方块");
+        configTrans("overload_generator_overload_take_destruction","过载发电机过载时是否造成破坏");
+        configTipTrans("overload_generator_overload_take_destruction","启用时，过载发电机过载时造成破坏");
+    }
+    private static String getConfigName(String name){
+        return "anvilcraft_tofus_thinking.configuration." + name;
+    }
+    private static String getConfigTooltip(String name){
+        return getConfigName(name) + ".tooltip";
+    }
+    private void configTrans(String name,String trans){
+        add(getConfigName(name),trans);
+    }
+    private void configTipTrans(String name,String trans){
+        add(getConfigTooltip(name),trans);
+    }
+    private void sameAsTipConfig(String name,String trans){
+        add(getConfigName(name),trans);
+        add(getConfigTooltip(name),trans);
     }
 }

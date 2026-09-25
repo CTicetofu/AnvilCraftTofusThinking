@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.block;
 
 import com.mojang.serialization.MapCodec;
+import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.block.entity.SmartPowerConverterBlockEntity;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.network.toClient.SimpleNumberInitPacket;
@@ -47,7 +48,7 @@ public class SmartPowerConverterBlock extends BasePowerConverterBlock implements
     }
 
     public int getMaxInputPower(){
-        return 4096;
+        return AnvilCraftTofusThinking.COMMON_CONFIG.smartPowerConverterMaxInput;
     }
 
     @Override
