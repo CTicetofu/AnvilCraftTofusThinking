@@ -33,8 +33,13 @@ public class AddonItems {
     public static void register() {
     }
 
-    public static final ItemEntry<AutoCanItem> AUTO_CAN = REGISTRUM.item("auto_can",properties -> new AutoCanItem(properties.rarity(Rarity.UNCOMMON).stacksTo(1)))
+    public static final ItemEntry<AutoCanItem> AUTO_CAN = REGISTRUM.item("auto_can", properties ->
+                    (AutoCanItem) new AutoCanItem(properties.rarity(Rarity.UNCOMMON).stacksTo(1))
+                            .withAttribute(new AttributeInstance(SlotAttribute.getOrCreate("charm"),1, AttributeModifier.Operation.ADD_VALUE))
+            )
             .model(DataGenUtil::noExtraModelOrState)
+            .tag(AddonItemTags.CURIOS_CHARM)
+            .recipe(AddonItemRecipeLoader::autoCan)
             .register();
 
     public static final ItemEntry<CurioBaseItem> CHARM_AMULET = REGISTRUM.item("charm_amulet",properties ->

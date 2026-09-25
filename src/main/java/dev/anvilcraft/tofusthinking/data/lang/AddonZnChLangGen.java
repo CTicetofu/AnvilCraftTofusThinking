@@ -47,8 +47,9 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonBlocks.TOFU_ANVIL.get(),"豆腐铁砧");
     }
     private void tooltipLang(){
-        add("tooltip.anvilcraft_tofus_thinking.auto_can_storage","存储的营养价值: %1$d/%2$d");
-        add("tooltip.anvilcraft_tofus_thinking.auto_can","使用该物品右击食物以吸收营养价值 \n携带时为持有者补充能量");
+        add("tooltip.anvilcraft_tofus_thinking.auto_can_storage","存储的营养价值: %s/%s");
+        add("tooltip.anvilcraft_tofus_thinking.auto_can1","使用该物品右击食物以吸收营养价值");
+        add("tooltip.anvilcraft_tofus_thinking.auto_can2","携带时为持有者补充能量");
         add("tooltip.anvilcraft_tofus_thinking.curse_snowball","使目标被诅咒缠身");
         add("tooltip.anvilcraft_tofus_thinking.wither_immune","免疫凋灵破坏");
 

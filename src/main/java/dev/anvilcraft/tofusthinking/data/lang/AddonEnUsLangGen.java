@@ -50,8 +50,9 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonBlocks.TOFU_ANVIL.get(),"Tofu Anvil");
     }
     private void tooltipLang(){
-        add("tooltip.anvilcraft_tofus_thinking.auto_can_storage","The nutritional value of storage: %1$d/%2$d");
-        add("tooltip.anvilcraft_tofus_thinking.auto_can","Right-click the item on food to absorb its nutritional value \nwhich will replenish the energy of the holder when carried");
+        add("tooltip.anvilcraft_tofus_thinking.auto_can_storage","The nutritional value of storage: %s/%s");
+        add("tooltip.anvilcraft_tofus_thinking.auto_can1","Right-click the item on food to absorb its nutritional value");
+        add("tooltip.anvilcraft_tofus_thinking.auto_can2","which will replenish the energy of the holder when carried");
         add("tooltip.anvilcraft_tofus_thinking.curse_snowball","Cause the target to be cursed and haunted");
         add("tooltip.anvilcraft_tofus_thinking.wither_immune","Immune to Wither");
 

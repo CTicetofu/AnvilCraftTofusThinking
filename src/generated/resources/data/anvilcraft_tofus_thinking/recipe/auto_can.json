@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:tin_can"
+    },
+    "B": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "pattern": [
+    " B ",
+    " A ",
+    " B "
+  ],
+  "result": {
+    "components": {
+      "anvilcraft:display_item": {
+        "count": 1,
+        "id": "minecraft:bread"
+      }
+    },
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:auto_can"
+  }
+}

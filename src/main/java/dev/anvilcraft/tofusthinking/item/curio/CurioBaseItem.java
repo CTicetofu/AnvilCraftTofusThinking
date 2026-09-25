@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.item.curio;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import dev.anvilcraft.tofusthinking.item.ExtendItem;
 import dev.anvilcraft.tofusthinking.util.DataClass.AttributeInstance;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
@@ -16,7 +17,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 
-public class CurioBaseItem extends Item implements ICurioItem {
+public class CurioBaseItem extends ExtendItem implements ICurioItem {
     public CurioBaseItem(Properties properties) {
         super(properties);
     }
@@ -43,11 +44,6 @@ public class CurioBaseItem extends Item implements ICurioItem {
             builder.put(instance.attribute(),instance.createModifier());
         }
         modifierMultimap = builder.build();
-        return this;
-    }
-
-    public CurioBaseItem setCanRepeatEquip(boolean b){
-        canRepeatEquip = b;
         return this;
     }
 }

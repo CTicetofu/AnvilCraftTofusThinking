@@ -21,6 +21,16 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 
 public class AddonItemRecipeLoader {
+    public static <T extends Item> void autoCan(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                .pattern(" B ")
+                .pattern(" A ")
+                .pattern(" B ")
+                .define('A', ModItems.TIN_CAN)
+                .define('B', Items.HOPPER)
+                .unlockedBy("has_tin_can", RegistrumRecipeProvider.has(ModItems.TIN_CAN))
+                .save(provider);
+    }
     public static <T extends Item> void curseSnowball(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get(),4)
                 .pattern(" B ")

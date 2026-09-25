@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.item.food;
 
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
+import dev.anvilcraft.tofusthinking.item.curio.CurioBaseItem;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.dubhe.anvilcraft.api.item.IExtraItemDisplay;
 import dev.dubhe.anvilcraft.init.item.ModComponents;
@@ -8,23 +9,24 @@ import dev.dubhe.anvilcraft.item.property.component.StoredItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.List;
 import java.util.Optional;
 
-public class AutoCanItem extends Item implements IExtraItemDisplay {
+public class AutoCanItem extends CurioBaseItem implements IExtraItemDisplay {
     public AutoCanItem(Properties properties) {
         super(properties.component(AddonComponents.NUTRITION_VALUE,0));
     }
@@ -60,6 +62,9 @@ public class AutoCanItem extends Item implements IExtraItemDisplay {
                         ItemUtil.giveEnoughItem(player,remainItem,needCount);
                     }
                 }
+                if(player.level().isClientSide){
+                    player.level().playLocalSound(player, SoundEvents.ARMOR_EQUIP_LEATHER.value(),player.getSoundSource(),1,1);
+                }
                 return true;
             }
         }
@@ -68,30 +73,48 @@ public class AutoCanItem extends Item implements IExtraItemDisplay {
 
     @Override
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
-        if(!level.isClientSide && entity instanceof Player player && player.tickCount % 40 == 0 && !player.isCreative()){
-            int currentValue = stack.getOrDefault(AddonComponents.NUTRITION_VALUE,0);
-            if(currentValue <= 0){return;}
-            FoodData data = player.getFoodData();
-            int planFood = 0;
-            int planSaturation = 0;
-            if(data.getFoodLevel() < 20){
-                planFood = Math.min(5,Math.min(20 - data.getFoodLevel(),currentValue));
-                currentValue -= planFood;
+        if(!level.isClientSide && entity instanceof Player player && player.tickCount % 40 == 0 && !player.isCreative() && !player.getCooldowns().isOnCooldown(this)){
+            if(tryEat(stack,player)){
+                player.getCooldowns().addCooldown(this,10);
             }
-            if(data.getSaturationLevel() < 10 && currentValue > 0){
-                planSaturation = 1;
-            }
-            data.eat(planFood,planSaturation);
-            stack.set(AddonComponents.NUTRITION_VALUE,currentValue);
         }
+    }
+
+    @Override
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        if(slotContext.entity() instanceof Player player && !player.level().isClientSide && player.tickCount % 40 == 35 && !player.isCreative() && !player.getCooldowns().isOnCooldown(this)){
+            if(tryEat(stack,player)){
+                player.getCooldowns().addCooldown(this,10);
+            }
+        }
+    }
+
+    public static boolean tryEat(ItemStack stack, Player player){
+        int currentValue = stack.getOrDefault(AddonComponents.NUTRITION_VALUE,0);
+        if(currentValue <= 0){return false;}
+        int planFood = 0;
+        FoodData data = player.getFoodData();
+        if(data.getFoodLevel() >= 20 && data.getSaturationLevel() >= 6){return true;}
+        if(data.getFoodLevel() < 20){
+            planFood = Math.min(5,Math.min(20 - data.getFoodLevel(),currentValue));
+            currentValue -= planFood;
+        }
+        if(data.getSaturationLevel() < 5 && currentValue >= 1){
+            currentValue -= 1;
+        }
+        data.eat(planFood,0);
+        data.setSaturation(data.getSaturationLevel() + 1);
+        stack.set(AddonComponents.NUTRITION_VALUE,currentValue);
+        return true;
     }
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         int nutritionValue = stack.getOrDefault(AddonComponents.NUTRITION_VALUE,0);
-        tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.auto_can_storage",nutritionValue,maxNutritionValue).withStyle(ChatFormatting.GRAY));
-        tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.auto_can",nutritionValue,maxNutritionValue).withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.auto_can_storage",Component.literal(String.valueOf(nutritionValue)).withStyle(ChatFormatting.YELLOW),Component.literal(String.valueOf(maxNutritionValue)).withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.auto_can1").withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.auto_can2").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
@@ -113,4 +136,5 @@ public class AutoCanItem extends Item implements IExtraItemDisplay {
     public float scale(@NotNull ItemStack stack) {
         return 0.5F;
     }
+
 }
