@@ -15,21 +15,6 @@ import java.util.List;
 public class AddonCapabilitiesEventListener {
     @SubscribeEvent
     public static void registerCapabilities(final RegisterCapabilitiesEvent event) {
-        List.of(
-                AddonBlockEntities.FOOD_GENERATOR.get()
-        ).forEach(type -> event.registerBlockEntity(
-                        Capabilities.ItemHandler.BLOCK,
-                        type,
-                        (be, side) -> be.getItemHandler()
-                )
-        );
-        List.of(
-                AddonBlockEntities.FOOD_GENERATOR.get()
-        ).forEach(type -> event.registerBlockEntity(
-                        Capabilities.FluidHandler.BLOCK,
-                        type,
-                        (be, side) -> be.getFluidHandler()
-                ));
 
         event.registerBlockEntity(
                 Capabilities.EnergyStorage.BLOCK,

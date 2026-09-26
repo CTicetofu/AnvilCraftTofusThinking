@@ -200,7 +200,7 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
             blockEntity.isActive = flag;
             updateHunting(blockEntity, list);
             if (flag) {
-                applyEffects(level, pos, list);
+                applyEffects(level, pos, list,blockEntity.huntIgnoreWater);
                 updateDestroyTarget(level, pos, state, list, blockEntity);
             }
         }
@@ -275,7 +275,7 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
         return positions.size() >= 8;
     }
 
-    private static void applyEffects(Level level, BlockPos pos, List<BlockPos> positions) {
+    private static void applyEffects(Level level, BlockPos pos, List<BlockPos> positions,boolean huntIgnoreWater) {
         int i = positions.size();
         int j = Math.min(i / 4 * 16,96);
         int k = pos.getX();
@@ -287,7 +287,7 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
         List<Player> list = level.getEntitiesOfClass(Player.class, aabb);
         if (!list.isEmpty()) {
             for (Player player : list) {
-                if (pos.closerThan(player.blockPosition(), j) && (i > 16 || player.isInWaterOrRain())) {
+                if (pos.closerThan(player.blockPosition(), j) && (huntIgnoreWater || player.isInWaterOrRain())) {
                     repairPlayerInventory(player);
                     player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 300, 0, true, true));
                 }
@@ -345,7 +345,6 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
                         target.hurt(AddonDamageTypes.rewind(level),15 * rate);
                     }
             );
-            blockEntity.destroyTarget.hurt(level.damageSources().magic(), 12.0F);
         }
 
         if (livingentity != blockEntity.destroyTarget) {

@@ -69,7 +69,7 @@ public class StrangeWither extends WitherBoss {
         if(this.getInvulnerableTicks() <= 0 && this.getTarget() != null){
             if(this.tickCount % 20 == 0){
                 if(this.lastPosition == Vec3.ZERO){this.lastPosition = this.position();}
-                if(this.getTarget() != null && this.lastPosition.distanceToSqr(this.position()) < 0.3){
+                if(this.getTarget() != null && this.lastPosition.distanceToSqr(this.position()) < 0.3 && this.position().distanceToSqr(this.getTarget().position()) > 64){
                     this.strandTimes += 2;
                 } else {
                     if(this.strandTimes > 0){strandTimes--;}

@@ -13,7 +13,6 @@ public class ItemTab extends BaseCreativeTab{
         this.accept(AddonItems.CURSE_SNOWBALL_ITEM);
         this.acceptEnchant(AddonItems.AMETHYST_HAMMER,new EnchantmentKeyInstance(Enchantments.SMITE,2),new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4));
         this.acceptEnchant(AddonItems.ROYAL_STEEL_HAMMER,new EnchantmentKeyInstance(Enchantments.SMITE,2),new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4));
-        this.accept(AddonItems.NUTRIENT_LIQUID_BUCKET);
         this.accept(AddonItems.STAR_OF_THE_SEA);
         this.accept(AddonItems.CONDUIT_STAFF);
         this.acceptFullEnergy(AddonItems.CONDUIT_STAFF);

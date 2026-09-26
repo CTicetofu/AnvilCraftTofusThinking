@@ -63,6 +63,16 @@ public class ConduitStaff extends Item {
     }
 
     @Override
+    public boolean isEnchantable(@NotNull ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public int getEnchantmentValue(@NotNull ItemStack stack) {
+        return 20;
+    }
+
+    @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         if(itemstack.getOrDefault(AddonComponents.AUTO_HUNT,false)){return InteractionResultHolder.fail(itemstack);}
@@ -97,7 +107,7 @@ public class ConduitStaff extends Item {
         int useTick = getUseDuration(stack,livingEntity) - remainingUseDuration + 1;
         if(useTick % 20 == 0 && !level.isClientSide && ItemUtil.consumeEnergy(livingEntity,stack,getNeedEnergy(false))){
             if(isAutoHunting(stack)){return;}
-            HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,10).raycast();
+            HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,12).raycast();
             Entity entity = null;
             if(hitResult instanceof EntityHitResult entityHitResult){
                 entity = entityHitResult.getEntity();

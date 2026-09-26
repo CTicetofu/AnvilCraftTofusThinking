@@ -98,12 +98,6 @@ public class HammerItem extends TieredItem {
 
     @Override
     public boolean hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
-        return true;
-    }
-
-    @Override
-    public void postHurtEnemy(ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
-        stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
         boolean interrupt = true;
         if(attacker instanceof Player player){
             interrupt = player.getAttackStrengthScale(0.5F) > 0.7;
@@ -111,11 +105,17 @@ public class HammerItem extends TieredItem {
         if(interrupt){
             target.stopUsingItem();
             if(target instanceof Player player){
-                if(target.isUsingItem()){player.getCooldowns().addCooldown(player.getUseItem().getItem(),30);}
+                if(target.isUsingItem()){player.stopUsingItem();}
             } else {
-                target.addEffect(new MobEffectInstance(AddonMobEffects.DULL.getDelegate(),20));
+                target.addEffect(new MobEffectInstance(AddonMobEffects.DULL.getDelegate(),30));
             }
         }
+        return true;
+    }
+
+    @Override
+    public void postHurtEnemy(ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
+        stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
     }
 
     @Override

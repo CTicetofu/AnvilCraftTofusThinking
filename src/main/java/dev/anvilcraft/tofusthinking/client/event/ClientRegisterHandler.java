@@ -4,8 +4,6 @@ import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.client.gui.item.EnergyBarRenderer;
 import dev.anvilcraft.tofusthinking.client.hud.ToolProgressHud;
 import dev.anvilcraft.tofusthinking.client.init.AddonModelLayers;
-import dev.anvilcraft.tofusthinking.client.renderer.SimpleClientFluidType;
-import dev.anvilcraft.tofusthinking.client.renderer.blockentity.FoodGeneratorRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.blockentity.OriginalConduitRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.blockentity.OverloadGeneratorRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.item.ConduitStaffRenderer;
@@ -13,9 +11,7 @@ import dev.anvilcraft.tofusthinking.client.renderer.item.OriginalConduitItemRend
 import dev.anvilcraft.tofusthinking.client.renderer.item.OriginalConduitStaffRenderer;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
-import dev.anvilcraft.tofusthinking.init.block.AddonFluids;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -38,7 +34,6 @@ public class ClientRegisterHandler {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(AddonBlockEntities.ORIGINAL_CONDUIT.get(), OriginalConduitRenderer::new);
         event.registerBlockEntityRenderer(AddonBlockEntities.OVERLOAD_GENERATOR.get(), OverloadGeneratorRenderer::new);
-        event.registerBlockEntityRenderer(AddonBlockEntities.FOOD_GENERATOR.get(), FoodGeneratorRenderer::new);
     }
 
     @SubscribeEvent
@@ -47,7 +42,6 @@ public class ClientRegisterHandler {
         event.registerItem(ConduitStaffRenderer.CONDUIT_STAFF_EXTENSION, AddonItems.CONDUIT_STAFF.get());
         event.registerItem(OriginalConduitStaffRenderer.ORIGINAL_CONDUIT_STAFF_EXTENSION, AddonItems.ORIGINAL_CONDUIT_STAFF.get());
 
-        event.registerFluidType(new SimpleClientFluidType(ResourceLocation.fromNamespaceAndPath("neoforge", "block/milk_still"), 0xDFFFE4B5), AddonFluids.NUTRIENT_LIQUID_TYPE);
     }
 
     @SubscribeEvent

@@ -7,6 +7,7 @@ import dev.anvilcraft.tofusthinking.util.RayDetectionUtil;
 import dev.anvilcraft.tofusthinking.util.TooltipUtil;
 import dev.anvilcraft.tofusthinking.util.UnclassifiedUtil;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -27,7 +28,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -53,6 +56,21 @@ public class SonicBoomStaff extends Item implements IToolProgress {
     @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
         return UseAnim.BOW;
+    }
+
+    @Override
+    public boolean isEnchantable(@NotNull ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public int getEnchantmentValue(@NotNull ItemStack stack) {
+        return 20;
+    }
+
+    @Override
+    public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+        return super.supportsEnchantment(stack, enchantment) || enchantment.getKey() == Enchantments.LOOTING;
     }
 
     @Override
@@ -116,8 +134,10 @@ public class SonicBoomStaff extends Item implements IToolProgress {
     }
 
     private void performSonic(@NotNull ItemStack stack, @NotNull ServerLevel level, @NotNull LivingEntity livingEntity, float progress){
-        float damage = 20 * progress * progress;
+        float damage = 20 * progress;
         float range = 2 + 14 * progress;
+        int pierce = EnchantmentHelper.getPiercingCount(level,stack,stack);
+        range *= 1 + Mth.clamp(pierce,0,10) * 0.1F;
         int count = EnchantmentHelper.processProjectileCount(level,stack,livingEntity,1);
         float spread = EnchantmentHelper.processProjectileSpread(level,stack,livingEntity,0) * Mth.DEG_TO_RAD;
         float startYaw = -(count -1) * spread / 2;
@@ -132,10 +152,7 @@ public class SonicBoomStaff extends Item implements IToolProgress {
                     target.hurt(livingEntity.damageSources().sonicBoom(livingEntity),damage);
                 }
             });
-            for (int i = 1; i <= range; i++) {
-                Vec3 position = start.add(forward.scale(i));
-                UnclassifiedUtil.spawnParticles(level, ParticleTypes.SONIC_BOOM, position.x, position.y, position.z, 1, 0.0, 0.0, 0.0, 0.0, false);
-            }
+            UnclassifiedUtil.spawnLineParticles(level,ParticleTypes.SONIC_BOOM,start.x, start.y, start.z,forward.x,forward.y,forward.z,0,0,0,(int)range,false);
         }
 
         livingEntity.level().playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SoundEvents.WARDEN_SONIC_BOOM, livingEntity.getSoundSource(), 1, 1);

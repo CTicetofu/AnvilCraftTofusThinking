@@ -36,7 +36,7 @@ public class ItemUtil {
     }
     public static void repairItem(ItemStack stack,int amount,float rate,boolean force){
         if(stack.isEmpty()){return;}
-        if(!force && !stack.isRepairable()){return;}
+        if(!force && (!stack.isRepairable() || stack.getXpRepairRatio() <= 0)){return;}
         if(stack.getDamageValue() > 0){
             stack.setDamageValue(Math.max(0,stack.getDamageValue() - amount - (int)(stack.getMaxDamage() * rate)));
         }

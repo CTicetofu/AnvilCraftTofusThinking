@@ -34,7 +34,6 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.AMETHYST_GOLDEN_RING.asItem(),"Amethyst Golden Ring");
         add(AddonItems.AMETHYST_HAMMER.asItem(),"Amethyst Hammer");
         add(AddonItems.ROYAL_STEEL_HAMMER.asItem(),"Royal Steel Hammer");
-        add(AddonItems.NUTRIENT_LIQUID_BUCKET.asItem(),"Nutrient Liquid Bucket");
         add(AddonItems.STAR_OF_THE_SEA.asItem(),"Star of the Sea");
         add(AddonItems.CONDUIT_STAFF.asItem(),"Conduit Staff");
         add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"Original Conduit Staff");
@@ -43,7 +42,6 @@ public class AddonEnUsLangGen extends LanguageProvider {
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"Stable Prismarine Bricks");
         add(AddonBlocks.ORIGINAL_CONDUIT.get(),"Originalization Conduit");
-        add(AddonBlocks.NUTRIENT_EXTRACTOR.get(),"Nutrient Extractor");
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"Smart Power Converter");
         add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"Smart Power Converter Extremely Big");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"Overload Generator");
@@ -136,7 +134,6 @@ public class AddonEnUsLangGen extends LanguageProvider {
         ConfigData.readConfigClass(this, AnvilCraftTofusThinkServerConfig.class);
     }
     private void addOther(){
-        add(AddonFluids.NUTRIENT_LIQUID_TYPE.get().getDescriptionId(),"Nutrient Liquid");
 
         add(AddonMobEffects.CURSE.get().getDescriptionId(),"Curse");
         add(AddonMobEffects.SHRINK.get().getDescriptionId(),"Shrink");

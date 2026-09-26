@@ -31,7 +31,6 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.AMETHYST_GOLDEN_RING.asItem(),"紫水晶金戒指");
         add(AddonItems.AMETHYST_HAMMER.asItem(),"紫水晶锤");
         add(AddonItems.ROYAL_STEEL_HAMMER.asItem(),"皇家钢锤");
-        add(AddonItems.NUTRIENT_LIQUID_BUCKET.asItem(),"营养液桶");
         add(AddonItems.STAR_OF_THE_SEA.asItem(),"海洋之星");
         add(AddonItems.CONDUIT_STAFF.asItem(),"潮涌核心法杖");
         add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"原初化潮涌核心法杖");
@@ -40,7 +39,6 @@ public class AddonZnChLangGen extends LanguageProvider {
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"坚固海晶石砖");
         add(AddonBlocks.ORIGINAL_CONDUIT.get(),"原初化潮涌核心");
-        add(AddonBlocks.NUTRIENT_EXTRACTOR.get(),"营养萃取器");
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"智能能量转换器");
         add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"智能极大能量转换器");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"过载发电机");
@@ -133,7 +131,6 @@ public class AddonZnChLangGen extends LanguageProvider {
         addServerConfig();
     }
     private void addOther(){
-        add(AddonFluids.NUTRIENT_LIQUID_TYPE.get().getDescriptionId(),"营养液");
 
         add(AddonMobEffects.CURSE.get().getDescriptionId(),"诅咒");
         add(AddonMobEffects.SHRINK.get().getDescriptionId(),"收缩");

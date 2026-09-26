@@ -78,10 +78,6 @@ public class AddonItems {
             .recipe(AddonItemRecipeLoader::royalSteelHammer)
             .register();
 
-    public static final ItemEntry<BucketItem> NUTRIENT_LIQUID_BUCKET = REGISTRUM.item("nutrient_liquid_bucket", props -> new BucketItem(AddonFluids.NUTRIENT_LIQUID.get(), props.stacksTo(1).craftRemainder(Items.BUCKET)))
-            .model(ModelProviderUtil::bucket)
-            .register();
-
     public static final ItemEntry<StarOfTheSea> STAR_OF_THE_SEA = REGISTRUM.item("star_of_the_sea",properties ->
                     new StarOfTheSea(properties.stacksTo(1).rarity(Rarity.RARE)))
             .recipe(AddonItemRecipeLoader::starOfTheSea)
@@ -107,7 +103,7 @@ public class AddonItems {
                     new SonicBoomStaff(properties.stacksTo(1).rarity(Rarity.RARE)))
             .model(DataGenUtil::noExtraModelOrState)
             .recipe(AddonItemRecipeLoader::sonicBoomStaff)
-            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE)
+            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.CROSSBOW_ENCHANTABLE)
             .register();
 
     public static ItemStack enchant(ItemLike item, HolderLookup.Provider registries, EnchantmentKeyInstance... instances){

@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.util;
 
 import dev.anvilcraft.tofusthinking.network.toClient.CenterParticlePacket;
+import dev.anvilcraft.tofusthinking.network.toClient.LineParticlePacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
@@ -19,12 +20,29 @@ public class UnclassifiedUtil {
 
     public static void spawnCenterParticles(Level level, ParticleOptions particle,double x, double y, double z, float distance, float distanceOffset, float speed, float speedOffset, int count, boolean force){
         if(level.getServer() == null){return;}
-        Vec3 pos = new Vec3(x,y,z);
-        level.getServer().getPlayerList().getPlayers().forEach(player -> {
-            if(isShouldPlayerReceive(level,player,pos,force ? 512 : 32)){
-                PacketDistributor.sendToPlayer(player,new CenterParticlePacket((float) x, (float) y, (float) z, distance, distanceOffset, speed, speedOffset, count, particle));
-            }
-        });
+        if (!(level instanceof ServerLevel serverLevel)) return;
+        if (particle == null || count <= 0) return;
+        PacketDistributor.sendToPlayersNear(
+                serverLevel, null, x, y, z,
+                force ? 512 : 32,
+                new CenterParticlePacket((float) x, (float) y, (float) z,
+                        distance, distanceOffset, speed,
+                        speedOffset, count, particle)
+        );
+    }
+
+    public static void spawnLineParticles(Level level, ParticleOptions particle,double x, double y, double z, double offsetX, double offsetY, double offsetZ, float motionX, float motionY, float motionZ, int count, boolean force){
+        if(level.getServer() == null){return;}
+        if (!(level instanceof ServerLevel serverLevel)) return;
+        if (particle == null || count <= 0) return;
+        PacketDistributor.sendToPlayersNear(
+                serverLevel, null, x, y, z,
+                force ? 512 : 32,
+                new LineParticlePacket((float) x, (float) y, (float) z,
+                        (float)offsetX, (float)offsetY, (float)offsetZ,
+                        motionX, motionY, motionZ,
+                        count, particle)
+        );
     }
 
     public static boolean isShouldPlayerReceive(Level level, Player player, Vec3 pos, double distance){
