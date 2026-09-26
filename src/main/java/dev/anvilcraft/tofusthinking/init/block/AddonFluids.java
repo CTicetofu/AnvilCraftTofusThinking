@@ -4,7 +4,6 @@ import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.fluid.NoWorldFluid;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
@@ -23,9 +22,9 @@ public class AddonFluids {
     private static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(Registries.FLUID, AnvilCraftTofusThinking.MOD_ID);
     private static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, AnvilCraftTofusThinking.MOD_ID);
 
-    public static final DeferredHolder<FluidType, FluidType> NUTRIENT_LIQUID_TYPE = FLUID_TYPES.register("nutrient_liquid", () -> new FluidType(FluidType.Properties.create()));
+    //public static final DeferredHolder<FluidType, FluidType> NUTRIENT_LIQUID_TYPE = FLUID_TYPES.register("nutrient_liquid", () -> new FluidType(FluidType.Properties.create()));
 
-    public static final DeferredHolder<Fluid, NoWorldFluid> NUTRIENT_LIQUID = registerNoWorldFluid("nutrient_liquid",NUTRIENT_LIQUID_TYPE::value, () -> Items.AIR);
+    //public static final DeferredHolder<Fluid, NoWorldFluid> NUTRIENT_LIQUID = registerNoWorldFluid("nutrient_liquid",NUTRIENT_LIQUID_TYPE::value, () -> Items.AIR);
 
     private static DeferredHolder<Fluid, NoWorldFluid> registerNoWorldFluid(String name, Supplier<FluidType> fluidType, Supplier<? extends Item> bucket) {
         DeferredHolder<Fluid, NoWorldFluid> holder = DeferredHolder.create(Registries.FLUID, AnvilCraftTofusThinking.of(name));

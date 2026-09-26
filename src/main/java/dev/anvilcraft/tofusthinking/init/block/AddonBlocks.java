@@ -50,16 +50,6 @@ public class AddonBlocks {
             .build()
             .register();
 
-    public static final BlockEntry<FoodGeneratorBlock> NUTRIENT_EXTRACTOR = REGISTRUM
-            .block("nutrient_extractor",FoodGeneratorBlock::new)
-            .initialProperties(() -> Blocks.IRON_BLOCK)
-            .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
-            .blockstate(DataGenUtil::noExtraModelOrState)
-            .simpleItem()
-            .blockstate(DataGenUtil::noExtraModelOrState)
-            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
-            .register();
-
     public static final BlockEntry<SmartPowerConverterBlock> SMART_POWER_CONVERTER = REGISTRUM
             .block("smart_power_converter",SmartPowerConverterBlock::new)
             .initialProperties(() -> Blocks.IRON_BLOCK)
