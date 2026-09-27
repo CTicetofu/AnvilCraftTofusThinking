@@ -62,7 +62,7 @@ public class AddonItemRecipeLoader {
     }
 
     public static <T extends Item> void amethystGoldenRIng(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, enchant(ctx.get(),provider.getProvider(),new EnchantmentKeyInstance(Enchantments.SMITE,2),new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4)))
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
                 .pattern("BAB")
                 .pattern("A A")
                 .pattern("BAB")
@@ -73,7 +73,7 @@ public class AddonItemRecipeLoader {
     }
 
     public static <T extends Item> void starOfTheSea(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, enchant(ctx.get(),provider.getProvider(),new EnchantmentKeyInstance(Enchantments.SMITE,2),new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4)))
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
                 .pattern("BCB")
                 .pattern("BAB")
                 .pattern(" B ")
@@ -85,7 +85,7 @@ public class AddonItemRecipeLoader {
     }
 
     public static <T extends Item> void conduitStaff(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, enchant(ctx.get(),provider.getProvider(),new EnchantmentKeyInstance(Enchantments.SMITE,2),new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4)))
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
                 .pattern("CBC")
                 .pattern("BAB")
                 .pattern("CBC")

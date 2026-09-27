@@ -15,15 +15,6 @@
     "BAB"
   ],
   "result": {
-    "components": {
-      "minecraft:enchantments": {
-        "levels": {
-          "minecraft:breach": 4,
-          "minecraft:efficiency": 3,
-          "minecraft:smite": 2
-        }
-      }
-    },
     "count": 1,
     "id": "anvilcraft_tofus_thinking:amethyst_golden_ring"
   }

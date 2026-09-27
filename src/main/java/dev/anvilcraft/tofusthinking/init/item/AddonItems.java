@@ -48,7 +48,7 @@ public class AddonItems {
                     (AmethystGoldenRing) new AmethystGoldenRing(properties.stacksTo(1).rarity(Rarity.UNCOMMON))
                             .withAttribute(
                                     new AttributeInstance(Attributes.LUCK,1, AttributeModifier.Operation.ADD_VALUE),
-                                    new AttributeInstance(Attributes.MINING_EFFICIENCY,5, AttributeModifier.Operation.ADD_VALUE),
+                                    new AttributeInstance(Attributes.MINING_EFFICIENCY,8, AttributeModifier.Operation.ADD_VALUE),
                                     new AttributeInstance(Attributes.ARMOR_TOUGHNESS,2, AttributeModifier.Operation.ADD_VALUE)
                             )
             )
