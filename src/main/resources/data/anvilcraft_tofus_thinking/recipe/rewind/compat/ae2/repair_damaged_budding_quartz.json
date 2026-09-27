@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ae2"
+    }
+  ],
+  "type": "anvilcraft_tofus_thinking:rewind",
+  "ingredients": [
+    {
+      "items": "ae2:damaged_budding_quartz"
+    }
+  ],
+  "results": [
+    {
+      "id": "ae2:chipped_budding_quartz"
+    }
+  ]
+}

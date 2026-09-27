@@ -1,0 +1,13 @@
+{
+  "type": "anvilcraft:time_warp",
+  "ingredients": [
+    {
+      "items": "anvilcraft_tofus_thinking:original_conduit"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:conduit"
+    }
+  ]
+}

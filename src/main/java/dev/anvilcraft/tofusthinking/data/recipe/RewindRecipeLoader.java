@@ -88,6 +88,11 @@ public class RewindRecipeLoader {
                 .result(ModBlocks.FROST_ANVIL)
                 .save(provider,path("divide_anvil"));
 
+        RewindRecipe.builder()
+                .requires(ModBlocks.TRANSCENDIUM_BLOCK)
+                .result(ModBlocks.EMBER_METAL_BLOCK)
+                .save(provider,path("low_transcendium_block"));
+
         ExtendInWorldRecipeBuilder.extendCompatible(ModRecipeTriggers.ON_ANVIL_FALL_ON)
                 .hasCauldron(0, -1, 0)
                 .hasBlock(builder -> builder

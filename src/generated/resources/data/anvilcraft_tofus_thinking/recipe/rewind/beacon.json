@@ -1,5 +1,5 @@
 {
-  "type": "anvilcraft_tofus_thinking:time_warp",
+  "type": "anvilcraft_tofus_thinking:rewind",
   "ingredients": [
     {
       "items": "anvilcraft:corrupted_beacon"

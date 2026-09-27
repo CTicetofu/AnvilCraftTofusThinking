@@ -5,6 +5,7 @@ import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
 public class TofuThinkingRecipeHandler {
     public static void init(RegistrumRecipeProvider provider) {
         AddonStampingRecipeLoader.init(provider);
+        AddonTimeWarpRecipeLoader.init(provider);
         AddonAnvilCollisionCraftRecipeLoader.init(provider);
         RewindRecipeLoader.init(provider);
         AddonProceduralProcessRecipeLoader.init(provider);

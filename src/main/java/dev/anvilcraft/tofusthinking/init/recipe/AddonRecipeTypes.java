@@ -28,9 +28,9 @@ public class AddonRecipeTypes {
     }
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<RewindRecipe>> REWIND_TYPE =
-            registerType("time_warp");
+            registerType("rewind");
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<RewindRecipe>> REWIND_SERIALIZER =
-            RECIPE_SERIALIZERS.register("time_warp", RewindRecipe.Serializer::new);
+            RECIPE_SERIALIZERS.register("rewind", RewindRecipe.Serializer::new);
 
     public static void register(IEventBus bus) {
         RECIPE_TYPES.register(bus);
