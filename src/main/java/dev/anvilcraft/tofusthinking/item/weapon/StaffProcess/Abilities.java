@@ -3,6 +3,7 @@ package dev.anvilcraft.tofusthinking.item.weapon.StaffProcess;
 import dev.anvilcraft.tofusthinking.entity.ExtraDamageSource;
 import dev.anvilcraft.tofusthinking.entity.projectile.Meteor;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
+import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.util.EntityUtil;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.dubhe.anvilcraft.block.ExpFluidBlock;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.entity.EntityInLevelCallback;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -27,6 +29,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.EventHooks;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -54,31 +57,35 @@ public class Abilities {
 
     private static void disintegrateTarget(StaffContext context){
         if(!(context.level instanceof ServerLevel serverLevel) || !(context.attacker instanceof Player player)){return;}
-        for(LivingEntity target:context.targets){
-            if(target instanceof Mob mob){
-                if(!target.isAlive() || EntityUtil.BELONG_PLAYER.test(target) || target.getType().is(Tags.EntityTypes.BOSSES)){continue;}
-                if(EntityUtil.getOriginMaxHealth(target) > 200){return;}
-                int xp = EventHooks.getExperienceDrop(target,player,mob.getExperienceReward(serverLevel,context.attacker)) * 4;
-                Vec3 pos = target.position();
+        List<LivingEntity> list = context.targets;
+        Iterator<LivingEntity> iterator = list.iterator();
+        while (iterator.hasNext()){
+            if(iterator.next() instanceof Mob mob){
+                if (!mob.isAlive() || EntityUtil.BELONG_PLAYER.test(mob) || mob.getType().is(Tags.EntityTypes.BOSSES)) {continue;}
+                if (EntityUtil.getOriginMaxHealth(mob) > 200) {continue;}
+                int xp = EventHooks.getExperienceDrop(mob, player, mob.getExperienceReward(serverLevel, context.attacker)) * 4;
+                Vec3 pos = mob.position();
                 mob.dropPreservedEquipment();
-                EntityUtil.eraseLivingEntity(target);
-                if(target.isRemoved() || xp <= 0){continue;}
+                EntityUtil.eraseLivingEntity(mob);
+                mob.hurt(AddonDamageTypes.rewind(serverLevel),0.5F);
+                if (mob.levelCallback != EntityInLevelCallback.NULL || xp <= 0) {continue;}
+                iterator.remove();
                 List<ItemEntity> stacks = new ArrayList<>();
                 int maxSize = EXP_STACK.get().getMaxStackSize();
                 int maxAccept = ExpFluidBlock.XP_POINTS * maxSize * 9;
                 int count = Math.min(maxAccept, xp) / ExpFluidBlock.XP_POINTS;
                 int left = xp - count * ExpFluidBlock.XP_POINTS;
-                while (count > 0){
-                    stacks.add(new ItemEntity(serverLevel,pos.x,pos.y,pos.z,EXP_STACK.get().copyWithCount(Math.min(count,maxSize))));
+                while (count > 0) {
+                    stacks.add(new ItemEntity(serverLevel, pos.x, pos.y, pos.z, EXP_STACK.get().copyWithCount(Math.min(count, maxSize))));
                     count -= maxSize;
                 }
-                if(left > 0){
-                    if(xp > maxAccept){
-                        ExperienceOrb orb = new ExperienceOrb(serverLevel,pos.x,pos.y,pos.z,left);
+                if (left > 0) {
+                    if (xp > maxAccept) {
+                        ExperienceOrb orb = new ExperienceOrb(serverLevel, pos.x, pos.y, pos.z, left);
                         serverLevel.addFreshEntity(orb);
                     } else {
-                        if(context.level.getRandom().nextInt(50) < left){
-                            stacks.add(new ItemEntity(serverLevel,pos.x,pos.y,pos.z,EXP_STACK.get().copyWithCount(1)));
+                        if (context.level.getRandom().nextInt(50) < left) {
+                            stacks.add(new ItemEntity(serverLevel, pos.x, pos.y, pos.z, EXP_STACK.get().copyWithCount(1)));
                         }
                     }
                 }

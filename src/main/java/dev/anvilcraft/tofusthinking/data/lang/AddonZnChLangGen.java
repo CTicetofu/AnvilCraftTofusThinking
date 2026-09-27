@@ -105,7 +105,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.ability_royal_glass","能量消耗降低80%");
         add("tooltip.anvilcraft_tofus_thinking.ability_frost_glass","将200血以下的普通生物炼化为经验宝石");
         add("tooltip.anvilcraft_tofus_thinking.ability_ember_glass","在目标点上方召唤流星");
-        add("tooltip.anvilcraft_tofus_thinking.ability_curse_gold_block","对目标造成虚弱，缓慢，饥饿，遮蔽，并清除正面效果");
+        add("tooltip.anvilcraft_tofus_thinking.ability_curse_gold_block","对目标造成虚弱，缓慢，饥饿，诅咒，并清除正面效果");
         add("tooltip.anvilcraft_tofus_thinking.ability_royal_steel_block","若目标点没有生物，则尝试自动选择附近的怪物作为中心");
         add("tooltip.anvilcraft_tofus_thinking.ability_frost_metal_block","在物品栏时清除火焰和冻结");
         add("tooltip.anvilcraft_tofus_thinking.ability_ember_metal_block","在物品栏时获得抗火，且持有者在炎热的维度或者火焰中也可自动恢复能量");
