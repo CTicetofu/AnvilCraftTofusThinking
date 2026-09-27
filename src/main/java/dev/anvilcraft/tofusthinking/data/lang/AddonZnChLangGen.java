@@ -3,7 +3,6 @@ package dev.anvilcraft.tofusthinking.data.lang;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
-import dev.anvilcraft.tofusthinking.init.block.AddonFluids;
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
 import dev.anvilcraft.tofusthinking.init.item.AddonItemGroups;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
@@ -150,6 +149,8 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("jei.anvilcraft_tofus_thinking.info.original_conuit","默认情况下，使用海洋之星吸收奇怪的凋灵的蓝色凋灵之首后将其注入普通的潮涌核心获取，原始状态的它难以精细控制而不太适合直接作为法杖材料。");
         add("jei.anvilcraft_tofus_thinking.info.charm_amulet","默认情况下，使用六个不同的护符经过铁砧冲压获得");
+
+        add("enhancedtooltips.rarity.anvilcraft_tofus_thinking_tofu","豆之思维");
     }
     private void addCommonConfig(){
         sameAsTipConfig("can_tofu_anvil_ignore_enchantment_conflict","豆腐铁砧是否可以无视附魔冲突");

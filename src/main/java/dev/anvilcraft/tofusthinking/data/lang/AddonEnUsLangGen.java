@@ -6,7 +6,6 @@ import dev.anvilcraft.tofusthinking.config.AnvilCraftTofusThinkCommonConfig;
 import dev.anvilcraft.tofusthinking.config.AnvilCraftTofusThinkServerConfig;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
-import dev.anvilcraft.tofusthinking.init.block.AddonFluids;
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
 import dev.anvilcraft.tofusthinking.init.item.AddonItemGroups;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
@@ -153,5 +152,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("jei.anvilcraft_tofus_thinking.info.original_conuit","By default, the Star Of The Sea is used to absorb the blue Wither Head of a strange Wither and inject it into an Conduit to obtain it. In its original state, it is difficult to control precisely and is not suitable for direct use as a wand material.");
         add("jei.anvilcraft_tofus_thinking.info.charm_amulet","By default, it is obtained by stamping with six different charms on an anvil");
+
+        add("enhancedtooltips.rarity.anvilcraft_tofus_thinking_tofu","Tofu's Thinking");
     }
 }
