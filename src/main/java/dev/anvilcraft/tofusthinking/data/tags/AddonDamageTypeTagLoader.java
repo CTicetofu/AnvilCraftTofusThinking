@@ -12,7 +12,9 @@ import net.neoforged.neoforge.common.Tags;
 public class AddonDamageTypeTagLoader {
     public static void init(RegistrumTagsProvider<DamageType> provider) {
         provider.addTag(AddonDamageTypeTags.REWIND)
-                .addOptional(AddonDamageTypes.REWIND.location());
+                .addOptional(AddonDamageTypes.REWIND.location())
+                .addOptional(AddonDamageTypes.REWIND_ATTACK.location())
+                .addOptional(AddonDamageTypes.EX_REWIND.location());
 
         provider.addTag(AddonDamageTypeTags.CAN_PERFECT_BLOCK)
                 .add(DamageTypes.SONIC_BOOM)

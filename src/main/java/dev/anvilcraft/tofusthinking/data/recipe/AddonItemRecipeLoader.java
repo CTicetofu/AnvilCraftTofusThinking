@@ -8,6 +8,7 @@ import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.util.DataClass.EnchantmentKeyInstance;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
+import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.init.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -68,6 +69,18 @@ public class AddonItemRecipeLoader {
                 .pattern("BAB")
                 .define('A', Items.GOLD_INGOT)
                 .define('B', Items.AMETHYST_SHARD)
+                .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
+                .save(provider);
+    }
+
+    public static <T extends Item> void speedCharm(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                .pattern("BAC")
+                .pattern("BBA")
+                .pattern("BAC")
+                .define('A', Items.AMETHYST_SHARD)
+                .define('B', ModItemTags.STORAGE_BLOCKS_SUGAR)
+                .define('C', Items.PRISMARINE_SHARD)
                 .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
                 .save(provider);
     }

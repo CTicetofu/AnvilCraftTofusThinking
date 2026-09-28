@@ -5,6 +5,7 @@ import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
+import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.item.weapon.StarOfTheSea;
 import dev.anvilcraft.tofusthinking.mobEffect.NotApplyEffect;
 import net.minecraft.sounds.SoundEvents;
@@ -13,6 +14,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -45,6 +47,9 @@ public class LivingEventHandler {
         MobEffect effect = instance.getEffect().value();
         LivingEntity target = event.getEntity();
         if(effect instanceof NotApplyEffect notApplyEffect && notApplyEffect.isNotApply(instance,target)){
+            event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+        }
+        if(effect == MobEffects.MOVEMENT_SLOWDOWN.value() && AddonItems.SPEED_CHARM.get().isEquippedBy(target)){
             event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
         }
     }

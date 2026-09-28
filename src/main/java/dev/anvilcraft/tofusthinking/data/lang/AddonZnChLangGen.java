@@ -28,6 +28,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.CHARM_AMULET.asItem(),"护符护符");
         add(AddonItems.CURSE_SNOWBALL_ITEM.asItem(),"诅咒雪球");
         add(AddonItems.AMETHYST_GOLDEN_RING.asItem(),"紫水晶金戒指");
+        add(AddonItems.SPEED_CHARM.asItem(),"迅捷之符");
         add(AddonItems.AMETHYST_HAMMER.asItem(),"紫水晶锤");
         add(AddonItems.ROYAL_STEEL_HAMMER.asItem(),"皇家钢锤");
         add(AddonItems.STAR_OF_THE_SEA.asItem(),"海洋之星");
@@ -52,6 +53,8 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 时运等级 +1 抢夺等级");
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring2", "猪灵认为你穿戴了金制品");
+
+        add("tooltip.anvilcraft_tofus_thinking.speed_charm","免疫 缓慢");
 
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","对亡灵生物额外造成50%伤害");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","打断目标使用物品的状态");

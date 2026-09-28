@@ -124,7 +124,7 @@ public class ConduitStaff extends Item {
                 player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER,400,0,false,false,true));
             }
             if(!isAutoHunting(stack)){return;}
-            if(ItemUtil.hasEnoughEnergy(stack,getNeedEnergy(true))){return;}
+            if(!ItemUtil.hasEnoughEnergy(stack,getNeedEnergy(true))){return;}
             if(isSelected || player.getOffhandItem() == stack){
                 List<Monster> monsters = level.getEntitiesOfClass(Monster.class,new AABB(player.blockPosition()).inflate(12), monster -> !monster.isInvulnerable() && monster.isAlive());
                 if(!monsters.isEmpty() && ItemUtil.consumeEnergy(player,stack,getNeedEnergy(true))){

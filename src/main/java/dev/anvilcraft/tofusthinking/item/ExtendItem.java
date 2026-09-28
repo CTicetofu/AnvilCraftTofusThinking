@@ -1,13 +1,18 @@
 package dev.anvilcraft.tofusthinking.item;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExtendItem extends Item {
     public ExtendItem(Properties properties) {
@@ -15,6 +20,7 @@ public class ExtendItem extends Item {
     }
 
     protected boolean permanent = false;
+    private List<Component> components = new ArrayList<>();
 
     @Override
     public boolean canBeHurtBy(@NotNull ItemStack stack, @NotNull DamageSource source) {
@@ -44,5 +50,18 @@ public class ExtendItem extends Item {
             }
         }
         return super.onEntityItemUpdate(stack, entity);
+    }
+
+    public ExtendItem addComponent(Component... components){
+        this.components = List.of(components);
+        return this;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        for(Component component : components){
+            tooltipComponents.add(component.copy());
+        }
     }
 }

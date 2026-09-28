@@ -31,6 +31,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.CHARM_AMULET.asItem(),"Charm Amulet");
         add(AddonItems.CURSE_SNOWBALL_ITEM.asItem(),"Curse Snowball");
         add(AddonItems.AMETHYST_GOLDEN_RING.asItem(),"Amethyst Golden Ring");
+        add(AddonItems.SPEED_CHARM.asItem(),"Speed Charm");
         add(AddonItems.AMETHYST_HAMMER.asItem(),"Amethyst Hammer");
         add(AddonItems.ROYAL_STEEL_HAMMER.asItem(),"Royal Steel Hammer");
         add(AddonItems.STAR_OF_THE_SEA.asItem(),"Star of the Sea");
@@ -55,6 +56,9 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 Fortune Level +1 Looting Level");
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring2", "Piglins thinks you wear a gold thing");
+
+        add("tooltip.anvilcraft_tofus_thinking.speed_charm","Immune to Slowness");
+
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","Deal an additional 50% damage to undead creatures");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","Interrupting the target's use of an item");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","Used at the right time, it can backfire on the attacker. \nIt can also be used to absorb certain magic or the power of time");

@@ -12,7 +12,9 @@ import dev.anvilcraft.tofusthinking.util.DataClass.AttributeInstance;
 import dev.anvilcraft.tofusthinking.util.DataClass.EnchantmentKeyInstance;
 import dev.dubhe.anvilcraft.item.ModTiers;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -55,6 +57,20 @@ public class AddonItems {
             .defaultModel()
             .tag(AddonItemTags.CURIOS_RING)
             .recipe(AddonItemRecipeLoader::amethystGoldenRIng)
+            .register();
+
+    public static final ItemEntry<CurioBaseItem> SPEED_CHARM = REGISTRUM.item("speed_charm", properties ->
+            (CurioBaseItem)new CurioBaseItem(properties.stacksTo(1).rarity(Rarity.UNCOMMON))
+                            .withAttribute(
+                                    new AttributeInstance(Attributes.MOVEMENT_SPEED,0.2, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
+                                    new AttributeInstance(Attributes.WATER_MOVEMENT_EFFICIENCY,0.5, AttributeModifier.Operation.ADD_VALUE),
+                                    new AttributeInstance(Attributes.MOVEMENT_EFFICIENCY,0.4, AttributeModifier.Operation.ADD_VALUE),
+                                    new AttributeInstance(Attributes.SNEAKING_SPEED,0.3, AttributeModifier.Operation.ADD_VALUE)
+                            ).addComponent(Component.translatable("tooltip.anvilcraft_tofus_thinking.speed_charm").withStyle(ChatFormatting.GRAY))
+            )
+            .defaultModel()
+            .tag(AddonItemTags.CURIOS_CHARM)
+            .recipe(AddonItemRecipeLoader::speedCharm)
             .register();
 
     public static final ItemEntry<CurseSnowballItem> CURSE_SNOWBALL_ITEM = REGISTRUM.item("curse_snowball",properties -> new CurseSnowballItem())
