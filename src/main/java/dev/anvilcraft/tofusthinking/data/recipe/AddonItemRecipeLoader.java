@@ -62,6 +62,14 @@ public class AddonItemRecipeLoader {
                 .save(provider, AnvilCraftTofusThinking.of("smithing/royal_steel_hammer"));
     }
 
+    public static <T extends Item> void lightningHammer(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(ModItems.TOPAZ),Ingredient.of(AddonItems.ROYAL_STEEL_HAMMER),Ingredient.of(ModItems.CURSED_GOLD_INGOT),RecipeCategory.TOOLS,ctx.get()
+                )
+                .unlocks("has_item", TofusThinkingDatagen.has(AddonItems.ROYAL_STEEL_HAMMER))
+                .save(provider, AnvilCraftTofusThinking.of("smithing/lightning_hammer"));
+    }
+
     public static <T extends Item> void amethystGoldenRIng(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
                 .pattern("BAB")

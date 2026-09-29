@@ -31,6 +31,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.SPEED_CHARM.asItem(),"迅捷之符");
         add(AddonItems.AMETHYST_HAMMER.asItem(),"紫水晶锤");
         add(AddonItems.ROYAL_STEEL_HAMMER.asItem(),"皇家钢锤");
+        add(AddonItems.LIGHTNING_HAMMER.asItem(),"诅咒金-皇家钢锤");
         add(AddonItems.STAR_OF_THE_SEA.asItem(),"海洋之星");
         add(AddonItems.CONDUIT_STAFF.asItem(),"潮涌核心法杖");
         add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"原初化潮涌核心法杖");
@@ -58,6 +59,7 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","对亡灵生物额外造成50%伤害");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","打断目标使用物品的状态");
+        add("tooltip.anvilcraft_tofus_thinking.lightning_hammer","攻击进度为满时在目标处释放闪电");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","在合适的时机举起可以反伤攻击者 \n也可以借此吸收某些魔法或者时间的力量");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_none","空");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_sonic_boom","音爆");

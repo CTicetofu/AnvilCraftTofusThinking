@@ -7,6 +7,7 @@ import dev.anvilcraft.tofusthinking.item.curio.AmethystGoldenRing;
 import dev.anvilcraft.tofusthinking.item.curio.CurioBaseItem;
 import dev.anvilcraft.tofusthinking.item.food.AutoCanItem;
 import dev.anvilcraft.tofusthinking.item.tool.HammerItem;
+import dev.anvilcraft.tofusthinking.item.tool.LightningHammer;
 import dev.anvilcraft.tofusthinking.item.weapon.*;
 import dev.anvilcraft.tofusthinking.util.DataClass.AttributeInstance;
 import dev.anvilcraft.tofusthinking.util.DataClass.EnchantmentKeyInstance;
@@ -88,6 +89,12 @@ public class AddonItems {
             .model((ctx, provider) -> provider.handheld(ctx))
             .tag(ItemTags.PICKAXES,ItemTags.AXES,ItemTags.WEAPON_ENCHANTABLE,Tags.Items.MELEE_WEAPON_TOOLS,Tags.Items.MINING_TOOL_TOOLS)
             .recipe(AddonItemRecipeLoader::royalSteelHammer)
+            .register();
+
+    public static final ItemEntry<LightningHammer> LIGHTNING_HAMMER = REGISTRUM.item("lightning_hammer", properties -> new LightningHammer(ModTiers.ROYAL,properties.attributes(LightningHammer.createAttributes(ModTiers.ROYAL,9f, 0.5f))))
+            .model((ctx, provider) -> provider.handheld(ctx))
+            .tag(ItemTags.PICKAXES,ItemTags.AXES,ItemTags.WEAPON_ENCHANTABLE,Tags.Items.MELEE_WEAPON_TOOLS,Tags.Items.MINING_TOOL_TOOLS)
+            .recipe(AddonItemRecipeLoader::lightningHammer)
             .register();
 
     public static final ItemEntry<StarOfTheSea> STAR_OF_THE_SEA = REGISTRUM.item("star_of_the_sea",properties ->

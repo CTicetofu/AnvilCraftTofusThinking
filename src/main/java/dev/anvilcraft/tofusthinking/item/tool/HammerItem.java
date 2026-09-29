@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HammerItem extends TieredItem {
-    public static ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
+    public static final ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
     public HammerItem(Tier tier, Properties properties) {
         super(tier,properties.component(DataComponents.TOOL,createToolProperties(tier)));
     }

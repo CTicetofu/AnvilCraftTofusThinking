@@ -34,6 +34,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.SPEED_CHARM.asItem(),"Speed Charm");
         add(AddonItems.AMETHYST_HAMMER.asItem(),"Amethyst Hammer");
         add(AddonItems.ROYAL_STEEL_HAMMER.asItem(),"Royal Steel Hammer");
+        add(AddonItems.LIGHTNING_HAMMER.asItem(),"Curse Gold-Royal Steel Hammer");
         add(AddonItems.STAR_OF_THE_SEA.asItem(),"Star of the Sea");
         add(AddonItems.CONDUIT_STAFF.asItem(),"Conduit Staff");
         add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"Original Conduit Staff");
@@ -61,6 +62,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thinking.hammer_mite_undead","Deal an additional 50% damage to undead creatures");
         add("tooltip.anvilcraft_tofus_thinking.hammer_interrupt_use","Interrupting the target's use of an item");
+        add("tooltip.anvilcraft_tofus_thinking.lightning_hammer","Release lightning at the target when the attack progress is full");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea","Used at the right time, it can backfire on the attacker. \nIt can also be used to absorb certain magic or the power of time");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_none","Empty");
         add("tooltip.anvilcraft_tofus_thinking.star_of_the_sea_type_sonic_boom","Sonic Boom");

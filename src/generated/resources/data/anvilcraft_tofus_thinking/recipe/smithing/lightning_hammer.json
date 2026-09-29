@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "anvilcraft:cursed_gold_ingot"
+  },
+  "base": {
+    "item": "anvilcraft_tofus_thinking:royal_steel_hammer"
+  },
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:lightning_hammer"
+  },
+  "template": {
+    "item": "anvilcraft:topaz"
+  }
+}
