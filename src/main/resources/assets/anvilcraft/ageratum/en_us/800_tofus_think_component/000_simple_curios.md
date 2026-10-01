@@ -5,12 +5,14 @@ navigation:
 items:
   - anvilcraft_tofus_thinking:charm_amulet
   - anvilcraft_tofus_thinking:amethyst_golden_ring
+  - anvilcraft_tofus_thinking:speed_charm
 ---
 # Simple Curios
 
 <row halign="center">
 <item id="anvilcraft_tofus_thinking:charm_amulet"/>
 <item id="anvilcraft_tofus_thinking:amethyst_golden_ring"/>
+<item id="anvilcraft_tofus_thinking:speed_charm"/>
 </row>
 
 > It's really simple, just like their tooltips
@@ -20,4 +22,5 @@ items:
 By default, Charm Amulet is obtained by stamping with six different charms on an anvil
 :::
 <recipe id="anvilcraft_tofus_thinking:amethyst_golden_ring"/>
+<recipe id="anvilcraft_tofus_thinking:speed_charm"/>
 

@@ -4,6 +4,7 @@ navigation:
 items:
   - anvilcraft_tofus_thinking:amethyst_hammer
   - anvilcraft_tofus_thinking:royal_steel_hammer
+  - anvilcraft_tofus_thinking:lightning_hammer
 ---
 
 # Hammer
@@ -13,6 +14,7 @@ items:
 <row halign="center">
 <item id="anvilcraft_tofus_thinking:amethyst_hammer"/>
 <item id="anvilcraft_tofus_thinking:royal_steel_hammer"/>
+<item id="anvilcraft_tofus_thinking:lightning_hammer"/>
 </row>
 
 - Effective for most blocks, as long as it is a suitable mining tool
@@ -22,3 +24,4 @@ items:
 
 <recipe id="anvilcraft_tofus_thinking:amethyst_hammer"/>
 <recipe id="anvilcraft_tofus_thinking:smithing/royal_steel_hammer"/>
+<recipe id="anvilcraft_tofus_thinking:smithing/lightning_hammer"/>

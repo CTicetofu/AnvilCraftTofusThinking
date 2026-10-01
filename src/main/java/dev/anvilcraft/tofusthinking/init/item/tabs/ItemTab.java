@@ -10,6 +10,7 @@ public class ItemTab extends BaseCreativeTab{
     public void init() {
         this.accept(AddonItems.AUTO_CAN);
         this.accept(AddonItems.CHARM_AMULET);
+        this.accept(AddonItems.AMETHYST_GOLDEN_RING);
         this.accept(AddonItems.SPEED_CHARM);
         this.accept(AddonItems.CURSE_SNOWBALL_ITEM);
         this.acceptEnchant(AddonItems.AMETHYST_HAMMER,new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4));
@@ -22,6 +23,8 @@ public class ItemTab extends BaseCreativeTab{
         this.acceptFullEnergy(AddonItems.SONIC_BOOM_STAFF);
         this.accept(AddonItems.ORIGINAL_CONDUIT_STAFF);
         this.acceptFullEnergy(AddonItems.ORIGINAL_CONDUIT_STAFF);
+        this.accept(AddonItems.GEM_STAFF);
+        this.acceptFullEnergy(AddonItems.GEM_STAFF);
         this.accept(AddonBlocks.ORIGINAL_CONDUIT.asItem());
         this.accept(AddonBlocks.OVERLOAD_GENERATOR.asItem());
         this.accept(AddonBlocks.STABLE_PRISMARINE_BRICKS.asItem());
