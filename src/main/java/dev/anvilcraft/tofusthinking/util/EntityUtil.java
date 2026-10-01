@@ -10,6 +10,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.PartEntity;
 
@@ -86,5 +88,15 @@ public class EntityUtil {
         entity.stopUsingItem();
         entity.getPassengers().forEach(Entity::stopRiding);
         entity.levelCallback.onRemove(Entity.RemovalReason.DISCARDED);
+    }
+
+    public static boolean canSee(Entity a,Entity b,float distance){
+        if (a.level() != b.level()) {
+            return false;
+        } else {
+            Vec3 vec3 = new Vec3(a.getX(), a.getEyeY(), a.getZ());
+            Vec3 vec31 = new Vec3(b.getX(), b.getEyeY(), b.getZ());
+            return !(vec31.distanceTo(vec3) > distance) && a.level().clip(new ClipContext(vec3, vec31, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, a)).getType() == HitResult.Type.MISS;
+        }
     }
 }

@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:royal_steel_ingot"
+    },
+    "B": {
+      "item": "minecraft:tinted_glass"
+    },
+    "C": {
+      "item": "minecraft:amethyst_block"
+    }
+  },
+  "pattern": [
+    "CBC",
+    " A ",
+    " A "
+  ],
+  "result": {
+    "components": {
+      "anvilcraft:display_item": {
+        "count": 1,
+        "id": "minecraft:amethyst_shard"
+      },
+      "anvilcraft_tofus_thinking:display_another_item": {
+        "count": 1,
+        "id": "minecraft:amethyst_block"
+      }
+    },
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:gem_staff"
+  }
+}

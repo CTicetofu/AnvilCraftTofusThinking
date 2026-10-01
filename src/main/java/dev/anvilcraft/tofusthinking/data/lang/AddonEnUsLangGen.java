@@ -39,6 +39,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.CONDUIT_STAFF.asItem(),"Conduit Staff");
         add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"Original Conduit Staff");
         add(AddonItems.SONIC_BOOM_STAFF.asItem(),"Sonic Boom Staff");
+        add(AddonItems.GEM_STAFF.asItem(),"Gem Staff");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"Stable Prismarine Bricks");
@@ -117,6 +118,24 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.ability_frost_metal_block","Clear flames and freeze while in the inventory");
         add("tooltip.anvilcraft_tofus_thinking.ability_ember_metal_block","Obtain fire resistance while in the inventory, and the holder can automatically recover energy in hot dimensions or flames");
 
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_none","No valid data available");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_amethyst","Amethysts find their path");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_amethyst","The projectile will track nearby targets");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_topaz","Topazes burst brightly");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_topaz","The projectile explodes when it disappears, causing half the damage to itself");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_sapphire","Sapphires swirl in pairs");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_sapphire","Damage * 0.6, generate an additional projectile,and freeze target");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_emerald","Emeralds light the night");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_emerald","The projectile has twice the speed,+1 Pierce, and remains when it disappears due to hitting a block");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_ruby","Rubies flash double");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_ruby","Damage * 0.6, each hit produces an additional projectile");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_diamond","Diamonds shine brilliantly");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_diamond","+1 Pierce and increasing the physical collision volume of the projectile");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_amber","Ambers carve a path");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_amber","+2 Pierce, the projectile can rebound on a solid block, consuming 1 Pierce per rebound");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_same","Increase damage by 20% with the same material");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_change_type","Right click on amethyst, topaz, sapphire, emerald, ruby, diamond, amber, or their blocks in the inventory to change the type");
+
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");
         add("tooltip.anvilcraft_tofus_thinking.progress","Progress: %s %%");
@@ -133,6 +152,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonEntities.STRANGE_WITHER.get(),"Strange Wither");
         add(AddonEntities.STRANGE_WITHER_SKULL.get(),"Strange Wither Skull");
         add(AddonEntities.METEOR.get(),"Meteor");
+        add(AddonEntities.GEM_MISSILE.get(),"Gem Missile");
     }
     private void addConfig(){
         ConfigData.readConfigClass(this, AnvilCraftTofusThinkCommonConfig.class);
@@ -148,8 +168,9 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("death.attack.tofusThinking.rewind","%s has never been born");
         add("death.attack.tofusThinking.rewind_attack","%s has not been proven to exist by %s");
-        add("death.attack.tofusThinking.tofusThinking.bounce_wither_skull","%s was killed by the wither skull %s had launch");
+        add("death.attack.tofusThinking.bounce_wither_skull","%s was killed by the wither skull %s had launch");
         add("death.attack.tofusThinking.counter","%s impulsively attacked %s");
+        add("death.attack.tofusThinking.gem_missile","%s didn't get a clear look to gem by %s");
 
         add(AddonItemGroups.ITEM_TAB_ID,"AnvilCraft: Tofu's Thinking");
 

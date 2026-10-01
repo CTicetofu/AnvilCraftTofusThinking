@@ -23,12 +23,14 @@ public class AnvilCraftTofusThinkingClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         ItemSlotClipping.register(AddonItems.CONDUIT_STAFF.get());
         ItemSlotClipping.register(AddonItems.ORIGINAL_CONDUIT_STAFF.get());
+        ItemSlotClipping.register(AddonItems.GEM_STAFF.get());
         ItemSlotClipping.register(AddonItems.SONIC_BOOM_STAFF.get());
     }
 
     @SubscribeEvent
     public static void onModelBake(ModelEvent.RegisterAdditional event){
         event.register(ModelResourceLocation.standalone(AnvilCraftTofusThinking.of("item/conduit_staff_model")));
+        event.register(ModelResourceLocation.standalone(AnvilCraftTofusThinking.of("item/gem_staff_model")));
         event.register(ModelResourceLocation.standalone(AnvilCraftTofusThinking.of("block/overload_generator_head")));
     }
 }

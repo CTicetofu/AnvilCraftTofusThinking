@@ -105,6 +105,18 @@ public class AddonItemRecipeLoader {
                 .save(provider);
     }
 
+    public static <T extends Item> void gemStaff(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                .pattern("CBC")
+                .pattern(" A ")
+                .pattern(" A ")
+                .define('A', ModItems.ROYAL_STEEL_INGOT)
+                .define('B', Items.TINTED_GLASS)
+                .define('C', Items.AMETHYST_BLOCK)
+                .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.AMETHYST_BLOCK))
+                .save(provider);
+    }
+
     public static <T extends Item> void conduitStaff(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
                 .pattern("CBC")
@@ -113,7 +125,7 @@ public class AddonItemRecipeLoader {
                 .define('A', Items.CONDUIT)
                 .define('B', Items.SEA_LANTERN)
                 .define('C', ModBlocks.INDUCTION_LIGHT.asItem())
-                .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.CONDUIT))
+                .unlockedBy("has_conduit", RegistrumRecipeProvider.has(Items.CONDUIT))
                 .save(provider);
     }
 

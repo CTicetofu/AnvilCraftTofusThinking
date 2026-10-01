@@ -1,12 +1,14 @@
 package dev.anvilcraft.tofusthinking.client.event;
 
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
+import dev.anvilcraft.tofusthinking.client.renderer.model.GemMissileModel;
 import dev.anvilcraft.tofusthinking.client.gui.item.EnergyBarRenderer;
 import dev.anvilcraft.tofusthinking.client.hud.ToolProgressHud;
 import dev.anvilcraft.tofusthinking.client.init.AddonModelLayers;
 import dev.anvilcraft.tofusthinking.client.renderer.blockentity.OriginalConduitRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.blockentity.OverloadGeneratorRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.item.ConduitStaffRenderer;
+import dev.anvilcraft.tofusthinking.client.renderer.item.GemStaffRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.item.OriginalConduitItemRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.item.OriginalConduitStaffRenderer;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
@@ -28,6 +30,7 @@ public class ClientRegisterHandler {
         event.registerLayerDefinition(AddonModelLayers.CONDUIT_WIND, OriginalConduitRenderer::createWindLayer);
         event.registerLayerDefinition(AddonModelLayers.CONDUIT_SHELL, OriginalConduitRenderer::createShellLayer);
         event.registerLayerDefinition(AddonModelLayers.CONDUIT_CAGE, OriginalConduitRenderer::createCageLayer);
+        event.registerLayerDefinition(AddonModelLayers.GEM_MISSILE, GemMissileModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -41,12 +44,14 @@ public class ClientRegisterHandler {
         event.registerItem(OriginalConduitItemRenderer.ORIGINAL_CONDUIT_EXTENSION, AddonBlocks.ORIGINAL_CONDUIT.asItem());
         event.registerItem(ConduitStaffRenderer.CONDUIT_STAFF_EXTENSION, AddonItems.CONDUIT_STAFF.get());
         event.registerItem(OriginalConduitStaffRenderer.ORIGINAL_CONDUIT_STAFF_EXTENSION, AddonItems.ORIGINAL_CONDUIT_STAFF.get());
+        event.registerItem(GemStaffRenderer.GEM_STAFF_EXTENSION, AddonItems.GEM_STAFF.get());
 
     }
 
     @SubscribeEvent
     public static void onRegisterItemDecorations(RegisterItemDecorationsEvent event){
         event.register(AddonItems.SONIC_BOOM_STAFF.get(), EnergyBarRenderer.DEFAULT);
+        event.register(AddonItems.GEM_STAFF.get(), EnergyBarRenderer.DEFAULT);
         event.register(AddonItems.CONDUIT_STAFF.get(), EnergyBarRenderer.DEFAULT);
         event.register(AddonItems.ORIGINAL_CONDUIT_STAFF.get(), EnergyBarRenderer.DEFAULT);
     }

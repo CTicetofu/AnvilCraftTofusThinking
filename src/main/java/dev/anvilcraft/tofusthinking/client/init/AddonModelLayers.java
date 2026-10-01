@@ -12,4 +12,6 @@ public class AddonModelLayers {
             new ModelLayerLocation(AnvilCraftTofusThinking.of("conduit"), "shell");
     public static final ModelLayerLocation CONDUIT_CAGE =
             new ModelLayerLocation(AnvilCraftTofusThinking.of("conduit"), "cage");
+    public static final ModelLayerLocation GEM_MISSILE =
+            new ModelLayerLocation(AnvilCraftTofusThinking.of("gem_missile"),"main");
 }

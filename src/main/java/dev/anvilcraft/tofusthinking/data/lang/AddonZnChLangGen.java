@@ -36,6 +36,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.CONDUIT_STAFF.asItem(),"潮涌核心法杖");
         add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"原初化潮涌核心法杖");
         add(AddonItems.SONIC_BOOM_STAFF.asItem(),"音爆法杖");
+        add(AddonItems.GEM_STAFF.asItem(),"宝石法杖");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"坚固海晶石砖");
@@ -114,6 +115,24 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.ability_frost_metal_block","在物品栏时清除火焰和冻结");
         add("tooltip.anvilcraft_tofus_thinking.ability_ember_metal_block","在物品栏时获得抗火，且持有者在炎热的维度或者火焰中也可自动恢复能量");
 
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_none","没有有效数据");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_amethyst","紫晶自有其道");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_amethyst","射弹会追踪附近目标");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_topaz","黄玉绚烂绽放");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_topaz","射弹在消失时爆炸，伤害为射弹自身一半");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_sapphire","蓝玉成对旋舞");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_sapphire","伤害 * 0.6,产生一个额外射弹,冻结目标");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_emerald","翡翠照亮黑夜");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_emerald","射弹具有两倍速度，+1穿透，因命中方块而消失时滞留");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_ruby","红玉双重闪耀");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_ruby","伤害 * 0.6，每次命中产生一个额外射弹");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_diamond","钻石璀璨生辉");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_diamond","+1穿透，增加射弹的实体碰撞体积");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_amber","琥珀开辟前路");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_shift_amber","+2穿透，射弹可以在实心块上反弹，每次反弹消耗1穿透");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_same","相同材料增加 20% 伤害");
+        add("tooltip.anvilcraft_tofus_thinking.gem_staff_change_type","使用紫水晶，黄玉，萨菲，绿宝石，鲁比，钻石，琥珀或者其块在物品栏界面右键改变类型");
+
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");
         add("tooltip.anvilcraft_tofus_thinking.progress","进度: %s %%");
@@ -125,6 +144,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonEntities.STRANGE_WITHER.get(),"奇怪的凋灵");
         add(AddonEntities.STRANGE_WITHER_SKULL.get(),"奇怪的凋灵之首");
         add(AddonEntities.METEOR.get(),"流星");
+        add(AddonEntities.GEM_MISSILE.get(),"宝石飞弹");
     }
     private void addConfig(){
         add("anvilcraft_tofus_thinking.configuration.section.anvilcraft.tofus.thinking.common.toml","铁砧工艺：豆之思维 通用配置");
@@ -144,8 +164,9 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("death.attack.tofusThinking.rewind","%s 从未诞生过");
         add("death.attack.tofusThinking.rewind_attack","%s 未能被 %s 证明存在");
-        add("death.attack.tofusThinking.tofusThinking.bounce_wither_skull","%s 被 %s 发射的弹射凋灵骷髅头击杀");
+        add("death.attack.tofusThinking.bounce_wither_skull","%s 被 %s 发射的弹射凋灵骷髅头击杀");
         add("death.attack.tofusThinking.counter","%s 过于冲动的攻击了 %s");
+        add("death.attack.tofusThinking.gem_missile","%s 没看清 %s 的宝石");
 
         add(AddonItemGroups.ITEM_TAB_ID,"铁砧工艺: 豆之思维");
 

@@ -1,8 +1,6 @@
 package dev.anvilcraft.tofusthinking.init;
 
-import dev.anvilcraft.tofusthinking.network.toClient.CenterParticlePacket;
-import dev.anvilcraft.tofusthinking.network.toClient.LineParticlePacket;
-import dev.anvilcraft.tofusthinking.network.toClient.SimpleNumberInitPacket;
+import dev.anvilcraft.tofusthinking.network.toClient.*;
 import dev.anvilcraft.tofusthinking.network.toServer.SimpleNumberUpdatePacket;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
@@ -22,6 +20,16 @@ public class AddonNetworks {
                 LineParticlePacket.TYPE,
                 LineParticlePacket.STREAM_CODEC,
                 LineParticlePacket.HANDLER
+        );
+        registrar.playToClient(
+                SyncAllCooldownsPacket.TYPE,
+                SyncAllCooldownsPacket.STREAM_CODEC,
+                SyncAllCooldownsPacket.HANDLER
+        );
+        registrar.playToClient(
+                SyncCooldownPacket.TYPE,
+                SyncCooldownPacket.STREAM_CODEC,
+                SyncCooldownPacket.HANDLER
         );
         registrar.playToServer(
                 SimpleNumberUpdatePacket.TYPE,

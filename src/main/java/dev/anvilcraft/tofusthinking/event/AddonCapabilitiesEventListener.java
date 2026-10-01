@@ -10,7 +10,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
-import java.util.List;
 @EventBusSubscriber(modid = AnvilCraftTofusThinking.MOD_ID)
 public class AddonCapabilitiesEventListener {
     @SubscribeEvent
@@ -22,6 +21,7 @@ public class AddonCapabilitiesEventListener {
                 SmartPowerConverterBlockEntity::getEnergyStorage
         );
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.SONIC_BOOM_STAFF);
+        event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.GEM_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.CONDUIT_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.ORIGINAL_CONDUIT_STAFF);
     }

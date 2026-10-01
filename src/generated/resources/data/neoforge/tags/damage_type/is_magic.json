@@ -3,6 +3,10 @@
     {
       "id": "anvilcraft_tofus_thinking:meteor",
       "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:gem_missile",
+      "required": false
     }
   ]
 }

@@ -97,6 +97,11 @@ public class AddonItems {
             .recipe(AddonItemRecipeLoader::lightningHammer)
             .register();
 
+    public static final ItemEntry<GemStaff> GEM_STAFF = REGISTRUM.item("gem_staff",properties -> new GemStaff())
+            .recipe(AddonItemRecipeLoader::gemStaff)
+            .model(DataGenUtil::noExtraModelOrState)
+            .register();
+
     public static final ItemEntry<StarOfTheSea> STAR_OF_THE_SEA = REGISTRUM.item("star_of_the_sea",properties ->
                     new StarOfTheSea(properties.stacksTo(1).rarity(Rarity.RARE)))
             .recipe(AddonItemRecipeLoader::starOfTheSea)

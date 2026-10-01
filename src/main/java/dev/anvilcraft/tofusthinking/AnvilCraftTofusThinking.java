@@ -5,6 +5,7 @@ import dev.anvilcraft.lib.v2.registrum.Registrum;
 import dev.anvilcraft.tofusthinking.config.AnvilCraftTofusThinkCommonConfig;
 import dev.anvilcraft.tofusthinking.config.AnvilCraftTofusThinkServerConfig;
 import dev.anvilcraft.tofusthinking.data.TofusThinkingDatagen;
+import dev.anvilcraft.tofusthinking.init.AddonAttachments;
 import dev.anvilcraft.tofusthinking.init.AddonMenuTypes;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
 import dev.anvilcraft.tofusthinking.init.AddonNetworks;
@@ -50,6 +51,7 @@ public class AnvilCraftTofusThinking {
     public AnvilCraftTofusThinking(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);
+        AddonAttachments.register(modEventBus);
         AddonItemGroups.register(modEventBus);
         AddonBlocks.register();
         AddonFluids.register(modEventBus);

@@ -251,7 +251,7 @@ public class OriginalConduitStaff extends ExtendItem {
         tooltipComponents.add(grip);
         if(permanent){tooltipComponents.add(TooltipUtil.PERMANENT);}
         if(!shift){
-            tooltipComponents.add(TooltipUtil.HOLD_SHIFT_FOR_MORE);
+            tooltipComponents.add(TooltipUtil.HOLD_SHIFT_FOR_MORE.copy());
         }
         if(Screen.hasControlDown()){
             //也许应该提前算？

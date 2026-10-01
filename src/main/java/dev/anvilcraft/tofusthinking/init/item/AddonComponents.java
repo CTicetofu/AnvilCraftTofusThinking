@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.init.item;
 
 import com.mojang.serialization.Codec;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
+import dev.dubhe.anvilcraft.item.property.component.StoredItem;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -52,6 +53,10 @@ public class AddonComponents {
     public static final DataComponentType<String> GRIP_TYPE = register(
             "grip_type",
             it -> it.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8)
+    );
+    public static final DataComponentType<StoredItem> DISPLAY_ANOTHER_ITEM = register(
+            "display_another_item",
+            b -> b.persistent(StoredItem.CODEC).networkSynchronized(StoredItem.STREAM_CODEC)
     );
     public static final DataComponentType<Integer> STORED_ENERGY = register(
             "stored_energy",
