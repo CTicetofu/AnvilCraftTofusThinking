@@ -23,7 +23,7 @@ public class SmartPowerConverterExtremelyBigBlock extends SmartPowerConverterBlo
 
     @Override
     public int getMaxInputPower() {
-        return AnvilCraftTofusThinking.COMMON_CONFIG.smartPowerConverterExtremelyBigMaxInput;
+        return AnvilCraftTofusThinking.SERVER_CONFIG.smartPowerConverterExtremelyBigMaxInput;
     }
 
     @Override

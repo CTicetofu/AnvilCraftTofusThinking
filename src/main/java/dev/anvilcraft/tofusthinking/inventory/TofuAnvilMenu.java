@@ -62,7 +62,7 @@ public class TofuAnvilMenu extends AnvilMenu {
         ItemStack itemstack = this.inputSlots.getItem(0);
         this.cost.set(1);
         int resultCost = 0;
-        int nameCost = 0;
+        int nameCost;
         if (!itemstack.isEmpty()) {
             if (!net.neoforged.neoforge.common.CommonHooks.onAnvilChange(this, itemstack, this.inputSlots.getItem(1), resultSlots, itemName, 0, this.player)) {
                 return;
@@ -113,7 +113,7 @@ public class TofuAnvilMenu extends AnvilMenu {
                     ItemEnchantments rightEnchantments = EnchantmentHelper.getEnchantmentsForCrafting(stack2);
                     boolean cantEnchantThis = false;
 
-                    boolean ignoreConflict = AnvilCraftTofusThinking.COMMON_CONFIG.canTofuAnvilIgnoreEnchantmentConflict;
+                    boolean ignoreConflict = AnvilCraftTofusThinking.SERVER_CONFIG.canTofuAnvilIgnoreEnchantmentConflict;
 
                     for (Object2IntMap.Entry<Holder<Enchantment>> entry : rightEnchantments.entrySet()) {
                         Holder<Enchantment> holder = entry.getKey();

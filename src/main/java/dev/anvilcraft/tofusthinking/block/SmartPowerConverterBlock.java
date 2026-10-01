@@ -48,7 +48,7 @@ public class SmartPowerConverterBlock extends BasePowerConverterBlock implements
     }
 
     public int getMaxInputPower(){
-        return AnvilCraftTofusThinking.COMMON_CONFIG.smartPowerConverterMaxInput;
+        return AnvilCraftTofusThinking.SERVER_CONFIG.smartPowerConverterMaxInput;
     }
 
     @Override

@@ -13,4 +13,15 @@ public class AnvilCraftTofusThinkServerConfig {
 
     @Comment("Overload Generator which Overload will make destruction when true")
     public boolean overloadGeneratorOverloadTakeDestruction = true;
+
+    @Comment("Smart Power Converter Max Input")
+    @BoundedDiscrete(min = 1, max = Integer.MAX_VALUE)
+    public int smartPowerConverterMaxInput = 4096;
+
+    @Comment("Smart Power Converter Extremely Big Max Input")
+    @BoundedDiscrete(min = 1, max = Integer.MAX_VALUE)
+    public int smartPowerConverterExtremelyBigMaxInput = 1048567;
+
+    @Comment("Can Tofu Anvil Ignore Enchantment Conflict")
+    public boolean canTofuAnvilIgnoreEnchantmentConflict = true;
 }

@@ -63,7 +63,7 @@ public class TofuAnvilBlock extends Block implements IHammerRemovable {
     public static final Component TOFU_ANVIL_FALL = Component.translatable("tooltip.anvilcraft_tofus_thinking.tofu_anvil_fall").withStyle(ChatFormatting.GRAY);
 
     public static Component getConfigConflictComponent(){
-        Style style = Style.EMPTY.withStrikethrough(!AnvilCraftTofusThinking.COMMON_CONFIG.canTofuAnvilIgnoreEnchantmentConflict);
+        Style style = Style.EMPTY.withStrikethrough(!AnvilCraftTofusThinking.SERVER_CONFIG.canTofuAnvilIgnoreEnchantmentConflict);
         return Component.translatable("tooltip.anvilcraft_tofus_thinking.tofu_anvil_anvil",TOFU_ANVIL_IGNORE_CONFLICT.withStyle(ChatFormatting.GRAY).withStyle(style)).withStyle(ChatFormatting.GRAY);
     }
 

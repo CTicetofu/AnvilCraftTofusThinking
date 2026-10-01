@@ -179,11 +179,12 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("enhancedtooltips.rarity.anvilcraft_tofus_thinking_tofu","豆之思维");
     }
     private void addCommonConfig(){
+
+    }
+    private void addServerConfig(){
         sameAsTipConfig("can_tofu_anvil_ignore_enchantment_conflict","豆腐铁砧是否可以无视附魔冲突");
         sameAsTipConfig("smart_power_converter_max_input","智能转换器的最大输入能量");
         sameAsTipConfig("smart_power_converter_extremely_big_max_input","极大智能转换器的最大输入能量");
-    }
-    private void addServerConfig(){
         configTrans("original_conduit_overload_take_destructive_explosion","原初化潮涌核心过载时是否造成破坏性爆炸");
         configTipTrans("original_conduit_overload_take_destructive_explosion","启用时，原初化潮涌核心造成的爆炸会破坏方块");
         configTrans("overload_generator_overload_take_destruction","过载发电机过载时是否造成破坏");
