@@ -4,6 +4,8 @@ navigation:
   icon: "anvilcraft_tofus_thinking:conduit_staff"
 items:
   - anvilcraft_tofus_thinking:conduit_staff
+  - anvilcraft_tofus_thinking:sonic_boom_staff
+  - anvilcraft_tofus_thinking:gem_staff
 ---
 # Conuit Staff
 
@@ -37,6 +39,14 @@ You may have noticed that this is an inactive Staff, which can be used to accumu
 - Differently, it is launched with the left button
 - The effect varies depending on the gemstone
 - The damage logic is similar to [Local invincibility](https://terraria.wiki.gg/wiki/Invincibility_frame#Local_invincibility_2), with each projectile dealing 10 local invincibility frames (actually tick?)
+
+>-Amethyst: Track targets within 10 grids
+>-Huang Yu: When hit, deals half of its own damage to entities within a radius of 4 squares
+>-Sapphire: Single projectile damage * 0.6, but firing two at once and applying slow force to the hit target, freezing it (as shown in the picture sinking into fine snow)
+>-Emerald: Pierce Level +1, when it disappears due to hitting a block, it will leave five times the size of a delayed projectile in place, causing damage to creatures within its range. It will disappear after 50 tick seconds
+>-Ruby: Single projectile damage * 0.6. When hitting an entity, it generates an identical projectile nearby (replicas cannot be replicated again) and hits the entity again. At the same time, the target's magic protection can only be half effective
+>-Diamond: Pierce Level +1, projectile size increased by five times (does not affect block collision, only affects solid collision), does not stack volume with emerald
+>-Amber: Single projectile damage * 0.8, Pierce Level +2, consumes Pierce Level and rebounds when hitting a block
 
 # Craft
 

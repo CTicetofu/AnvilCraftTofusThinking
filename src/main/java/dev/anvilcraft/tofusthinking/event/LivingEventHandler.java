@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.event;
 
 import dev.anvilcraft.tofusthinking.entity.ExtraDamageSource;
+import dev.anvilcraft.tofusthinking.entity.projectile.GemMissile;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
@@ -89,10 +90,18 @@ public class LivingEventHandler {
         if(source.is(DamageTypeTags.IS_FIRE) || source.is(DamageTypeTags.IS_FREEZING)){
             if(target.hasEffect(AddonMobEffects.TEMPERATURE_TOLERANCE)){event.setCanceled(true);}
         }
+        if(source.getDirectEntity() instanceof GemMissile missile && missile.canSummon){
+            event.addReductionModifier(DamageContainer.Reduction.MOB_EFFECTS,(LivingEventHandler::lowMagicAbsorb));
+            event.addReductionModifier(DamageContainer.Reduction.ENCHANTMENTS,(LivingEventHandler::lowMagicAbsorb));
+        }
         if(source instanceof ExtraDamageSource extra){
             float amount = event.getAmount();
             event.setAmount(amount * (extra.getExtraHurtRate()) + extra.getExtraHurtAmount());
         }
+    }
+
+    public static float lowMagicAbsorb(DamageContainer container, float amount){
+        return amount > 0 ? amount * 0.5F : amount;
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH,receiveCanceled = true)

@@ -180,7 +180,7 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
     @Override
     protected void onHitBlock(@NotNull BlockHitResult result) {
         super.onHitBlock(result);
-        if(canBonus){
+        if(canBonus && this.getPierceLevel() > 0){
             switch (result.getDirection()) {
                 case UP, DOWN ->
                         this.setDeltaMovement(this.getDeltaMovement().multiply(1, -1, 1));
@@ -290,7 +290,7 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
         GemMissile missile = this.copySelf();
         float rad = this.random.nextFloat() * 2 * Mth.PI;
         Vec3 motion = new Vec3(Math.sin(rad),0,Math.cos(rad));
-        missile.setPos(entity.getEyePosition().subtract(motion.scale(6)));
+        missile.setPos(entity.getEyePosition().subtract(motion.scale(3)));
         missile.setDeltaMovement(motion.scale(this.getDeltaMovement().length()));
         missile.ignoreBlock = true;
         missile.canSummon = false;

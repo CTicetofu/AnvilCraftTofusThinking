@@ -23,7 +23,7 @@ public class AddonEntities {
     }
     public static final EntityEntry<? extends CurseSnowball> CURSE_SNOWBALL = REGISTRUM
             .<CurseSnowball>entity("curse_snowball",CurseSnowball::new, MobCategory.MISC)
-            .properties(it -> it.sized(0.25F,0.25F).clientTrackingRange(4).updateInterval(10))
+            .properties(it -> it.sized(0.25F,0.25F).clientTrackingRange(8).updateInterval(10))
             .renderer(() -> ThrownItemRenderer::new)
             .register();
 
@@ -35,19 +35,19 @@ public class AddonEntities {
 
     public static final EntityEntry<? extends StrangeWitherSkull> STRANGE_WITHER_SKULL = REGISTRUM
             .<StrangeWitherSkull>entity("strange_wither_skull",StrangeWitherSkull::new, MobCategory.MISC)
-            .properties(it -> it.sized(0.3125F,0.3125F).clientTrackingRange(4).updateInterval(10))
+            .properties(it -> it.sized(0.3125F,0.3125F).clientTrackingRange(10).updateInterval(10))
             .renderer(() -> StrangeWitherSkullRenderer::new)
             .register();
 
     public static final EntityEntry<? extends Meteor> METEOR = REGISTRUM
             .<Meteor>entity("meteor",Meteor::new, MobCategory.MISC)
-            .properties(it -> it.sized(0.6F,0.6F).clientTrackingRange(4).updateInterval(10))
+            .properties(it -> it.sized(0.6F,0.6F).clientTrackingRange(10).updateInterval(5))
             .renderer(() -> MeteorRenderer::new)
             .register();
 
     public static final EntityEntry<? extends GemMissile> GEM_MISSILE = REGISTRUM
             .<GemMissile>entity("gem_missile",GemMissile::new, MobCategory.MISC)
-            .properties(it -> it.sized(0.3F,0.3F).clientTrackingRange(4).updateInterval(10))
+            .properties(it -> it.sized(0.3F,0.3F).clientTrackingRange(48).updateInterval(5))
             .renderer(() -> GemMissileRenderer::new)
             .register();
 

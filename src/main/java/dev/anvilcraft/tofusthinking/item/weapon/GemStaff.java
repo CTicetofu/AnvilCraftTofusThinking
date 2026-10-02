@@ -6,15 +6,15 @@ import dev.anvilcraft.tofusthinking.client.ClientCooldownCache;
 import dev.anvilcraft.tofusthinking.entity.projectile.GemMissile;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItemTags;
+import dev.anvilcraft.tofusthinking.item.LeftClickAction;
+import dev.anvilcraft.tofusthinking.network.toServer.LeftClickPacket;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.anvilcraft.tofusthinking.util.TooltipUtil;
 import dev.dubhe.anvilcraft.init.item.ModComponents;
 import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.item.property.component.StoredItem;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -22,19 +22,14 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -47,7 +42,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class GemStaff extends Item {
+public class GemStaff extends Item implements LeftClickAction {
     public static final int MAX_ENERGY = 1600000;
     public static final String SPELL_ID = "GemMissile";
     public GemStaff(Properties properties){
@@ -97,6 +92,11 @@ public class GemStaff extends Item {
     }
 
     @Override
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+        return UseAnim.BOW;
+    }
+
+    @Override
     public boolean isEnchantable(@NotNull ItemStack stack) {
         return true;
     }
@@ -112,26 +112,12 @@ public class GemStaff extends Item {
     }
 
     @Override
-    public boolean onEntitySwing(@NotNull ItemStack stack, @NotNull LivingEntity entity, @NotNull InteractionHand hand) {
-        if(!entity.level().isClientSide && entity instanceof ServerPlayer player){
-            Level level = player.level();
-            return !shootGemMissile(stack, player, level);
-        }
-        return false;
+    public boolean onDroppedByPlayer(@NotNull ItemStack item, @NotNull Player player) {
+        return super.onDroppedByPlayer(item, player);
     }
 
-    @Override
-    public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
-        if(isSelected && level.isClientSide){
-            if(entity instanceof LocalPlayer player && player.tickCount % 20 == 0 && Minecraft.getInstance().options.keyAttack.isDown()){
-                player.swing(InteractionHand.MAIN_HAND);
-            }
-        }
-        super.inventoryTick(stack, level, entity, slotId, isSelected);
-    }
-
-    public boolean shootGemMissile(ItemStack stack, ServerPlayer player, Level level){
-        if(CooldownManager.isOnCooldown(player,SPELL_ID) ||!ItemUtil.consumeEnergy(player,stack,2000)){return false;}
+    public void shootGemMissile(ItemStack stack, ServerPlayer player, Level level){
+        if(CooldownManager.isOnCooldown(player,SPELL_ID) ||!ItemUtil.consumeEnergy(player,stack,2000)){return;}
         CooldownManager.addCooldown(player,SPELL_ID,20);
         GemMissile missile = new GemMissile(level,player);
         missile.setPos(player.getEyePosition());
@@ -149,7 +135,6 @@ public class GemStaff extends Item {
         missile.doSplit();
         level.addFreshEntity(missile);
         level.playSound(null,player.getX(),player.getY(),player.getZ(), SoundEvents.AMETHYST_BLOCK_RESONATE,player.getSoundSource(),1.8F,1.4F);
-        return true;
     }
 
     @Override
@@ -286,5 +271,18 @@ public class GemStaff extends Item {
     @Override
     public int getBarColor(@NotNull ItemStack stack) {
         return 0x00CD66;
+    }
+
+    @Override
+    public void onClientClick(ItemStack stack, Player player) {
+        if(ClientCooldownCache.isOnCooldown(SPELL_ID) || (!player.isCreative() && !ItemUtil.hasEnoughEnergy(stack,2000))){return;}
+        LeftClickPacket.sendToServer();
+        player.swing(InteractionHand.MAIN_HAND);
+    }
+
+    @Override
+    public void onServerClick(ItemStack stack, Player player) {
+        if(stack.getItem() != this){return;}
+        shootGemMissile(stack, (ServerPlayer) player,player.level());
     }
 }
