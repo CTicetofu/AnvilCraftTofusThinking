@@ -287,7 +287,7 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
         });
     }
 
-    public void doSummon(Entity entity,Level level){
+    public void doSummon(Entity entity, Level level){
         GemMissile missile = this.copySelf();
         float rad = this.random.nextFloat() * 2 * Mth.PI;
         Vec3 motion = new Vec3(Math.sin(rad),0,Math.cos(rad));
@@ -384,6 +384,17 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
         missile.setTarget(this.getTarget());
         missile.setScale(this.getScale());
         return missile;
+    }
+
+    @Override
+    public boolean shouldRenderAtSqrDistance(double distance) {
+        double d0 = this.getBoundingBox().getSize() * this.getScale() * 0.1;
+        if (Double.isNaN(d0)) {
+            d0 = 1.0F;
+        }
+
+        d0 *= 64.0F;
+        return distance < d0 * d0;
     }
 
     @Override

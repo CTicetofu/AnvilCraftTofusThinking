@@ -47,7 +47,7 @@ public class AddonEntities {
 
     public static final EntityEntry<? extends GemMissile> GEM_MISSILE = REGISTRUM
             .<GemMissile>entity("gem_missile",GemMissile::new, MobCategory.MISC)
-            .properties(it -> it.sized(0.3F,0.3F).clientTrackingRange(48).updateInterval(5))
+            .properties(it -> it.sized(0.3F,0.3F).clientTrackingRange(32).updateInterval(5))
             .renderer(() -> GemMissileRenderer::new)
             .register();
 
