@@ -90,7 +90,7 @@ public class LivingEventHandler {
         if(source.is(DamageTypeTags.IS_FIRE) || source.is(DamageTypeTags.IS_FREEZING)){
             if(target.hasEffect(AddonMobEffects.TEMPERATURE_TOLERANCE)){event.setCanceled(true);}
         }
-        if(source.getDirectEntity() instanceof GemMissile missile && missile.canSummon){
+        if(source.getDirectEntity() instanceof GemMissile missile && missile.lowMagicResist){
             event.addReductionModifier(DamageContainer.Reduction.MOB_EFFECTS,(LivingEventHandler::lowMagicAbsorb));
             event.addReductionModifier(DamageContainer.Reduction.ENCHANTMENTS,(LivingEventHandler::lowMagicAbsorb));
         }

@@ -59,6 +59,7 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
     public boolean canSummon = false;
     public boolean canBright = false;
     public boolean ignoreBlock = false;
+    public boolean lowMagicResist = false;
     private boolean isRetent = false;
     private int splitCount = 0;
 
@@ -290,7 +291,7 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
         GemMissile missile = this.copySelf();
         float rad = this.random.nextFloat() * 2 * Mth.PI;
         Vec3 motion = new Vec3(Math.sin(rad),0,Math.cos(rad));
-        missile.setPos(entity.getEyePosition().subtract(motion.scale(3)));
+        missile.setPos(entity.getEyePosition().subtract(motion.scale(4)));
         missile.setDeltaMovement(motion.scale(this.getDeltaMovement().length()));
         missile.ignoreBlock = true;
         missile.canSummon = false;
@@ -375,6 +376,7 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
         missile.canSeek = this.canSeek;
         missile.canFreeze = this.canFreeze;
         missile.canExplode = this.canExplode;
+        missile.lowMagicResist = this.lowMagicResist;
         missile.damage = this.damage;
         missile.setOwner(this.getOwner());
         missile.setPierceLevel(this.getPierceLevel());
@@ -435,6 +437,7 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
         compound.putBoolean("can_summon",this.canSummon);
         compound.putBoolean("can_bright",this.canBright);
         compound.putBoolean("can_retent",this.canRetent);
+        compound.putBoolean("low_magic_resist",this.lowMagicResist);
         compound.putBoolean("is_retent",this.isRetent);
         compound.putBoolean("ignore_block",this.ignoreBlock);
         compound.putInt("scale",this.getScale());
@@ -454,6 +457,7 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
         this.canSummon = compound.getBoolean("can_summon");
         this.canBright = compound.getBoolean("can_bright");
         this.canRetent = compound.getBoolean("can_retent");
+        this.lowMagicResist = compound.getBoolean("low_magic_resist");
         this.isRetent = compound.getBoolean("is_retent");
         this.ignoreBlock = compound.getBoolean("ignore_block");
         this.setScale(compound.getInt("scale"));

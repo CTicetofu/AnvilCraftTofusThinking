@@ -156,7 +156,7 @@ public class GemStaff extends Item implements LeftClickAction {
                 missile.setDeltaMovement(missile.getDeltaMovement().scale(2F));
                 missile.setPierceLevel(missile.getPierceLevel() + 1);
             }
-            case "ruby" -> {missile.canSummon = true;missile.damage *= 0.6F;}
+            case "ruby" -> {missile.canSummon = true;missile.lowMagicResist = true;missile.damage *= 0.6F;}
             case "diamond" -> {
                 missile.canBright = true;
                 missile.setScale(50);
