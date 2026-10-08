@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_amethyst_shard": {
+    "has_crossbow": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:amethyst_shard"
+            "items": "minecraft:crossbow"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "anvilcraft_tofus_thinking:speed_charm"
+        "recipe": "anvilcraft_tofus_thinking:electromagnetic_crossbow"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_amethyst_shard"
+      "has_crossbow"
     ]
   ],
   "rewards": {
     "recipes": [
-      "anvilcraft_tofus_thinking:speed_charm"
+      "anvilcraft_tofus_thinking:electromagnetic_crossbow"
     ]
   }
 }

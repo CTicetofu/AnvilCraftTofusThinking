@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "anvilcraft_tofus_thinking:electromagnetic_arrow",
+      "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:electromagnetic_projectile",
+      "required": false
+    }
+  ]
+}

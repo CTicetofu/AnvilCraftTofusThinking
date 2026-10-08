@@ -14,6 +14,8 @@ public class AddonItemTags {
     public static final TagKey<Item> CURIOS_BELT = createCurio("belt");
     public static final TagKey<Item> NORMAL_MOVEMENT_WHEN_USE = create("normal_movement_when_use");
     public static final TagKey<Item> STORAGE_BLOCKS_AMETHYST = createC("storage_blocks/amethyst");
+    public static final TagKey<Item> ELECTROMAGNETIC_CROSSBOW_AMMO = create("electromagnetic_crossbow_ammo");
+    public static final TagKey<Item> ELECTROMAGNETIC_CROSSBOW_CAN_MUTI = create("electromagnetic_crossbow_can_muti");
 
     public static TagKey<Item> createC(String name) {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c",name));

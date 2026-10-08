@@ -1,0 +1,32 @@
+{
+  "values": [
+    {
+      "id": "anvilcraft_tofus_thinking:rewind",
+      "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:rewind_attack",
+      "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:ex_rewind",
+      "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:counter",
+      "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:bounce_wither_skull",
+      "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:meteor",
+      "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:gem_missile",
+      "required": false
+    }
+  ]
+}

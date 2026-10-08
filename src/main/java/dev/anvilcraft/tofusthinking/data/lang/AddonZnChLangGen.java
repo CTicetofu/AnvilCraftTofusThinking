@@ -37,6 +37,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"原初化潮涌核心法杖");
         add(AddonItems.SONIC_BOOM_STAFF.asItem(),"音爆法杖");
         add(AddonItems.GEM_STAFF.asItem(),"宝石法杖");
+        add(AddonItems.ELECTROMAGNETIC_CROSSBOW.asItem(),"电磁弩");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"坚固海晶石砖");
@@ -133,6 +134,19 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.gem_staff_same","相同材料增加 20% 伤害");
         add("tooltip.anvilcraft_tofus_thinking.gem_staff_change_type","使用紫水晶，黄玉，萨菲，绿宝石，鲁比，钻石，琥珀或者其块在物品栏界面右键改变类型");
 
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_left_count","剩余可射击次数： %s");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow","可使用箭，烟花，金属粒，宝石，或者雪球等当作弹药");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_take_out","在物品栏界面右键取出弹药或者清空不消耗的弹药");
+        add("tooltip.anvilcraft_tofus_thinking.mass","质量： %s");
+        add("tooltip.anvilcraft_tofus_thinking.damage_scale","伤害乘数： %s");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_curse","对目标施加虚弱II(00:10)");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_radiation","对目标施加凋灵II(00:10)，伤害随目标盔甲覆盖率减少而增加");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_ember","额外增加目标点燃时间10秒");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_sliver","对亡灵生物伤害增加50%");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_lightning","在命中点释放九道闪电");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_freeze","对八格内生物造成缓慢III(00:15)，并造成一定冰霜伤害");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_burn","点燃八格内生物，并损坏它们的装备，造成一定火焰伤害");
+
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");
         add("tooltip.anvilcraft_tofus_thinking.progress","进度: %s %%");
@@ -145,6 +159,8 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonEntities.STRANGE_WITHER_SKULL.get(),"奇怪的凋灵之首");
         add(AddonEntities.METEOR.get(),"流星");
         add(AddonEntities.GEM_MISSILE.get(),"宝石飞弹");
+        add(AddonEntities.ELECTROMAGNETIC_ARROW.get(),"箭");
+        add(AddonEntities.ELECTROMAGNETIC_PROJECTILE.get(),"电磁弹射物");
     }
     private void addConfig(){
         add("anvilcraft_tofus_thinking.configuration.section.anvilcraft.tofus.thinking.common.toml","铁砧工艺：豆之思维 通用配置");

@@ -43,7 +43,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class GemStaff extends Item implements LeftClickAction {
-    public static final int MAX_ENERGY = 1600000;
+    public static final int MAX_ENERGY = 1000000;
     public static final String SPELL_ID = "GemMissile";
     public GemStaff(Properties properties){
         super(properties);

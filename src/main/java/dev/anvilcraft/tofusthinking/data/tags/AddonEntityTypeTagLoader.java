@@ -16,6 +16,13 @@ public class AddonEntityTypeTagLoader {
         provider.addTag(EntityTypeTags.UNDEAD)
                 .addOptional(AddonEntities.STRANGE_WITHER.getId());
 
+        provider.addTag(Tags.EntityTypes.BOSSES)
+                .addOptional(AddonEntities.STRANGE_WITHER.getId());
+
+        provider.addTag(EntityTypeTags.ARROWS)
+                .addOptional(AddonEntities.ELECTROMAGNETIC_ARROW.getId())
+                .addOptional(AddonEntities.ELECTROMAGNETIC_PROJECTILE.getId());
+
         //伤害测试生物，因为它们可能是可以修改属性的，防止依赖某些属性的计算造成极大效果
         provider.addTag(AddonEntityTypeTags.DAMAGE_TEST_ENTITY)
                 .addOptional(ResourceLocation.fromNamespaceAndPath("dummmmmmy","target_dummy"))

@@ -4,34 +4,33 @@ import com.google.common.collect.Sets;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
 //有空再改
-public class FriendlyLightningBolt extends LightningBolt {
+public class FriendlyLightningBolt extends LightningBolt implements TraceableEntity {
     private final Set<Entity> hitEntities = Sets.newHashSet();
+    private Entity owner;
 
     public FriendlyLightningBolt(EntityType<? extends LightningBolt> entityType, Level level) {
         super(entityType, level);
         setVisualOnly(true);
     }
 
-    public FriendlyLightningBolt(Level level, ServerPlayer player){
+    public FriendlyLightningBolt(Level level, Entity owner){
         this(EntityType.LIGHTNING_BOLT, level);
-        this.setCause(player);
+        this.owner = owner;
     }
 
     private boolean hasHit = false;
@@ -51,7 +50,7 @@ public class FriendlyLightningBolt extends LightningBolt {
 
             for(Entity entity : list1) {
                 if (!EventHooks.onEntityStruckByLightning(entity, this)) {
-                    entity.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.LIGHTNING_BOLT), null, this.getCause()),this.getDamage());
+                    entity.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.LIGHTNING_BOLT), null, owner),this.getDamage());
                     entity.thunderHit((ServerLevel)this.level(), this);
                 }
             }
@@ -64,10 +63,9 @@ public class FriendlyLightningBolt extends LightningBolt {
     }
 
     public boolean canHit(Entity entity){
-        ServerPlayer player = this.getCause();
-        if(entity.isAlive() && entity != player){
-            if(entity instanceof ItemEntity){return false;}
-            return player == null || !player.isAlliedTo(entity);
+        if(entity.isAlive() && entity != owner){
+            if(entity instanceof ItemEntity || entity instanceof ExperienceOrb){return false;}
+            return owner == null || !owner.isAlliedTo(entity);
         }
         return false;
     }
@@ -83,5 +81,11 @@ public class FriendlyLightningBolt extends LightningBolt {
     @Override
     public @NotNull Stream<Entity> getHitEntities() {
         return hitEntities.stream().filter(Entity::isAlive);
+    }
+
+
+    @Override
+    public @Nullable Entity getOwner() {
+        return owner;
     }
 }

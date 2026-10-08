@@ -24,5 +24,6 @@ public class AddonCapabilitiesEventListener {
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.GEM_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.CONDUIT_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.ORIGINAL_CONDUIT_STAFF);
+        event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.ELECTROMAGNETIC_CROSSBOW);
     }
 }

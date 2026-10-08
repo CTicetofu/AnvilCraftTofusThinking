@@ -130,6 +130,13 @@ public class AddonItems {
             .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.CROSSBOW_ENCHANTABLE)
             .register();
 
+    public static final ItemEntry<ElectromagneticCrossbow> ELECTROMAGNETIC_CROSSBOW = REGISTRUM.item("electromagnetic_crossbow", properties ->
+                    new ElectromagneticCrossbow(properties.stacksTo(1).rarity(Rarity.RARE)))
+            .model(DataGenUtil::noExtraModelOrState)
+            .recipe(AddonItemRecipeLoader::electromagneticCrossbow)
+            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.CROSSBOW_ENCHANTABLE)
+            .register();
+
     public static ItemStack enchant(ItemLike item, HolderLookup.Provider registries, EnchantmentKeyInstance... instances){
         ItemStack stack = item.asItem().getDefaultInstance();
         return enchantStack(stack,registries,instances);

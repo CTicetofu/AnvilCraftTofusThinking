@@ -1,5 +1,6 @@
 package dev.anvilcraft.tofusthinking.client;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
+import dev.anvilcraft.tofusthinking.client.renderer.model.AddonItemModelProperties;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.dubhe.anvilcraft.client.renderer.item.ItemSlotClipping;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -25,6 +26,7 @@ public class AnvilCraftTofusThinkingClient {
         ItemSlotClipping.register(AddonItems.ORIGINAL_CONDUIT_STAFF.get());
         ItemSlotClipping.register(AddonItems.GEM_STAFF.get());
         ItemSlotClipping.register(AddonItems.SONIC_BOOM_STAFF.get());
+        AddonItemModelProperties.addItemModelProperties();
     }
 
     @SubscribeEvent

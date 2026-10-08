@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:magnetoelectric_core"
+    },
+    "B": {
+      "item": "minecraft:crossbow"
+    },
+    "C": {
+      "item": "minecraft:iron_ingot"
+    },
+    "D": {
+      "item": "anvilcraft:capacitor_empty"
+    }
+  },
+  "pattern": [
+    "AC ",
+    "CAD",
+    " DB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:electromagnetic_crossbow"
+  }
+}

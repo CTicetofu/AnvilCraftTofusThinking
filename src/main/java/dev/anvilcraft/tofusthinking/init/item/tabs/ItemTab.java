@@ -25,6 +25,8 @@ public class ItemTab extends BaseCreativeTab{
         this.acceptFullEnergy(AddonItems.ORIGINAL_CONDUIT_STAFF);
         this.accept(AddonItems.GEM_STAFF);
         this.acceptFullEnergy(AddonItems.GEM_STAFF);
+        this.accept(AddonItems.ELECTROMAGNETIC_CROSSBOW);
+        this.acceptFullEnergy(AddonItems.ELECTROMAGNETIC_CROSSBOW);
         this.accept(AddonBlocks.ORIGINAL_CONDUIT.asItem());
         this.accept(AddonBlocks.OVERLOAD_GENERATOR.asItem());
         this.accept(AddonBlocks.STABLE_PRISMARINE_BRICKS.asItem());

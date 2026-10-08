@@ -14,6 +14,7 @@ import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.anvilcraft.tofusthinking.util.RayDetectionUtil;
 import dev.anvilcraft.tofusthinking.util.TooltipUtil;
 import dev.anvilcraft.tofusthinking.util.UnclassifiedUtil;
+import dev.dubhe.anvilcraft.api.item.ICapacitorChargeable;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -62,7 +63,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 //我想我以后会挑个时间重构，这啥玩意
-public class OriginalConduitStaff extends ExtendItem {
+public class OriginalConduitStaff extends ExtendItem implements ICapacitorChargeable {
     public static final int MAX_ENERGY = 16000000;
     public static ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
     public static ResourceLocation ENTITY_RANGE_ID = AnvilCraftTofusThinking.of("entity_range");

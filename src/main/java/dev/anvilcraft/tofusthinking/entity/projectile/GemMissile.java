@@ -20,23 +20,18 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.*;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 import net.neoforged.neoforge.entity.PartEntity;
-import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.*;
 
-public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
+public class GemMissile extends AbstractHitProjectile implements IEntityWithComplexSpawn {
     private static final EntityDataAccessor<Integer> TARGET = SynchedEntityData.defineId(GemMissile.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_COLOR = SynchedEntityData.defineId(GemMissile.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> DATA_PIERCE_LEVEL = SynchedEntityData.defineId(GemMissile.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_SCALE = SynchedEntityData.defineId(GemMissile.class, EntityDataSerializers.INT);
     public GemMissile(EntityType<? extends GemMissile> entityType, Level level) {
         super(entityType, level);
@@ -64,9 +59,9 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
     private int splitCount = 0;
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+    protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
+        super.defineSynchedData(builder);
         builder.define(DATA_COLOR,0xFFFFFFFF);
-        builder.define(DATA_PIERCE_LEVEL,0);
         builder.define(TARGET,-1);
         builder.define(DATA_SCALE,10);
     }
@@ -96,27 +91,6 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
                         }
                     });
             this.setScale(this.getScale() - 8);
-        }
-    }
-
-    public void checkHitResult(){
-        Vec3 pos = this.position();
-        Vec3 target = pos.add(this.getDeltaMovement());
-        HitResult hitresult = this.level().clip(new ClipContext(pos, target, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
-        if (!this.ignoreBlock && hitresult.getType() != HitResult.Type.MISS) {
-            target = hitresult.getLocation();
-        }
-        List<EntityHitResult> entityHitResults = getAllEntityHitResult(target,pos);
-        for (EntityHitResult entityHitResult : entityHitResults){
-            if (!NeoForge.EVENT_BUS.post(new ProjectileImpactEvent(this, entityHitResult)).isCanceled()) {
-                onHit(entityHitResult);
-            }
-            if (this.isRemoved()) {
-                break;
-            }
-        }
-        if (hitresult.getType() != HitResult.Type.MISS) {
-            onHit(hitresult);
         }
     }
 
@@ -206,16 +180,7 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
             ParticleOptions options = ModParticles.PLASMA_JETS.get();
             UnclassifiedUtil.spawnCenterParticles(this.level(), options,this.getX(),this.getY(),this.getZ(),0,0F,0.2F,0.1F,10,false);
         }
-        this.discard();
-    }
-
-    public void doPierce() {
-        int p = getPierceLevel();
-        if (p > 0) {
-            setPierceLevel(p - 1);
-        } else if (p == 0) {
-            destroy();
-        }
+        super.destroy();
     }
 
     protected List<EntityHitResult> getAllEntityHitResult(Vec3 targetPoint, Vec3 position){
@@ -233,10 +198,6 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
             }
         }
         return list;
-    }
-
-    public void travel(){
-        this.setPos(this.position().add(this.getDeltaMovement()));
     }
 
     public void doSeek(){
@@ -429,12 +390,6 @@ public class GemMissile extends Projectile implements IEntityWithComplexSpawn {
     public void setColor(int color){this.entityData.set(DATA_COLOR,color);}
 
     public int getColor(){return this.entityData.get(DATA_COLOR);}
-
-    public void setPierceLevel(int level) {
-        this.entityData.set(DATA_PIERCE_LEVEL, level);
-    }
-
-    public int getPierceLevel(){return this.entityData.get(DATA_PIERCE_LEVEL);}
 
     @Override
     protected void addAdditionalSaveData(@NotNull CompoundTag compound) {

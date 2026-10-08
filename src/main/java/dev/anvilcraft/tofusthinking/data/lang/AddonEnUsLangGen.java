@@ -40,6 +40,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.ORIGINAL_CONDUIT_STAFF.asItem(),"Original Conduit Staff");
         add(AddonItems.SONIC_BOOM_STAFF.asItem(),"Sonic Boom Staff");
         add(AddonItems.GEM_STAFF.asItem(),"Gem Staff");
+        add(AddonItems.ELECTROMAGNETIC_CROSSBOW.asItem(),"Electromagnetic Crossbow");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"Stable Prismarine Bricks");
@@ -136,6 +137,19 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.gem_staff_same","Increase damage by 20% with the same material");
         add("tooltip.anvilcraft_tofus_thinking.gem_staff_change_type","Right click on amethyst, topaz, sapphire, emerald, ruby, diamond, amber, or their blocks in the inventory to change the type");
 
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_left_count","Remaining shooting times： %s");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow","Arrows, fireworks, metal particles, gems, or snowballs can be used as ammunition");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_take_out","Right click on the inventory to retrieve ammunition or clear unused ammunition");
+        add("tooltip.anvilcraft_tofus_thinking.mass","Mass： %s");
+        add("tooltip.anvilcraft_tofus_thinking.damage_scale","Damage Scale： %s");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_curse","Apply Weakness II(00:10) to the Target");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_radiation","Apply Wither II(00:10) to the Target，Damage increases as target armor coverage decreases");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_ember","Extra target ignition time of 10 seconds");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_sliver","Increases damage to undead creatures by 50%");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_lightning","Release nine lightning bolts at the hit point");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_freeze","Deal Slowness III (00:15) to creatures within the Eight Grids and inflict some frost damage");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_burn","Ignite the creatures within the eight squares and damage their equipment, causing certain flame damage");
+
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");
         add("tooltip.anvilcraft_tofus_thinking.progress","Progress: %s %%");
@@ -153,6 +167,8 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonEntities.STRANGE_WITHER_SKULL.get(),"Strange Wither Skull");
         add(AddonEntities.METEOR.get(),"Meteor");
         add(AddonEntities.GEM_MISSILE.get(),"Gem Missile");
+        add(AddonEntities.ELECTROMAGNETIC_ARROW.get(),"Arrow");
+        add(AddonEntities.ELECTROMAGNETIC_PROJECTILE.get(),"Electromagnetic Projectile");
     }
     private void addConfig(){
         ConfigData.readConfigClass(this, AnvilCraftTofusThinkCommonConfig.class);

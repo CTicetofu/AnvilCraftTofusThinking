@@ -1,15 +1,19 @@
 package dev.anvilcraft.tofusthinking.client.event;
 
 import dev.anvilcraft.tofusthinking.client.ClientCooldownCache;
+import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.item.LeftClickAction;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RenderHandEvent;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class ClientManageHandler {
@@ -34,5 +38,16 @@ public class ClientManageHandler {
     @SubscribeEvent
     public static void onLoggingOut(ClientPlayerNetworkEvent.LoggingOut event) {
         ClientCooldownCache.clear();
+    }
+
+    @SubscribeEvent
+    public static void onRenderHand(RenderHandEvent event){
+        if(event.getHand() == InteractionHand.OFF_HAND){
+            LocalPlayer player = Minecraft.getInstance().player;
+            if(player != null){
+                ItemStack stack = player.getMainHandItem();
+                if(stack.is(AddonItems.ELECTROMAGNETIC_CROSSBOW) && CrossbowItem.isCharged(stack)){event.setCanceled(true);}
+            }
+        }
     }
 }

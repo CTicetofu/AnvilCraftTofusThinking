@@ -1,18 +1,14 @@
 package dev.anvilcraft.tofusthinking.init.entity;
 
 import dev.anvilcraft.lib.v2.registrum.util.entry.EntityEntry;
+import dev.anvilcraft.tofusthinking.client.renderer.entity.ElectromagneticProjectileRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.entity.GemMissileRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.entity.MeteorRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.entity.StrangeWitherSkullRenderer;
 import dev.anvilcraft.tofusthinking.entity.FallingImitativeBlockEntity;
 import dev.anvilcraft.tofusthinking.entity.livingEntity.StrangeWither;
-import dev.anvilcraft.tofusthinking.entity.projectile.CurseSnowball;
-import dev.anvilcraft.tofusthinking.entity.projectile.GemMissile;
-import dev.anvilcraft.tofusthinking.entity.projectile.Meteor;
-import dev.anvilcraft.tofusthinking.entity.projectile.StrangeWitherSkull;
-import net.minecraft.client.renderer.entity.FallingBlockRenderer;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.client.renderer.entity.WitherBossRenderer;
+import dev.anvilcraft.tofusthinking.entity.projectile.*;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.block.Blocks;
 
@@ -51,6 +47,17 @@ public class AddonEntities {
             .renderer(() -> GemMissileRenderer::new)
             .register();
 
+    public static final EntityEntry<? extends ElectromagneticArrow> ELECTROMAGNETIC_ARROW = REGISTRUM
+            .<ElectromagneticArrow>entity("electromagnetic_arrow",ElectromagneticArrow::new, MobCategory.MISC)
+            .properties(it -> it.sized(0.5F,0.5F).eyeHeight(0.13F).clientTrackingRange(4).updateInterval(20))
+            .renderer(() -> TippableArrowRenderer::new)
+            .register();
+
+    public static final EntityEntry<? extends ElectromagneticProjectile> ELECTROMAGNETIC_PROJECTILE = REGISTRUM
+            .<ElectromagneticProjectile>entity("electromagnetic_projectile",ElectromagneticProjectile::new, MobCategory.MISC)
+            .properties(it -> it.sized(0.5F,0.5F).eyeHeight(0.13F).clientTrackingRange(4).updateInterval(20))
+            .renderer(() -> ElectromagneticProjectileRenderer::new)
+            .register();
 
     public static final EntityEntry<? extends FallingImitativeBlockEntity> FALLING_SPECTRAL_BLOCK = REGISTRUM
             .<FallingImitativeBlockEntity>entity("falling_imitative_block", FallingImitativeBlockEntity::new, MobCategory.MISC)

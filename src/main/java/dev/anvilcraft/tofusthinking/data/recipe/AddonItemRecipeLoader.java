@@ -77,7 +77,7 @@ public class AddonItemRecipeLoader {
                 .pattern("BAB")
                 .define('A', Items.GOLD_INGOT)
                 .define('B', Items.AMETHYST_SHARD)
-                .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.AMETHYST_SHARD), RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
                 .save(provider);
     }
 
@@ -89,7 +89,7 @@ public class AddonItemRecipeLoader {
                 .define('A', Items.AMETHYST_SHARD)
                 .define('B', ModItemTags.STORAGE_BLOCKS_SUGAR)
                 .define('C', Items.PRISMARINE_SHARD)
-                .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.AMETHYST_SHARD), RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
                 .save(provider);
     }
 
@@ -108,12 +108,26 @@ public class AddonItemRecipeLoader {
     public static <T extends Item> void gemStaff(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
                 .pattern("CBC")
-                .pattern(" A ")
+                .pattern("DAD")
                 .pattern(" A ")
                 .define('A', ModItems.ROYAL_STEEL_INGOT)
                 .define('B', Items.TINTED_GLASS)
                 .define('C', Items.AMETHYST_BLOCK)
-                .unlockedBy("has_amethyst", RegistrumRecipeProvider.has(Items.AMETHYST_BLOCK))
+                .define('D', ModItems.RESIN)
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.AMETHYST_BLOCK), RegistrumRecipeProvider.has(Items.AMETHYST_BLOCK))
+                .save(provider);
+    }
+
+    public static <T extends Item> void electromagneticCrossbow(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                .pattern("AC ")
+                .pattern("CAD")
+                .pattern(" DB")
+                .define('A', ModBlocks.MAGNETO_ELECTRIC_CORE_BLOCK.asItem())
+                .define('B', Items.CROSSBOW)
+                .define('C', Items.IRON_INGOT)
+                .define('D', ModItems.CAPACITOR_EMPTY)
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.CROSSBOW), RegistrumRecipeProvider.has(Items.CROSSBOW))
                 .save(provider);
     }
 
@@ -125,7 +139,7 @@ public class AddonItemRecipeLoader {
                 .define('A', Items.CONDUIT)
                 .define('B', Items.SEA_LANTERN)
                 .define('C', ModBlocks.INDUCTION_LIGHT.asItem())
-                .unlockedBy("has_conduit", RegistrumRecipeProvider.has(Items.CONDUIT))
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.CONDUIT), RegistrumRecipeProvider.has(Items.CONDUIT))
                 .save(provider);
     }
 
@@ -136,7 +150,7 @@ public class AddonItemRecipeLoader {
                         Ingredient.of(AddonBlocks.ORIGINAL_CONDUIT.asItem()),
                         RecipeCategory.TOOLS,ctx.get()
                 )
-                .unlocks("has_item", TofusThinkingDatagen.has(AddonBlocks.ORIGINAL_CONDUIT.asItem()))
+                .unlocks(TofusThinkingDatagen.hasItem(AddonBlocks.ORIGINAL_CONDUIT.asItem()), TofusThinkingDatagen.has(AddonBlocks.ORIGINAL_CONDUIT.asItem()))
                 .save(provider, AnvilCraftTofusThinking.of("smithing/original_conduit_staff"));
     }
 
@@ -147,7 +161,7 @@ public class AddonItemRecipeLoader {
                         Ingredient.of(Items.SCULK_SHRIEKER),
                         RecipeCategory.TOOLS,ctx.get()
                 )
-                .unlocks("has_item", TofusThinkingDatagen.has(Items.SCULK_SHRIEKER))
+                .unlocks(TofusThinkingDatagen.hasItem(Items.SCULK_SHRIEKER), TofusThinkingDatagen.has(Items.SCULK_SHRIEKER))
                 .save(provider, AnvilCraftTofusThinking.of("smithing/sonic_boom_staff"));
     }
 

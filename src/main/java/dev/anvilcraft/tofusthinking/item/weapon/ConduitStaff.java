@@ -7,6 +7,7 @@ import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.anvilcraft.tofusthinking.util.RayDetectionUtil;
 import dev.anvilcraft.tofusthinking.util.TooltipUtil;
 import dev.anvilcraft.tofusthinking.util.UnclassifiedUtil;
+import dev.dubhe.anvilcraft.api.item.ICapacitorChargeable;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.particles.ParticleTypes;
@@ -45,7 +46,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ConduitStaff extends Item {
+public class ConduitStaff extends Item implements ICapacitorChargeable {
     public static final int MAX_ENERGY = 16000000;
     public static ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
     public ConduitStaff(Properties properties) {

@@ -6,6 +6,7 @@ import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.anvilcraft.tofusthinking.util.RayDetectionUtil;
 import dev.anvilcraft.tofusthinking.util.TooltipUtil;
 import dev.anvilcraft.tofusthinking.util.UnclassifiedUtil;
+import dev.dubhe.anvilcraft.api.item.ICapacitorChargeable;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
@@ -41,7 +42,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class SonicBoomStaff extends Item implements IToolProgress {
+public class SonicBoomStaff extends Item implements IToolProgress, ICapacitorChargeable {
     public static final int MAX_ENERGY = 16000000;
 
     public SonicBoomStaff(Properties properties) {

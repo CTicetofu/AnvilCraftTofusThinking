@@ -10,11 +10,14 @@
     },
     "C": {
       "item": "minecraft:amethyst_block"
+    },
+    "D": {
+      "item": "anvilcraft:resin"
     }
   },
   "pattern": [
     "CBC",
-    " A ",
+    "DAD",
     " A "
   ],
   "result": {

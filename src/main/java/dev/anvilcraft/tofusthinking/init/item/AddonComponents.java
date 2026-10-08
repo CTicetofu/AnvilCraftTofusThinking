@@ -2,11 +2,13 @@ package dev.anvilcraft.tofusthinking.init.item;
 
 import com.mojang.serialization.Codec;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
+import dev.anvilcraft.tofusthinking.item.property.component.ProjectileInfo;
 import dev.dubhe.anvilcraft.item.property.component.StoredItem;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.util.Unit;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -17,6 +19,10 @@ import java.util.function.Consumer;
 public class AddonComponents {
     public static final DeferredRegister<DataComponentType<?>> DR = DeferredRegister.create(
             Registries.DATA_COMPONENT_TYPE, AnvilCraftTofusThinking.MOD_ID
+    );
+    public static final DataComponentType<Unit> MAIN_AMMO = register(
+            "main",
+            it -> it.persistent(Unit.CODEC)
     );
     public static final DataComponentType<Integer> NUTRITION_VALUE = register(
             "nutrition_lvalue",
@@ -57,6 +63,18 @@ public class AddonComponents {
     public static final DataComponentType<StoredItem> DISPLAY_ANOTHER_ITEM = register(
             "display_another_item",
             b -> b.persistent(StoredItem.CODEC).networkSynchronized(StoredItem.STREAM_CODEC)
+    );
+    public static final DataComponentType<Integer> LEFT_COUNT = register(
+            "left_count",
+            (builder) -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT)
+    );
+    public static final DataComponentType<ProjectileInfo> PROJECTILE_INFO = register(
+            "projectile_info",
+            it -> it.persistent(ProjectileInfo.CODEC).networkSynchronized(ProjectileInfo.STREAM_CODEC)
+    );
+    public static final DataComponentType<Float> MASS = register(
+            "mass",
+            (builder) -> builder.persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT)
     );
     public static final DataComponentType<Integer> STORED_ENERGY = register(
             "stored_energy",

@@ -1,0 +1,8 @@
+{
+	"parent": "anvilcraft_tofus_thinking:item/electromagnetic_crossbow",
+	"credit": "Made by XeKr with Blockbench",
+	"textures": {
+		"0": "anvilcraft_tofus_thinking:item/electromagnetic_crossbow_off",
+		"particle": "anvilcraft_tofus_thinking:item/electromagnetic_crossbow_off"
+	}
+}
