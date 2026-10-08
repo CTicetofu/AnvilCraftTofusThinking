@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -23,6 +24,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -94,6 +96,21 @@ public class LivingEventHandler {
             event.addReductionModifier(DamageContainer.Reduction.MOB_EFFECTS,(LivingEventHandler::lowMagicAbsorb));
             event.addReductionModifier(DamageContainer.Reduction.ENCHANTMENTS,(LivingEventHandler::lowMagicAbsorb));
         }
+        if(AddonItems.ELASTIC_ANTI_FIRE_SHIELD.get().isEquippedBy(target)){
+            if(source.getDirectEntity() instanceof LivingEntity living){
+                Vec3 offset = living.position().subtract(target.position()).normalize();
+                living.knockback(0.4F,-offset.x,-offset.z);
+                if(living.onGround()){living.push(0,0.05,0);}
+                living.hurtMarked = true;
+                living.push(offset.multiply(1,0,1).scale(0.4F));
+            }
+            if(source.is(DamageTypeTags.IS_EXPLOSION)){
+                event.setAmount(event.getAmount() * 0.5F);
+            }
+            if(source.is(DamageTypes.HOT_FLOOR)){event.setCanceled(true);}
+        }
+
+
         if(source instanceof ExtraDamageSource extra){
             float amount = event.getAmount();
             event.setAmount(amount * (extra.getExtraHurtRate()) + extra.getExtraHurtAmount());

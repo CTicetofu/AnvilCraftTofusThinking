@@ -237,7 +237,7 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
         tooltipComponents.add(TooltipUtil.getItemNeedEnergy(getNeedEnergy(stack), shift));
         tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory",Component.translatable("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode").withStyle(auto ? ChatFormatting.AQUA : ChatFormatting.STRIKETHROUGH)).withStyle(ChatFormatting.GRAY));
 
-        MutableComponent self = Component.translatable("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff", AddonItems.CONDUIT_STAFF.asItem().getDescription().plainCopy().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY);
+        MutableComponent self = Component.translatable("tooltip.anvilcraft_tofus_thinking.original_conduit_staff", AddonItems.CONDUIT_STAFF.asItem().getDescription().plainCopy().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.GRAY);
         MutableComponent head = getHeadItemFromItem(stack).getDescription().plainCopy().withColor(TooltipUtil.KHAKI1);
         MutableComponent grip = getGripItemFromItem(stack).getDescription().plainCopy().withColor(TooltipUtil.KHAKI1);
         if(shift){
@@ -245,7 +245,7 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
             head.append(Component.literal(" -> ").withColor(TooltipUtil.ROYAL_BLUE)).append(headAbility);
             Component gripAbility = Component.translatable(String.format("tooltip.anvilcraft_tofus_thinking.ability_%s",getGripFromItem(stack).name())).withStyle(ChatFormatting.YELLOW);
             grip.append(Component.literal(" -> ").withColor(TooltipUtil.ROYAL_BLUE)).append(gripAbility);
-            self.append(Component.translatable("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_more_info"));
+            self.append(Component.translatable("tooltip.anvilcraft_tofus_thinking.original_conduit_staff_more_info"));
         }
         tooltipComponents.add(self);
         tooltipComponents.add(head);
@@ -264,8 +264,8 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
             for(Item item:GRIP_ITEM_MAP.keySet()){
                 availableGrip.append(" ").append(item.getDescription());
             }
-            tooltipComponents.add(Component.translatable("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_head",availableHead).withStyle(ChatFormatting.GRAY));
-            tooltipComponents.add(Component.translatable("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_grip",availableGrip).withStyle(ChatFormatting.GRAY));
+            tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.original_conduit_staff_available_head",availableHead).withStyle(ChatFormatting.GRAY));
+            tooltipComponents.add(Component.translatable("tooltip.anvilcraft_tofus_thinking.original_conduit_staff_available_grip",availableGrip).withStyle(ChatFormatting.GRAY));
         }
     }
 

@@ -47,6 +47,22 @@ public class AddonItems {
             .tag(AddonItemTags.CURIOS_CHARM)
             .register();
 
+    public static final ItemEntry<CurioBaseItem> ELASTIC_ANTI_FIRE_SHIELD = REGISTRUM.item("elastic_anti_fire_shield",properties ->
+            (CurioBaseItem) new CurioBaseItem(properties.stacksTo(1).rarity(Rarity.UNCOMMON).fireResistant())
+                            .withAttribute(
+                                    new AttributeInstance(Attributes.EXPLOSION_KNOCKBACK_RESISTANCE,1, AttributeModifier.Operation.ADD_VALUE),
+                                    new AttributeInstance(Attributes.BURNING_TIME,-1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                            )
+                            .addComponent(
+                                    Component.translatable("tooltip.anvilcraft_tofus_thinking.elastic_anti_fire_shield_1").withStyle(ChatFormatting.YELLOW),
+                                    Component.translatable("tooltip.anvilcraft_tofus_thinking.elastic_anti_fire_shield_2").withStyle(ChatFormatting.YELLOW)
+                            )
+            )
+            .defaultModel()
+            .tag(AddonItemTags.CURIOS_HANDS)
+            .recipe(AddonItemRecipeLoader::elasticAntiFireShield)
+            .register();
+
     public static final ItemEntry<AmethystGoldenRing> AMETHYST_GOLDEN_RING = REGISTRUM.item("amethyst_golden_ring", properties ->
                     (AmethystGoldenRing) new AmethystGoldenRing(properties.stacksTo(1).rarity(Rarity.UNCOMMON))
                             .withAttribute(
@@ -100,6 +116,7 @@ public class AddonItems {
     public static final ItemEntry<GemStaff> GEM_STAFF = REGISTRUM.item("gem_staff",properties -> new GemStaff())
             .recipe(AddonItemRecipeLoader::gemStaff)
             .model(DataGenUtil::noExtraModelOrState)
+            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.WEAPON_ENCHANTABLE,ItemTags.SWORD_ENCHANTABLE)
             .register();
 
     public static final ItemEntry<StarOfTheSea> STAR_OF_THE_SEA = REGISTRUM.item("star_of_the_sea",properties ->
@@ -112,14 +129,14 @@ public class AddonItems {
                     new ConduitStaff(properties.stacksTo(1).rarity(Rarity.RARE)))
             .model(DataGenUtil::noExtraModelOrState)
             .recipe(AddonItemRecipeLoader::conduitStaff)
-            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.WEAPON_ENCHANTABLE)
+            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.WEAPON_ENCHANTABLE,ItemTags.SWORD_ENCHANTABLE)
             .register();
 
     public static final ItemEntry<OriginalConduitStaff> ORIGINAL_CONDUIT_STAFF = REGISTRUM.item("original_conduit_staff",
             properties -> new OriginalConduitStaff(properties.stacksTo(1).fireResistant().rarity(AnvilCraftTofusThinking.TOFU_RARITY)))
             .model(DataGenUtil::noExtraModelOrState)
             .recipe(AddonItemRecipeLoader::originalConduitStaff)
-            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.WEAPON_ENCHANTABLE)
+            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.WEAPON_ENCHANTABLE,ItemTags.SWORD_ENCHANTABLE)
             .register();
 
 
@@ -127,7 +144,7 @@ public class AddonItems {
                     new SonicBoomStaff(properties.stacksTo(1).rarity(Rarity.RARE)))
             .model(DataGenUtil::noExtraModelOrState)
             .recipe(AddonItemRecipeLoader::sonicBoomStaff)
-            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.CROSSBOW_ENCHANTABLE)
+            .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.CROSSBOW_ENCHANTABLE,ItemTags.SHARP_WEAPON_ENCHANTABLE,ItemTags.SWORD_ENCHANTABLE)
             .register();
 
     public static final ItemEntry<ElectromagneticCrossbow> ELECTROMAGNETIC_CROSSBOW = REGISTRUM.item("electromagnetic_crossbow", properties ->

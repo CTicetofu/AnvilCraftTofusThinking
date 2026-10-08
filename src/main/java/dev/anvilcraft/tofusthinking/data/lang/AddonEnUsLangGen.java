@@ -29,6 +29,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
     private void itemName(){
         add(AddonItems.AUTO_CAN.asItem(),"Auto Can");
         add(AddonItems.CHARM_AMULET.asItem(),"Charm Amulet");
+        add(AddonItems.ELASTIC_ANTI_FIRE_SHIELD.asItem(),"Elastic Fireproof shield");
         add(AddonItems.CURSE_SNOWBALL_ITEM.asItem(),"Curse Snowball");
         add(AddonItems.AMETHYST_GOLDEN_RING.asItem(),"Amethyst Golden Ring");
         add(AddonItems.SPEED_CHARM.asItem(),"Speed Charm");
@@ -59,6 +60,9 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 Fortune Level +1 Looting Level");
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring2", "Piglins thinks you wear a gold thing");
+
+        add("tooltip.anvilcraft_tofus_thinking.elastic_anti_fire_shield_1","Reduce explosion damage by 50% and repel attackers");
+        add("tooltip.anvilcraft_tofus_thinking.elastic_anti_fire_shield_2","Immune magma block damage");
 
         add("tooltip.anvilcraft_tofus_thinking.speed_charm","Immune to Slowness");
 
@@ -104,10 +108,10 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_normal","Deal damage to nearby creatures pointed by the crosshair");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_recovery","Restore energy slowly when in the rain or water");
 
-        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff","Advanced %s");
-        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_more_info",".Can use some blocks to right-click on the item in the inventory to change its energy, and hold [Ctrl] to view available items");
-        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_head","Available Glass Items:");
-        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_grip","Available Grip Items:");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_staff","Advanced %s");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_staff_more_info",".Can use some blocks to right-click on the item in the inventory to change its energy, and hold [Ctrl] to view available items");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_staff_available_head","Available Glass Items:");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_staff_available_grip","Available Grip Items:");
 
         add("tooltip.anvilcraft_tofus_thinking.ability_none","No Effect");
         add("tooltip.anvilcraft_tofus_thinking.ability_tinned_glass","Weaken and cover the target");
@@ -187,6 +191,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("death.attack.tofusThinking.bounce_wither_skull","%s was killed by the wither skull %s had launch");
         add("death.attack.tofusThinking.counter","%s impulsively attacked %s");
         add("death.attack.tofusThinking.gem_missile","%s didn't get a clear look to gem by %s");
+        add("death.attack.tofusThinking.nugget","%s die for acute metal poisoning,the murderer is %s");
 
         add(AddonItemGroups.ITEM_TAB_ID,"AnvilCraft: Tofu's Thinking");
 

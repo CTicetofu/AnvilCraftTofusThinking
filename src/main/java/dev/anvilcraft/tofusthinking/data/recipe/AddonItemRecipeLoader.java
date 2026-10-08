@@ -81,6 +81,18 @@ public class AddonItemRecipeLoader {
                 .save(provider);
     }
 
+    public static <T extends Item> void elasticAntiFireShield(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                .pattern("BCB")
+                .pattern("BAB")
+                .pattern(" B ")
+                .define('A', ModBlocks.RESIN_BLOCK.asItem())
+                .define('B', ModItemTags.TUNGSTEN_NUGGETS)
+                .define('C', ModItemTags.TUNGSTEN_PLATES)
+                .unlockedBy(TofusThinkingDatagen.hasItem(ModBlocks.RESIN_BLOCK.asItem()), RegistrumRecipeProvider.has(ModBlocks.RESIN_BLOCK.asItem()))
+                .save(provider);
+    }
+
     public static <T extends Item> void speedCharm(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
                 .pattern("BAC")

@@ -108,7 +108,7 @@ public class GemStaff extends Item implements LeftClickAction {
 
     @Override
     public int getEnchantmentValue(@NotNull ItemStack stack) {
-        return 30;
+        return 40;
     }
 
     @Override

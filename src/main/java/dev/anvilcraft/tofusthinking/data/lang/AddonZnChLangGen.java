@@ -26,6 +26,7 @@ public class AddonZnChLangGen extends LanguageProvider {
     private void itemName(){
         add(AddonItems.AUTO_CAN.asItem(),"自动罐头");
         add(AddonItems.CHARM_AMULET.asItem(),"护符护符");
+        add(AddonItems.ELASTIC_ANTI_FIRE_SHIELD.asItem(),"弹性耐火盾");
         add(AddonItems.CURSE_SNOWBALL_ITEM.asItem(),"诅咒雪球");
         add(AddonItems.AMETHYST_GOLDEN_RING.asItem(),"紫水晶金戒指");
         add(AddonItems.SPEED_CHARM.asItem(),"迅捷之符");
@@ -56,6 +57,9 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 时运等级 +1 抢夺等级");
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring2", "猪灵认为你穿戴了金制品");
+
+        add("tooltip.anvilcraft_tofus_thinking.elastic_anti_fire_shield_1","减少50%受到的爆炸伤害，击退攻击者");
+        add("tooltip.anvilcraft_tofus_thinking.elastic_anti_fire_shield_2","免疫岩浆块伤害");
 
         add("tooltip.anvilcraft_tofus_thinking.speed_charm","免疫 缓慢");
 
@@ -101,10 +105,10 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_normal","对准星所指位置附近生物造成伤害");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_recovery","在雨中或者水中时缓慢恢复能量");
 
-        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff","更高级的 %s");
-        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_more_info","，可使用一些方块在物品栏右键该物品以更改能量，按住 [Ctrl] 查看可用物品");
-        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_head","可用玻璃材料：%s");
-        add("tooltip.anvilcraft.anvilcraft_tofus_thinking.original_conduit_staff_available_grip","可用把手材料：%s");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_staff","更高级的 %s");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_staff_more_info","，可使用一些方块在物品栏右键该物品以更改能量，按住 [Ctrl] 查看可用物品");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_staff_available_head","可用玻璃材料：%s");
+        add("tooltip.anvilcraft_tofus_thinking.original_conduit_staff_available_grip","可用把手材料：%s");
 
         add("tooltip.anvilcraft_tofus_thinking.ability_none","无效果");
         add("tooltip.anvilcraft_tofus_thinking.ability_tinned_glass","对目标造成虚弱，遮蔽");
@@ -183,6 +187,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("death.attack.tofusThinking.bounce_wither_skull","%s 被 %s 发射的弹射凋灵骷髅头击杀");
         add("death.attack.tofusThinking.counter","%s 过于冲动的攻击了 %s");
         add("death.attack.tofusThinking.gem_missile","%s 没看清 %s 的宝石");
+        add("death.attack.tofusThinking.nugget","%s 死于急性金属中毒，凶手是 %s");
 
         add(AddonItemGroups.ITEM_TAB_ID,"铁砧工艺: 豆之思维");
 

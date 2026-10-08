@@ -31,6 +31,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -153,10 +154,27 @@ public class ElectromagneticProjectile extends AbstractHitProjectile{
             if(entity.getRemainingFireTicks() < fire){entity.setRemainingFireTicks(fire);}
             if(entity.hurt(source,this.damage * rate)){
                 if(entity instanceof LivingEntity living){
+                    doKnockback(living,source);
                     EnchantmentHelper.doPostAttackEffectsWithItemSource(level, living, source, this.weapon);
                 }
             }
             doPierce();
+        }
+    }
+
+    protected void doKnockback(LivingEntity entity, DamageSource damageSource) {
+        float knock = 0;
+        if (this.weapon != null) {
+            if (this.level() instanceof ServerLevel serverlevel) {
+                knock = EnchantmentHelper.modifyKnockback(serverlevel, this.weapon, entity, damageSource, 0.0F);
+            }
+        }
+        if (knock > (double)0.0F) {
+            double resistance = Math.max(0.0F, (double)1.0F - entity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+            Vec3 vec3 = this.getDeltaMovement().multiply(1.0F, 0.0F, 1.0F).normalize().scale(knock * 0.6 * resistance);
+            if (vec3.lengthSqr() > (double)0.0F) {
+                entity.push(vec3.x, 0.1, vec3.z);
+            }
         }
     }
 

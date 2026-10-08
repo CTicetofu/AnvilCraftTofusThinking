@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:resin_block"
+    },
+    "B": {
+      "tag": "c:nuggets/tungsten"
+    },
+    "C": {
+      "tag": "c:plates/tungsten"
+    }
+  },
+  "pattern": [
+    "BCB",
+    "BAB",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:elastic_anti_fire_shield"
+  }
+}
