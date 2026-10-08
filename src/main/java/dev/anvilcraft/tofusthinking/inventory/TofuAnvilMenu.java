@@ -36,7 +36,7 @@ public class TofuAnvilMenu extends AnvilMenu {
     @Override
     protected void onTake(@NotNull Player player, @NotNull ItemStack stack) {
         if (!player.getAbilities().instabuild) {
-            player.giveExperienceLevels(-this.cost.get());
+            player.giveExperiencePoints(-this.cost.get() * 7);
         }
 
         CommonHooks.onAnvilRepair(player, stack, this.inputSlots.getItem(0), this.inputSlots.getItem(1));

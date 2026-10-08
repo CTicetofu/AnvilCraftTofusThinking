@@ -6,7 +6,7 @@ import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.util.EntityUtil;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
-import dev.dubhe.anvilcraft.block.ExpFluidBlock;
+import dev.dubhe.anvilcraft.AnvilCraft;
 import dev.dubhe.anvilcraft.init.item.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -72,9 +72,10 @@ public class Abilities {
                 iterator.remove();
                 List<ItemEntity> stacks = new ArrayList<>();
                 int maxSize = EXP_STACK.get().getMaxStackSize();
-                int maxAccept = ExpFluidBlock.XP_POINTS * maxSize * 9;
-                int count = Math.min(maxAccept, xp) / ExpFluidBlock.XP_POINTS;
-                int left = xp - count * ExpFluidBlock.XP_POINTS;
+                int expPerBlock = AnvilCraft.CONFIG.world.expFluidXpPerBlock;
+                int maxAccept = expPerBlock * maxSize * 9;
+                int count = Math.min(maxAccept, xp) / expPerBlock;
+                int left = xp - count * expPerBlock;
                 while (count > 0) {
                     stacks.add(new ItemEntity(serverLevel, pos.x, pos.y, pos.z, EXP_STACK.get().copyWithCount(Math.min(count, maxSize))));
                     count -= maxSize;

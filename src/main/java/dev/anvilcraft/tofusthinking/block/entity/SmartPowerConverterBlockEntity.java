@@ -105,9 +105,9 @@ public class SmartPowerConverterBlockEntity extends BlockEntity implements IPowe
         }
         if (getBlockState().getValue(BasePowerConverterBlock.OVERLOAD)) return;
         long amountTick = (long) (inputPower
-                        * AnvilCraft.CONFIG.powerConverter.powerConverterEfficiency
-                        * (1 - AnvilCraft.CONFIG.powerConverter.powerConverterLoss));
-        long amount = amountTick * PowerGrid.GRID_TICK;
+                        * AnvilCraft.CONFIG.machines.powerConverter.efficiency
+                        * (1 - AnvilCraft.CONFIG.machines.powerConverter.loss));
+        long amount = amountTick * PowerGrid.gridInterval();
         this.energy = Mth.clamp(this.energy + amount,0L, maxEnergy);
         setChanged();
     }
