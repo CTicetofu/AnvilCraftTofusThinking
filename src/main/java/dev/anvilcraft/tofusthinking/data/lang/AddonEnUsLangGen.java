@@ -145,10 +145,10 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.crossbow_curse","Apply Weakness II(00:10) to the Target");
         add("tooltip.anvilcraft_tofus_thinking.crossbow_radiation","Apply Wither II(00:10) to the Target，Damage increases as target armor coverage decreases");
         add("tooltip.anvilcraft_tofus_thinking.crossbow_ember","Extra target ignition time of 10 seconds");
-        add("tooltip.anvilcraft_tofus_thinking.crossbow_sliver","Increases damage to undead creatures by 50%");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_sliver","Increases damage to undead mob by 50%");
         add("tooltip.anvilcraft_tofus_thinking.crossbow_lightning","Release nine lightning bolts at the hit point");
-        add("tooltip.anvilcraft_tofus_thinking.crossbow_freeze","Deal Slowness III (00:15) to creatures within the Eight Grids and inflict some frost damage");
-        add("tooltip.anvilcraft_tofus_thinking.crossbow_burn","Ignite the creatures within the eight squares and damage their equipment, causing certain flame damage");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_freeze","Deal Slowness III (00:15) to mob within the Eight Grids and inflict some frost damage");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_burn","Ignite the mob within the eight squares and damage their equipment, causing certain flame damage");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");

@@ -138,10 +138,11 @@ public class ElectromagneticCrossbow extends ProjectileWeaponItem implements ICa
     }
 
     private static boolean canLoadFromOtherHand(LivingEntity shooter, ItemStack crossbowStack,@NotNull InteractionHand hand,@NotNull ChargedProjectiles projectiles){
-        ItemStack stack = projectiles.getItems().getFirst();
+        ItemStack stack = projectiles.getItems().getFirst().copy();
         int left = crossbowStack.getOrDefault(AddonComponents.LEFT_COUNT,1);
         int max = stack.getMaxStackSize();
         if(stack.has(DataComponents.INTANGIBLE_PROJECTILE) || left >= max){return false;}
+        stack.remove(AddonComponents.MAIN_AMMO);
         ItemStack will = shooter.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
         return ItemStack.isSameItemSameComponents(stack, will);
     }
