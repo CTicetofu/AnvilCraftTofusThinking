@@ -132,7 +132,6 @@ public class ElectromagneticProjectile extends AbstractHitProjectile{
             DamageSource source = isNugget ? AddonDamageTypes.nugget(level,this,this.getOwner()) : AddonDamageTypes.gemMissile(level,this,this.getOwner());
             if (this.weapon != null) {
                 this.damage *= EnchantmentHelper.modifyDamage(level, this.weapon, entity, source, 2);
-                System.out.println(EnchantmentHelper.modifyDamage(level, this.weapon, entity, source, 2));
             }
             int fire = this.isOnFire() ? 5 : 0;
             float rate = 1;
@@ -243,7 +242,7 @@ public class ElectromagneticProjectile extends AbstractHitProjectile{
                     }
                     if(living.getRemainingFireTicks() < 800){living.setRemainingFireTicks(800);}
                     if(isMain){living.invulnerableTime = 0;}
-                    living.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.ON_FIRE),this,owner),this.damage * 2F + 8);
+                    living.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.ON_FIRE),this,owner),this.damage * 1.5F + 10);
                     living.invulnerableTime = Math.max(living.invulnerableTime,15);
                 }
             });
