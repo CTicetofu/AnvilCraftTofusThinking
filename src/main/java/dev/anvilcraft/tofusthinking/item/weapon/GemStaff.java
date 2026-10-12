@@ -44,6 +44,7 @@ import java.util.*;
 
 public class GemStaff extends Item implements LeftClickAction {
     public static final int MAX_ENERGY = 1000000;
+    public static final int NEED = 2000;
     public static final String SPELL_ID = "GemMissile";
     public GemStaff(Properties properties){
         super(properties);
@@ -117,7 +118,7 @@ public class GemStaff extends Item implements LeftClickAction {
     }
 
     public void shootGemMissile(ItemStack stack, ServerPlayer player, Level level){
-        if(CooldownManager.isOnCooldown(player,SPELL_ID) ||!ItemUtil.consumeEnergy(player,stack,2000)){return;}
+        if(CooldownManager.isOnCooldown(player,SPELL_ID) ||!ItemUtil.consumeEnergy(player,stack,NEED)){return;}
         CooldownManager.addCooldown(player,SPELL_ID,20);
         GemMissile missile = new GemMissile(level,player);
         missile.setPos(player.getEyePosition());
@@ -168,6 +169,18 @@ public class GemStaff extends Item implements LeftClickAction {
 
     public boolean overrideOtherStackedOnMe(@NotNull ItemStack stack, @NotNull ItemStack other, @NotNull Slot slot, @NotNull ClickAction action, @NotNull Player player, @NotNull SlotAccess access) {
         if(action == ClickAction.SECONDARY && slot.allowModification(player)){
+            if(other.is(Tags.Items.GEMS_QUARTZ)){
+                int current = stack.getOrDefault(AddonComponents.STORED_ENERGY,0);
+                int needCount = (MAX_ENERGY - current)/100000;
+                if(needCount > 0){
+                    int consume = Math.min(other.getCount(),needCount);
+                    ItemStack result = other.copy();
+                    result.shrink(consume);
+                    player.containerMenu.setCarried(result);
+                    player.level().playLocalSound(player, SoundEvents.AMETHYST_BLOCK_STEP,player.getSoundSource(),1,1);
+                    return true;
+                }
+            }
             int headIndex = getHeadIndex(other);
             boolean match = true;
             if(headIndex >= 0){

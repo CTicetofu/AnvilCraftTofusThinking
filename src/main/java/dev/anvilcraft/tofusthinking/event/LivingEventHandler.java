@@ -18,6 +18,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -92,6 +93,10 @@ public class LivingEventHandler {
         if(source.is(DamageTypeTags.IS_FIRE) || source.is(DamageTypeTags.IS_FREEZING)){
             if(target.hasEffect(AddonMobEffects.TEMPERATURE_TOLERANCE)){event.setCanceled(true);}
         }
+        if(target.getItemBySlot(EquipmentSlot.CHEST).has(AddonComponents.DENSE)){
+            event.addReductionModifier(DamageContainer.Reduction.ARMOR,(LivingEventHandler::plusDefense));
+            event.addReductionModifier(DamageContainer.Reduction.ENCHANTMENTS,(LivingEventHandler::plusDefense));
+        }
         if(source.getDirectEntity() instanceof GemMissile missile && missile.lowMagicResist){
             event.addReductionModifier(DamageContainer.Reduction.MOB_EFFECTS,(LivingEventHandler::lowMagicAbsorb));
             event.addReductionModifier(DamageContainer.Reduction.ENCHANTMENTS,(LivingEventHandler::lowMagicAbsorb));
@@ -119,6 +124,14 @@ public class LivingEventHandler {
 
     public static float lowMagicAbsorb(DamageContainer container, float amount){
         return amount > 0 ? amount * 0.5F : amount;
+    }
+
+    public static float plusDefense(DamageContainer container, float amount){
+        float before = container.getNewDamage();
+        if(amount < before){
+            amount = Math.min(amount + before * 0.1F,(before + amount) * 0.5F);
+        }
+        return amount;
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH,receiveCanceled = true)

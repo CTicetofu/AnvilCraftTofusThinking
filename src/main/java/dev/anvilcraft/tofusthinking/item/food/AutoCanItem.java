@@ -1,5 +1,6 @@
 package dev.anvilcraft.tofusthinking.item.food;
 
+import dev.anvilcraft.tofusthinking.attachment.magic.CooldownManager;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.item.curio.CurioBaseItem;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
@@ -9,6 +10,7 @@ import dev.dubhe.anvilcraft.item.property.component.StoredItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -27,6 +29,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class AutoCanItem extends CurioBaseItem implements IExtraItemDisplay {
+    public static final String SKILL = "auto_can";
     public AutoCanItem(Properties properties) {
         super(properties.component(AddonComponents.NUTRITION_VALUE,0));
     }
@@ -73,18 +76,18 @@ public class AutoCanItem extends CurioBaseItem implements IExtraItemDisplay {
 
     @Override
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
-        if(!level.isClientSide && entity instanceof Player player && player.tickCount % 40 == 0 && !player.isCreative() && !player.getCooldowns().isOnCooldown(this)){
+        if(!level.isClientSide && entity instanceof ServerPlayer player && player.tickCount % 40 == 0 && !player.isCreative() && !CooldownManager.isOnCooldown(player,SKILL)){
             if(tryEat(stack,player)){
-                player.getCooldowns().addCooldown(this,10);
+                CooldownManager.addCooldownServer(player,SKILL,20);
             }
         }
     }
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        if(slotContext.entity() instanceof Player player && !player.level().isClientSide && player.tickCount % 40 == 35 && !player.isCreative() && !player.getCooldowns().isOnCooldown(this)){
+        if(slotContext.entity() instanceof ServerPlayer player && !player.level().isClientSide && player.tickCount % 40 == 35 && !player.isCreative() && !CooldownManager.isOnCooldown(player,SKILL)){
             if(tryEat(stack,player)){
-                player.getCooldowns().addCooldown(this,10);
+                CooldownManager.addCooldownServer(player,SKILL,20);
             }
         }
     }

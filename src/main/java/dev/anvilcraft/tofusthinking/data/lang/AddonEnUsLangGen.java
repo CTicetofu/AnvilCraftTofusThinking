@@ -164,6 +164,8 @@ public class AddonEnUsLangGen extends LanguageProvider {
                 Everlasting within the crevice of Time\
                 """);
 
+        add("tooltip.anvilcraft_tofus_thinking.dense","Dense: Increases armor and protection performance by 10%");
+
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"Curse Snowball");

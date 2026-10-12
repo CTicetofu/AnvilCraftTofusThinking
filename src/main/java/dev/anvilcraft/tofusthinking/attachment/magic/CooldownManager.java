@@ -14,7 +14,8 @@ import java.util.Map;
 public class CooldownManager {
 
     public static void tick(ServerPlayer player) {
-        Map<String, CooldownInstance> current = player.getData(AddonAttachments.COOLDOWNS);
+        if(!player.isAlive() || !player.hasData(AddonAttachments.COOLDOWNS)){return;}
+        Map<String, CooldownInstance> current = new HashMap<>(player.getData(AddonAttachments.COOLDOWNS));
         if (current.isEmpty()) return;
         current.values().removeIf(cd -> !cd.tick());
         player.setData(AddonAttachments.COOLDOWNS, current);
@@ -31,6 +32,13 @@ public class CooldownManager {
     public static float getCooldownProgress(Player player, String skillId) {
         CooldownInstance cd = getCooldown(player, skillId);
         return cd == null ? 1.0F : cd.getProgress();
+    }
+
+    public static void addCooldownServer(ServerPlayer player, String skillId, int durationTicks){
+        Map<String, CooldownInstance> cooldowns = player.getData(AddonAttachments.COOLDOWNS);
+        Map<String, CooldownInstance> updated = new HashMap<>(cooldowns);
+        updated.put(skillId, new CooldownInstance(durationTicks, durationTicks));
+        player.setData(AddonAttachments.COOLDOWNS, updated);
     }
 
     public static void addCooldown(ServerPlayer player, String skillId, int durationTicks){

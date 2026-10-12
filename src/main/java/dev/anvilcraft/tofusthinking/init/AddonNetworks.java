@@ -32,6 +32,11 @@ public class AddonNetworks {
                 SyncCooldownPacket.STREAM_CODEC,
                 SyncCooldownPacket.HANDLER
         );
+        registrar.playToClient(
+                RespawnPacket.TYPE,
+                RespawnPacket.STREAM_CODEC,
+                RespawnPacket.HANDLER
+        );
         registrar.playToServer(
                 SimpleNumberUpdatePacket.TYPE,
                 SimpleNumberUpdatePacket.STREAM_CODEC,

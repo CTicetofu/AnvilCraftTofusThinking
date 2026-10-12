@@ -97,8 +97,11 @@ public class ElectromagneticArrow extends Arrow{
     @Override
     protected void onHitEntity(@NotNull EntityHitResult result) {
         Entity entity = result.getEntity();
-        if(isMain){entity.invulnerableTime = 0;}
-        super.onHitEntity(result);
+        Entity owner = this.getOwner();
+        if(owner == null || (entity != owner && !owner.isAlliedTo(entity))){
+            if(isMain){entity.invulnerableTime = 0;}
+            super.onHitEntity(result);
+        }
     }
 
     @Override

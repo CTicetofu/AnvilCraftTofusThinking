@@ -48,6 +48,10 @@ public class AddonComponents {
             "is_active",
             it -> it.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL)
     );
+    public static final DataComponentType<Unit> DENSE = register(
+            "dense",
+            it -> it.persistent(Unit.CODEC)
+    );
     public static final DataComponentType<Byte> TYPE_NUMBER = register(
             "type_number",
             it -> it.persistent(Codec.BYTE).networkSynchronized(ByteBufCodecs.BYTE)

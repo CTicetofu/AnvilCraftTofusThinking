@@ -54,6 +54,7 @@ import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+import org.jspecify.annotations.NonNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -430,6 +431,26 @@ public class ElectromagneticCrossbow extends ProjectileWeaponItem implements ICa
             f = 1.0F;
         }
         return f;
+    }
+
+    @Override
+    public boolean isBarVisible(@NonNull ItemStack stack) {
+        return stack.getOrDefault(AddonComponents.LEFT_COUNT,0) > 0;
+    }
+
+    @Override
+    public int getBarWidth(@NonNull ItemStack stack) {
+        ChargedProjectiles projectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
+        if(projectiles != null && !projectiles.isEmpty()){
+            ItemStack inside = projectiles.getItems().getFirst();
+            return Math.round(stack.getOrDefault(AddonComponents.LEFT_COUNT,0) * 13F / inside.getMaxStackSize());
+        }
+        return 0;
+    }
+
+    @Override
+    public int getBarColor(@NonNull ItemStack stack) {
+        return 0x00CD66;
     }
 
     @OnlyIn(Dist.CLIENT)

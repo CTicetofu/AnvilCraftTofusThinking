@@ -34,7 +34,7 @@ public class AddonItems {
 
     public static final ItemEntry<AutoCanItem> AUTO_CAN = REGISTRUM.item("auto_can", properties ->
                     (AutoCanItem) new AutoCanItem(properties.rarity(Rarity.UNCOMMON).stacksTo(1))
-                            .withAttribute(new AttributeInstance(SlotAttribute.getOrCreate("charm"),1, AttributeModifier.Operation.ADD_VALUE))
+                            .withAttribute(new AttributeInstance(SlotAttribute.getOrCreate("charm"),1, AttributeModifier.Operation.ADD_VALUE,"auto_can"))
             )
             .model(DataGenUtil::noExtraModelOrState)
             .tag(AddonItemTags.CURIOS_CHARM)
@@ -42,7 +42,7 @@ public class AddonItems {
             .register();
 
     public static final ItemEntry<CurioBaseItem> CHARM_AMULET = REGISTRUM.item("charm_amulet",properties ->
-            new CurioBaseItem(properties.stacksTo(1).rarity(Rarity.UNCOMMON)).withAttribute(new AttributeInstance(SlotAttribute.getOrCreate("charm"),3, AttributeModifier.Operation.ADD_VALUE)))
+            new CurioBaseItem(properties.stacksTo(1).rarity(Rarity.UNCOMMON)).withAttribute(new AttributeInstance(SlotAttribute.getOrCreate("charm"),3, AttributeModifier.Operation.ADD_VALUE,"charm_amulet")))
             .defaultModel()
             .tag(AddonItemTags.CURIOS_CHARM)
             .register();
@@ -50,8 +50,8 @@ public class AddonItems {
     public static final ItemEntry<CurioBaseItem> ELASTIC_ANTI_FIRE_SHIELD = REGISTRUM.item("elastic_anti_fire_shield",properties ->
             (CurioBaseItem) new CurioBaseItem(properties.stacksTo(1).rarity(Rarity.UNCOMMON).fireResistant())
                             .withAttribute(
-                                    new AttributeInstance(Attributes.EXPLOSION_KNOCKBACK_RESISTANCE,1, AttributeModifier.Operation.ADD_VALUE),
-                                    new AttributeInstance(Attributes.BURNING_TIME,-1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                                    new AttributeInstance(Attributes.EXPLOSION_KNOCKBACK_RESISTANCE,1, AttributeModifier.Operation.ADD_VALUE,"elastic_anti_fire_shield"),
+                                    new AttributeInstance(Attributes.BURNING_TIME,-1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL,"elastic_anti_fire_shield")
                             )
                             .addComponent(
                                     Component.translatable("tooltip.anvilcraft_tofus_thinking.elastic_anti_fire_shield_1").withStyle(ChatFormatting.YELLOW),
@@ -66,9 +66,9 @@ public class AddonItems {
     public static final ItemEntry<AmethystGoldenRing> AMETHYST_GOLDEN_RING = REGISTRUM.item("amethyst_golden_ring", properties ->
                     (AmethystGoldenRing) new AmethystGoldenRing(properties.stacksTo(1).rarity(Rarity.UNCOMMON))
                             .withAttribute(
-                                    new AttributeInstance(Attributes.LUCK,1, AttributeModifier.Operation.ADD_VALUE),
-                                    new AttributeInstance(Attributes.MINING_EFFICIENCY,8, AttributeModifier.Operation.ADD_VALUE),
-                                    new AttributeInstance(Attributes.ARMOR_TOUGHNESS,2, AttributeModifier.Operation.ADD_VALUE)
+                                    new AttributeInstance(Attributes.LUCK,1, AttributeModifier.Operation.ADD_VALUE,"amethyst_golden_ring"),
+                                    new AttributeInstance(Attributes.MINING_EFFICIENCY,8, AttributeModifier.Operation.ADD_VALUE,"amethyst_golden_ring"),
+                                    new AttributeInstance(Attributes.ARMOR_TOUGHNESS,2, AttributeModifier.Operation.ADD_VALUE,"amethyst_golden_ring")
                             )
             )
             .defaultModel()
@@ -79,10 +79,10 @@ public class AddonItems {
     public static final ItemEntry<CurioBaseItem> SPEED_CHARM = REGISTRUM.item("speed_charm", properties ->
             (CurioBaseItem)new CurioBaseItem(properties.stacksTo(1).rarity(Rarity.UNCOMMON))
                             .withAttribute(
-                                    new AttributeInstance(Attributes.MOVEMENT_SPEED,0.2, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
-                                    new AttributeInstance(Attributes.WATER_MOVEMENT_EFFICIENCY,0.5, AttributeModifier.Operation.ADD_VALUE),
-                                    new AttributeInstance(Attributes.MOVEMENT_EFFICIENCY,0.4, AttributeModifier.Operation.ADD_VALUE),
-                                    new AttributeInstance(Attributes.SNEAKING_SPEED,0.3, AttributeModifier.Operation.ADD_VALUE)
+                                    new AttributeInstance(Attributes.MOVEMENT_SPEED,0.2, AttributeModifier.Operation.ADD_MULTIPLIED_BASE,"speed_charm"),
+                                    new AttributeInstance(Attributes.WATER_MOVEMENT_EFFICIENCY,0.5, AttributeModifier.Operation.ADD_VALUE,"speed_charm"),
+                                    new AttributeInstance(Attributes.MOVEMENT_EFFICIENCY,0.4, AttributeModifier.Operation.ADD_VALUE,"speed_charm"),
+                                    new AttributeInstance(Attributes.SNEAKING_SPEED,0.3, AttributeModifier.Operation.ADD_VALUE,"speed_charm")
                             ).addComponent(Component.translatable("tooltip.anvilcraft_tofus_thinking.speed_charm").withStyle(ChatFormatting.GRAY))
             )
             .defaultModel()
