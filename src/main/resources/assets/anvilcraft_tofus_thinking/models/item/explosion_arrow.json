@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "anvilcraft_tofus_thinking:item/explosion_arrow"
+  },
+  "overrides": [
+    {
+      "model": "anvilcraft_tofus_thinking:item/explosion_arrow_destroy",
+      "predicate": {
+        "anvilcraft_tofus_thinking:destroy_item": 1.0
+      }
+    }
+  ]
+}

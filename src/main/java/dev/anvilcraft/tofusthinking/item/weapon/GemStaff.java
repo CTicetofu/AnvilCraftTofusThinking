@@ -177,6 +177,7 @@ public class GemStaff extends Item implements LeftClickAction {
                     ItemStack result = other.copy();
                     result.shrink(consume);
                     player.containerMenu.setCarried(result);
+                    stack.set(AddonComponents.STORED_ENERGY,current + consume * 100000);
                     player.level().playLocalSound(player, SoundEvents.AMETHYST_BLOCK_STEP,player.getSoundSource(),1,1);
                     return true;
                 }

@@ -1,0 +1,10 @@
+{
+  "values": [
+    "#c:nuggets/iron",
+    "minecraft:snowball",
+    {
+      "id": "anvilcraft_tofus_thinking:explosion_arrow",
+      "required": false
+    }
+  ]
+}

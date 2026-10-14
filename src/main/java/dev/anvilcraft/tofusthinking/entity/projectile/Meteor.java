@@ -21,6 +21,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
+
 @SuppressWarnings("unused")
 public class Meteor extends AbstractHurtingProjectile implements ItemSupplier {
     private static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(Meteor.class, EntityDataSerializers.ITEM_STACK);
@@ -35,7 +37,7 @@ public class Meteor extends AbstractHurtingProjectile implements ItemSupplier {
     }
 
     protected float damage = 20;
-    protected float radius = 5;
+    protected float radius = 6;
 
     public void setItem(ItemStack stack) {
         if (stack.isEmpty()) {
@@ -71,7 +73,6 @@ public class Meteor extends AbstractHurtingProjectile implements ItemSupplier {
         super.onHit(result);
         if(!this.level().isClientSide){
             UnclassifiedUtil.spawnCenterParticles(level(), ParticleTypes.FLAME,this.getX(),this.getY(),this.getZ(),0,0,0.4F,0.1F,50,false);
-            doExplode();
             discard();
         }
     }
@@ -80,7 +81,7 @@ public class Meteor extends AbstractHurtingProjectile implements ItemSupplier {
         this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.GENERIC_EXPLODE, this.getSoundSource(), 1F, 1);
         this.level().getEntities(this,this.getBoundingBox().inflate(radius)).forEach(entity -> {
             if(canHitEntity(entity)){
-                float radio = 1 - this.distanceTo(entity) * 0.7F / this.radius;
+                float radio = 1 - this.distanceTo(entity) * 0.5F / this.radius;
                 entity.hurt(AddonDamageTypes.meteor(this.level(),this,this.getOwner()),radio * damage);
                 entity.invulnerableTime = 0;
             }
@@ -95,6 +96,14 @@ public class Meteor extends AbstractHurtingProjectile implements ItemSupplier {
         } else {
             if(this.tickCount > 300){this.discard();}
         }
+    }
+
+    @Override
+    public void remove(@NonNull RemovalReason reason) {
+        if(reason.shouldDestroy()){
+            doExplode();
+        }
+        super.remove(reason);
     }
 
     @Override

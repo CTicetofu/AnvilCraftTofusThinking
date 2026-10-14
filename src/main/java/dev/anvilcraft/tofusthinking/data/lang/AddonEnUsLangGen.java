@@ -42,6 +42,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.SONIC_BOOM_STAFF.asItem(),"Sonic Boom Staff");
         add(AddonItems.GEM_STAFF.asItem(),"Gem Staff");
         add(AddonItems.ELECTROMAGNETIC_CROSSBOW.asItem(),"Electromagnetic Crossbow");
+        add(AddonItems.EXPLOSION_ARROW.asItem(),"Explosion Arrow");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"Stable Prismarine Bricks");
@@ -104,6 +105,8 @@ public class AddonEnUsLangGen extends LanguageProvider {
                 """);
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","Right-click in the inventory to toggle whether it is in %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","Auto Attack Mode");
+        add("tooltip.anvilcraft_tofus_thinking.destroy_item_explosion","Destroy Item Mode");
+
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_auto","it automatically deals damage to nearby monsters when holding");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_normal","Deal damage to nearby creatures pointed by the crosshair");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_recovery","Restore energy slowly when in the rain or water");
@@ -175,6 +178,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonEntities.GEM_MISSILE.get(),"Gem Missile");
         add(AddonEntities.ELECTROMAGNETIC_ARROW.get(),"Arrow");
         add(AddonEntities.ELECTROMAGNETIC_PROJECTILE.get(),"Electromagnetic Projectile");
+        add(AddonEntities.EXPLOSION_ARROW.get(),"Explosion Arrow");
     }
     private void addConfig(){
         ConfigData.readConfigClass(this, AnvilCraftTofusThinkCommonConfig.class);
@@ -192,6 +196,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("death.attack.tofusThinking.rewind_attack","%s has not been proven to exist by %s");
         add("death.attack.tofusThinking.bounce_wither_skull","%s was killed by the wither skull %s had launch");
         add("death.attack.tofusThinking.counter","%s impulsively attacked %s");
+        add("death.attack.tofusThinking.metor","%s It was shattered by the meteor from %s explosion");
         add("death.attack.tofusThinking.gem_missile","%s didn't get a clear look to gem by %s");
         add("death.attack.tofusThinking.nugget","%s die for acute metal poisoning,the murderer is %s");
 

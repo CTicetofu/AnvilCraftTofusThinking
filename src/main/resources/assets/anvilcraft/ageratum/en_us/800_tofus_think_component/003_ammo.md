@@ -1,8 +1,9 @@
 ---
 navigation:
-  title: "Curse Snowball"
+  title: "New Ammo"
 items:
   - anvilcraft_tofus_thinking:curse_snowball
+  - anvilcraft_tofus_thinking:explosion_arrow
 ---
 
 # Curse Snowball
@@ -20,5 +21,17 @@ items:
 <tip>
 Perhaps certain Mob can be captured by <ref item="anvilcraft:resin_block"/>after shrinking？
 </tip>
+
+# Explosion Arrow
+
+>Don't blow up your house too
+
+
+<item id="anvilcraft_tofus_thinking:explosion_arrow"/>
+
+-If the destroy item is not enabled, the explosion will preserve blocks as much as possible (similar to the default configuration of TNT)
+-It won't destroy ore
+-For blocks with explosion resistance less than 100, calculate the explosion resistance by * 0.01, otherwise -99
 ## Craft
+<recipe id="anvilcraft_tofus_thinking:explosion_arrow"/>
 <recipe id="anvilcraft_tofus_thinking:curse_snowball"/>

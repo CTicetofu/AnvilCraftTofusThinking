@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "anvilcraft_tofus_thinking:explosion_arrow"
+    }
+  ],
+  "result": {
+    "components": {
+      "anvilcraft_tofus_thinking:destroy_item": true
+    },
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:explosion_arrow"
+  }
+}

@@ -14,12 +14,14 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.Tags;
 
 public class AddonItemRecipeLoader {
     public static <T extends Item> void autoCan(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
@@ -32,6 +34,7 @@ public class AddonItemRecipeLoader {
                 .unlockedBy("has_tin_can", RegistrumRecipeProvider.has(ModItems.TIN_CAN))
                 .save(provider);
     }
+
     public static <T extends Item> void curseSnowball(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get(),4)
                 .pattern(" B ")
@@ -40,6 +43,18 @@ public class AddonItemRecipeLoader {
                 .define('A', ModItems.CURSED_GOLD_NUGGET.asItem())
                 .define('B', Items.SNOWBALL)
                 .unlockedBy("has_snowball", RegistrumRecipeProvider.has(ModItems.CURSED_GOLD_INGOT.asItem()))
+                .save(provider);
+    }
+
+    public static <T extends Item> void explosionArrow(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get(),4)
+                .pattern("CBC")
+                .pattern("BAB")
+                .pattern("CBC")
+                .define('A', Items.ARROW)
+                .define('B', ItemTags.SAND)
+                .define('C', Tags.Items.GUNPOWDERS)
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.ARROW), RegistrumRecipeProvider.has(Items.ARROW))
                 .save(provider);
     }
 

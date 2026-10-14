@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.event;
 
 import dev.anvilcraft.tofusthinking.entity.ExtraDamageSource;
 import dev.anvilcraft.tofusthinking.entity.projectile.GemMissile;
+import dev.anvilcraft.tofusthinking.entity.projectile.Meteor;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
@@ -90,6 +91,7 @@ public class LivingEventHandler {
     public static void onHighLivingInComing(LivingIncomingDamageEvent event){
         DamageSource source = event.getSource();
         LivingEntity target = event.getEntity();
+        Entity direct = source.getDirectEntity();
         if(source.is(DamageTypeTags.IS_FIRE) || source.is(DamageTypeTags.IS_FREEZING)){
             if(target.hasEffect(AddonMobEffects.TEMPERATURE_TOLERANCE)){event.setCanceled(true);}
         }
@@ -97,12 +99,12 @@ public class LivingEventHandler {
             event.addReductionModifier(DamageContainer.Reduction.ARMOR,(LivingEventHandler::plusDefense));
             event.addReductionModifier(DamageContainer.Reduction.ENCHANTMENTS,(LivingEventHandler::plusDefense));
         }
-        if(source.getDirectEntity() instanceof GemMissile missile && missile.lowMagicResist){
+        if(direct instanceof Meteor || (direct instanceof GemMissile missile&&missile.lowMagicResist)){
             event.addReductionModifier(DamageContainer.Reduction.MOB_EFFECTS,(LivingEventHandler::lowMagicAbsorb));
             event.addReductionModifier(DamageContainer.Reduction.ENCHANTMENTS,(LivingEventHandler::lowMagicAbsorb));
         }
         if(AddonItems.ELASTIC_ANTI_FIRE_SHIELD.get().isEquippedBy(target)){
-            if(source.getDirectEntity() instanceof LivingEntity living){
+            if(direct instanceof LivingEntity living){
                 Vec3 offset = living.position().subtract(target.position()).normalize();
                 living.knockback(0.4F,-offset.x,-offset.z);
                 if(living.onGround()){living.push(0,0.05,0);}

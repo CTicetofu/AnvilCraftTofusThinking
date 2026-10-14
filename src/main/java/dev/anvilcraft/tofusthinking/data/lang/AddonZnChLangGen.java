@@ -39,6 +39,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.SONIC_BOOM_STAFF.asItem(),"音爆法杖");
         add(AddonItems.GEM_STAFF.asItem(),"宝石法杖");
         add(AddonItems.ELECTROMAGNETIC_CROSSBOW.asItem(),"电磁弩");
+        add(AddonItems.EXPLOSION_ARROW.asItem(),"爆破箭");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"坚固海晶石砖");
@@ -100,6 +101,7 @@ public class AddonZnChLangGen extends LanguageProvider {
                 """);
         add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","在物品栏界面右键以改变是否为 %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","自动攻击模式");
+        add("tooltip.anvilcraft_tofus_thinking.destroy_item_explosion","破坏掉落物模式");
 
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_auto","持有时对自动对周围怪物造成伤害");
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_normal","对准星所指位置附近生物造成伤害");
@@ -166,6 +168,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonEntities.GEM_MISSILE.get(),"宝石飞弹");
         add(AddonEntities.ELECTROMAGNETIC_ARROW.get(),"箭");
         add(AddonEntities.ELECTROMAGNETIC_PROJECTILE.get(),"电磁弹射物");
+        add(AddonEntities.EXPLOSION_ARROW.get(),"爆破箭");
     }
     private void addConfig(){
         add("anvilcraft_tofus_thinking.configuration.section.anvilcraft.tofus.thinking.common.toml","铁砧工艺：豆之思维 通用配置");
@@ -187,6 +190,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("death.attack.tofusThinking.rewind_attack","%s 未能被 %s 证明存在");
         add("death.attack.tofusThinking.bounce_wither_skull","%s 被 %s 发射的弹射凋灵骷髅头击杀");
         add("death.attack.tofusThinking.counter","%s 过于冲动的攻击了 %s");
+        add("death.attack.tofusThinking.metor","%s 被 %s 的流星炸的粉碎");
         add("death.attack.tofusThinking.gem_missile","%s 没看清 %s 的宝石");
         add("death.attack.tofusThinking.nugget","%s 死于急性金属中毒，凶手是 %s");
 

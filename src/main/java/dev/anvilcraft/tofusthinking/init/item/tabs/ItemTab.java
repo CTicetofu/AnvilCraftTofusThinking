@@ -14,6 +14,7 @@ public class ItemTab extends BaseCreativeTab{
         this.accept(AddonItems.ELASTIC_ANTI_FIRE_SHIELD);
         this.accept(AddonItems.SPEED_CHARM);
         this.accept(AddonItems.CURSE_SNOWBALL_ITEM);
+        this.accept(AddonItems.EXPLOSION_ARROW);
         this.acceptEnchant(AddonItems.AMETHYST_HAMMER,new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4));
         this.acceptEnchant(AddonItems.ROYAL_STEEL_HAMMER,new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4));
         this.acceptEnchant(AddonItems.LIGHTNING_HAMMER,new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4));

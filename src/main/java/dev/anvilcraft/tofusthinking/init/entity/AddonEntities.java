@@ -1,10 +1,7 @@
 package dev.anvilcraft.tofusthinking.init.entity;
 
 import dev.anvilcraft.lib.v2.registrum.util.entry.EntityEntry;
-import dev.anvilcraft.tofusthinking.client.renderer.entity.ElectromagneticProjectileRenderer;
-import dev.anvilcraft.tofusthinking.client.renderer.entity.GemMissileRenderer;
-import dev.anvilcraft.tofusthinking.client.renderer.entity.MeteorRenderer;
-import dev.anvilcraft.tofusthinking.client.renderer.entity.StrangeWitherSkullRenderer;
+import dev.anvilcraft.tofusthinking.client.renderer.entity.*;
 import dev.anvilcraft.tofusthinking.entity.FallingImitativeBlockEntity;
 import dev.anvilcraft.tofusthinking.entity.livingEntity.StrangeWither;
 import dev.anvilcraft.tofusthinking.entity.projectile.*;
@@ -57,6 +54,12 @@ public class AddonEntities {
             .<ElectromagneticProjectile>entity("electromagnetic_projectile",ElectromagneticProjectile::new, MobCategory.MISC)
             .properties(it -> it.sized(0.5F,0.5F).eyeHeight(0.13F).clientTrackingRange(4).updateInterval(20))
             .renderer(() -> ElectromagneticProjectileRenderer::new)
+            .register();
+
+    public static final EntityEntry<? extends ExplosionArrow> EXPLOSION_ARROW = REGISTRUM
+            .<ExplosionArrow>entity("explosion_arrow",ExplosionArrow::new, MobCategory.MISC)
+            .properties(it -> it.sized(0.5F,0.5F).eyeHeight(0.13F).clientTrackingRange(4).updateInterval(20))
+            .renderer(() -> ExplosionArrowRenderer::new)
             .register();
 
     public static final EntityEntry<? extends FallingImitativeBlockEntity> FALLING_SPECTRAL_BLOCK = REGISTRUM

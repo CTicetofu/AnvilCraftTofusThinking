@@ -2,7 +2,6 @@ package dev.anvilcraft.tofusthinking.util;
 
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -46,7 +45,7 @@ public class ItemUtil {
     }
 
     public static boolean consumeEnergy(LivingEntity entity, ItemStack stack, int consumption){
-        if(entity instanceof Player player && player.getAbilities().instabuild){return true;}
+        if(entity.hasInfiniteMaterials()){return true;}
         int energy = stack.getOrDefault(AddonComponents.STORED_ENERGY,0);
         if(energy >= consumption){
             stack.set(AddonComponents.STORED_ENERGY,energy - consumption);

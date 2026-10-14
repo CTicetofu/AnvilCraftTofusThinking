@@ -31,6 +31,11 @@ public class AddonItemTagLoader {
                 .add(findResourceKey(Items.LINGERING_POTION))
                 .add(findResourceKey(Items.FIRE_CHARGE))
                 .addOptional(AddonItems.CURSE_SNOWBALL_ITEM.getId());
+
+        provider.addTag(AddonItemTags.ELECTROMAGNETIC_CROSSBOW_CAN_INFINITY)
+                .addTag(Tags.Items.NUGGETS_IRON)
+                .add(findResourceKey(Items.SNOWBALL))
+                .addOptional(AddonItems.EXPLOSION_ARROW.getId());
     }
     private static ResourceKey<Item> findResourceKey(Item item) {
         return ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item));

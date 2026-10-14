@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:arrow"
+    },
+    "B": {
+      "tag": "minecraft:sand"
+    },
+    "C": {
+      "tag": "c:gunpowders"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "count": 4,
+    "id": "anvilcraft_tofus_thinking:explosion_arrow"
+  }
+}

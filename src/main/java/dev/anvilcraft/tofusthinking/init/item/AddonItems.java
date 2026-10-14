@@ -9,6 +9,7 @@ import dev.anvilcraft.tofusthinking.item.food.AutoCanItem;
 import dev.anvilcraft.tofusthinking.item.tool.HammerItem;
 import dev.anvilcraft.tofusthinking.item.tool.LightningHammer;
 import dev.anvilcraft.tofusthinking.item.weapon.*;
+import dev.anvilcraft.tofusthinking.item.weapon.ammo.ExplosionArrowItem;
 import dev.anvilcraft.tofusthinking.util.DataClass.AttributeInstance;
 import dev.anvilcraft.tofusthinking.util.DataClass.EnchantmentKeyInstance;
 import dev.dubhe.anvilcraft.item.ModTiers;
@@ -152,6 +153,13 @@ public class AddonItems {
             .model(DataGenUtil::noExtraModelOrState)
             .recipe(AddonItemRecipeLoader::electromagneticCrossbow)
             .tag(AddonItemTags.NORMAL_MOVEMENT_WHEN_USE,ItemTags.CROSSBOW_ENCHANTABLE)
+            .register();
+
+    public static final ItemEntry<ExplosionArrowItem> EXPLOSION_ARROW = REGISTRUM.item("explosion_arrow", properties ->
+                    new ExplosionArrowItem(properties.stacksTo(64)))
+            .model(DataGenUtil::noExtraModelOrState)
+            .recipe(AddonItemRecipeLoader::explosionArrow)
+            .tag(ItemTags.ARROWS)
             .register();
 
     public static ItemStack enchant(ItemLike item, HolderLookup.Provider registries, EnchantmentKeyInstance... instances){

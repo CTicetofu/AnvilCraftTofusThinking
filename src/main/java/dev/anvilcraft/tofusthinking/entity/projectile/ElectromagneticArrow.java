@@ -24,6 +24,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import javax.annotation.Nullable;
 
@@ -97,11 +98,8 @@ public class ElectromagneticArrow extends Arrow{
     @Override
     protected void onHitEntity(@NotNull EntityHitResult result) {
         Entity entity = result.getEntity();
-        Entity owner = this.getOwner();
-        if(owner == null || (entity != owner && !owner.isAlliedTo(entity))){
-            if(isMain){entity.invulnerableTime = 0;}
-            super.onHitEntity(result);
-        }
+        if(isMain){entity.invulnerableTime = 0;}
+        super.onHitEntity(result);
     }
 
     @Override
@@ -109,6 +107,13 @@ public class ElectromagneticArrow extends Arrow{
         super.onHitBlock(result);
         int i = this.entityData.get(ID_LOYALTY);
         if(i > 0 && this.pickup == Pickup.ALLOWED){this.shouldReturn = true;}
+    }
+
+    @Override
+    protected boolean canHitEntity(@NonNull Entity target) {
+        Entity owner = this.getOwner();
+        if(owner != null && (owner == target || owner.isAlliedTo(target))){return false;}
+        return super.canHitEntity(target);
     }
 
     protected boolean tryPickup(@NotNull Player player) {

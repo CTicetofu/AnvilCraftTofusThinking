@@ -16,7 +16,7 @@ items:
 -Cool down for 0.5 seconds per shot, and the velocity of projectiles other than fireworks is 80m/s
 -Automatically search for arrow loads in the inventory, unless the offhand has other items to load
 -Can be loaded with metal nuggets or gems as ammo, the mass of the metal nugget determines the damage, and some types have additional effects
--It can naturally enchant all the enchantments of the crossbow and respond to the enchantments of the bow. In addition, infinity enchantments will not consume iron grains during loading, and loyalty will automatically return ordinary or potion arrows that can be picked up to the player's side upon landing
+-It can naturally enchant all the enchantments of the crossbow and respond to the enchantments of the bow. In addition, infinity enchantments will not consume iron nugget or snowball or explosion arrow during loading, and loyalty will automatically return ordinary or potion arrows that can be picked up to the player's side upon landing
 -Snowballs, eggs, ender pearls, potions, flamethrowers, etc. can also be fired, but multiple shots will only be effective against arrows, fireworks, gems, metal particles, snowballs, throwing potions, flamethrowers, etc
 
 | Ammo | Special effect|

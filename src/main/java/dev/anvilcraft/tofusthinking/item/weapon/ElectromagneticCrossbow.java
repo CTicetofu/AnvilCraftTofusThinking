@@ -217,7 +217,7 @@ public class ElectromagneticCrossbow extends ProjectileWeaponItem implements ICa
         int consumeCount = 0;
         if(!shadow && shooter.level() instanceof ServerLevel level){
             if(!shooter.hasInfiniteMaterials() && (!(ammo.getItem() instanceof ArrowItem arrowItem) || !arrowItem.isInfinite(ammo,weapon,shooter))){
-                if(!ammo.is(Tags.Items.NUGGETS_IRON) || weapon.getEnchantmentLevel(level.holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.INFINITY)) <= 0){
+                if(!ammo.is(AddonItemTags.ELECTROMAGNETIC_CROSSBOW_CAN_INFINITY) || weapon.getEnchantmentLevel(level.holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.INFINITY)) <= 0){
                     consumeCount = EnchantmentHelper.processAmmoUse(level, weapon, ammo, 1);
                 }
             }

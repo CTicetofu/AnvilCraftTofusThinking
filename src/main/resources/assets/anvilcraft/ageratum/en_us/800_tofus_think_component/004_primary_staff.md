@@ -39,6 +39,7 @@ You may have noticed that this is an inactive Staff, which can be used to accumu
 - Differently, it is launched with the left button
 - The effect varies depending on the gemstone
 - The damage logic is similar to [Local invincibility](https://terraria.wiki.gg/wiki/Invincibility_frame#Local_invincibility_2), with each projectile dealing 10 local invincibility frames (actually tick?)
+- It can be charged using quartz, with each quartz providing 100kFE
 
 >-Amethyst: Track targets within 10 grids
 >-Huang Yu: When hit, deals half of its own damage to entities within a radius of 4 squares
