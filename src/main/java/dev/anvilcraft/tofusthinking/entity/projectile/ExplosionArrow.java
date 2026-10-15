@@ -84,6 +84,7 @@ public class ExplosionArrow extends AbstractArrow {
             );
             if (net.neoforged.neoforge.event.EventHooks.onExplosionStart(this.level(), explosion)) {return;}
             explosion.explode();
+            explosion.finalizeExplosion(true);
             for (ServerPlayer serverplayer : serverLevel.players()) {
                 if (serverplayer.distanceToSqr(pos.x, pos.y, pos.z) < 4096.0) {
                     serverplayer.connection
