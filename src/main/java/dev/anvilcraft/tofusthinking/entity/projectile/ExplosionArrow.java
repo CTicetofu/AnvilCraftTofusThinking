@@ -5,6 +5,9 @@ import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.protocol.game.ClientboundExplodePacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -58,8 +61,9 @@ public class ExplosionArrow extends AbstractArrow {
     }
 
     private void makeExplode(){
-        if(!this.level().isClientSide){
+        if(this.level() instanceof ServerLevel serverLevel){
             Entity owner = this.getOwner();
+            Vec3 pos = this.position();
             DamageSource source = this.damageSources().explosion(this,owner);
             ExplosionDamageCalculator calculator = destroyItem ? EXPLOSION_ARROW_DESTROY_EXPLOSION_CALCULATOR : EXPLOSION_ARROW_EXPLOSION_CALCULATOR;
             Explosion.BlockInteraction interaction = destroyItem ? Explosion.BlockInteraction.DESTROY_WITH_DECAY : Explosion.BlockInteraction.DESTROY;
@@ -78,10 +82,27 @@ public class ExplosionArrow extends AbstractArrow {
                     ParticleTypes.EXPLOSION_EMITTER,
                     SoundEvents.GENERIC_EXPLODE
             );
-            if (net.neoforged.neoforge.event.EventHooks.onExplosionStart(this.level(), explosion)) return;
+            if (net.neoforged.neoforge.event.EventHooks.onExplosionStart(this.level(), explosion)) {return;}
             explosion.explode();
-            explosion.finalizeExplosion(true);
-            this.level().explode(this, source,EXPLOSION_ARROW_EXPLOSION_CALCULATOR,this.position(),4, false, Level.ExplosionInteraction.TNT);
+            for (ServerPlayer serverplayer : serverLevel.players()) {
+                if (serverplayer.distanceToSqr(pos.x, pos.y, pos.z) < 4096.0) {
+                    serverplayer.connection
+                            .send(
+                                    new ClientboundExplodePacket(
+                                            pos.x,
+                                            pos.y,
+                                            pos.z,
+                                            4,
+                                            explosion.getToBlow(),
+                                            explosion.getHitPlayers().get(serverplayer),
+                                            explosion.getBlockInteraction(),
+                                            explosion.getSmallExplosionParticles(),
+                                            explosion.getLargeExplosionParticles(),
+                                            explosion.getExplosionSound()
+                                    )
+                            );
+                }
+            }
             this.discard();
         }
     }
