@@ -51,6 +51,7 @@ public class ExplosionArrow extends AbstractArrow {
     @Override
     protected void onHitEntity(@NonNull EntityHitResult result) {
         makeExplode();
+        discard();
     }
 
     @Override
@@ -58,6 +59,12 @@ public class ExplosionArrow extends AbstractArrow {
         BlockState blockstate = this.level().getBlockState(result.getBlockPos());
         blockstate.onProjectileHit(this.level(), blockstate, result, this);
         makeExplode();
+        discard();
+    }
+
+    @Override
+    public boolean ignoreExplosion(@NonNull Explosion explosion) {
+        return true;
     }
 
     private void makeExplode(){
@@ -72,9 +79,9 @@ public class ExplosionArrow extends AbstractArrow {
                     this,
                     source,
                     calculator,
-                    this.getX(),
-                    this.getY(),
-                    this.getZ(),
+                    pos.x,
+                    pos.y,
+                    pos.z,
                     4,
                     false,
                     interaction,
@@ -96,15 +103,14 @@ public class ExplosionArrow extends AbstractArrow {
                                             4,
                                             explosion.getToBlow(),
                                             explosion.getHitPlayers().get(serverplayer),
-                                            explosion.getBlockInteraction(),
-                                            explosion.getSmallExplosionParticles(),
-                                            explosion.getLargeExplosionParticles(),
-                                            explosion.getExplosionSound()
+                                            interaction,
+                                            ParticleTypes.EXPLOSION,
+                                            ParticleTypes.EXPLOSION_EMITTER,
+                                            SoundEvents.GENERIC_EXPLODE
                                     )
                             );
                 }
             }
-            this.discard();
         }
     }
 
@@ -128,21 +134,12 @@ public class ExplosionArrow extends AbstractArrow {
         public boolean shouldDamageEntity(@NotNull Explosion explosion, @NotNull Entity entity) {
             Entity owner = explosion.getIndirectSourceEntity();
             if(owner != null && (owner == entity || owner.isAlliedTo(entity))){return false;}
-            return destroyItem || !(entity instanceof ItemEntity);
+            if(entity instanceof ItemEntity){return destroyItem;}
+            return true;
         }
 
         public float getKnockbackMultiplier(@NotNull Entity entity) {
-            if(entity instanceof ItemEntity){return 0.1F;}
-            return 1F;
-        }
-
-        public float getEntityDamageAmount(@NonNull Explosion explosion, @NonNull Entity entity) {
-            float f = explosion.radius() * 2.0F;
-            float rate = 1;
-            Vec3 vec3 = explosion.center();
-            double d0 = Math.sqrt(entity.distanceToSqr(vec3)) / (double)f;
-            double d1 = 1.0 - d0;
-            return (float)((d1 * d1 + d1) / 2.0 * 5.0 * (double)f * rate + 1.0);
+            return !destroyItem && entity instanceof ItemEntity ? 0 : 1F;
         }
 
         protected float lowExplosionResistance(BlockState state, @NotNull Explosion explosion, @NotNull BlockGetter reader, @NotNull BlockPos pos){

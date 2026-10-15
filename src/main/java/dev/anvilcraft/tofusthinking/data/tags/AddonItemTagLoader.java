@@ -34,8 +34,7 @@ public class AddonItemTagLoader {
 
         provider.addTag(AddonItemTags.ELECTROMAGNETIC_CROSSBOW_CAN_INFINITY)
                 .addTag(Tags.Items.NUGGETS_IRON)
-                .add(findResourceKey(Items.SNOWBALL))
-                .addOptional(AddonItems.EXPLOSION_ARROW.getId());
+                .add(findResourceKey(Items.SNOWBALL));
     }
     private static ResourceKey<Item> findResourceKey(Item item) {
         return ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item));

@@ -32,6 +32,10 @@ items:
 - 若未启用破坏掉落物，则其爆炸会尽可能保留方块（如同默认配置的TNT）
 - 不会炸毁矿物
 - 对爆炸抗性小于100的方块，计算爆炸抗性时 * 0.01，否则 -99
+
+<tip>
+试试给它附魔无限？如果你能的话
+</tip>
 ## 合成
 <recipe id="anvilcraft_tofus_thinking:explosion_arrow"/>
 <recipe id="anvilcraft_tofus_thinking:curse_snowball"/>

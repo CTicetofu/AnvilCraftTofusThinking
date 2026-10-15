@@ -32,6 +32,10 @@ Perhaps certain Mob can be captured by <ref item="anvilcraft:resin_block"/>after
 -If the destroy item is not enabled, the explosion will preserve blocks as much as possible (similar to the default configuration of TNT)
 -It won't destroy ore
 -For blocks with explosion resistance less than 100, calculate the explosion resistance by * 0.01, otherwise -99
+
+<tip>
+try to enchant it Infinity?If you can
+</tip>
 ## Craft
 <recipe id="anvilcraft_tofus_thinking:explosion_arrow"/>
 <recipe id="anvilcraft_tofus_thinking:curse_snowball"/>

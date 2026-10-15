@@ -5,6 +5,7 @@ import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,6 +18,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 
@@ -42,7 +44,7 @@ public class ExplosionArrowItem extends ArrowItem {
 
     @Override
     public boolean isInfinite(@NonNull ItemStack ammo, @NonNull ItemStack bow, @NonNull LivingEntity livingEntity) {
-        return false;
+        return ammo.getEnchantmentLevel(livingEntity.level().holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.INFINITY)) > 0;
     }
 
     @Override

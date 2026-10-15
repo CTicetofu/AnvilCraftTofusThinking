@@ -2,11 +2,13 @@ package dev.anvilcraft.tofusthinking.setup;
 
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.entity.livingEntity.StrangeWither;
+import dev.anvilcraft.tofusthinking.init.AddonDispenserBehavior;
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
 import dev.anvilcraft.tofusthinking.item.weapon.OriginalConduitStaff;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 
 @EventBusSubscriber(modid = AnvilCraftTofusThinking.MOD_ID)
@@ -19,5 +21,10 @@ public class CommonSetup {
     @SubscribeEvent
     public static void onFMLCommonSetup(FMLCommonSetupEvent event){
         OriginalConduitStaff.initAbility();
+    }
+
+    @SubscribeEvent
+    public static void onFMLLoadCompleteEvent(FMLLoadCompleteEvent event){
+        AddonDispenserBehavior.register();
     }
 }
