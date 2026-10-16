@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.entity;
 
 import dev.anvilcraft.tofusthinking.api.block.Falling;
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
+import dev.dubhe.anvilcraft.api.entity.IAnvilCraftEntityExtension;
 import dev.dubhe.anvilcraft.api.event.AnvilEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -17,7 +18,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.NeoForge;
 import org.jetbrains.annotations.NotNull;
 
-public class FallingImitativeBlockEntity extends FallingBlockEntity {
+public class FallingImitativeBlockEntity extends FallingBlockEntity implements IAnvilCraftEntityExtension {
     private float beforeLandDistance = 0f;
     public FallingImitativeBlockEntity(EntityType<? extends FallingImitativeBlockEntity> entityType, Level level) {
         super(entityType, level);
@@ -112,5 +113,10 @@ public class FallingImitativeBlockEntity extends FallingBlockEntity {
     protected void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putFloat("BeforeLandDistance",beforeLandDistance);
+    }
+
+    @Override
+    public boolean anvilcraft$canCollisionCraft() {
+        return false;
     }
 }
