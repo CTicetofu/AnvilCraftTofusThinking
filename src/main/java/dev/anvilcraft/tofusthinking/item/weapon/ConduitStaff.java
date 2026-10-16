@@ -1,6 +1,8 @@
 package dev.anvilcraft.tofusthinking.item.weapon;
 
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
+import dev.anvilcraft.tofusthinking.attachment.magic.CooldownManager;
+import dev.anvilcraft.tofusthinking.client.ClientCooldownCache;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
@@ -13,6 +15,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -45,8 +48,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ConduitStaff extends Item implements ICapacitorChargeable {
+    public static final String SKILL_ID = "conduit_attack";
+    public static final String SKILL_ID_2 = "auto_conduit_attack";
     public static final int MAX_ENERGY = 16000000;
     public static ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
     public ConduitStaff(Properties properties) {
@@ -105,27 +111,32 @@ public class ConduitStaff extends Item implements ICapacitorChargeable {
 
     @Override
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack, int remainingUseDuration) {
-        int useTick = getUseDuration(stack,livingEntity) - remainingUseDuration + 1;
-        if(useTick % 20 == 0 && !level.isClientSide && ItemUtil.consumeEnergy(livingEntity,stack,getNeedEnergy(false))){
-            if(isAutoHunting(stack)){return;}
-            HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,12).raycast();
-            Entity entity = null;
-            if(hitResult instanceof EntityHitResult entityHitResult){
-                entity = entityHitResult.getEntity();
-            }
-            dealAttack(level,livingEntity,stack,entity,hitResult.getLocation());
+        if(isAutoHunting(stack) && level.isClientSide){return;}
+        if(livingEntity instanceof ServerPlayer player && !CooldownManager.isOnCooldown(player,SKILL_ID) && ItemUtil.consumeEnergy(livingEntity,stack,getNeedEnergy(false))){
+            startToAttack(level, livingEntity, stack);
+            CooldownManager.addCooldown(player,SKILL_ID,20);
         }
+    }
+
+    public static void startToAttack(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack){
+        HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,12).raycast();
+        Entity entity = null;
+        if(hitResult instanceof EntityHitResult entityHitResult){
+            entity = entityHitResult.getEntity();
+        }
+        dealAttack(level,livingEntity,stack,entity,hitResult.getLocation());
     }
 
     @Override
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
-        if(!level.isClientSide && entity.tickCount % 40 == 0 && entity instanceof Player player){
+        if(!level.isClientSide && entity instanceof ServerPlayer player && player.tickCount % 40 == 0){
             if(player.isInWaterRainOrBubble()){
                 ItemUtil.addEnergy(stack,20000);
                 player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER,400,0,false,false,true));
             }
             if(!isAutoHunting(stack)){return;}
-            if(!ItemUtil.hasEnoughEnergy(stack,getNeedEnergy(true))){return;}
+            if(CooldownManager.isOnCooldown(player,SKILL_ID_2) || !ItemUtil.hasEnoughEnergy(stack,getNeedEnergy(true))){return;}
+            CooldownManager.addCooldown(player,SKILL_ID_2,35);
             if(isSelected || player.getOffhandItem() == stack){
                 List<Monster> monsters = level.getEntitiesOfClass(Monster.class,new AABB(player.blockPosition()).inflate(12), monster -> !monster.isInvulnerable() && monster.isAlive());
                 if(!monsters.isEmpty() && ItemUtil.consumeEnergy(player,stack,getNeedEnergy(true))){
@@ -169,6 +180,27 @@ public class ConduitStaff extends Item implements ICapacitorChargeable {
                         EquipmentSlotGroup.MAINHAND
                 )
                 .build();
+    }
+
+    public static String getSkillId(ItemStack stack){
+        return isAutoHunting(stack) ? SKILL_ID_2 : SKILL_ID;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public boolean isBarVisible(@NotNull ItemStack stack) {
+        return ClientCooldownCache.isOnCooldown(getSkillId(stack));
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public int getBarWidth(@NotNull ItemStack stack) {
+        return (int) (13 * ClientCooldownCache.getProgress(getSkillId(stack)));
+    }
+
+    @Override
+    public int getBarColor(@NotNull ItemStack stack) {
+        return Objects.equals(getSkillId(stack), SKILL_ID) ? 0x00CD66 : 0xFFA54F;
     }
     @OnlyIn(Dist.CLIENT)
     @Override

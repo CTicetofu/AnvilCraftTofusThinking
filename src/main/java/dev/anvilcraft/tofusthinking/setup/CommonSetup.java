@@ -20,11 +20,11 @@ public class CommonSetup {
 
     @SubscribeEvent
     public static void onFMLCommonSetup(FMLCommonSetupEvent event){
-        OriginalConduitStaff.initAbility();
+        event.enqueueWork(OriginalConduitStaff::initAbility);
     }
 
     @SubscribeEvent
     public static void onFMLLoadCompleteEvent(FMLLoadCompleteEvent event){
-        AddonDispenserBehavior.register();
+        event.enqueueWork(AddonDispenserBehavior::register);
     }
 }

@@ -1,5 +1,6 @@
 package dev.anvilcraft.tofusthinking.event;
 
+import dev.anvilcraft.tofusthinking.attachment.magic.CooldownManager;
 import dev.anvilcraft.tofusthinking.entity.ExtraDamageSource;
 import dev.anvilcraft.tofusthinking.entity.projectile.GemMissile;
 import dev.anvilcraft.tofusthinking.entity.projectile.Meteor;
@@ -8,8 +9,11 @@ import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
+import dev.anvilcraft.tofusthinking.item.weapon.OriginalConduitStaff;
 import dev.anvilcraft.tofusthinking.item.weapon.StarOfTheSea;
+import dev.anvilcraft.tofusthinking.mixin.EntityAccess;
 import dev.anvilcraft.tofusthinking.mobEffect.NotApplyEffect;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
@@ -43,6 +47,22 @@ public class LivingEventHandler {
         DamageSource source = entity.getLastDamageSource();
         if(source != null){
             if(source.is(AddonDamageTypeTags.REWIND)){event.setCanceled(true);}
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void onLivingBreath(LivingBreatheEvent event){
+        if(event.getEntity() instanceof ServerPlayer player){
+            if(CooldownManager.isOnCooldown(player, OriginalConduitStaff.BREATH)){
+                int max = player.getMaxAirSupply();
+                event.setCanBreathe(true);
+                event.setConsumeAirAmount(0);
+                event.setRefillAirAmount(max);
+                if(player.getAirSupply() < max){
+                    //如果你觉得这个写的很奇怪，那你不该问我，我也不想这样，你问本体写的什么鬼Mixin
+                    player.getEntityData().set(((EntityAccess)player).getDATA_AIR_SUPPLY_ID(),max);
+                }
+            }
         }
     }
 

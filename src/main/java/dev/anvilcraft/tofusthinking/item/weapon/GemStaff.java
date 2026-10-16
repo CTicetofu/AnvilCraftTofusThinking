@@ -45,7 +45,7 @@ import java.util.*;
 public class GemStaff extends Item implements LeftClickAction {
     public static final int MAX_ENERGY = 1000000;
     public static final int NEED = 2000;
-    public static final String SPELL_ID = "GemMissile";
+    public static final String SKILL_ID = "GemMissile";
     public GemStaff(Properties properties){
         super(properties);
     }
@@ -118,8 +118,8 @@ public class GemStaff extends Item implements LeftClickAction {
     }
 
     public void shootGemMissile(ItemStack stack, ServerPlayer player, Level level){
-        if(CooldownManager.isOnCooldown(player,SPELL_ID) ||!ItemUtil.consumeEnergy(player,stack,NEED)){return;}
-        CooldownManager.addCooldown(player,SPELL_ID,20);
+        if(CooldownManager.isOnCooldown(player, SKILL_ID) ||!ItemUtil.consumeEnergy(player,stack,NEED)){return;}
+        CooldownManager.addCooldown(player, SKILL_ID,20);
         GemMissile missile = new GemMissile(level,player);
         missile.setPos(player.getEyePosition());
         missile.setDeltaMovement(player.getLookAngle().scale(1F));
@@ -273,13 +273,13 @@ public class GemStaff extends Item implements LeftClickAction {
     @OnlyIn(Dist.CLIENT)
     @Override
     public boolean isBarVisible(@NotNull ItemStack stack) {
-        return ClientCooldownCache.isOnCooldown(SPELL_ID);
+        return ClientCooldownCache.isOnCooldown(SKILL_ID);
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public int getBarWidth(@NotNull ItemStack stack) {
-        return (int) (13 * ClientCooldownCache.getProgress(SPELL_ID));
+        return (int) (13 * ClientCooldownCache.getProgress(SKILL_ID));
     }
 
     @Override
@@ -289,7 +289,7 @@ public class GemStaff extends Item implements LeftClickAction {
 
     @Override
     public void onClientClick(ItemStack stack, Player player) {
-        if(ClientCooldownCache.isOnCooldown(SPELL_ID) || (!player.isCreative() && !ItemUtil.hasEnoughEnergy(stack,2000))){return;}
+        if(ClientCooldownCache.isOnCooldown(SKILL_ID) || (!player.isCreative() && !ItemUtil.hasEnoughEnergy(stack,2000))){return;}
         LeftClickPacket.sendToServer();
         player.swing(InteractionHand.MAIN_HAND);
     }

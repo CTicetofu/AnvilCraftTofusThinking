@@ -2,6 +2,8 @@ package dev.anvilcraft.tofusthinking.item.weapon;
 
 import com.mojang.datafixers.util.Pair;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
+import dev.anvilcraft.tofusthinking.attachment.magic.CooldownManager;
+import dev.anvilcraft.tofusthinking.client.ClientCooldownCache;
 import dev.anvilcraft.tofusthinking.entity.ExtraDamageSource;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
@@ -19,7 +21,6 @@ import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -60,10 +61,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 //我想我以后会挑个时间重构，这啥玩意
 public class OriginalConduitStaff extends ExtendItem implements ICapacitorChargeable {
+    public static final String BREATH = "breath";
     public static final int MAX_ENERGY = 160000000;
     public static ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
     public static ResourceLocation ENTITY_RANGE_ID = AnvilCraftTofusThinking.of("entity_range");
@@ -107,11 +110,11 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
 
     @Override
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack, int remainingUseDuration) {
-        int useTick = getUseDuration(stack,livingEntity) - remainingUseDuration + 1;
-        if(useTick % 20 == 0 && !level.isClientSide && ItemUtil.consumeEnergy(livingEntity,stack,getNeedEnergy(stack))){
-            if(isAutoHunting(stack)){return;}
+        if(isAutoHunting(stack) && level.isClientSide){return;}
+        if(livingEntity instanceof ServerPlayer player && !CooldownManager.isOnCooldown(player,ConduitStaff.SKILL_ID) && ItemUtil.consumeEnergy(livingEntity,stack,getNeedEnergy(stack))){
             HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,20).raycast();
             dealAttack(level,livingEntity,stack,hitResult);
+            CooldownManager.addCooldown(player,ConduitStaff.SKILL_ID,20);
         }
     }
 
@@ -121,10 +124,15 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
             if(player.isInWaterRainOrBubble()){
                 ItemUtil.addEnergy(stack,40000);
             }
+            if(CooldownManager.getCooldownProgress(player,BREATH) > 0.5F){
+                CooldownManager.addCooldown(player,BREATH,60);
+            }
             player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER,400,0,false,false,true));
             getGripFromItem(stack).preSec().apply(stack,level,player,slotId,isSelected);
             int need = getNeedEnergy(stack);
-            if(isAutoHunting(stack) && canAutoAttack(stack,player, player.tickCount % 40 == 0,slotId,isSelected) && ItemUtil.hasEnoughEnergy(stack,need)){
+            if(CooldownManager.isOnCooldown(player,ConduitStaff.SKILL_ID_2) || !ItemUtil.hasEnoughEnergy(stack,need)){return;}
+            if(isAutoHunting(stack) && slotId >= 0 && slotId <= 8 && ItemUtil.hasEnoughEnergy(stack,need)){
+                CooldownManager.addCooldown(player,ConduitStaff.SKILL_ID_2,35);
                 List<Monster> monsters = level.getEntitiesOfClass(Monster.class,new AABB(player.blockPosition()).inflate(16), monster -> !monster.isInvulnerable() && monster.isAlive());
                 if(!monsters.isEmpty() && ItemUtil.consumeEnergy(player,stack,need)){
                     Monster monster = monsters.getFirst();
@@ -133,18 +141,6 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
                 }
             }
         }
-    }
-
-    private static boolean canAutoAttack(ItemStack stack, Player player, boolean offhand, int slotId, boolean isSelected){
-        if(slotId < 0 || slotId > 8){return false;}
-        if(offhand){return player.getOffhandItem() == stack;}
-        if(isSelected){return true;}
-        if(player.getMainHandItem().is(stack.getItem()) || player.getMainHandItem().is(AddonItems.CONDUIT_STAFF)){return false;}
-        NonNullList<ItemStack> items = player.getInventory().items;
-        for (int i = 0; i < slotId;i++){
-            if(items.get(i).is(AddonItems.ORIGINAL_CONDUIT_STAFF)){return false;}
-        }
-        return !items.get(slotId).is(AddonItems.ORIGINAL_CONDUIT_STAFF) || items.get(slotId) == stack;
     }
 
     private static void dealAttack(Level level, LivingEntity attacker, ItemStack stack, HitResult hitResult){
@@ -340,5 +336,26 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
     private static void addGrip(AbilityHandler handler,Item item){
         GRIP_MAP.put(handler.name(),Pair.of(item,handler));
         GRIP_ITEM_MAP.put(item,handler.name());
+    }
+
+    public static String getSkillId(ItemStack stack){
+        return isAutoHunting(stack) ? ConduitStaff.SKILL_ID_2 : ConduitStaff.SKILL_ID;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public boolean isBarVisible(@NotNull ItemStack stack) {
+        return ClientCooldownCache.isOnCooldown(getSkillId(stack));
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public int getBarWidth(@NotNull ItemStack stack) {
+        return (int) (13 * ClientCooldownCache.getProgress(getSkillId(stack)));
+    }
+
+    @Override
+    public int getBarColor(@NotNull ItemStack stack) {
+        return Objects.equals(getSkillId(stack), ConduitStaff.SKILL_ID) ? 0x00CD66 : 0xFFA54F;
     }
 }
