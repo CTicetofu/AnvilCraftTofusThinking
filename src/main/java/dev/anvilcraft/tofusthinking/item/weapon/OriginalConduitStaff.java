@@ -64,7 +64,7 @@ import java.util.function.Consumer;
 
 //我想我以后会挑个时间重构，这啥玩意
 public class OriginalConduitStaff extends ExtendItem implements ICapacitorChargeable {
-    public static final int MAX_ENERGY = 16000000;
+    public static final int MAX_ENERGY = 160000000;
     public static ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
     public static ResourceLocation ENTITY_RANGE_ID = AnvilCraftTofusThinking.of("entity_range");
     public OriginalConduitStaff(Properties properties) {
