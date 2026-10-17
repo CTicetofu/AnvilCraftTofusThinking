@@ -190,7 +190,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("death.attack.tofusThinking.rewind_attack","%s 未能被 %s 证明存在");
         add("death.attack.tofusThinking.bounce_wither_skull","%s 被 %s 发射的弹射凋灵骷髅头击杀");
         add("death.attack.tofusThinking.counter","%s 过于冲动的攻击了 %s");
-        add("death.attack.tofusThinking.metor","%s 被 %s 的流星炸的粉碎");
+        add("death.attack.tofusThinking.meteor","%s 被 %s 的流星炸的粉碎");
         add("death.attack.tofusThinking.gem_missile","%s 没看清 %s 的宝石");
         add("death.attack.tofusThinking.nugget","%s 死于急性金属中毒，凶手是 %s");
 

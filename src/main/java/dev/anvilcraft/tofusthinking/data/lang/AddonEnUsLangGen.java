@@ -196,7 +196,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("death.attack.tofusThinking.rewind_attack","%s has not been proven to exist by %s");
         add("death.attack.tofusThinking.bounce_wither_skull","%s was killed by the wither skull %s had launch");
         add("death.attack.tofusThinking.counter","%s impulsively attacked %s");
-        add("death.attack.tofusThinking.metor","%s It was shattered by the meteor from %s explosion");
+        add("death.attack.tofusThinking.meteor","%s It was shattered by the meteor from %s explosion");
         add("death.attack.tofusThinking.gem_missile","%s didn't get a clear look to gem by %s");
         add("death.attack.tofusThinking.nugget","%s die for acute metal poisoning,the murderer is %s");
 

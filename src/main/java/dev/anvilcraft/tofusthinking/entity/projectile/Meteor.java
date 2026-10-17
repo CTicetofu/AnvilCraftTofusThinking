@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
@@ -123,8 +124,9 @@ public class Meteor extends AbstractHurtingProjectile implements ItemSupplier {
 
     @Override
     protected boolean canHitEntity(@NotNull Entity target) {
-        if(target instanceof ItemEntity){return false;}
-        return this.getOwner() == null || !this.getOwner().isAlliedTo(target);
+        if(target instanceof ItemEntity || target instanceof ExperienceOrb){return false;}
+        Entity owner = this.getOwner();
+        return owner == null || (owner != target && !owner.isAlliedTo(target));
     }
 
     @Override
