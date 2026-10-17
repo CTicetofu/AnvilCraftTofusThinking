@@ -12,10 +12,7 @@ import dev.anvilcraft.tofusthinking.item.ExtendItem;
 import dev.anvilcraft.tofusthinking.item.weapon.StaffProcess.Abilities;
 import dev.anvilcraft.tofusthinking.item.weapon.StaffProcess.AbilityHandler;
 import dev.anvilcraft.tofusthinking.item.weapon.StaffProcess.StaffContext;
-import dev.anvilcraft.tofusthinking.util.ItemUtil;
-import dev.anvilcraft.tofusthinking.util.RayDetectionUtil;
-import dev.anvilcraft.tofusthinking.util.TooltipUtil;
-import dev.anvilcraft.tofusthinking.util.UnclassifiedUtil;
+import dev.anvilcraft.tofusthinking.util.*;
 import dev.dubhe.anvilcraft.api.item.ICapacitorChargeable;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import net.minecraft.ChatFormatting;
@@ -33,13 +30,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
@@ -112,7 +106,7 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack, int remainingUseDuration) {
         if(isAutoHunting(stack) && level.isClientSide){return;}
         if(livingEntity instanceof ServerPlayer player && !CooldownManager.isOnCooldown(player,ConduitStaff.SKILL_ID) && ItemUtil.consumeEnergy(livingEntity,stack,getNeedEnergy(stack))){
-            HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,20).raycast();
+            HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,24).raycast();
             dealAttack(level,livingEntity,stack,hitResult);
             CooldownManager.addCooldown(player,ConduitStaff.SKILL_ID,20);
         }
@@ -130,13 +124,12 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
             player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER,400,0,false,false,true));
             getGripFromItem(stack).preSec().apply(stack,level,player,slotId,isSelected);
             int need = getNeedEnergy(stack);
-            if(CooldownManager.isOnCooldown(player,ConduitStaff.SKILL_ID_2) || !ItemUtil.hasEnoughEnergy(stack,need)){return;}
-            if(isAutoHunting(stack) && slotId >= 0 && slotId <= 8 && ItemUtil.hasEnoughEnergy(stack,need)){
+            if(isAutoHunting(stack) && slotId >= 0 && slotId <= 8){
+                if(CooldownManager.isOnCooldown(player,ConduitStaff.SKILL_ID_2) || !ItemUtil.hasEnoughEnergy(stack,need)){return;}
                 CooldownManager.addCooldown(player,ConduitStaff.SKILL_ID_2,35);
-                List<Monster> monsters = level.getEntitiesOfClass(Monster.class,new AABB(player.blockPosition()).inflate(16), monster -> !monster.isInvulnerable() && monster.isAlive());
-                if(!monsters.isEmpty() && ItemUtil.consumeEnergy(player,stack,need)){
-                    Monster monster = monsters.getFirst();
-                    EntityHitResult result = new EntityHitResult(monster);
+                Mob target = EntityUtil.getAnEntityOfClass(level,Mob.class,new AABB(player.blockPosition()).inflate(16),mob -> !mob.isInvulnerable() && mob.isAlive() && mob instanceof Enemy);
+                if(target != null && ItemUtil.consumeEnergy(player,stack,need)){
+                    EntityHitResult result = new EntityHitResult(target);
                     dealAttack(level,player,stack,result);
                 }
             }

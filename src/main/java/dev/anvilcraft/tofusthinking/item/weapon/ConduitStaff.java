@@ -5,10 +5,7 @@ import dev.anvilcraft.tofusthinking.attachment.magic.CooldownManager;
 import dev.anvilcraft.tofusthinking.client.ClientCooldownCache;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
-import dev.anvilcraft.tofusthinking.util.ItemUtil;
-import dev.anvilcraft.tofusthinking.util.RayDetectionUtil;
-import dev.anvilcraft.tofusthinking.util.TooltipUtil;
-import dev.anvilcraft.tofusthinking.util.UnclassifiedUtil;
+import dev.anvilcraft.tofusthinking.util.*;
 import dev.dubhe.anvilcraft.api.item.ICapacitorChargeable;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -23,13 +20,10 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
@@ -119,7 +113,7 @@ public class ConduitStaff extends Item implements ICapacitorChargeable {
     }
 
     public static void startToAttack(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack){
-        HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,12).raycast();
+        HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,16).raycast();
         Entity entity = null;
         if(hitResult instanceof EntityHitResult entityHitResult){
             entity = entityHitResult.getEntity();
@@ -135,13 +129,12 @@ public class ConduitStaff extends Item implements ICapacitorChargeable {
                 player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER,400,0,false,false,true));
             }
             if(!isAutoHunting(stack)){return;}
-            if(CooldownManager.isOnCooldown(player,SKILL_ID_2) || !ItemUtil.hasEnoughEnergy(stack,getNeedEnergy(true))){return;}
-            CooldownManager.addCooldown(player,SKILL_ID_2,35);
             if(isSelected || player.getOffhandItem() == stack){
-                List<Monster> monsters = level.getEntitiesOfClass(Monster.class,new AABB(player.blockPosition()).inflate(12), monster -> !monster.isInvulnerable() && monster.isAlive());
-                if(!monsters.isEmpty() && ItemUtil.consumeEnergy(player,stack,getNeedEnergy(true))){
-                    Monster monster = monsters.getFirst();
-                    dealAttack(level,player,stack,monster,monster.position().add(0,0.2,0));
+                if(CooldownManager.isOnCooldown(player,SKILL_ID_2) || !ItemUtil.hasEnoughEnergy(stack,getNeedEnergy(true))){return;}
+                CooldownManager.addCooldown(player,SKILL_ID_2,35);
+                Mob target = EntityUtil.getAnEntityOfClass(level,Mob.class,new AABB(player.blockPosition()).inflate(12), mob -> !mob.isInvulnerable() && mob.isAlive() && mob instanceof Enemy);
+                if(target != null && ItemUtil.consumeEnergy(player,stack,getNeedEnergy(true))){
+                    dealAttack(level,player,stack,target,target.position().add(0,0.2,0));
                 }
             }
         }

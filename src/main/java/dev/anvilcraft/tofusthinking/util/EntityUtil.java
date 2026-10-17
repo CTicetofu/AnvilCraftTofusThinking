@@ -11,9 +11,13 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.entity.EntityTypeTest;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.PartEntity;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,5 +102,12 @@ public class EntityUtil {
             Vec3 vec31 = new Vec3(b.getX(), b.getEyeY(), b.getZ());
             return !(vec31.distanceTo(vec3) > distance) && a.level().clip(new ClipContext(vec3, vec31, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, a)).getType() == HitResult.Type.MISS;
         }
+    }
+
+    @Nullable
+    public static <T extends Entity> T getAnEntityOfClass(Level level, Class<T> clazz, AABB aabb, Predicate<? super T> predicate) {
+        List<T> entities = new ArrayList<>(1);
+        level.getEntities(EntityTypeTest.forClass(clazz), aabb, predicate, entities, 1);
+        return entities.isEmpty() ? null : entities.getFirst();
     }
 }
