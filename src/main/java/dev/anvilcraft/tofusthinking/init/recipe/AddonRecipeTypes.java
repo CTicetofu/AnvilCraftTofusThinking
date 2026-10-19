@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.init.recipe;
 
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.recipe.anvil.RewindRecipe;
+import dev.anvilcraft.tofusthinking.recipe.reforge.ReforgeRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -31,6 +32,11 @@ public class AddonRecipeTypes {
             registerType("rewind");
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<RewindRecipe>> REWIND_SERIALIZER =
             RECIPE_SERIALIZERS.register("rewind", RewindRecipe.Serializer::new);
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<ReforgeRecipe>> REFORGE_TYPE =
+            registerType("reforge");
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ReforgeRecipe>> REFORGE_SERIALIZER =
+            RECIPE_SERIALIZERS.register("reforge", ReforgeRecipe.Serializer::new);
 
     public static void register(IEventBus bus) {
         RECIPE_TYPES.register(bus);

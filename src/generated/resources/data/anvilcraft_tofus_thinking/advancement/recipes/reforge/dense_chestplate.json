@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "anvilcraft_tofus_thinking:reforge/dense_chestplate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_weatherproof_spacesuit_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "anvilcraft:weatherproof_spacesuit_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_weatherproof_spacesuit_chestplate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "anvilcraft_tofus_thinking:reforge/dense_chestplate"
+    ]
+  }
+}

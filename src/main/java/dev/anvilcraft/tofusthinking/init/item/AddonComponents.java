@@ -56,6 +56,10 @@ public class AddonComponents {
             "dense",
             it -> it.persistent(Unit.CODEC)
     );
+    public static final DataComponentType<Unit> ANTIDOTE = register(
+            "antidote",
+            it -> it.persistent(Unit.CODEC)
+    );
     public static final DataComponentType<Byte> TYPE_NUMBER = register(
             "type_number",
             it -> it.persistent(Codec.BYTE).networkSynchronized(ByteBufCodecs.BYTE)

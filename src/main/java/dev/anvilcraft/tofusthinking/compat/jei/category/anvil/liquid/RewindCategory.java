@@ -66,7 +66,7 @@ public class RewindCategory extends AbstractLiquidCategory<RewindRecipe> {
     }
 
     public static void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        AnvilCraftJeiPlugin.addAnvilCauldronCatalysts(registration, TofusThinkingJeiPlugin.REWIND);
+        AnvilCraftJeiPlugin.addAnvilProcessingCatalysts(registration, TofusThinkingJeiPlugin.REWIND);
         registration.addRecipeCatalyst(new ItemStack(AddonBlocks.ORIGINAL_CONDUIT), TofusThinkingJeiPlugin.REWIND);
     }
 

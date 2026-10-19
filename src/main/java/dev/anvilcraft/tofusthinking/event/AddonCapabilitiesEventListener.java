@@ -20,6 +20,11 @@ public class AddonCapabilitiesEventListener {
                 AddonBlockEntities.SMART_POWER_CONVERTER.get(),
                 SmartPowerConverterBlockEntity::getEnergyStorage
         );
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                AddonBlockEntities.ORIGINAL_CONDUIT.get(),
+                (blockEntity, side) -> blockEntity.getItemHandler()
+        );
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.SONIC_BOOM_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.GEM_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.CONDUIT_STAFF);

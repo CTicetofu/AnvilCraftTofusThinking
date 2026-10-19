@@ -1,0 +1,20 @@
+{
+  "type": "anvilcraft_tofus_thinking:reforge",
+  "ingredients": [
+    {
+      "count": 8,
+      "items": "anvilcraft:transcendium_nugget"
+    },
+    {
+      "count": 4,
+      "items": "minecraft:rabbit_foot"
+    },
+    {
+      "items": "minecraft:enchanted_golden_apple"
+    }
+  ],
+  "max_quantity": 1,
+  "result": {
+    "anvilcraft:providence": {}
+  }
+}

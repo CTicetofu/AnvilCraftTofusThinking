@@ -1,0 +1,16 @@
+{
+  "type": "anvilcraft_tofus_thinking:reforge",
+  "ingredients": [
+    {
+      "count": 2,
+      "items": "minecraft:blaze_powder"
+    },
+    {
+      "count": 2,
+      "items": "minecraft:netherite_scrap"
+    }
+  ],
+  "result": {
+    "minecraft:fire_resistant": {}
+  }
+}

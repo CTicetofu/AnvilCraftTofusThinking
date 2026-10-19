@@ -20,6 +20,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -71,11 +72,24 @@ public class LivingEventHandler {
         MobEffectInstance instance = event.getEffectInstance();
         MobEffect effect = instance.getEffect().value();
         LivingEntity target = event.getEntity();
+        if(target.getItemBySlot(EquipmentSlot.HEAD).has(AddonComponents.ANTIDOTE) && effect.getCategory() == MobEffectCategory.HARMFUL){
+            if(target.getRandom().nextBoolean()){event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);}
+        }
         if(effect instanceof NotApplyEffect notApplyEffect && notApplyEffect.isNotApply(instance,target)){
             event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
         }
         if(effect == MobEffects.MOVEMENT_SLOWDOWN.value() && AddonItems.SPEED_CHARM.get().isEquippedBy(target)){
             event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingAddEffect(MobEffectEvent.Added event){
+        MobEffectInstance instance = event.getEffectInstance();
+        MobEffect effect = instance.getEffect().value();
+        LivingEntity target = event.getEntity();
+        if(target.getItemBySlot(EquipmentSlot.HEAD).has(AddonComponents.ANTIDOTE) && effect.getCategory() == MobEffectCategory.HARMFUL){
+            if(instance.duration > 0){instance.duration = (int) (instance.duration * 0.2F);}
         }
     }
 

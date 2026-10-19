@@ -90,7 +90,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thinking.original_conduit","Another mutated power of Wither can restore some things to their original state");
         add("tooltip.anvilcraft_tofus_thinking.original_conduit_build", """
-                It can be activated as long as there is water and eight frame blocks within a 3x3 range on this layer
+                It can be activated as long as there is water on its pos and eight frame blocks on this layer
                 When there are more than 8 Stable Prismarine Bricks
                 the effect will be triggered regardless of whether the surrounding living entity are in the rain or water
                 Attack nearby enemy monsters when there are no fewer than 24 frame blocks\
@@ -168,6 +168,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
                 """);
 
         add("tooltip.anvilcraft_tofus_thinking.dense","Dense: Increases armor and protection performance by 10%");
+        add("tooltip.anvilcraft_tofus_thinking.antidote","Antidote: Reduces most negative effects by 80%, with a 50% chance to immunity");
 
     }
     private void entityName(){
@@ -204,6 +205,19 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("gui.anvilcraft_tofus_thinking.category.rewind","Rewind");
         add("gui.anvilcraft_tofus_thinking.category.rewind.need_activated","Need Activated");
+        add("gui.anvilcraft_tofus_thinking.category.reforge","Reforge");
+        add("gui.anvilcraft_tofus_thinking.category.reforge.all_fire_resistant","Give Item Fire Resistance");
+        add("gui.anvilcraft_tofus_thinking.category.reforge.can_repair_fire_reforging","Need Item Has Fire Resistance");
+
+        add("jei.anvilcraft_tofus_thinking.reforge.any_item","Any item that meets the following requirements (if any) can serve as an activator");
+        add("jei.anvilcraft_tofus_thinking.reforge.max_quantity","Max reforge:%s");
+        add("jei.anvilcraft_tofus_thinking.reforge.fluid.not_consumed","The fluid is not consumed");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.can_repair","The item can be repaired");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.repairable","The item can be repaired");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.damaged","The item is damaged");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.damageable","The item can take damage");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.enchantable","The item is enchantable");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.enchanted","The item is enchanted");
 
         add("jei.anvilcraft_tofus_thinking.info.original_conuit","By default, the Star Of The Sea is used to absorb the blue Wither Head of a strange Wither and inject it into an Conduit to obtain it. In its original state, it is difficult to control precisely and is not suitable for direct use as a wand material.");
         add("jei.anvilcraft_tofus_thinking.info.charm_amulet","By default, it is obtained by stamping with six different charms on an anvil");

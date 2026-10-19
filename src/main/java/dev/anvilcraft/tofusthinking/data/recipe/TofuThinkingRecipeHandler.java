@@ -10,5 +10,6 @@ public class TofuThinkingRecipeHandler {
         AddonAnvilCollisionCraftRecipeLoader.init(provider);
         RewindRecipeLoader.init(provider);
         AddonProceduralProcessRecipeLoader.init(provider);
+        AddonReforgeRecipeLoader.init(provider);
     }
 }

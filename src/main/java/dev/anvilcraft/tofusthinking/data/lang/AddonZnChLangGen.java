@@ -87,7 +87,7 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thinking.original_conduit","另一种异变的凋灵之力，可以将一些事物还原成本来的样子");
         add("tooltip.anvilcraft_tofus_thinking.original_conduit_build", """
-                只需要本层3*3范围有水和八个框架方块即可启动
+                只需要本格有水和八个框架方块即可启动
                 当有大于8个坚固海晶石砖时，无论周围生物是否在雨中或者水中都会造成效果
                 框架方块不小于24个时攻击附近的敌怪\
                 """);
@@ -159,6 +159,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.hold_shift_for_more","按住 %s 获取更多信息");
         add("tooltip.anvilcraft_tofus_thinking.permanent","恒久：不灭于世界之侵，漫游于虚空之上，永存于时间之隙");
         add("tooltip.anvilcraft_tofus_thinking.dense","致密：提升10%护甲和保护的保护性能");
+        add("tooltip.anvilcraft_tofus_thinking.antidote","抗毒：减少80%大多数负面效果时间，一半概率免疫");
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"诅咒雪球");
@@ -198,6 +199,19 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("gui.anvilcraft_tofus_thinking.category.rewind","回溯");
         add("gui.anvilcraft_tofus_thinking.category.rewind.need_activated","需要激活");
+
+        add("gui.anvilcraft_tofus_thinking.category.reforge","重铸");
+        add("gui.anvilcraft_tofus_thinking.category.reforge.all_fire_resistant","给予物品抗火组件");
+        add("gui.anvilcraft_tofus_thinking.category.reforge.can_repair_fire_reforging","需要物品拥有抗火组件");
+
+        add("jei.anvilcraft_tofus_thinking.reforge.any_item","任意符合下面要求（如有）的物品均可作为激活物");
+        add("jei.anvilcraft_tofus_thinking.reforge.max_quantity","单次最大重铸数量:%s");
+        add("jei.anvilcraft_tofus_thinking.reforge.fluid.not_consumed","流体不会被消耗");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.can_repair","物品可被修复");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.damaged","物品已受损");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.damageable","物品是可损坏的");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.enchantable","物品是可附魔的");
+        add("jei.anvilcraft_tofus_thinking.reforge.requirement.enchanted","物品是已附魔的");
 
         add("jei.anvilcraft_tofus_thinking.info.original_conuit","默认情况下，使用海洋之星吸收奇怪的凋灵的蓝色凋灵之首后将其注入普通的潮涌核心获取，原始状态的它难以精细控制而不太适合直接作为法杖材料。");
         add("jei.anvilcraft_tofus_thinking.info.charm_amulet","默认情况下，使用六个不同的护符经过铁砧冲压获得");

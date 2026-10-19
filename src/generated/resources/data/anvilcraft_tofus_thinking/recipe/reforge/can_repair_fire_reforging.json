@@ -1,0 +1,27 @@
+{
+  "type": "anvilcraft_tofus_thinking:reforge",
+  "activator": {
+    "components": {
+      "minecraft:fire_resistant": {}
+    }
+  },
+  "fluid": {
+    "fluid": {
+      "amount": 1000,
+      "id": "minecraft:lava"
+    }
+  },
+  "ingredients": [
+    {
+      "items": "anvilcraft:ember_metal_ingot"
+    }
+  ],
+  "max_quantity": 1,
+  "requirements": [
+    "can_repair",
+    "damageable"
+  ],
+  "result": {
+    "anvilcraft:reforging": {}
+  }
+}

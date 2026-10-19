@@ -3,6 +3,10 @@ package dev.anvilcraft.tofusthinking.block;
 import dev.anvilcraft.tofusthinking.block.entity.OriginalConduitBlockEntity;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +24,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -59,6 +66,27 @@ public class OriginalConduitBlock extends ConduitBlock {
         return stacks;
     }
 
+    @Override
+    public void onRemove(
+            @NotNull BlockState state,
+            @NotNull Level level,
+            @NotNull BlockPos pos,
+            @NotNull BlockState newState,
+            boolean movedByPiston
+    ) {
+        if (state.is(newState.getBlock())) return;
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof OriginalConduitBlockEntity entity && !entity.isIrreversible()) {
+            Vec3 vec3 = entity.getBlockPos().getCenter();
+            ItemStackHandler inventory = entity.getReforgeInventory();
+            for (int slot = 0; slot < inventory.getSlots(); slot++) {
+                Containers.dropItemStack(level, vec3.x, vec3.y, vec3.z, inventory.getStackInSlot(slot));
+            }
+            level.updateNeighbourForOutputSignal(pos, this);
+        }
+        super.onRemove(state, level, pos, newState, movedByPiston);
+    }
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
@@ -68,6 +96,42 @@ public class OriginalConduitBlock extends ConduitBlock {
     @Override
     public boolean canEntityDestroy(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Entity entity) {
         return (entity instanceof Player || entity.getType().is(Tags.EntityTypes.BOSSES)) && super.canEntityDestroy(state, level, pos, entity);
+    }
+
+    @Override
+    protected @NotNull ItemInteractionResult useItemOn(
+            @NotNull ItemStack stack,
+            @NotNull BlockState state,
+            @NotNull Level level,
+            @NotNull BlockPos pos,
+            @NotNull Player player,
+            @NotNull InteractionHand hand,
+            @NotNull BlockHitResult hitResult
+    ) {
+        if (!stack.isEmpty() && level.getBlockEntity(pos) instanceof OriginalConduitBlockEntity blockEntity) {
+            if (level.isClientSide) {
+                return ItemInteractionResult.SUCCESS;
+            } else if (blockEntity.tryInsertByPlayer(player, hand)) {
+                return ItemInteractionResult.SUCCESS;
+            }
+        }
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+    }
+
+    @Override
+    protected @NotNull InteractionResult useWithoutItem(
+            @NotNull BlockState state,
+            @NotNull Level level,
+            @NotNull BlockPos pos,
+            @NotNull Player player,
+            @NotNull BlockHitResult hitResult
+    ) {
+        if (!level.isClientSide
+                && level.getBlockEntity(pos) instanceof OriginalConduitBlockEntity blockEntity
+                && blockEntity.tryExtractByPlayer(player)) {
+            return InteractionResult.SUCCESS;
+        }
+        return super.useWithoutItem(state, level, pos, player, hitResult);
     }
 
 }

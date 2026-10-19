@@ -2,10 +2,12 @@ package dev.anvilcraft.tofusthinking.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import dev.anvilcraft.tofusthinking.block.OriginalConduitBlock;
 import dev.anvilcraft.tofusthinking.block.entity.OriginalConduitBlockEntity;
 import dev.anvilcraft.tofusthinking.client.init.AddonModelLayers;
 import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -18,6 +20,8 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
@@ -141,6 +145,13 @@ public class OriginalConduitRenderer implements BlockEntityRenderer<OriginalCond
                             packedLight,
                             packedOverlay
                     );
+            poseStack.popPose();
+            poseStack.pushPose();
+            ItemStack stack = blockEntity.getDisplayItemStack();
+            poseStack.translate(0.5F,0.5F,0.5F);
+            poseStack.scale(0.5F,0.5F,0.5F);
+            poseStack.mulPose(Axis.YP.rotationDegrees(f1));
+            Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.FIXED, packedLight, packedOverlay, poseStack, bufferSource, blockEntity.getLevel(), 0);
             poseStack.popPose();
         }
     }

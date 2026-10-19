@@ -3,15 +3,15 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "anvilcraft_tofus_thinking:upgrade_chestplate"
+        "recipe": "anvilcraft_tofus_thinking:reforge/antidote_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_weatherproof_spacesuit_chestplate": {
+    "has_weatherproof_spacesuit_helmet": {
       "conditions": {
         "items": [
           {
-            "items": "anvilcraft:weatherproof_spacesuit_chestplate"
+            "items": "anvilcraft:weatherproof_spacesuit_helmet"
           }
         ]
       },
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_weatherproof_spacesuit_chestplate"
+      "has_weatherproof_spacesuit_helmet"
     ]
   ],
   "rewards": {
     "recipes": [
-      "anvilcraft_tofus_thinking:upgrade_chestplate"
+      "anvilcraft_tofus_thinking:reforge/antidote_helmet"
     ]
   }
 }

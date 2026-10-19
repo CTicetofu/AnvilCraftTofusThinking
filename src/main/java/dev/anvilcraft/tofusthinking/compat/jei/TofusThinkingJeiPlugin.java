@@ -2,9 +2,11 @@ package dev.anvilcraft.tofusthinking.compat.jei;
 
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.compat.jei.category.anvil.liquid.RewindCategory;
+import dev.anvilcraft.tofusthinking.compat.jei.category.reforge.ReforgeCategory;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.recipe.anvil.RewindRecipe;
+import dev.anvilcraft.tofusthinking.recipe.reforge.ReforgeRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -23,6 +25,8 @@ public class TofusThinkingJeiPlugin implements IModPlugin {
 
     public static final RecipeType<RecipeHolder<RewindRecipe>> REWIND =
             createRecipeHolderType("rewind");
+    public static final RecipeType<RecipeHolder<ReforgeRecipe>> REFORGE =
+            createRecipeHolderType("reforge");
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
@@ -35,6 +39,7 @@ public class TofusThinkingJeiPlugin implements IModPlugin {
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
         registration.addRecipeCategories(new RewindCategory(guiHelper));
+        registration.addRecipeCategories(new ReforgeCategory(guiHelper));
     }
 
     @Override
@@ -54,11 +59,13 @@ public class TofusThinkingJeiPlugin implements IModPlugin {
         );
 
         RewindCategory.registerRecipes(registration);
+        ReforgeCategory.registerRecipes(registration);
     }
 
     @Override
     public void registerRecipeCatalysts(@NotNull IRecipeCatalystRegistration registration) {
         RewindCategory.registerRecipeCatalysts(registration);
+        ReforgeCategory.registerRecipeCatalysts(registration);
     }
 
     private static <R extends net.minecraft.world.item.crafting.Recipe<?>> RecipeType<RecipeHolder<R>> createRecipeHolderType(String name) {

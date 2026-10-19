@@ -5,7 +5,6 @@ import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.block.OriginalConduitBlock;
 import dev.anvilcraft.tofusthinking.data.TofusThinkingDatagen;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
-import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.recipe.anvil.RewindRecipe;
 import dev.dubhe.anvilcraft.AnvilCraft;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
@@ -14,8 +13,6 @@ import dev.dubhe.anvilcraft.init.item.ModItems;
 import dev.dubhe.anvilcraft.init.recipe.ModRecipeTriggers;
 import dev.dubhe.anvilcraft.recipe.anvil.builder.ExtendInWorldRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Unit;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 
@@ -119,29 +116,5 @@ public class RewindRecipeLoader {
                 .group("rewind")
                 .icon(ModBlocks.MOB_AMBER_BLOCK.asStack())
                 .save(provider, AnvilCraftTofusThinking.of("mob_amber_block"));
-
-        ExtendInWorldRecipeBuilder.extendCompatible(ModRecipeTriggers.ON_ANVIL_FALL_ON)
-                .hasCauldron(0, -1, 0)
-                .hasBlock(builder -> builder
-                        .of(AddonBlocks.ORIGINAL_CONDUIT.get())
-                        .with(OriginalConduitBlock.OPEN, true)
-                        .offset(0, -2, 0)
-                )
-                .hasItemIngredient(builder -> builder
-                        .of(ModItems.WEATHERPROOF_SPACESUIT_CHESTPLATE).of(ModItems.TRANSCENDIUM_INGOT).of(Items.NETHERITE_BLOCK)
-                        .offset(0.0, -0.375, 0.0)
-                        .range(0.75, 0.75, 0.75)
-                )
-                .spawnItem(builder -> {
-                    ItemStack stack = ModItems.WEATHERPROOF_SPACESUIT_CHESTPLATE.asStack();
-                    stack.set(AddonComponents.DENSE, Unit.INSTANCE);
-                    builder.item(stack).offset(0.0, -0.75, 0.0);
-                        }
-                )
-                .maxEfficiency(1)
-                .unlockedBy(TofusThinkingDatagen.hasItem(ModItems.WEATHERPROOF_SPACESUIT_CHESTPLATE), TofusThinkingDatagen.has(ModItems.WEATHERPROOF_SPACESUIT_CHESTPLATE))
-                .group("rewind")
-                .icon(ModItems.WEATHERPROOF_SPACESUIT_CHESTPLATE.asStack())
-                .save(provider, AnvilCraftTofusThinking.of("upgrade_chestplate"));
     }
 }

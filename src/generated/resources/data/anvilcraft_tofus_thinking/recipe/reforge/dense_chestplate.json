@@ -1,0 +1,18 @@
+{
+  "type": "anvilcraft_tofus_thinking:reforge",
+  "activator": {
+    "items": "anvilcraft:weatherproof_spacesuit_chestplate"
+  },
+  "ingredients": [
+    {
+      "items": "anvilcraft:transcendium_ingot"
+    },
+    {
+      "items": "minecraft:netherite_block"
+    }
+  ],
+  "max_quantity": 1,
+  "result": {
+    "anvilcraft_tofus_thinking:dense": {}
+  }
+}

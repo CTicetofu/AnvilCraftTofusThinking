@@ -8,18 +8,25 @@ import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntityTypeTags;
+import dev.anvilcraft.tofusthinking.init.recipe.AddonRecipeTypes;
+import dev.anvilcraft.tofusthinking.recipe.reforge.ReforgeRecipe;
 import dev.anvilcraft.tofusthinking.util.EntityUtil;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
+import dev.dubhe.anvilcraft.api.IHasDisplayItem;
 import dev.dubhe.anvilcraft.api.power.IPowerProducer;
 import dev.dubhe.anvilcraft.api.power.PowerGrid;
 import dev.dubhe.anvilcraft.block.CorruptedBeaconBlock;
+import dev.dubhe.anvilcraft.block.entity.FishTankBlockEntity;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
+import dev.dubhe.anvilcraft.network.UpdateDisplayItemPacket;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -27,6 +34,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,6 +43,7 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.ExplosionDamageCalculator;
@@ -48,15 +57,22 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 //copy from vanilla
-public class OriginalConduitBlockEntity extends BlockEntity implements IPowerProducer {
+public class OriginalConduitBlockEntity extends BlockEntity implements IPowerProducer, IHasDisplayItem {
     public int tickCount;
     private float activeRotation;
     private boolean isActive;
@@ -76,6 +92,20 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
     private boolean canProduce = false;
     private boolean isLastOver = false;
     private boolean unload = false;
+
+    public static final int REFORGE_INPUT_SLOT = 0;
+    public static final int REFORGE_OUTPUT_SLOT = 1;
+    /**
+     * 重铸信号方向：无。
+     */
+    public static final int REFORGE_SIGNAL_NONE = 0;
+    /**
+     * 重铸信号窗口长度（tick）。
+     */
+    public static final int REFORGE_SIGNAL_WINDOW = 10;
+    private int reforgeSignalDirection = REFORGE_SIGNAL_NONE;
+    private int reforgeSignalCountdown = 0;
+    private final ReforgeItemHandler reforgeInventory = new ReforgeItemHandler(this);
 
     public OriginalConduitBlockEntity(BlockPos pos, BlockState blockState) {
         this(AddonBlockEntities.ORIGINAL_CONDUIT.get(), pos, blockState);
@@ -102,6 +132,11 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
             this.overloadTimes = tag.getInt("overload_times");
         }
         this.canProduce = tag.getBoolean("canProduce");
+        this.reforgeSignalDirection = tag.getInt("reforge_signal_direction");
+        this.reforgeSignalCountdown = tag.getInt("reforge_signal_countdown");
+        if (tag.contains("ReforgeInventory")) {
+            this.reforgeInventory.deserializeNBT(registries, tag.getCompound("ReforgeInventory"));
+        }
     }
 
     @Override
@@ -114,6 +149,9 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
         tag.putInt("frame_count",this.frameCount);
         if(this.overloadTimes > 0){tag.putInt("overload_times",this.overloadTimes);}
         tag.putBoolean("canProduce",this.canProduce);
+        tag.putInt("reforge_signal_direction", this.reforgeSignalDirection);
+        tag.putInt("reforge_signal_countdown", this.reforgeSignalCountdown);
+        tag.put("ReforgeInventory", this.reforgeInventory.serializeNBT(registries));
     }
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -164,6 +202,10 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
         blockEntity.tickCount++;
         long i = level.getGameTime();
         if(blockEntity.executeCooldown > 0){blockEntity.executeCooldown--;}
+        if (blockEntity.reforgeSignalCountdown > 0 && --blockEntity.reforgeSignalCountdown <= 0) {
+            blockEntity.reforgeSignalDirection = REFORGE_SIGNAL_NONE;
+            blockEntity.setChanged();
+        }
         if(i % 20L == 0L){
             checkOverload(level, blockEntity);
             BlockState beacon = level.getBlockState(pos.below());
@@ -237,14 +279,8 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
         positions.clear();
         boolean canProduce = true;
         int reinforcedCount = 0;
-        for (int i = -1; i <= 1; i++) {
-            for (int k = -1; k <= 1; k++) {
-                BlockPos blockpos = pos.offset(i, 0, k);
-                if (!level.isWaterAt(blockpos)) {
-                    return false;
-                }
-            }
-
+        if (!level.isWaterAt(pos)) {
+            return false;
         }
 
         for (int x = -2; x <= 2; x++) {
@@ -272,7 +308,7 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
         blockEntity.canProduce = canProduce;
         blockEntity.frameCount = positions.size();
         blockEntity.huntIgnoreWater = reinforcedCount >= 8;
-        return positions.size() >= 8;
+        return canProduce && positions.size() >= 8;
     }
 
     private static void applyEffects(Level level, BlockPos pos, List<BlockPos> positions,boolean huntIgnoreWater) {
@@ -502,6 +538,197 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
     private void sendUpdate() {
         if (this.level == null) return;
         this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), Block.UPDATE_CLIENTS);
+    }
+
+    public IItemHandler getItemHandler() {
+        return this.reforgeInventory;
+    }
+
+    public ItemStackHandler getReforgeInventory() {
+        return this.reforgeInventory;
+    }
+
+    private AABB getReforgeAABB() {
+        return new AABB(this.worldPosition.above()).inflate(0.5);
+    }
+
+    private FishTankBlockEntity getReforgeFishTank(Level level) {
+        BlockPos abovePos = this.worldPosition.above();
+        return level.getBlockEntity(abovePos) instanceof FishTankBlockEntity fishTank ? fishTank : null;
+    }
+
+    public void onReforgeSignal(Direction direction) {
+        if (this.level == null || this.level.isClientSide) return;
+        BlockState state = this.level.getBlockState(this.getPos());
+        if(!state.hasProperty(OriginalConduitBlock.OPEN) || !state.getValue(OriginalConduitBlock.OPEN)){return;}
+        int signal = directionToSignal(direction);
+        if (signal == REFORGE_SIGNAL_NONE) return;
+        if (this.reforgeSignalCountdown <= 0) {
+            this.reforgeSignalDirection = signal;
+            this.reforgeSignalCountdown = REFORGE_SIGNAL_WINDOW;
+        } else if (this.reforgeSignalDirection != signal) {
+            this.reforgeSignalDirection = REFORGE_SIGNAL_NONE;
+            this.reforgeSignalCountdown = 0;
+            this.tryReforge(this.level);
+        }
+        this.setChanged();
+    }
+
+    public static int directionToSignal(Direction direction) {
+        return switch (direction) {
+            case EAST -> 1;
+            case WEST -> 2;
+            case NORTH -> 3;
+            case SOUTH -> 4;
+            default -> REFORGE_SIGNAL_NONE;
+        };
+    }
+
+    public boolean tryReforge(Level level) {
+        ItemStack input = this.reforgeInventory.getStackInSlot(REFORGE_INPUT_SLOT);
+        if (input.isEmpty()) return false;
+        if (!this.reforgeInventory.getStackInSlot(REFORGE_OUTPUT_SLOT).isEmpty()) return false;
+        input = input.copy();
+        FishTankBlockEntity fishTank = this.getReforgeFishTank(level);
+        List<ItemStack> available = new ArrayList<>();
+        List<ItemEntity> entities = List.of();
+        IItemHandler tankHandler = null;
+        if (fishTank != null) {
+            tankHandler = fishTank.getInputHandler();
+            for (int slot = 0; slot < tankHandler.getSlots(); slot++) {
+                available.add(tankHandler.getStackInSlot(slot));
+            }
+        } else {
+            entities = level.getEntitiesOfClass(ItemEntity.class, this.getReforgeAABB());
+            for (ItemEntity entity : entities) {
+                available.add(entity.getItem());
+            }
+        }
+        if (available.isEmpty()) return false;
+        FluidStack tankFluid = fishTank != null ? fishTank.getFluidHandler().getFluid() : FluidStack.EMPTY;
+        ReforgeRecipe.Input recipeInput = new ReforgeRecipe.Input(input, available, tankFluid);
+        ReforgeRecipe best = null;
+        int[] bestConsumption = null;
+        for (RecipeHolder<ReforgeRecipe> holder : level.getRecipeManager().getAllRecipesFor(AddonRecipeTypes.REFORGE_TYPE.get())) {
+            ReforgeRecipe recipe = holder.value();
+            if (!recipe.matches(recipeInput, level)) continue;
+            if (best != null && recipe.getReforgeIngredients().size() <= best.getReforgeIngredients().size()) continue;
+            best = recipe;
+            bestConsumption = recipe.findConsumption(available);
+        }
+        if (best == null || bestConsumption == null) return false;
+        ItemStack resultStack = best.assemble(recipeInput, level.registryAccess());
+        int converted = best.getConvertedCount(input);
+        resultStack.setCount(converted);
+        if (fishTank != null) {
+            best.getFluid().ifPresent(requirement -> {
+                if (requirement.consume()) {
+                    fishTank.getFluidHandler().drain(requirement.fluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
+                }
+            });
+        }
+        for (int slot = 0; slot < bestConsumption.length; slot++) {
+            int amount = bestConsumption[slot];
+            if (amount <= 0) continue;
+            if (tankHandler != null) {
+                tankHandler.extractItem(slot, amount, false);
+                continue;
+            }
+            ItemEntity entity = entities.get(slot);
+            ItemStack stack = entity.getItem();
+            stack.shrink(amount);
+            if (stack.isEmpty()) {
+                entity.discard();
+            } else {
+                entity.setItem(stack);
+            }
+        }
+        int leftoverCount = input.getCount() - converted;
+        if (leftoverCount > 0) {
+            ItemStack leftover = input.copy();
+            leftover.setCount(leftoverCount);
+            this.reforgeInventory.setStackInSlot(REFORGE_INPUT_SLOT, leftover);
+        } else {
+            this.reforgeInventory.setStackInSlot(REFORGE_INPUT_SLOT, ItemStack.EMPTY);
+        }
+        this.reforgeInventory.setStackInSlot(REFORGE_OUTPUT_SLOT, resultStack);
+        this.setChanged();
+        Vec3 pos = this.getPos().getCenter();
+        level.playSound(null, pos.x, pos.y, pos.z, SoundEvents.BEACON_ACTIVATE, SoundSource.AMBIENT, 1F, 1);
+        return true;
+    }
+
+    public boolean tryInsertByPlayer(Player player, InteractionHand hand) {
+        ItemStack held = player.getItemInHand(hand);
+        if (held.isEmpty()) return false;
+        ItemStack remaining = this.reforgeInventory.insertItem(REFORGE_INPUT_SLOT, held, false);
+        if (remaining.getCount() == held.getCount()) return false;
+        player.setItemInHand(hand, remaining);
+        return true;
+    }
+
+    public boolean tryExtractByPlayer(Player player) {
+        int slot = !this.reforgeInventory.getStackInSlot(REFORGE_OUTPUT_SLOT).isEmpty()
+                ? REFORGE_OUTPUT_SLOT
+                : REFORGE_INPUT_SLOT;
+        ItemStack extracted = this.reforgeInventory.getStackInSlot(slot);
+        if (extracted.isEmpty()) return false;
+        this.reforgeInventory.setStackInSlot(slot, ItemStack.EMPTY);
+        if (!player.getInventory().add(extracted)) {
+            player.drop(extracted, false);
+        }
+        return true;
+    }
+    private ItemStack displayItemStack = ItemStack.EMPTY;
+
+    public ItemStack getDisplayItemStack() {
+        return this.displayItemStack;
+    }
+
+    private void updateDisplayItemStack() {
+        ItemStack newDisplayStack = getDisplayItemStackForRender();
+        displayItemStack = newDisplayStack.copy();
+        PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) level, level.getChunk(getBlockPos()).getPos(), new UpdateDisplayItemPacket(displayItemStack, getPos()));
+    }
+
+    private ItemStack getDisplayItemStackForRender() {
+        for (int i = 1; i >= 0; i--) {
+            if (!reforgeInventory.getStackInSlot(i).isEmpty()) {
+                return reforgeInventory.getStackInSlot(i);
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public void updateDisplayItem(@NonNull ItemStack stack) {
+        this.displayItemStack = stack;
+    }
+
+    public static class ReforgeItemHandler extends ItemStackHandler {
+        private final OriginalConduitBlockEntity blockEntity;
+
+        public ReforgeItemHandler(OriginalConduitBlockEntity blockEntity) {
+            super(2);
+            this.blockEntity = blockEntity;
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NonNull ItemStack stack) {
+            return slot == REFORGE_INPUT_SLOT;
+        }
+
+        @Override
+        public @NonNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+            if (slot != REFORGE_OUTPUT_SLOT) return ItemStack.EMPTY;
+            return super.extractItem(slot, amount, simulate);
+        }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            blockEntity.updateDisplayItemStack();
+            this.blockEntity.setChanged();
+        }
     }
 
     public static OriginalExplosionDamageCalculator ORIGINAL_EXPLOSION_CALCULATOR = new OriginalExplosionDamageCalculator();

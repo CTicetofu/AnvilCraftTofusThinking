@@ -66,6 +66,9 @@ public class ClientManageHandler {
         if(stack.has(AddonComponents.DENSE)){
             propertyTooltip("dense", list, 0xCDBE70);
         }
+        if(stack.has(AddonComponents.ANTIDOTE)){
+            propertyTooltip("antidote", list, 0x00FF00);
+        }
     }
 
     private static void propertyTooltip(String propertyName, List<Component> tooltip, int color) {
