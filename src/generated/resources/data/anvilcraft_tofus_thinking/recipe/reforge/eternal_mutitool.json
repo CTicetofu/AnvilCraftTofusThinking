@@ -1,0 +1,15 @@
+{
+  "type": "anvilcraft_tofus_thinking:reforge",
+  "activator": {
+    "items": "anvilcraft:multitool"
+  },
+  "ingredients": [
+    {
+      "items": "anvilcraft:multiphase_transcendium"
+    }
+  ],
+  "max_quantity": 1,
+  "result": {
+    "anvilcraft:eternal": {}
+  }
+}

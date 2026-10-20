@@ -1,0 +1,18 @@
+{
+  "type": "anvilcraft_tofus_thinking:reforge",
+  "activator": {
+    "components": {
+      "minecraft:fire_resistant": {}
+    }
+  },
+  "ingredients": [
+    {
+      "count": 2,
+      "items": "anvilcraft:earth_core_shard"
+    }
+  ],
+  "max_quantity": 1,
+  "result": {
+    "anvilcraft_tofus_thinking:immortal": {}
+  }
+}

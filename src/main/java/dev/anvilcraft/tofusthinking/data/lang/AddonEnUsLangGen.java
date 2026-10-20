@@ -169,7 +169,8 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thinking.dense","Dense: Increases armor and protection performance by 10%");
         add("tooltip.anvilcraft_tofus_thinking.antidote","Antidote: Reduces most negative effects by 80%, with a 50% chance to immunity");
-
+        add("tooltip.anvilcraft_tofus_thinking.heavy_hit","Heavy Hit: add 50% Crit Damage");
+        add("tooltip.anvilcraft_tofus_thinking.immortal","Immortal: Immunity to the vast majority of damage, will not fade away over time");
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"Curse Snowball");
@@ -208,6 +209,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("gui.anvilcraft_tofus_thinking.category.reforge","Reforge");
         add("gui.anvilcraft_tofus_thinking.category.reforge.all_fire_resistant","Give Item Fire Resistance");
         add("gui.anvilcraft_tofus_thinking.category.reforge.can_repair_fire_reforging","Need Item Has Fire Resistance");
+        add("gui.anvilcraft_tofus_thinking.category.reforge.immortal","Need Item Has Fire Resistance");
 
         add("jei.anvilcraft_tofus_thinking.reforge.any_item","Any item that meets the following requirements (if any) can serve as an activator");
         add("jei.anvilcraft_tofus_thinking.reforge.max_quantity","Max reforge:%s");

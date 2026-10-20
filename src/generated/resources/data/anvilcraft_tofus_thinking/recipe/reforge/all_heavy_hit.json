@@ -1,0 +1,12 @@
+{
+  "type": "anvilcraft_tofus_thinking:reforge",
+  "ingredients": [
+    {
+      "count": 8,
+      "items": "anvilcraft:heavy_iron_block"
+    }
+  ],
+  "result": {
+    "anvilcraft_tofus_thinking:heavy_hit": {}
+  }
+}

@@ -60,6 +60,14 @@ public class AddonComponents {
             "antidote",
             it -> it.persistent(Unit.CODEC)
     );
+    public static final DataComponentType<Unit> HEAVY_HIT = register(
+            "heavy_hit",
+            it -> it.persistent(Unit.CODEC)
+    );
+    public static final DataComponentType<Unit> IMMORTAL = register(
+            "immortal",
+            it -> it.persistent(Unit.CODEC)
+    );
     public static final DataComponentType<Byte> TYPE_NUMBER = register(
             "type_number",
             it -> it.persistent(Codec.BYTE).networkSynchronized(ByteBufCodecs.BYTE)

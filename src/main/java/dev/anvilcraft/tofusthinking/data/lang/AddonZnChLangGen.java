@@ -160,6 +160,8 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.permanent","恒久：不灭于世界之侵，漫游于虚空之上，永存于时间之隙");
         add("tooltip.anvilcraft_tofus_thinking.dense","致密：提升10%护甲和保护的保护性能");
         add("tooltip.anvilcraft_tofus_thinking.antidote","抗毒：减少80%大多数负面效果时间，一半概率免疫");
+        add("tooltip.anvilcraft_tofus_thinking.heavy_hit","重击：增加50%暴击伤害");
+        add("tooltip.anvilcraft_tofus_thinking.immortal","亘古：免疫绝大多数伤害，不会随时间消逝");
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"诅咒雪球");
@@ -203,6 +205,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("gui.anvilcraft_tofus_thinking.category.reforge","重铸");
         add("gui.anvilcraft_tofus_thinking.category.reforge.all_fire_resistant","给予物品抗火组件");
         add("gui.anvilcraft_tofus_thinking.category.reforge.can_repair_fire_reforging","需要物品拥有抗火组件");
+        add("gui.anvilcraft_tofus_thinking.category.reforge.immortal","需要物品拥有抗火组件");
 
         add("jei.anvilcraft_tofus_thinking.reforge.any_item","任意符合下面要求（如有）的物品均可作为激活物");
         add("jei.anvilcraft_tofus_thinking.reforge.max_quantity","单次最大重铸数量:%s");

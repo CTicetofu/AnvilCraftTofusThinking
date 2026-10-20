@@ -69,6 +69,12 @@ public class ClientManageHandler {
         if(stack.has(AddonComponents.ANTIDOTE)){
             propertyTooltip("antidote", list, 0x00FF00);
         }
+        if(stack.has(AddonComponents.HEAVY_HIT)){
+            propertyTooltip("heavy_hit", list, 0x7B68EE);
+        }
+        if(stack.has(AddonComponents.IMMORTAL)){
+            propertyTooltip("immortal", list, 0xFF7F24);
+        }
     }
 
     private static void propertyTooltip(String propertyName, List<Component> tooltip, int color) {

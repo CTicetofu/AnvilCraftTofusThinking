@@ -27,6 +27,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -36,8 +37,10 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
+import net.neoforged.neoforge.event.entity.EntityInvulnerabilityCheckEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
+import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 
 @EventBusSubscriber
 public class LivingEventHandler {
@@ -73,7 +76,7 @@ public class LivingEventHandler {
         MobEffect effect = instance.getEffect().value();
         LivingEntity target = event.getEntity();
         if(target.getItemBySlot(EquipmentSlot.HEAD).has(AddonComponents.ANTIDOTE) && effect.getCategory() == MobEffectCategory.HARMFUL){
-            if(target.getRandom().nextBoolean()){event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);}
+            if((instance.duration <= 200 && instance.duration >= 0) || target.getRandom().nextBoolean()){event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);}
         }
         if(effect instanceof NotApplyEffect notApplyEffect && notApplyEffect.isNotApply(instance,target)){
             event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
@@ -83,15 +86,37 @@ public class LivingEventHandler {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void onEntityInvulnerability(EntityInvulnerabilityCheckEvent event){
+        Entity entity = event.getEntity();
+        DamageSource source = event.getSource();
+        if(entity instanceof ItemEntity item){
+            if(!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && item.getItem().has(AddonComponents.IMMORTAL)){event.setInvulnerable(true);}
+        }
+    }
+
     @SubscribeEvent
     public static void onLivingAddEffect(MobEffectEvent.Added event){
         MobEffectInstance instance = event.getEffectInstance();
         MobEffect effect = instance.getEffect().value();
         LivingEntity target = event.getEntity();
         if(target.getItemBySlot(EquipmentSlot.HEAD).has(AddonComponents.ANTIDOTE) && effect.getCategory() == MobEffectCategory.HARMFUL){
-            if(instance.duration > 0){instance.duration = (int) (instance.duration * 0.2F);}
+            if(instance.duration > 0){
+                int leftDuration = instance.duration;
+                leftDuration /= 5;
+                if(effect.shouldApplyEffectTickThisTick(leftDuration,instance.amplifier) && leftDuration > 1){leftDuration -= 1;}
+                instance.duration = leftDuration;
+            }
         }
     }
+
+    @SubscribeEvent
+    public static void onCrit(CriticalHitEvent event){
+        if(event.getEntity().getMainHandItem().has(AddonComponents.HEAVY_HIT)){
+            event.setDamageMultiplier(event.getDamageMultiplier() + 0.5F);
+        }
+    }
+
 
     @SubscribeEvent
     public static void onLivingBlock(LivingShieldBlockEvent event){
@@ -136,6 +161,7 @@ public class LivingEventHandler {
         if(direct instanceof Meteor || (direct instanceof GemMissile missile&&missile.lowMagicResist)){
             event.addReductionModifier(DamageContainer.Reduction.MOB_EFFECTS,(LivingEventHandler::lowMagicAbsorb));
             event.addReductionModifier(DamageContainer.Reduction.ENCHANTMENTS,(LivingEventHandler::lowMagicAbsorb));
+            event.addReductionModifier(DamageContainer.Reduction.ABSORPTION,(LivingEventHandler::lowMagicAbsorb));
         }
         if(AddonItems.ELASTIC_ANTI_FIRE_SHIELD.get().isEquippedBy(target)){
             if(direct instanceof LivingEntity living){
