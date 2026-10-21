@@ -28,6 +28,7 @@ items:
 | Topaz | Release nine lightning bolt at the target location |
 | Sapphire | Deal Slowness III (00:15) to mob within the Eight Grids and inflict some frost damage |
 | Ruby | Ignite the mob within the eight squares and damage their equipment, causing certain flame damage |
+| Amethyst | Chain hit trees or minerals as use amethyst tool |
 
 
 # Craft

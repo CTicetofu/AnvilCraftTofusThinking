@@ -13,8 +13,6 @@ import dev.anvilcraft.tofusthinking.recipe.reforge.ReforgeRecipe;
 import dev.anvilcraft.tofusthinking.util.EntityUtil;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.dubhe.anvilcraft.api.IHasDisplayItem;
-import dev.dubhe.anvilcraft.api.power.IPowerProducer;
-import dev.dubhe.anvilcraft.api.power.PowerGrid;
 import dev.dubhe.anvilcraft.block.CorruptedBeaconBlock;
 import dev.dubhe.anvilcraft.block.entity.FishTankBlockEntity;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
@@ -72,7 +70,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 //copy from vanilla
-public class OriginalConduitBlockEntity extends BlockEntity implements IPowerProducer, IHasDisplayItem {
+public class OriginalConduitBlockEntity extends BlockEntity implements IHasDisplayItem {
     public int tickCount;
     private float activeRotation;
     private boolean isActive;
@@ -86,7 +84,6 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
     private UUID destroyTargetUUID;
     private long nextAmbientSoundActivation;
     private int frameCount = 0;
-    private PowerGrid grid;
     private int overloadTimes = 0;
     private long lastTick = -1;
     private boolean canProduce = false;
@@ -504,36 +501,6 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
         return this.overloadTimes > 3;
     }
 
-    @Override
-    public @org.jetbrains.annotations.Nullable Level getCurrentLevel() {
-        return this.level;
-    }
-
-    @Override
-    public @NotNull BlockPos getPos() {
-        return this.getBlockPos();
-    }
-
-    @Override
-    public void setGrid(@org.jetbrains.annotations.Nullable PowerGrid grid) {
-        this.grid = grid;
-    }
-
-    @Override
-    public @org.jetbrains.annotations.Nullable PowerGrid getGrid() {
-        return grid;
-    }
-
-    @Override
-    public int getOutputPower() {
-        if(frameCount < 8 || !this.canProduce){return 0;}
-        return 2 * frameCount << 2 * Mth.clamp(overloadTimes,0,4);
-    }
-
-    @Override
-    public int getRange() {
-        return 2;
-    }
 
     private void sendUpdate() {
         if (this.level == null) return;
@@ -559,7 +526,7 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
 
     public void onReforgeSignal(Direction direction) {
         if (this.level == null || this.level.isClientSide) return;
-        BlockState state = this.level.getBlockState(this.getPos());
+        BlockState state = this.level.getBlockState(this.getBlockPos());
         if(!state.hasProperty(OriginalConduitBlock.OPEN) || !state.getValue(OriginalConduitBlock.OPEN)){return;}
         int signal = directionToSignal(direction);
         if (signal == REFORGE_SIGNAL_NONE) return;
@@ -653,7 +620,7 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
         }
         this.reforgeInventory.setStackInSlot(REFORGE_OUTPUT_SLOT, resultStack);
         this.setChanged();
-        Vec3 pos = this.getPos().getCenter();
+        Vec3 pos = this.getBlockPos().getCenter();
         level.playSound(null, pos.x, pos.y, pos.z, SoundEvents.BEACON_ACTIVATE, SoundSource.AMBIENT, 1F, 1);
         return true;
     }
@@ -688,7 +655,7 @@ public class OriginalConduitBlockEntity extends BlockEntity implements IPowerPro
     private void updateDisplayItemStack() {
         ItemStack newDisplayStack = getDisplayItemStackForRender();
         displayItemStack = newDisplayStack.copy();
-        PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) level, level.getChunk(getBlockPos()).getPos(), new UpdateDisplayItemPacket(displayItemStack, getPos()));
+        PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) level, level.getChunk(getBlockPos()).getPos(), new UpdateDisplayItemPacket(displayItemStack, getBlockPos()));
     }
 
     private ItemStack getDisplayItemStackForRender() {

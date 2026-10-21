@@ -39,7 +39,10 @@ import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
+import java.util.Map;
 import java.util.Optional;
 
 //处理各种******的情况,尝试杜绝刷物品
@@ -64,6 +67,7 @@ public class RewindLivingEntityBehavior implements IAnvilBehavior {
             if(player.isCreative() || player.isSpectator()){return;}
             dropEquipment(player);
             dropCurios(player,true);
+            player.getInventory().dropAll();
             slayPlayer(player);
         } else if(entity.getType().is(Tags.EntityTypes.BOSSES)){
             hurtPowerfulEntity(entity);
@@ -108,6 +112,25 @@ public class RewindLivingEntityBehavior implements IAnvilBehavior {
     private static void dropCurios(LivingEntity entity,boolean keep){
          CuriosApi.getCuriosInventory(entity).ifPresent(iCuriosItemHandler -> {
              IItemHandlerModifiable handler = iCuriosItemHandler.getEquippedCurios();
+             for (int i = 0; i < handler.getSlots(); i++) {
+                 ItemStack stack = handler.getStackInSlot(i);
+                 if(stack.isEmpty()){continue;}
+                 if(!keep && EnchantmentHelper.has(stack, EnchantmentEffectComponents.PREVENT_EQUIPMENT_DROP)){continue;}
+                 ItemStack copy = stack.copy();
+                 handler.setStackInSlot(i,ItemStack.EMPTY);
+                 if(!handler.getStackInSlot(i).isEmpty()){handler.getStackInSlot(i).setCount(0);}
+                 if(handler.getStackInSlot(i).isEmpty()){
+                     thrownItem(entity,copy);
+                 }
+             }
+             Map<String, ICurioStacksHandler> curios = iCuriosItemHandler.getCurios();
+             for (String id : curios.keySet()) {
+                 ICurioStacksHandler stacksHandler = curios.get(id);
+                 IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                 for (int i = 0; i < stackHandler.getSlots(); i++) {
+                     stacksHandler.updateActiveState(i);
+                 }
+             }
              for (int i = 0; i < handler.getSlots(); i++) {
                  ItemStack stack = handler.getStackInSlot(i);
                  if(stack.isEmpty()){continue;}

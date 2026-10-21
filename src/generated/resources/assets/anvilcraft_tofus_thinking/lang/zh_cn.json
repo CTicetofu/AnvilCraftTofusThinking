@@ -95,6 +95,7 @@
   "tooltip.anvilcraft_tofus_thinking.conduit_staff_recovery": "在雨中或者水中时缓慢恢复能量",
   "tooltip.anvilcraft_tofus_thinking.crossbow": "可使用箭，烟花，金属粒，宝石，或者雪球等当作弹药",
   "tooltip.anvilcraft_tofus_thinking.crossbow_burn": "点燃八格内生物，并损坏它们的装备，造成一定火焰伤害",
+  "tooltip.anvilcraft_tofus_thinking.crossbow_chain_mine": "连锁命中的树木或者矿物，等同紫水晶工具挖掘",
   "tooltip.anvilcraft_tofus_thinking.crossbow_curse": "对目标施加虚弱II(00:10)",
   "tooltip.anvilcraft_tofus_thinking.crossbow_ember": "额外增加目标点燃时间10秒",
   "tooltip.anvilcraft_tofus_thinking.crossbow_freeze": "对八格内生物造成缓慢III(00:15)，并造成一定冰霜伤害",

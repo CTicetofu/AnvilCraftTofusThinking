@@ -152,6 +152,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.crossbow_lightning","在命中点释放九道闪电");
         add("tooltip.anvilcraft_tofus_thinking.crossbow_freeze","对八格内生物造成缓慢III(00:15)，并造成一定冰霜伤害");
         add("tooltip.anvilcraft_tofus_thinking.crossbow_burn","点燃八格内生物，并损坏它们的装备，造成一定火焰伤害");
+        add("tooltip.anvilcraft_tofus_thinking.crossbow_chain_mine","连锁命中的树木或者矿物，等同紫水晶工具挖掘");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");

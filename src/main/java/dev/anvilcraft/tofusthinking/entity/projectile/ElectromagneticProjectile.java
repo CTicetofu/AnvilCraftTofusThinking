@@ -1,13 +1,18 @@
 package dev.anvilcraft.tofusthinking.entity.projectile;
 
+import dev.anvilcraft.lib.v2.util.Util;
 import dev.anvilcraft.tofusthinking.entity.FriendlyLightningBolt;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.item.property.component.ProjectileInfo;
 import dev.anvilcraft.tofusthinking.util.UnclassifiedUtil;
+import dev.dubhe.anvilcraft.init.block.ModBlockTags;
+import dev.dubhe.anvilcraft.init.enchantment.ModEnchantments;
 import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.init.item.ModItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -32,11 +37,17 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.Unbreakable;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -115,8 +126,15 @@ public class ElectromagneticProjectile extends AbstractHitProjectile{
     @Override
     protected void onHitBlock(@NotNull BlockHitResult result) {
         super.onHitBlock(result);
+        Level level = this.level();
+        BlockPos pos = result.getBlockPos();
         if(!this.isSilent()){
             this.playSound(this.getSoundEvent(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+        }
+        if(level instanceof ServerLevel serverLevel){
+            if(this.type == SpecialType.CHAIN_MINE && this.getOwner() instanceof Player player && player.isAlive()){
+                takeChainMine(serverLevel,pos,player);
+            }
         }
         destroy();
     }
@@ -251,6 +269,61 @@ public class ElectromagneticProjectile extends AbstractHitProjectile{
         destroy();
     }
 
+    private void takeChainMine(ServerLevel level, BlockPos pos, Player player){
+        BlockState state = level.getBlockState(pos);
+        if(state.is(ModBlockTags.FELLING_APPLICABLE)){
+            ItemStack tool = ModItems.AMETHYST_AXE.asStack();
+            tool.set(DataComponents.UNBREAKABLE,new Unbreakable(false));
+            if(this.isOnFire()){
+                tool.enchant(level.holderLookup(Registries.ENCHANTMENT).getOrThrow(ModEnchantments.SMELTING_KEY),5);
+            }
+            BlockPos.breadthFirstTraversal(
+                    pos,
+                    Integer.MAX_VALUE,
+                    512,
+                    Util::acceptDirections,
+                    blockPos -> {
+                        BlockState blockState = level.getBlockState(blockPos);
+                        if (blockState.is(ModBlockTags.FELLING_APPLICABLE) && (!blockState.requiresCorrectToolForDrops() || ModItems.AMETHYST_AXE.get().isCorrectToolForDrops(tool,blockState))) {
+                            BlockEntity blockEntity = level.getBlockEntity(blockPos);
+                            level.removeBlock(blockPos, false);
+                            if (!player.isCreative()) {
+                                Block.dropResources(blockState,level,blockPos,blockEntity,player,tool);
+                            }
+                            return true;
+                        }
+                        return false;
+                    }
+            );
+        } else if(state.is(Tags.Blocks.ORES)){
+            ItemStack tool = ModItems.AMETHYST_PICKAXE.asStack();
+            tool.set(DataComponents.UNBREAKABLE,new Unbreakable(false));
+            tool.enchant(level.holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE),3);
+            if(this.isOnFire()){
+                tool.enchant(level.holderLookup(Registries.ENCHANTMENT).getOrThrow(ModEnchantments.SMELTING_KEY),5);
+            }
+            BlockPos.breadthFirstTraversal(
+                    pos,
+                    Integer.MAX_VALUE,
+                    64,
+                    Util::acceptDirections,
+                    blockPos -> {
+                        BlockState blockState = level.getBlockState(blockPos);
+                        if (blockState.is(Tags.Blocks.ORES) && (!blockState.requiresCorrectToolForDrops() || ModItems.AMETHYST_AXE.get().isCorrectToolForDrops(tool,blockState))) {
+                            BlockEntity blockEntity = level.getBlockEntity(blockPos);
+                            level.removeBlock(blockPos, false);
+                            if (!player.isCreative()) {
+                                Block.dropResources(blockState,level,blockPos,blockEntity,player,tool);
+                            }
+                            return true;
+                        }
+                        return false;
+                    }
+            );
+        }
+
+    }
+
     public float getDamage() {
         return damage;
     }
@@ -342,11 +415,12 @@ public class ElectromagneticProjectile extends AbstractHitProjectile{
             if(stack.is(ModItemTags.GEMS_TOPAZ)){return SpecialType.LIGHTNING;}
             if(stack.is(ModItemTags.GEMS_RUBY)){return SpecialType.BURN;}
             if(stack.is(ModItemTags.GEMS_SAPPHIRE)){return SpecialType.FREEZE;}
+            if(stack.is(Tags.Items.GEMS_AMETHYST)){return SpecialType.CHAIN_MINE;}
         }
         return SpecialType.NONE;
     }
 
     public enum SpecialType{
-        NONE,CURSE,EMBER,RADIATION,FREEZE,BURN,LIGHTNING,SLIVER
+        NONE,CURSE,EMBER,RADIATION,FREEZE,CHAIN_MINE,BURN,LIGHTNING,SLIVER
     }
 }
