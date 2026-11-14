@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.client.event;
 
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
+import dev.anvilcraft.tofusthinking.client.renderer.blockentity.MushroomCowInJarRenderer;
 import dev.anvilcraft.tofusthinking.client.renderer.item.*;
 import dev.anvilcraft.tofusthinking.client.renderer.model.GemMissileModel;
 import dev.anvilcraft.tofusthinking.client.gui.item.EnergyBarRenderer;
@@ -34,6 +35,7 @@ public class ClientRegisterHandler {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(AddonBlockEntities.ORIGINAL_CONDUIT.get(), OriginalConduitRenderer::new);
         event.registerBlockEntityRenderer(AddonBlockEntities.OVERLOAD_GENERATOR.get(), OverloadGeneratorRenderer::new);
+        event.registerBlockEntityRenderer(AddonBlockEntities.MUSHROOM_COW_IN_JAR.get(), MushroomCowInJarRenderer::new);
     }
 
     @SubscribeEvent
@@ -43,6 +45,7 @@ public class ClientRegisterHandler {
         event.registerItem(OriginalConduitStaffRenderer.ORIGINAL_CONDUIT_STAFF_EXTENSION, AddonItems.ORIGINAL_CONDUIT_STAFF.get());
         event.registerItem(GemStaffRenderer.GEM_STAFF_EXTENSION, AddonItems.GEM_STAFF.get());
         event.registerItem(ElectromagneticCrossbowRenderer.ELECTROMAGNETIC_CROSSBOW_EXTENSION, AddonItems.ELECTROMAGNETIC_CROSSBOW.get());
+        event.registerItem(MushroomCowInJarItemRenderer.MUSHROOM_COW_IN_JAR_EXTENSION, AddonBlocks.MUSHROOM_COW_IN_JAR.asItem());
     }
 
     @SubscribeEvent

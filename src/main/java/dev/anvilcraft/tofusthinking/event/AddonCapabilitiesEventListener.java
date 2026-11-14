@@ -3,7 +3,9 @@ package dev.anvilcraft.tofusthinking.event;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.api.energy.FEEnergyTool;
 import dev.anvilcraft.tofusthinking.block.entity.SmartPowerConverterBlockEntity;
+import dev.anvilcraft.tofusthinking.block.entity.MushroomCowInJarBlockEntity;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
+import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -25,10 +27,21 @@ public class AddonCapabilitiesEventListener {
                 AddonBlockEntities.ORIGINAL_CONDUIT.get(),
                 (blockEntity, side) -> blockEntity.getItemHandler()
         );
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                AddonBlockEntities.MUSHROOM_COW_IN_JAR.get(),
+                (blockEntity, side) -> MushroomCowInJarBlockEntity.INFINITY_MILK
+        );
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                AddonBlockEntities.MUSHROOM_COW_IN_JAR.get(),
+                (blockEntity, side) -> blockEntity.getItemHandler()
+        );
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.SONIC_BOOM_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.GEM_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.CONDUIT_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.ORIGINAL_CONDUIT_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.ELECTROMAGNETIC_CROSSBOW);
+        event.registerItem(Capabilities.FluidHandler.ITEM,((o, unused) -> new MushroomCowInJarBlockEntity.InfinityMilkItem(o)), AddonBlocks.MUSHROOM_COW_IN_JAR.asItem());
     }
 }

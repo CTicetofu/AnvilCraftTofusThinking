@@ -6,6 +6,7 @@ public class TofuThinkingRecipeHandler {
     public static void init(RegistrumRecipeProvider provider) {
         AddonCraftRecipeLoader.init(provider);
         AddonStampingRecipeLoader.init(provider);
+        AddonItemCompressRecipeLoader.init(provider);
         AddonTimeWarpRecipeLoader.init(provider);
         AddonAnvilCollisionCraftRecipeLoader.init(provider);
         RewindRecipeLoader.init(provider);

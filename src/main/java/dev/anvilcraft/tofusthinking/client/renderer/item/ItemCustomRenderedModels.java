@@ -18,10 +18,12 @@ import java.util.Map;
 @EventBusSubscriber(modid = AnvilCraftTofusThinking.MOD_ID, value = Dist.CLIENT)
 public class ItemCustomRenderedModels {
     public static final ResourceLocation ELECTROMAGNETIC_CROSSBOW = AnvilCraftTofusThinking.of("electromagnetic_crossbow");
+    public static final ResourceLocation MUSHROOM_COW_IN_JAR = AnvilCraftTofusThinking.of("mushroom_cow_in_jar");
     @SubscribeEvent
     public static void onModelBake(ModelEvent.ModifyBakingResult event) {
         Map<ModelResourceLocation, BakedModel> modelRegistry = event.getModels();
         swapModels(modelRegistry, ModelResourceLocation.inventory(ELECTROMAGNETIC_CROSSBOW));
+        swapModels(modelRegistry, ModelResourceLocation.inventory(MUSHROOM_COW_IN_JAR));
     }
     public static void swapModels(Map<ModelResourceLocation, BakedModel> modelRegistry, ModelResourceLocation modelLocation) {
         BakedModel model = modelRegistry.get(modelLocation);

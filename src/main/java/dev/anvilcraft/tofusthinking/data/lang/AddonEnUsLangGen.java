@@ -50,6 +50,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"Smart Power Converter");
         add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"Smart Power Converter Extremely Big");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"Overload Generator");
+        add(AddonBlocks.MUSHROOM_COW_IN_JAR.get(),"Mushroom Cow In Jar");
         add(AddonBlocks.TOFU_ANVIL.get(),"Tofu Anvil");
     }
     private void tooltipLang(){
@@ -157,6 +158,9 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.crossbow_freeze","Deal Slowness III (00:15) to mob within the Eight Grids and inflict some frost damage");
         add("tooltip.anvilcraft_tofus_thinking.crossbow_burn","Ignite the mob within the eight squares and damage their equipment, causing certain flame damage");
         add("tooltip.anvilcraft_tofus_thinking.crossbow_chain_mine","Chain hit trees or minerals as use amethyst tool");
+
+        add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar1","Unlimited access to milk and mushroom stew");
+        add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar2","When activated by redstone can automatically output milk and convert input items");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");

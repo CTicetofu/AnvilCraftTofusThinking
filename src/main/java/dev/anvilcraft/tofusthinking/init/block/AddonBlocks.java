@@ -3,6 +3,8 @@ package dev.anvilcraft.tofusthinking.init.block;
 import dev.anvilcraft.lib.v2.registrum.util.entry.BlockEntry;
 import dev.anvilcraft.tofusthinking.block.*;
 import dev.anvilcraft.tofusthinking.data.recipe.AddonBlockRecipeLoader;
+import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
+import dev.anvilcraft.tofusthinking.item.blockItem.MushroomCowInJarItem;
 import dev.anvilcraft.tofusthinking.item.blockItem.OriginalConduitItem;
 import dev.anvilcraft.tofusthinking.item.blockItem.SimpleBlockItem;
 import dev.dubhe.anvilcraft.data.recipe.RegistrumBlockRecipeLoader;
@@ -11,6 +13,7 @@ import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -20,6 +23,11 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import static dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking.REGISTRUM;
 import static dev.dubhe.anvilcraft.api.power.IPowerComponent.OVERLOAD;
@@ -103,6 +111,30 @@ public class AddonBlocks {
             )
             .build()
             .recipe(AddonBlockRecipeLoader::overloadGenerator)
+            .register();
+
+    public static final BlockEntry<MushroomCowInJarBlock> MUSHROOM_COW_IN_JAR = REGISTRUM
+            .block("mushroom_cow_in_jar", MushroomCowInJarBlock::new)
+            .initialProperties(() -> Blocks.GLASS)
+            .properties(p -> p.explosionResistance(100)
+                    .noOcclusion()
+                    .isValidSpawn(Blocks::never)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never))
+            .loot((ctx, prov) -> {
+                LootTable.Builder builder = LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1.0f))
+                                .add(LootItem.lootTableItem(AddonBlocks.MUSHROOM_COW_IN_JAR))
+                                .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                        .include(AddonComponents.TYPE_NUMBER).include(DataComponents.SUSPICIOUS_STEW_EFFECTS)));
+                ctx.add(prov, builder);
+            })
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .blockstate(DataGenUtil::noExtraModelOrState)
+            .item(MushroomCowInJarItem::new)
+            .build()
             .register();
 
     public static final BlockEntry<? extends Block> TOFU_ANVIL = REGISTRUM.block("tofu_anvil", TofuAnvilBlock::new)

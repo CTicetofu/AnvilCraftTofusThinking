@@ -18,7 +18,6 @@ items:
 - Can repair items in the player's hot bar and equipment bar near water or rain
 - When causing damage to enemy in nearby water or rain, it also causes damage to creatures within a 2-grid range nearby, and the damage value increases to 15
 - If there are more than 8 stable prismarine bricks within the framework, all effects do not need to be in water or rain
-- Each framework increases power generation by 2kw
 ::: warning
 If a Original Conduit does not attempt to execute the recipe within ten seconds, the next attempt to execute the recipe will attempt to rewind on the creatures within its working range, remove all their equipment (even if has binding curse), and kill them
 :::

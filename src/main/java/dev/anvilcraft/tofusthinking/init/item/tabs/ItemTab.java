@@ -34,6 +34,7 @@ public class ItemTab extends BaseCreativeTab{
         this.accept(AddonBlocks.STABLE_PRISMARINE_BRICKS.asItem());
         this.accept(AddonBlocks.SMART_POWER_CONVERTER.asItem());
         this.accept(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.asItem());
+        this.accept(AddonBlocks.MUSHROOM_COW_IN_JAR.asItem());
         this.accept(AddonBlocks.TOFU_ANVIL.asItem());
     }
 }

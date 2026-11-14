@@ -47,6 +47,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonBlocks.SMART_POWER_CONVERTER.get(),"智能能量转换器");
         add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"智能极大能量转换器");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"过载发电机");
+        add(AddonBlocks.MUSHROOM_COW_IN_JAR.get(),"罐中蘑菇牛");
         add(AddonBlocks.TOFU_ANVIL.get(),"豆腐铁砧");
     }
     private void tooltipLang(){
@@ -153,6 +154,9 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.crossbow_freeze","对八格内生物造成缓慢III(00:15)，并造成一定冰霜伤害");
         add("tooltip.anvilcraft_tofus_thinking.crossbow_burn","点燃八格内生物，并损坏它们的装备，造成一定火焰伤害");
         add("tooltip.anvilcraft_tofus_thinking.crossbow_chain_mine","连锁命中的树木或者矿物，等同紫水晶工具挖掘");
+
+        add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar1","可无限取出奶和蘑菇煲");
+        add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar2","红石启用时可自动输出奶和转化输入物品");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");
