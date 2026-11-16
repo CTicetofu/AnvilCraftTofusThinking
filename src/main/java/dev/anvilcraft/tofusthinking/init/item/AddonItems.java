@@ -162,6 +162,12 @@ public class AddonItems {
             .tag(ItemTags.ARROWS)
             .register();
 
+    public static final ItemEntry<BookOfEnchantment> BOOK_OF_ENCHANTMENT = REGISTRUM.item("book_of_enchantment", properties ->
+                    new BookOfEnchantment(properties.rarity(Rarity.UNCOMMON).stacksTo(1)))
+            .model(DataGenUtil::noExtraModelOrState)
+            .recipe(AddonItemRecipeLoader::bookOfEnchantment)
+            .register();
+
     public static ItemStack enchant(ItemLike item, HolderLookup.Provider registries, EnchantmentKeyInstance... instances){
         ItemStack stack = item.asItem().getDefaultInstance();
         return enchantStack(stack,registries,instances);

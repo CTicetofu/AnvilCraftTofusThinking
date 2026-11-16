@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:enchanted_book"
+    },
+    "B": {
+      "item": "anvilcraft:capacitor_empty"
+    },
+    "C": {
+      "tag": "c:bookshelves"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "CAC",
+    "CBC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:book_of_enchantment"
+  }
+}

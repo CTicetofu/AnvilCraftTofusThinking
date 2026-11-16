@@ -181,6 +181,18 @@ public class AddonItemRecipeLoader {
                 .save(provider, AnvilCraftTofusThinking.of("smithing/original_conduit_staff"));
     }
 
+    public static <T extends Item> void bookOfEnchantment(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                .pattern("CBC")
+                .pattern("CAC")
+                .pattern("CBC")
+                .define('A', Items.ENCHANTED_BOOK)
+                .define('B', ModItems.CAPACITOR_EMPTY)
+                .define('C', Tags.Items.BOOKSHELVES)
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.ENCHANTED_BOOK), RegistrumRecipeProvider.has(Items.ENCHANTED_BOOK))
+                .save(provider);
+    }
+
     public static <T extends Item> void sonicBoomStaff(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         SmithingTransformRecipeBuilder.smithing(
                         Ingredient.of(ModItems.CAPACITOR_EMPTY),

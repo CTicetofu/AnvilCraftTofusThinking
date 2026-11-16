@@ -43,6 +43,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.GEM_STAFF.asItem(),"Gem Staff");
         add(AddonItems.ELECTROMAGNETIC_CROSSBOW.asItem(),"Electromagnetic Crossbow");
         add(AddonItems.EXPLOSION_ARROW.asItem(),"Explosion Arrow");
+        add(AddonItems.BOOK_OF_ENCHANTMENT.asItem(),"Book Of Enchantment");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"Stable Prismarine Bricks");
@@ -162,6 +163,9 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar1","Unlimited access to milk and mushroom stew");
         add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar2","When activated by redstone can automatically output milk and convert input items");
 
+        add("tooltip.anvilcraft_tofus_thing.book_of_enchantment","When attacking, launch a string of magic characters with a maximum length of 32");
+        add("tooltip.anvilcraft_tofus_thing.book_of_enchantment_charge","Absorb enchanted items to replenish energy, each level providing %s");
+
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");
         add("tooltip.anvilcraft_tofus_thinking.progress","Progress: %s %%");
@@ -205,6 +209,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("death.attack.tofusThinking.counter","%s impulsively attacked %s");
         add("death.attack.tofusThinking.meteor","%s It was shattered by the meteor from %s explosion");
         add("death.attack.tofusThinking.gem_missile","%s didn't get a clear look to gem by %s");
+        add("death.attack.tofusThinking.character","%s can't understand what %s say");
         add("death.attack.tofusThinking.nugget","%s die for acute metal poisoning,the murderer is %s");
 
         add(AddonItemGroups.ITEM_TAB_ID,"AnvilCraft: Tofu's Thinking");

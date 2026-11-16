@@ -33,7 +33,8 @@ public class AddonDamageTypeTagLoader {
                 .addOptional(AddonDamageTypes.COUNTER.location())
                 .addOptional(AddonDamageTypes.BOUNCE_WITHER_SKULL.location())
                 .addOptional(AddonDamageTypes.METEOR.location())
-                .addOptional(AddonDamageTypes.GEM_MISSILE.location());
+                .addOptional(AddonDamageTypes.GEM_MISSILE.location())
+                .addOptional(AddonDamageTypes.CHARACTER.location());
 
         provider.addTag(DamageTypeTags.BYPASSES_WOLF_ARMOR)
                 .addOptional(AddonDamageTypes.REWIND.location())
@@ -42,7 +43,8 @@ public class AddonDamageTypeTagLoader {
                 .addOptional(AddonDamageTypes.COUNTER.location())
                 .addOptional(AddonDamageTypes.BOUNCE_WITHER_SKULL.location())
                 .addOptional(AddonDamageTypes.METEOR.location())
-                .addOptional(AddonDamageTypes.GEM_MISSILE.location());
+                .addOptional(AddonDamageTypes.GEM_MISSILE.location())
+                .addOptional(AddonDamageTypes.CHARACTER.location());
 
         provider.addTag(DamageTypeTags.BYPASSES_ENCHANTMENTS)
                 .addOptional(AddonDamageTypes.REWIND_ATTACK.location())
@@ -61,9 +63,13 @@ public class AddonDamageTypeTagLoader {
         provider.addTag(DamageTypeTags.IS_PROJECTILE)
                 .addOptional(AddonDamageTypes.NUGGET.location());
 
+        provider.addTag(DamageTypeTags.NO_KNOCKBACK)
+                .addOptional(AddonDamageTypes.CHARACTER.location());
+
         provider.addTag(Tags.DamageTypes.IS_MAGIC)
                 .addOptional(AddonDamageTypes.METEOR.location())
-                .addOptional(AddonDamageTypes.GEM_MISSILE.location());
+                .addOptional(AddonDamageTypes.GEM_MISSILE.location())
+                .addOptional(AddonDamageTypes.CHARACTER.location());
 
         provider.addTag(Tags.DamageTypes.IS_TECHNICAL)
                 .addOptional(AddonDamageTypes.EX_REWIND.location());

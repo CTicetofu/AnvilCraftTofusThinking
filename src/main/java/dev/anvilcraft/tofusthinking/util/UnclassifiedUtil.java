@@ -31,7 +31,7 @@ public class UnclassifiedUtil {
         );
     }
 
-    public static void spawnLineParticles(Level level, ParticleOptions particle,double x, double y, double z, double offsetX, double offsetY, double offsetZ, float motionX, float motionY, float motionZ, int count, boolean force){
+    public static void spawnLineParticles(Level level, ParticleOptions particle,double x, double y, double z, double offsetX, double offsetY, double offsetZ, double motionX, double motionY, double motionZ, int count, boolean force){
         if(level.getServer() == null){return;}
         if (!(level instanceof ServerLevel serverLevel)) return;
         if (particle == null || count <= 0) return;
@@ -40,7 +40,7 @@ public class UnclassifiedUtil {
                 force ? 512 : 32,
                 new LineParticlePacket((float) x, (float) y, (float) z,
                         (float)offsetX, (float)offsetY, (float)offsetZ,
-                        motionX, motionY, motionZ,
+                        (float)motionX, (float)motionY, (float)motionZ,
                         count, particle)
         );
     }

@@ -13,7 +13,8 @@
         {
           "function": "minecraft:copy_components",
           "include": [
-            "anvilcraft_tofus_thinking:type_number"
+            "anvilcraft_tofus_thinking:type_number",
+            "minecraft:suspicious_stew_effects"
           ],
           "source": "block_entity"
         }

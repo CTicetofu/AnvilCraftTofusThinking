@@ -7,6 +7,10 @@
     {
       "id": "anvilcraft_tofus_thinking:gem_missile",
       "required": false
+    },
+    {
+      "id": "anvilcraft_tofus_thinking:character",
+      "required": false
     }
   ]
 }

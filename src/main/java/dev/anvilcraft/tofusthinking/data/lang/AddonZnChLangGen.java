@@ -40,6 +40,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.GEM_STAFF.asItem(),"宝石法杖");
         add(AddonItems.ELECTROMAGNETIC_CROSSBOW.asItem(),"电磁弩");
         add(AddonItems.EXPLOSION_ARROW.asItem(),"爆破箭");
+        add(AddonItems.BOOK_OF_ENCHANTMENT.asItem(),"附魔之书");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"坚固海晶石砖");
@@ -158,6 +159,9 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar1","可无限取出奶和蘑菇煲");
         add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar2","红石启用时可自动输出奶和转化输入物品");
 
+        add("tooltip.anvilcraft_tofus_thing.book_of_enchantment","攻击时发射一串长度最多32格的魔法字符");
+        add("tooltip.anvilcraft_tofus_thing.book_of_enchantment_charge","吸收附魔物品补充能源，每层附魔提供 %s");
+
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");
         add("tooltip.anvilcraft_tofus_thinking.progress","进度: %s %%");
@@ -200,6 +204,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("death.attack.tofusThinking.counter","%s 过于冲动的攻击了 %s");
         add("death.attack.tofusThinking.meteor","%s 被 %s 的流星炸的粉碎");
         add("death.attack.tofusThinking.gem_missile","%s 没看清 %s 的宝石");
+        add("death.attack.tofusThinking.character","%s 听不懂 %s 说的话");
         add("death.attack.tofusThinking.nugget","%s 死于急性金属中毒，凶手是 %s");
 
         add(AddonItemGroups.ITEM_TAB_ID,"铁砧工艺: 豆之思维");

@@ -5,19 +5,21 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.Consumer;
+
 public class ExtraDamageSource extends DamageSource {
-
-    private float extraHurtAmount = 0;
-    private float extraHurtRate = 1F;
-
-    private float extraDamageAmount = 0;
-    private float extraDamageRate = 1F;
+    private Consumer<LivingIncomingDamageEvent> onLivingIncoming = null;
+    private Consumer<LivingDamageEvent> onLivingDamage = null;
 
     private DeathAction onDeath = DeathAction.NONE;
 
     private boolean notBlock = false;
+
+    private boolean direct = false;
 
     public ExtraDamageSource(Holder<DamageType> type, @Nullable Entity directEntity, @Nullable Entity causingEntity, @Nullable Vec3 damageSourcePosition) {
         super(type, directEntity, causingEntity, damageSourcePosition);
@@ -25,6 +27,11 @@ public class ExtraDamageSource extends DamageSource {
 
     public ExtraDamageSource(Holder<DamageType> type, @Nullable Entity directEntity, @Nullable Entity causingEntity) {
         super(type, directEntity, causingEntity);
+    }
+
+    @Override
+    public boolean isDirect() {
+        return direct || super.isDirect();
     }
 
     public ExtraDamageSource(Holder<DamageType> type, Vec3 damageSourcePosition) {
@@ -39,20 +46,12 @@ public class ExtraDamageSource extends DamageSource {
         super(type);
     }
 
-    public float getExtraHurtAmount() {
-        return extraHurtAmount;
+    public Consumer<LivingIncomingDamageEvent> getOnLivingIncoming() {
+        return onLivingIncoming;
     }
 
-    public float getExtraHurtRate() {
-        return extraHurtRate;
-    }
-
-    public float getExtraDamageAmount() {
-        return extraDamageAmount;
-    }
-
-    public float getExtraDamageAmountRate() {
-        return extraDamageRate;
+    public Consumer<LivingDamageEvent> getOnLivingDamage(){
+        return onLivingDamage;
     }
 
     public DeathAction getOnDeath() {
@@ -63,15 +62,13 @@ public class ExtraDamageSource extends DamageSource {
         return notBlock;
     }
 
-    public ExtraDamageSource withHurtInfo(float amount, float rate){
-        extraHurtAmount = amount;
-        extraHurtRate = rate;
+    public ExtraDamageSource withIncoming(Consumer<LivingIncomingDamageEvent> eventConsumer){
+        this.onLivingIncoming = eventConsumer;
         return this;
     }
 
-    public ExtraDamageSource withDamageInfo(float amount, float rate){
-        extraDamageAmount = amount;
-        extraDamageRate = rate;
+    public ExtraDamageSource withDamage(Consumer<LivingDamageEvent> eventConsumer){
+        this.onLivingDamage = eventConsumer;
         return this;
     }
 
@@ -87,6 +84,11 @@ public class ExtraDamageSource extends DamageSource {
 
     public ExtraDamageSource withNotBlock(boolean b){
         notBlock = b;
+        return this;
+    }
+
+    public ExtraDamageSource withDirect(){
+        this.direct = true;
         return this;
     }
 

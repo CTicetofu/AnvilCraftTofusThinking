@@ -27,7 +27,6 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
@@ -44,13 +43,18 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Objects;
 
-public class ConduitStaff extends Item implements ICapacitorChargeable {
+public class ConduitStaff extends RightSpellItem implements ICapacitorChargeable {
     public static final String SKILL_ID = "conduit_attack";
     public static final String SKILL_ID_2 = "auto_conduit_attack";
     public static final int MAX_ENERGY = 16000000;
     public static ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
     public ConduitStaff(Properties properties) {
         super(properties.component(AddonComponents.MAX_ENERGY,MAX_ENERGY).component(AddonComponents.AUTO_HUNT,false).attributes(createAttributes()));
+    }
+
+    @Override
+    public String getSpellId() {
+        return SKILL_ID;
     }
 
     @Override
@@ -107,12 +111,12 @@ public class ConduitStaff extends Item implements ICapacitorChargeable {
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack, int remainingUseDuration) {
         if(isAutoHunting(stack) && level.isClientSide){return;}
         if(livingEntity instanceof ServerPlayer player && !CooldownManager.isOnCooldown(player,SKILL_ID) && ItemUtil.consumeEnergy(livingEntity,stack,getNeedEnergy(false))){
-            startToAttack(level, livingEntity, stack);
+            this.startToAttack(level, livingEntity, stack);
             CooldownManager.addCooldown(player,SKILL_ID,20);
         }
     }
 
-    public static void startToAttack(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack){
+    public void startToAttack(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack){
         HitResult hitResult = RayDetectionUtil.create(level).endByLook(livingEntity,16).raycast();
         Entity entity = null;
         if(hitResult instanceof EntityHitResult entityHitResult){
@@ -134,20 +138,21 @@ public class ConduitStaff extends Item implements ICapacitorChargeable {
                 CooldownManager.addCooldown(player,SKILL_ID_2,35);
                 Mob target = EntityUtil.getAnEntityOfClass(level,Mob.class,new AABB(player.blockPosition()).inflate(12), mob -> !mob.isInvulnerable() && mob.isAlive() && mob instanceof Enemy);
                 if(target != null && ItemUtil.consumeEnergy(player,stack,getNeedEnergy(true))){
-                    dealAttack(level,player,stack,target,target.position().add(0,0.2,0));
+                    this.dealAttack(level,player,stack,target,target.position().add(0,0.2,0));
                 }
             }
         }
     }
 
-    private static void dealAttack(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack, Entity entity, Vec3 pos){
+    private void dealAttack(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack stack, Entity entity, Vec3 pos){
         if(entity instanceof LivingEntity living){
             living.addEffect(new MobEffectInstance(MobEffects.GLOWING,20,0,false,false,true));
         }
+        float baseAmount = this.getBaseDamage(livingEntity, stack);
         for (LivingEntity target : level.getEntitiesOfClass(LivingEntity.class, new AABB(pos.subtract(1.5, 1, 1.5), pos.add(1.5, 1, 1.5)))) {
             if(target == livingEntity || livingEntity.isAlliedTo(target)){continue;}
             if(target instanceof Player && target != entity){continue;}
-            target.hurt(AddonDamageTypes.source(DamageTypes.MAGIC,level,null,livingEntity),6);
+            target.hurt(AddonDamageTypes.source(DamageTypes.MAGIC,level,null,livingEntity),baseAmount);
             target.invulnerableTime = 0;
         }
         UnclassifiedUtil.spawnCenterParticles(level,ParticleTypes.NAUTILUS,pos.x,pos.y,pos.z,2,0.5F,4F,0.4F,30,false);
@@ -159,7 +164,7 @@ public class ConduitStaff extends Item implements ICapacitorChargeable {
         return ItemAttributeModifiers.builder()
                 .add(
                         Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 7, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 5, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND
                 )
                 .add(

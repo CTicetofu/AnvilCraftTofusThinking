@@ -42,6 +42,7 @@ public class AddonCapabilitiesEventListener {
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.CONDUIT_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.ORIGINAL_CONDUIT_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.ELECTROMAGNETIC_CROSSBOW);
+        event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.BOOK_OF_ENCHANTMENT);
         event.registerItem(Capabilities.FluidHandler.ITEM,((o, unused) -> new MushroomCowInJarBlockEntity.InfinityMilkItem(o)), AddonBlocks.MUSHROOM_COW_IN_JAR.asItem());
     }
 }

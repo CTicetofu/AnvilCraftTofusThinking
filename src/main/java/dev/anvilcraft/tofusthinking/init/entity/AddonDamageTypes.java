@@ -31,6 +31,8 @@ public class AddonDamageTypes {
             ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("meteor"));
     public static final ResourceKey<DamageType> GEM_MISSILE =
             ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("gem_missile"));
+    public static final ResourceKey<DamageType> CHARACTER =
+            ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("character"));
     public static final ResourceKey<DamageType> NUGGET =
             ResourceKey.create(Registries.DAMAGE_TYPE, AnvilCraftTofusThinking.of("nugget"));
 
@@ -44,6 +46,7 @@ public class AddonDamageTypes {
         ctx.register(BOUNCE_WITHER_SKULL,new DamageType("tofusThinking.bounce_wither_skull", DamageScaling.NEVER,0.0F));
         ctx.register(METEOR,new DamageType("tofusThinking.meteor", DamageScaling.NEVER,0.0F));
         ctx.register(GEM_MISSILE,new DamageType("tofusThinking.gem_missile", DamageScaling.NEVER,0.0F));
+        ctx.register(CHARACTER,new DamageType("tofusThinking.character", DamageScaling.NEVER,0.0F));
         ctx.register(NUGGET,new DamageType("tofusThinking.nugget", DamageScaling.NEVER,0.0F));
     }
 
@@ -65,6 +68,10 @@ public class AddonDamageTypes {
 
     public static ExtraDamageSource gemMissile(Level level, Entity directEntity, Entity causingEntity){
         return extraSource(GEM_MISSILE,level,directEntity,causingEntity);
+    }
+
+    public static ExtraDamageSource character(Level level, Entity directEntity, Entity causingEntity){
+        return extraSource(CHARACTER,level,directEntity,causingEntity);
     }
 
     public static DamageSource nugget(Level level, Entity directEntity, Entity causingEntity){

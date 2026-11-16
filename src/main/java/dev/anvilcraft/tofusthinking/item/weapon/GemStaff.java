@@ -1,13 +1,9 @@
 package dev.anvilcraft.tofusthinking.item.weapon;
 
 import com.mojang.datafixers.util.Pair;
-import dev.anvilcraft.tofusthinking.attachment.magic.CooldownManager;
-import dev.anvilcraft.tofusthinking.client.ClientCooldownCache;
 import dev.anvilcraft.tofusthinking.entity.projectile.GemMissile;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItemTags;
-import dev.anvilcraft.tofusthinking.item.LeftClickAction;
-import dev.anvilcraft.tofusthinking.network.toServer.LeftClickPacket;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.anvilcraft.tofusthinking.util.TooltipUtil;
 import dev.dubhe.anvilcraft.init.item.ModComponents;
@@ -21,7 +17,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -42,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class GemStaff extends Item implements LeftClickAction {
+public class GemStaff extends LeftSpellItem {
     public static final int MAX_ENERGY = 1000000;
     public static final int NEED = 2000;
     public static final String SKILL_ID = "GemMissile";
@@ -93,6 +88,16 @@ public class GemStaff extends Item implements LeftClickAction {
     }
 
     @Override
+    public String getSpellId() {
+        return SKILL_ID;
+    }
+
+    @Override
+    public int getCastEnergy(ItemStack stack) {
+        return NEED;
+    }
+
+    @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
         return UseAnim.BOW;
     }
@@ -118,8 +123,8 @@ public class GemStaff extends Item implements LeftClickAction {
     }
 
     public void shootGemMissile(ItemStack stack, ServerPlayer player, Level level){
-        if(CooldownManager.isOnCooldown(player, SKILL_ID) ||!ItemUtil.consumeEnergy(player,stack,NEED)){return;}
-        CooldownManager.addCooldown(player, SKILL_ID,20);
+        if(this.isOnCooldown(player) ||!ItemUtil.consumeEnergy(player,stack,this.getCastEnergy(stack))){ return;}
+        this.addCooldown(player, 20);
         GemMissile missile = new GemMissile(level,player);
         missile.setPos(player.getEyePosition());
         missile.setDeltaMovement(player.getLookAngle().scale(1F));
@@ -135,7 +140,9 @@ public class GemStaff extends Item implements LeftClickAction {
         }
         missile.doSplit();
         level.addFreshEntity(missile);
-        level.playSound(null,player.getX(),player.getY(),player.getZ(), SoundEvents.AMETHYST_BLOCK_RESONATE,player.getSoundSource(),1.8F,1.4F);
+        if(!player.isSilent()){
+            level.playSound(null,player.getX(),player.getY(),player.getZ(), SoundEvents.AMETHYST_BLOCK_RESONATE,player.getSoundSource(),1.8F,1.4F);
+        }
     }
 
     @Override
@@ -210,7 +217,7 @@ public class GemStaff extends Item implements LeftClickAction {
         super.appendHoverText(stack, context, tooltips, flag);
         boolean shift = Screen.hasShiftDown();
         tooltips.add(TooltipUtil.getItemEnergyTooltip(stack, shift));
-        tooltips.add(TooltipUtil.getItemNeedEnergy(2000, shift));
+        tooltips.add(TooltipUtil.getItemNeedEnergy(this.getCastEnergy(stack), shift));
         String head = stack.getOrDefault(AddonComponents.HEAD_TYPE,"none");
         String grip = stack.getOrDefault(AddonComponents.GRIP_TYPE,"none");
         int headColor = getColorValue(head);
@@ -268,30 +275,6 @@ public class GemStaff extends Item implements LeftClickAction {
 
     public static ItemStack getGripItem(@NotNull ItemStack stack) {
         return Optional.ofNullable(stack.get(AddonComponents.DISPLAY_ANOTHER_ITEM)).map(StoredItem::stored).orElse(Items.AMETHYST_BLOCK.getDefaultInstance());
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public boolean isBarVisible(@NotNull ItemStack stack) {
-        return ClientCooldownCache.isOnCooldown(SKILL_ID);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public int getBarWidth(@NotNull ItemStack stack) {
-        return (int) (13 * ClientCooldownCache.getProgress(SKILL_ID));
-    }
-
-    @Override
-    public int getBarColor(@NotNull ItemStack stack) {
-        return 0x00CD66;
-    }
-
-    @Override
-    public void onClientClick(ItemStack stack, Player player) {
-        if(ClientCooldownCache.isOnCooldown(SKILL_ID) || (!player.isCreative() && !ItemUtil.hasEnoughEnergy(stack,2000))){return;}
-        LeftClickPacket.sendToServer();
-        player.swing(InteractionHand.MAIN_HAND);
     }
 
     @Override

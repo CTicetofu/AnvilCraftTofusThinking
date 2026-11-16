@@ -55,6 +55,7 @@ public class ClientRegisterHandler {
         event.register(AddonItems.ELECTROMAGNETIC_CROSSBOW.get(), EnergyBarRenderer.DEFAULT);
         event.register(AddonItems.CONDUIT_STAFF.get(), EnergyBarRenderer.DEFAULT);
         event.register(AddonItems.ORIGINAL_CONDUIT_STAFF.get(), EnergyBarRenderer.DEFAULT);
+        event.register(AddonItems.BOOK_OF_ENCHANTMENT.get(), EnergyBarRenderer.DEFAULT);
     }
 
     @SubscribeEvent

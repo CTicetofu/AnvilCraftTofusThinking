@@ -19,7 +19,7 @@ import java.util.function.Predicate;
  * 狂蹬AI，爽
  */
 public class RayDetectionUtil {
-    private static final Predicate<Entity> DEFAULT_FILTER = entity ->
+    public static final Predicate<Entity> DEFAULT_FILTER = entity ->
             entity.isAlive() && !entity.isSpectator() && entity.isPickable();
 
     private final Level level;

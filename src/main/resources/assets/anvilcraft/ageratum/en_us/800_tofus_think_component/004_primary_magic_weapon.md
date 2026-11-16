@@ -6,6 +6,7 @@ items:
   - anvilcraft_tofus_thinking:conduit_staff
   - anvilcraft_tofus_thinking:sonic_boom_staff
   - anvilcraft_tofus_thinking:gem_staff
+  - anvilcraft_tofus_thinking:book_of_enchantment
 ---
 # Conuit Staff
 
@@ -48,6 +49,22 @@ You may have noticed that this is an inactive Staff, which can be used to accumu
 >-Ruby: Single projectile damage * 0.6. When hitting an entity, it generates an identical projectile nearby (replicas cannot be replicated again) and hits the entity again. At the same time, the target's magic protection can only be half effective
 >-Diamond: Pierce Level +1, projectile size increased by five times (does not affect block collision, only affects solid collision), does not stack volume with emerald
 >-Amber: Single projectile damage * 0.8, Pierce Level +2, consumes Pierce Level and rebounds when hitting a block
+
+
+# Book of Enchantment
+
+<item id="anvilcraft_tofus_thinking:book_of_enchantment"/>
+
+> Knowledge is power
+
+- Left-click to cast magic characters, causing panel damage to the hit creature
+- Absorbable items can be enchanted, but it cannot help you get rid of the binding curse you are already wearing
+- For some enchantments, they take effect or produce additional effects
+>- Sharpness like enchantment, works normally
+>- The armor-piercing effect has been adjusted to proportionally ignore some enchantment reductions
+>- Unbreaking may reduce the probability of single energy consumption
+>- Multi-shot or Pierce similar to the vanilla version
+>- A knockback will normally cause a knockback, but if there is loyalty, it will pull back in the opposite direction
 
 # Craft
 

@@ -11,7 +11,6 @@ import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.item.weapon.OriginalConduitStaff;
 import dev.anvilcraft.tofusthinking.item.weapon.StarOfTheSea;
-import dev.anvilcraft.tofusthinking.mixin.EntityAccess;
 import dev.anvilcraft.tofusthinking.mobEffect.NotApplyEffect;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -42,6 +41,8 @@ import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 
+import java.util.function.Consumer;
+
 @EventBusSubscriber
 public class LivingEventHandler {
     @SubscribeEvent
@@ -63,8 +64,8 @@ public class LivingEventHandler {
                 event.setConsumeAirAmount(0);
                 event.setRefillAirAmount(max);
                 if(player.getAirSupply() < max){
-                    //如果你觉得这个写的很奇怪，那你不该问我，我也不想这样，你问本体写的什么鬼Mixin
-                    player.getEntityData().set(((EntityAccess)player).getDATA_AIR_SUPPLY_ID(),max);
+                    //如果你觉得这个写的很奇怪，那你不该问我
+                    player.getEntityData().set(LivingEntity.DATA_AIR_SUPPLY_ID,max);
                 }
             }
         }
@@ -179,8 +180,8 @@ public class LivingEventHandler {
 
 
         if(source instanceof ExtraDamageSource extra){
-            float amount = event.getAmount();
-            event.setAmount(amount * (extra.getExtraHurtRate()) + extra.getExtraHurtAmount());
+            Consumer<LivingIncomingDamageEvent> consumer = extra.getOnLivingIncoming();
+            if(consumer != null){consumer.accept(event);}
         }
     }
 
@@ -200,8 +201,8 @@ public class LivingEventHandler {
     public static void onLowLivingDamage(LivingDamageEvent.Pre event){
         DamageSource source = event.getSource();
         if(source instanceof ExtraDamageSource extra){
-            float amount = event.getNewDamage();
-            event.setNewDamage(amount * (extra.getExtraDamageAmountRate()) + extra.getExtraDamageAmount());
+            Consumer<LivingDamageEvent> consumer = extra.getOnLivingDamage();
+            if(consumer != null){consumer.accept(event);}
         }
     }
 

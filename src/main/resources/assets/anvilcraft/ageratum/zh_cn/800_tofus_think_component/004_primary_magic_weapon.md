@@ -1,11 +1,12 @@
 ---
 navigation:
-  title: "初级法杖"
+  title: "初级魔法武器"
   icon: "anvilcraft_tofus_thinking:conduit_staff"
 items:
   - anvilcraft_tofus_thinking:conduit_staff
   - anvilcraft_tofus_thinking:sonic_boom_staff
   - anvilcraft_tofus_thinking:gem_staff
+  - anvilcraft_tofus_thinking:book_of_enchantment
 ---
 # 潮涌核心法杖
 
@@ -50,10 +51,25 @@ items:
 >- 钻石：可穿透数量+1，射弹增大至原先的五倍（不影响方块碰撞，只影响实体碰撞），不与绿宝石叠加体积
 >- 琥珀：单个射弹伤害 * 0.8，可穿透数量+2，命中方块时消耗穿透数量并反弹
 
+# 附魔之书
+
+<item id="anvilcraft_tofus_thinking:book_of_enchantment"/>
+
+> 知识就是力量
+
+- 左键时发射魔法字符，对命中的生物造成面板伤害
+- 可吸收物品附魔，但并不能帮你摆脱已穿戴的绑定诅咒
+- 对于部分附魔生效，或者产生额外效果
+>- 锋利，杀手类附魔正常生效
+>- 破甲效果修正为等比无视部分附魔减伤
+>- 耐久会概率降低单次能量消耗
+>- 多重射击，穿透类似原版
+>- 击退会正常造成击退，但若有忠诚会反向往回拉
+
 # 合成
 
 <recipe id="anvilcraft_tofus_thinking:conduit_staff"/>
 <recipe id="anvilcraft_tofus_thinking:smithing/sonic_boom_staff"/>
 <recipe id="anvilcraft_tofus_thinking:gem_staff"/>
-
+<recipe id="anvilcraft_tofus_thinking:book_of_enchantment"/>
 

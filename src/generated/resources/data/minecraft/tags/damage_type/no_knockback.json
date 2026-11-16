@@ -1,6 +1,10 @@
 {
   "values": [
     {
+      "id": "anvilcraft_tofus_thinking:character",
+      "required": false
+    },
+    {
       "id": "anvilcraft_tofus_thinking:rewind",
       "required": false
     },

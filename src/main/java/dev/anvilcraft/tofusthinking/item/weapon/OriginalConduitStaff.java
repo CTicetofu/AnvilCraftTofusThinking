@@ -8,7 +8,6 @@ import dev.anvilcraft.tofusthinking.entity.ExtraDamageSource;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
-import dev.anvilcraft.tofusthinking.item.ExtendItem;
 import dev.anvilcraft.tofusthinking.item.weapon.StaffProcess.Abilities;
 import dev.anvilcraft.tofusthinking.item.weapon.StaffProcess.AbilityHandler;
 import dev.anvilcraft.tofusthinking.item.weapon.StaffProcess.StaffContext;
@@ -59,7 +58,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 //我想我以后会挑个时间重构，这啥玩意
-public class OriginalConduitStaff extends ExtendItem implements ICapacitorChargeable {
+public class OriginalConduitStaff extends RightSpellItem implements ICapacitorChargeable {
     public static final String BREATH = "breath";
     public static final int MAX_ENERGY = 160000000;
     public static ResourceLocation KNOCKBACK_ID = AnvilCraftTofusThinking.of("knockback");
@@ -67,6 +66,11 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
     public OriginalConduitStaff(Properties properties) {
         super(properties.component(AddonComponents.MAX_ENERGY,MAX_ENERGY).component(AddonComponents.AUTO_HUNT,false).attributes(createAttributes()));
         permanent = true;
+    }
+
+    @Override
+    public String getSpellId() {
+        return ConduitStaff.SKILL_ID;
     }
 
     @Override
@@ -130,13 +134,13 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
                 Mob target = EntityUtil.getAnEntityOfClass(level,Mob.class,new AABB(player.blockPosition()).inflate(16),mob -> !mob.isInvulnerable() && mob.isAlive() && mob instanceof Enemy);
                 if(target != null && ItemUtil.consumeEnergy(player,stack,need)){
                     EntityHitResult result = new EntityHitResult(target);
-                    dealAttack(level,player,stack,result);
+                    this.dealAttack(level,player,stack,result);
                 }
             }
         }
     }
 
-    private static void dealAttack(Level level, LivingEntity attacker, ItemStack stack, HitResult hitResult){
+    private void dealAttack(Level level, LivingEntity attacker, ItemStack stack, HitResult hitResult){
         StaffContext context = new StaffContext(level, attacker, hitResult);
         AbilityHandler headHandler = getHeadFromItem(stack);
         AbilityHandler gripHandler = getGripFromItem(stack);
@@ -161,10 +165,11 @@ public class OriginalConduitStaff extends ExtendItem implements ICapacitorCharge
 
         list.removeIf(entity -> !entity.isAlive());
         Consumer<ExtraDamageSource> sourceConsumer = headHandler.modifyDamageSource().andThen(gripHandler.modifyDamageSource());
+        float baseAmount = this.getBaseDamage(attacker, stack);
         list.forEach(entity -> {
             ExtraDamageSource source = AddonDamageTypes.rewindAttack(level,null,attacker);
             sourceConsumer.accept(source);
-            entity.hurt(source,15);
+            entity.hurt(source,baseAmount);
             entity.invulnerableTime = 0;
         });
 
