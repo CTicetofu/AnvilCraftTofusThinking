@@ -49,6 +49,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"智能极大能量转换器");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"过载发电机");
         add(AddonBlocks.MUSHROOM_COW_IN_JAR.get(),"罐中蘑菇牛");
+        add(AddonBlocks.AUTO_GRINDSTONE.get(),"自动砂轮");
         add(AddonBlocks.TOFU_ANVIL.get(),"豆腐铁砧");
     }
     private void tooltipLang(){
@@ -158,6 +159,10 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar1","可无限取出奶和蘑菇煲");
         add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar2","红石启用时可自动输出奶和转化输入物品");
+
+        add("tooltip.anvilcraft_tofus_thing.auto_grindstone1","可从上方或者侧面自动输入不同栏位");
+        add("tooltip.anvilcraft_tofus_thing.auto_grindstone2","收到红石信号时进行一次砂轮打磨");
+        add("tooltip.anvilcraft_tofus_thing.auto_grindstone.total_xp","暂存经验: %s");
 
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment","攻击时发射一串长度最多32格的魔法字符");
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment_charge","吸收附魔物品补充能源，每层附魔提供 %s");

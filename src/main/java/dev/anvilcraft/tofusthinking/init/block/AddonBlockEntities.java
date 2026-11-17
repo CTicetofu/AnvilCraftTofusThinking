@@ -1,10 +1,7 @@
 package dev.anvilcraft.tofusthinking.init.block;
 
 import dev.anvilcraft.lib.v2.registrum.util.entry.BlockEntityEntry;
-import dev.anvilcraft.tofusthinking.block.entity.OriginalConduitBlockEntity;
-import dev.anvilcraft.tofusthinking.block.entity.OverloadGeneratorBlockEntity;
-import dev.anvilcraft.tofusthinking.block.entity.SmartPowerConverterBlockEntity;
-import dev.anvilcraft.tofusthinking.block.entity.MushroomCowInJarBlockEntity;
+import dev.anvilcraft.tofusthinking.block.entity.*;
 
 import static dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking.REGISTRUM;
 
@@ -26,5 +23,9 @@ public class AddonBlockEntities {
 
     public static final BlockEntityEntry<MushroomCowInJarBlockEntity> MUSHROOM_COW_IN_JAR = REGISTRUM.<MushroomCowInJarBlockEntity>blockEntity("mushroom_cow_in_jar", MushroomCowInJarBlockEntity::new)
             .validBlock(AddonBlocks.MUSHROOM_COW_IN_JAR)
+            .register();
+
+    public static final BlockEntityEntry<AutoGrindstoneBlockEntity> AUTO_GRINDSTONE = REGISTRUM.<AutoGrindstoneBlockEntity>blockEntity("auto_grindstone", AutoGrindstoneBlockEntity::new)
+            .validBlock(AddonBlocks.AUTO_GRINDSTONE)
             .register();
 }

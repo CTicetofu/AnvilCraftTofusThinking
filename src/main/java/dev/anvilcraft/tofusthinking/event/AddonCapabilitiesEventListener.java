@@ -7,6 +7,7 @@ import dev.anvilcraft.tofusthinking.block.entity.MushroomCowInJarBlockEntity;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
+import net.minecraft.core.Direction;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -36,6 +37,15 @@ public class AddonCapabilitiesEventListener {
                 Capabilities.ItemHandler.BLOCK,
                 AddonBlockEntities.MUSHROOM_COW_IN_JAR.get(),
                 (blockEntity, side) -> blockEntity.getItemHandler()
+        );
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                AddonBlockEntities.AUTO_GRINDSTONE.get(),
+                (blockEntity, side) -> {
+                    if(side == Direction.UP){return blockEntity.getHandler().bottom;}
+                    if(side == Direction.DOWN){return blockEntity.getHandler();}
+                    return blockEntity.getHandler().side;
+                }
         );
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.SONIC_BOOM_STAFF);
         event.registerItem(Capabilities.EnergyStorage.ITEM,  (stack, ctx) -> new FEEnergyTool(stack),AddonItems.GEM_STAFF);

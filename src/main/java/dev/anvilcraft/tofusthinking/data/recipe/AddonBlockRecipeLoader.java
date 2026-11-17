@@ -10,6 +10,7 @@ import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.init.item.ModItems;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 
@@ -49,6 +50,18 @@ public class AddonBlockRecipeLoader {
                 .define('B', ModItemTags.BRASS_PLATES)
                 .define('C', ModBlocks.POWER_CONVERTER_EXTREMELY_BIG)
                 .unlockedBy(TofusThinkingDatagen.hasItem(ModBlocks.POWER_CONVERTER_EXTREMELY_BIG), TofusThinkingDatagen.has(ModBlocks.POWER_CONVERTER_EXTREMELY_BIG))
+                .save(provider);
+    }
+
+    public static <T extends Block> void autoGrindstone(DataGenContext<Block, T> ctx, RegistrumRecipeProvider provider) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get(), 1)
+                .pattern(" B ")
+                .pattern("ACA")
+                .pattern(" A ")
+                .define('A', Items.HOPPER)
+                .define('B', Tags.Items.GLASS_BLOCKS)
+                .define('C', Items.GRINDSTONE)
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.GRINDSTONE), TofusThinkingDatagen.has(Items.GRINDSTONE))
                 .save(provider);
     }
 

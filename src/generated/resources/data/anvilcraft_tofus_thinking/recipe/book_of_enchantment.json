@@ -6,7 +6,7 @@
       "item": "minecraft:enchanted_book"
     },
     "B": {
-      "item": "anvilcraft:capacitor_empty"
+      "item": "anvilcraft:empty_capacitor"
     },
     "C": {
       "tag": "c:bookshelves"

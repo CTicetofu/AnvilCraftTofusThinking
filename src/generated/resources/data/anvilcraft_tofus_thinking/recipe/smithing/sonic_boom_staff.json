@@ -11,6 +11,6 @@
     "id": "anvilcraft_tofus_thinking:sonic_boom_staff"
   },
   "template": {
-    "item": "anvilcraft:capacitor_empty"
+    "item": "anvilcraft:empty_capacitor"
   }
 }

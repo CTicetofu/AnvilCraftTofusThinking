@@ -52,6 +52,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.get(),"Smart Power Converter Extremely Big");
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"Overload Generator");
         add(AddonBlocks.MUSHROOM_COW_IN_JAR.get(),"Mushroom Cow In Jar");
+        add(AddonBlocks.AUTO_GRINDSTONE.get(),"Auto Grindstone");
         add(AddonBlocks.TOFU_ANVIL.get(),"Tofu Anvil");
     }
     private void tooltipLang(){
@@ -162,6 +163,10 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar1","Unlimited access to milk and mushroom stew");
         add("tooltip.anvilcraft_tofus_thing.mushroom_cow_in_jar2","When activated by redstone can automatically output milk and convert input items");
+
+        add("tooltip.anvilcraft_tofus_thing.auto_grindstone1","Different fields can be automatically inputted from above or from the side");
+        add("tooltip.anvilcraft_tofus_thing.auto_grindstone2","Perform a grinding operation with a grinding upon receiving a redstone signal");
+        add("tooltip.anvilcraft_tofus_thing.auto_grindstone.total_xp","Temporarily Stored Experience: %s");
 
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment","When attacking, launch a string of magic characters with a maximum length of 32");
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment_charge","Absorb enchanted items to replenish energy, each level providing %s");

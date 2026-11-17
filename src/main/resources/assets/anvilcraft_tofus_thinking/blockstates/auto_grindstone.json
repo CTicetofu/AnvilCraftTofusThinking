@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "anvilcraft_tofus_thinking:block/auto_grindstone",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "anvilcraft_tofus_thinking:block/auto_grindstone",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "anvilcraft_tofus_thinking:block/auto_grindstone"
+    },
+    "facing=west": {
+      "model": "anvilcraft_tofus_thinking:block/auto_grindstone",
+      "y": 90
+    }
+  }
+}

@@ -11,6 +11,6 @@
     "id": "anvilcraft_tofus_thinking:original_conduit_staff"
   },
   "template": {
-    "item": "anvilcraft:supercapacitor_empty"
+    "item": "anvilcraft:empty_supercapacitor"
   }
 }

@@ -116,7 +116,7 @@ public class AddonBlocks {
     public static final BlockEntry<MushroomCowInJarBlock> MUSHROOM_COW_IN_JAR = REGISTRUM
             .block("mushroom_cow_in_jar", MushroomCowInJarBlock::new)
             .initialProperties(() -> Blocks.GLASS)
-            .properties(p -> p.explosionResistance(100)
+            .properties(p -> p.explosionResistance(500)
                     .noOcclusion()
                     .isValidSpawn(Blocks::never)
                     .isRedstoneConductor(ModBlocks::never)
@@ -135,6 +135,20 @@ public class AddonBlocks {
             .blockstate(DataGenUtil::noExtraModelOrState)
             .item(MushroomCowInJarItem::new)
             .build()
+            .register();
+
+    public static final BlockEntry<? extends AutoGrindstone> AUTO_GRINDSTONE = REGISTRUM.block("auto_grindstone", AutoGrindstone::new)
+            .initialProperties(() -> Blocks.GRINDSTONE)
+            .properties(p -> p.explosionResistance(500)
+                    .noOcclusion()
+                    .isValidSpawn(Blocks::never)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never))
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .blockstate(DataGenUtil::noExtraModelOrState)
+            .simpleItem()
+            .recipe(AddonBlockRecipeLoader::autoGrindstone)
             .register();
 
     public static final BlockEntry<? extends Block> TOFU_ANVIL = REGISTRUM.block("tofu_anvil", TofuAnvilBlock::new)

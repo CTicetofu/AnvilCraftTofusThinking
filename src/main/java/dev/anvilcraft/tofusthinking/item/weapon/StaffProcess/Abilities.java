@@ -74,7 +74,7 @@ public class Abilities {
                 int maxSize = EXP_STACK.get().getMaxStackSize();
                 int expPerBlock = AnvilCraft.CONFIG.world.expFluidXpPerBlock;
                 int maxAccept = expPerBlock * maxSize * 9;
-                int count = Math.min(maxAccept, xp) / expPerBlock;
+                int count = expPerBlock > 0 ? Math.min(maxAccept, xp) / expPerBlock : 0;
                 int left = xp - count * expPerBlock;
                 while (count > 0) {
                     stacks.add(new ItemEntity(serverLevel, pos.x, pos.y, pos.z, EXP_STACK.get().copyWithCount(Math.min(count, maxSize))));
