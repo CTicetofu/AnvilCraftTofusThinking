@@ -146,6 +146,7 @@
   "tooltip.anvilcraft_tofus_thinking.hold_shift_for_more": "按住 %s 获取更多信息",
   "tooltip.anvilcraft_tofus_thinking.immortal": "亘古：免疫绝大多数伤害，不会随时间消逝",
   "tooltip.anvilcraft_tofus_thinking.lightning_hammer": "攻击进度为满时在目标处释放闪电",
+  "tooltip.anvilcraft_tofus_thinking.magnetic_attraction": "磁吸：自动吸收击杀或挖掘产生的掉落物和经验",
   "tooltip.anvilcraft_tofus_thinking.mass": "质量： %s",
   "tooltip.anvilcraft_tofus_thinking.need_energy": "使用时消耗 %s",
   "tooltip.anvilcraft_tofus_thinking.not_active": "未激活",

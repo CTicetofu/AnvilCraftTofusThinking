@@ -148,6 +148,7 @@
   "tooltip.anvilcraft_tofus_thinking.hold_shift_for_more": "Hold  %s  for more info",
   "tooltip.anvilcraft_tofus_thinking.immortal": "Immortal: Immunity to the vast majority of damage, will not fade away over time",
   "tooltip.anvilcraft_tofus_thinking.lightning_hammer": "Release lightning at the target when the attack progress is full",
+  "tooltip.anvilcraft_tofus_thinking.magnetic_attraction": "Magnetic Attraction: Automatically absorb loot and experience gained from killing or mining",
   "tooltip.anvilcraft_tofus_thinking.mass": "Mass： %s",
   "tooltip.anvilcraft_tofus_thinking.need_energy": "Consume %s when use",
   "tooltip.anvilcraft_tofus_thinking.not_active": "Not Active",

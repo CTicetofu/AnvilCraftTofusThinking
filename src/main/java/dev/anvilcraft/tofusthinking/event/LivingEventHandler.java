@@ -41,6 +41,7 @@ import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 
+import java.util.Iterator;
 import java.util.function.Consumer;
 
 @EventBusSubscriber
@@ -195,6 +196,30 @@ public class LivingEventHandler {
             amount = Math.min(amount + before * 0.1F,(before + amount) * 0.5F);
         }
         return amount;
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingDrop(LivingDropsEvent event){
+        LivingEntity target = event.getEntity();
+        ServerPlayer player = null;
+        if (event.getSource().getEntity() instanceof ServerPlayer attacker) {
+            player = attacker;
+        } else if(target.getKillCredit() instanceof ServerPlayer attacker){
+            player = attacker;
+        }
+        if(player == null){return;}
+        if(player.isHolding(stack -> stack.has(AddonComponents.MAGNETIC_ATTRACTION))){
+            Iterator<ItemEntity> iterable = event.getDrops().iterator();
+            while (iterable.hasNext()){
+                ItemEntity itemEntity = iterable.next();
+                ItemStack stack = itemEntity.getItem();
+                if (!stack.isEmpty() && player.getInventory().add(stack)) {
+                    iterable.remove();
+                } else {
+                    itemEntity.teleportTo(player.getX(), player.getY(), player.getZ());
+                }
+            }
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH,receiveCanceled = true)

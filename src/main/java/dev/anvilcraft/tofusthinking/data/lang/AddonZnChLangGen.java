@@ -179,6 +179,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.antidote","抗毒：减少80%大多数负面效果时间，一半概率免疫");
         add("tooltip.anvilcraft_tofus_thinking.heavy_hit","重击：增加50%暴击伤害");
         add("tooltip.anvilcraft_tofus_thinking.immortal","亘古：免疫绝大多数伤害，不会随时间消逝");
+        add("tooltip.anvilcraft_tofus_thinking.magnetic_attraction","磁吸：自动吸收击杀或挖掘产生的掉落物和经验");
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"诅咒雪球");

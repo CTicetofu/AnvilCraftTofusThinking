@@ -291,8 +291,8 @@ public class AutoGrindstoneBlockEntity extends BlockEntity implements Container,
         public AutoGrindstoneItemStackHandler(){super(4);}
         public boolean isEmpty(){return stacks.isEmpty();}
 
-        public IItemHandler bottom = new LimitItemStackHandler(true);
-        public IItemHandler side = new LimitItemStackHandler(false);
+        public final IItemHandler top = new LimitItemStackHandler(true);
+        public final IItemHandler side = new LimitItemStackHandler(false);
 
         @Override
         public @NonNull ItemStack insertItem(int slot, @NonNull ItemStack stack, boolean simulate) {

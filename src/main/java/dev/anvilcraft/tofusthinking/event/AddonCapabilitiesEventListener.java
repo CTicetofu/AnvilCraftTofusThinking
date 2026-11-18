@@ -42,7 +42,7 @@ public class AddonCapabilitiesEventListener {
                 Capabilities.ItemHandler.BLOCK,
                 AddonBlockEntities.AUTO_GRINDSTONE.get(),
                 (blockEntity, side) -> {
-                    if(side == Direction.UP){return blockEntity.getHandler().bottom;}
+                    if(side == Direction.UP){return blockEntity.getHandler().top;}
                     if(side == Direction.DOWN){return blockEntity.getHandler();}
                     return blockEntity.getHandler().side;
                 }

@@ -188,6 +188,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.antidote","Antidote: Reduces most negative effects by 80%, with a 50% chance to immunity");
         add("tooltip.anvilcraft_tofus_thinking.heavy_hit","Heavy Hit: add 50% Crit Damage");
         add("tooltip.anvilcraft_tofus_thinking.immortal","Immortal: Immunity to the vast majority of damage, will not fade away over time");
+        add("tooltip.anvilcraft_tofus_thinking.magnetic_attraction","Magnetic Attraction: Automatically absorb loot and experience gained from killing or mining");
     }
     private void entityName(){
         add(AddonEntities.CURSE_SNOWBALL.get(),"Curse Snowball");
