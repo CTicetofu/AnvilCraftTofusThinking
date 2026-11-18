@@ -8,6 +8,8 @@ import dev.anvilcraft.tofusthinking.data.lang.AddonZnChLangGen;
 import dev.anvilcraft.tofusthinking.data.recipe.TofuThinkingRecipeHandler;
 import dev.anvilcraft.tofusthinking.data.tags.AddonTagsHandler;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
+import dev.anvilcraft.tofusthinking.init.item.AddonAmuletDefinitions;
+import dev.dubhe.anvilcraft.init.registry.ModRegistryKeys;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
@@ -42,7 +44,7 @@ public class TofusThinkingDatagen {
     public static void init(){
         var genInit = REGISTRUM.getDataGenInitializer();
         genInit.add(Registries.DAMAGE_TYPE, AddonDamageTypes::bootstrap);
-
+        genInit.add(ModRegistryKeys.AMULET_DEF, AddonAmuletDefinitions::bootstrap);
         REGISTRUM.addDataGenerator(ProviderType.DAMAGE_TYPE_TAGS, AddonTagsHandler::initDamageType);
         REGISTRUM.addDataGenerator(ProviderType.ENTITY_TAGS, AddonTagsHandler::initEntityType);
         REGISTRUM.addDataGenerator(ProviderType.ITEM_TAGS, AddonTagsHandler::initItem);

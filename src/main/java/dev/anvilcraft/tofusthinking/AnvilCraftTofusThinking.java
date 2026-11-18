@@ -13,6 +13,7 @@ import dev.anvilcraft.tofusthinking.init.block.AddonBlockEntities;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.block.AddonFluids;
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
+import dev.anvilcraft.tofusthinking.init.item.AddonAmulet;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItemGroups;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
@@ -63,6 +64,7 @@ public class AnvilCraftTofusThinking {
         AddonRecipeTypes.register(modEventBus);
         AddonMobEffects.register(modEventBus);
 
+        AddonAmulet.register(modEventBus);
         TofusThinkingDatagen.init();
 
         modEventBus.addListener(this::registerPayloads);

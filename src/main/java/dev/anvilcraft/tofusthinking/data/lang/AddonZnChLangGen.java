@@ -41,6 +41,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.ELECTROMAGNETIC_CROSSBOW.asItem(),"电磁弩");
         add(AddonItems.EXPLOSION_ARROW.asItem(),"爆破箭");
         add(AddonItems.BOOK_OF_ENCHANTMENT.asItem(),"附魔之书");
+        add(AddonItems.WATER_AMULET.asItem(),"水护符");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"坚固海晶石砖");
@@ -166,6 +167,8 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment","攻击时发射一串长度最多32格的魔法字符");
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment_charge","吸收附魔物品补充能源，每层附魔提供 %s");
+
+        add("tooltip.anvilcraft_tofus_thing.water_amulet", "熄灭身上火焰，对水过敏生物不会以你为目标");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");

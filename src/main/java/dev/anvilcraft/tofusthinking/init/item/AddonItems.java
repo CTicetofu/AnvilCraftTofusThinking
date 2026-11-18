@@ -3,6 +3,7 @@ package dev.anvilcraft.tofusthinking.init.item;
 import dev.anvilcraft.lib.v2.registrum.util.entry.ItemEntry;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.data.recipe.AddonItemRecipeLoader;
+import dev.anvilcraft.tofusthinking.item.ExtendItem;
 import dev.anvilcraft.tofusthinking.item.curio.AmethystGoldenRing;
 import dev.anvilcraft.tofusthinking.item.curio.CurioBaseItem;
 import dev.anvilcraft.tofusthinking.item.food.AutoCanItem;
@@ -12,6 +13,8 @@ import dev.anvilcraft.tofusthinking.item.weapon.*;
 import dev.anvilcraft.tofusthinking.item.weapon.ammo.ExplosionArrowItem;
 import dev.anvilcraft.tofusthinking.util.DataClass.AttributeInstance;
 import dev.anvilcraft.tofusthinking.util.DataClass.EnchantmentKeyInstance;
+import dev.dubhe.anvilcraft.init.item.ModComponents;
+import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.item.ModTiers;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import net.minecraft.ChatFormatting;
@@ -166,6 +169,14 @@ public class AddonItems {
                     new BookOfEnchantment(properties.rarity(Rarity.UNCOMMON).stacksTo(1)))
             .model(DataGenUtil::noExtraModelOrState)
             .recipe(AddonItemRecipeLoader::bookOfEnchantment)
+            .register();
+
+    public static final ItemEntry<ExtendItem> WATER_AMULET = REGISTRUM.item("water_amulet", properties -> new ExtendItem(properties).addComponent(Component.translatable("tooltip.anvilcraft_tofus_thing.water_amulet").withStyle(ChatFormatting.GRAY)))
+            .properties(properties -> properties.stacksTo(1)
+            .component(ModComponents.AMULET, AddonAmulet.WATER.getKey())
+                .component(ModComponents.AMULET_WEIGHT, 6))
+            .tag(ModItemTags.AMULET)
+            .defaultModel()
             .register();
 
     public static ItemStack enchant(ItemLike item, HolderLookup.Provider registries, EnchantmentKeyInstance... instances){

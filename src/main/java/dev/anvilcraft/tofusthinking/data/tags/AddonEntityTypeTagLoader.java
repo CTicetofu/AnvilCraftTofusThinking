@@ -3,12 +3,17 @@ package dev.anvilcraft.tofusthinking.data.tags;
 import dev.anvilcraft.lib.v2.registrum.providers.RegistrumTagsProvider;
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntityTypeTags;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.common.Tags;
 
 public class AddonEntityTypeTagLoader {
+    @SuppressWarnings("deprecation")
+    private static ResourceKey<EntityType<?>> findResourceKey(EntityType<?> entityType) {
+        return entityType.builtInRegistryHolder().key();
+    }
     public static void init(RegistrumTagsProvider<EntityType<?>> provider) {
         provider.addTag(EntityTypeTags.WITHER_FRIENDS)
                 .addOptional(AddonEntities.STRANGE_WITHER.getId());
@@ -22,6 +27,10 @@ public class AddonEntityTypeTagLoader {
         provider.addTag(EntityTypeTags.ARROWS)
                 .addOptional(AddonEntities.ELECTROMAGNETIC_ARROW.getId())
                 .addOptional(AddonEntities.ELECTROMAGNETIC_PROJECTILE.getId());
+
+        provider.addTag(AddonEntityTypeTags.WATER_AMULET_VALID)
+                .add(findResourceKey(EntityType.ENDERMAN))
+                .add(findResourceKey(EntityType.BLAZE));
 
         //伤害测试生物，因为它们可能是可以修改属性的，防止依赖某些属性的计算造成极大效果
         provider.addTag(AddonEntityTypeTags.DAMAGE_TEST_ENTITY)

@@ -75,6 +75,9 @@ public class ClientManageHandler {
         if(stack.has(AddonComponents.IMMORTAL)){
             propertyTooltip("immortal", list, 0xFF7F24);
         }
+        if(stack.has(AddonComponents.MAGNETIC_ATTRACTION)){
+            propertyTooltip("magnetic_attraction", list, 0x40E0D0);
+        }
     }
 
     private static void propertyTooltip(String propertyName, List<Component> tooltip, int color) {
