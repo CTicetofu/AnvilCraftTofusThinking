@@ -85,13 +85,24 @@ public class AddonItemRecipeLoader {
                 .save(provider, AnvilCraftTofusThinking.of("smithing/lightning_hammer"));
     }
 
+    public static <T extends Item> void tintedSword(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(Items.AMETHYST_SHARD),Ingredient.of(ModItems.AMETHYST_SWORD),Ingredient.of(Items.TINTED_GLASS),RecipeCategory.TOOLS,ctx.get()
+                )
+                .unlocks("has_item", TofusThinkingDatagen.has(ModItems.AMETHYST_SWORD))
+                .save(provider, AnvilCraftTofusThinking.of("smithing/tinted_sword"));
+    }
+
     public static <T extends Item> void amethystGoldenRIng(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
-                .pattern("BAB")
+                .pattern("BCE")
                 .pattern("A A")
-                .pattern("BAB")
+                .pattern("DAB")
                 .define('A', Items.GOLD_INGOT)
                 .define('B', Items.AMETHYST_SHARD)
+                .define('C', ModItems.ROYAL_STEEL_INGOT)
+                .define('D', ModItemTags.GEMS_RUBY)
+                .define('E', ModItemTags.GEMS_TOPAZ)
                 .unlockedBy(TofusThinkingDatagen.hasItem(Items.AMETHYST_SHARD), RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
                 .save(provider);
     }

@@ -179,6 +179,13 @@ public class AddonItems {
             .defaultModel()
             .register();
 
+    public static final ItemEntry<TintedSword> TINTED_SWORD = REGISTRUM.item("tinted_sword", TintedSword::new)
+            .properties(properties -> properties.stacksTo(1).durability(731))
+            .tag(ItemTags.WEAPON_ENCHANTABLE,ItemTags.SWORD_ENCHANTABLE)
+            .defaultModel()
+            .recipe(AddonItemRecipeLoader::tintedSword)
+            .register();
+
     public static ItemStack enchant(ItemLike item, HolderLookup.Provider registries, EnchantmentKeyInstance... instances){
         ItemStack stack = item.asItem().getDefaultInstance();
         return enchantStack(stack,registries,instances);

@@ -8,6 +8,8 @@ navigation:
 > A very vanilla-flavored entry system?
 
 - Magnetic Attraction: Automatically absorb loot and experience gained from killing or mining.-> Using a handheld magnet on the right side of the anvil GUI can attach the entry to the item on the left. When placed above the grinding wheel and the lower slot is empty, the entry will be removed. As an additional feature, the experience gained will not be affected by the absorption cooldown.
+>>Some special anvil seems to be unusable, but it's not my problem.
+>>> If your item cannot be placed on the grindstone, you can try using <ref item="anvilcraft_tofus_thinking:auto_grindstone"/>
 
 
 ## From[Reforge](010_reforge.md)

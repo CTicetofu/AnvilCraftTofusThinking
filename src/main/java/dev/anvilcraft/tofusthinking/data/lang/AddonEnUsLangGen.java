@@ -45,6 +45,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.EXPLOSION_ARROW.asItem(),"Explosion Arrow");
         add(AddonItems.BOOK_OF_ENCHANTMENT.asItem(),"Book Of Enchantment");
         add(AddonItems.WATER_AMULET.asItem(),"Water Amulet");
+        add(AddonItems.TINTED_SWORD.asItem(),"Tinted Sword");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"Stable Prismarine Bricks");
@@ -63,7 +64,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.curse_snowball","Cause the target to be cursed and haunted");
         add("tooltip.anvilcraft_tofus_thinking.wither_immune","Immune to Wither");
 
-        add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 Fortune Level +1 Looting Level");
+        add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 Fortune, Looting, Beheading Level");
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring2", "Piglins thinks you wear a gold thing");
 
         add("tooltip.anvilcraft_tofus_thinking.elastic_anti_fire_shield_1","Reduce explosion damage by 50% and repel attackers");
@@ -173,6 +174,10 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment_charge","Absorb enchanted items to replenish energy, each level providing %s");
 
         add("tooltip.anvilcraft_tofus_thing.water_amulet", "Put out the flames, and mob sensitive to water will not target you");
+
+        add("tooltip.anvilcraft_tofus_thing.tinted_sword1", "  No one knows it was you who did it");
+        add("tooltip.anvilcraft_tofus_thing.tinted_sword2", "Cause damage without a entity source");
+        add("tooltip.anvilcraft_tofus_thing.tinted_sword3", "Monsters dissatisfied with life may make mistakes");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");

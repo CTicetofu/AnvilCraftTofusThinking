@@ -42,6 +42,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.EXPLOSION_ARROW.asItem(),"爆破箭");
         add(AddonItems.BOOK_OF_ENCHANTMENT.asItem(),"附魔之书");
         add(AddonItems.WATER_AMULET.asItem(),"水护符");
+        add(AddonItems.TINTED_SWORD.asItem(),"影蔽剑");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"坚固海晶石砖");
@@ -60,7 +61,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.curse_snowball","使目标被诅咒缠身");
         add("tooltip.anvilcraft_tofus_thinking.wither_immune","免疫凋灵破坏");
 
-        add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 时运等级 +1 抢夺等级");
+        add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring1", "+1 时运，抢夺，斩首等级");
         add("tooltip.anvilcraft_tofus_thing.amethyst_golden_ring2", "猪灵认为你穿戴了金制品");
 
         add("tooltip.anvilcraft_tofus_thinking.elastic_anti_fire_shield_1","减少50%受到的爆炸伤害，击退攻击者");
@@ -169,6 +170,10 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment_charge","吸收附魔物品补充能源，每层附魔提供 %s");
 
         add("tooltip.anvilcraft_tofus_thing.water_amulet", "熄灭身上火焰，对水过敏生物不会以你为目标");
+
+        add("tooltip.anvilcraft_tofus_thing.tinted_sword1", " 没人知道是你干的");
+        add("tooltip.anvilcraft_tofus_thing.tinted_sword2", "造成无实体来源伤害");
+        add("tooltip.anvilcraft_tofus_thing.tinted_sword3", "对于生命不满的怪物可能会失手");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");

@@ -12,6 +12,7 @@ import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.item.weapon.OriginalConduitStaff;
 import dev.anvilcraft.tofusthinking.item.weapon.StarOfTheSea;
 import dev.anvilcraft.tofusthinking.mobEffect.NotApplyEffect;
+import dev.dubhe.anvilcraft.init.enchantment.ModEnchantments;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -36,6 +37,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
+import net.neoforged.neoforge.event.enchanting.EnchantedEntityLootEvent;
 import net.neoforged.neoforge.event.entity.EntityInvulnerabilityCheckEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
@@ -220,6 +222,17 @@ public class LivingEventHandler {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onEnchantedEntityLootEvent(EnchantedEntityLootEvent event){
+        Entity attacker = event.getAttacker();
+        if(attacker instanceof LivingEntity living){
+            if(event.getEnchantment().is(ModEnchantments.BEHEADING_KEY) && AddonItems.AMETHYST_GOLDEN_RING.get().isEquippedBy(living)){
+                event.setEnchantmentLevel(event.getEnchantmentLevel() + 1);
+            }
+        }
+
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH,receiveCanceled = true)

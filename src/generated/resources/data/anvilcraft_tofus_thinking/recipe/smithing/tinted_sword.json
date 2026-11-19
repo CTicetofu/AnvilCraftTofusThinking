@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:tinted_glass"
+  },
+  "base": {
+    "item": "anvilcraft:amethyst_sword"
+  },
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:tinted_sword"
+  },
+  "template": {
+    "item": "minecraft:amethyst_shard"
+  }
+}

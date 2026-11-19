@@ -7,12 +7,21 @@
     },
     "B": {
       "item": "minecraft:amethyst_shard"
+    },
+    "C": {
+      "item": "anvilcraft:royal_steel_ingot"
+    },
+    "D": {
+      "tag": "c:gems/ruby"
+    },
+    "E": {
+      "tag": "c:gems/topaz"
     }
   },
   "pattern": [
-    "BAB",
+    "BCE",
     "A A",
-    "BAB"
+    "DAB"
   ],
   "result": {
     "count": 1,
