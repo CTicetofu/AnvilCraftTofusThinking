@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:ender_chest"
+    },
+    "B": {
+      "item": "anvilcraft:hardened_resin"
+    }
+  },
+  "pattern": [
+    "B",
+    "A",
+    "B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:ender_charm"
+  }
+}

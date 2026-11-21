@@ -14,6 +14,7 @@ public class ItemTab extends BaseCreativeTab{
         this.accept(AddonItems.ELASTIC_ANTI_FIRE_SHIELD);
         this.accept(AddonItems.SPEED_CHARM);
         this.accept(AddonItems.WATER_AMULET);
+        this.accept(AddonItems.ENDER_CHARM);
         this.accept(AddonItems.CURSE_SNOWBALL_ITEM);
         this.accept(AddonItems.EXPLOSION_ARROW);
         this.acceptEnchant(AddonItems.AMETHYST_HAMMER,new EnchantmentKeyInstance(Enchantments.EFFICIENCY,3),new EnchantmentKeyInstance(Enchantments.BREACH,4));
@@ -39,6 +40,7 @@ public class ItemTab extends BaseCreativeTab{
         this.accept(AddonBlocks.SMART_POWER_CONVERTER.asItem());
         this.accept(AddonBlocks.SMART_POWER_CONVERTER_EXTREMELY_BIG.asItem());
         this.accept(AddonBlocks.MUSHROOM_COW_IN_JAR.asItem());
+        this.accept(AddonBlocks.STEEL_BARREL.asItem());
         this.accept(AddonBlocks.TOFU_ANVIL.asItem());
     }
 }

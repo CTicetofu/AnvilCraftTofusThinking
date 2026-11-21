@@ -151,6 +151,15 @@ public class AddonBlocks {
             .recipe(AddonBlockRecipeLoader::autoGrindstone)
             .register();
 
+    public static final BlockEntry<? extends SteelBarrelBlock> STEEL_BARREL = REGISTRUM.block("steel_barrel", SteelBarrelBlock::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .properties(properties -> properties.explosionResistance(12000).destroyTime(10))
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .blockstate(DataGenUtil::noExtraModelOrState)
+            .simpleItem()
+            .recipe(AddonBlockRecipeLoader::steelBarrel)
+            .register();
+
     public static final BlockEntry<? extends Block> TOFU_ANVIL = REGISTRUM.block("tofu_anvil", TofuAnvilBlock::new)
             .recipe(RegistrumBlockRecipeLoader::royalAnvil)
             .properties(properties -> properties.mapColor(MapColor.METAL).isValidSpawn(Blocks::never).strength(1.0f, 1000f).sound(SoundType.ANVIL).pushReaction(PushReaction.NORMAL))

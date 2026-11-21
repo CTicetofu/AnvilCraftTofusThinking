@@ -19,6 +19,7 @@ import dev.anvilcraft.tofusthinking.init.item.AddonItemGroups;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.init.recipe.AddonRecipeInits;
 import dev.anvilcraft.tofusthinking.init.recipe.AddonRecipeTypes;
+import dev.anvilcraft.tofusthinking.init.storage.AddonStorageTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Rarity;
@@ -65,6 +66,7 @@ public class AnvilCraftTofusThinking {
         AddonMobEffects.register(modEventBus);
 
         AddonAmulet.register(modEventBus);
+        AddonStorageTypes.register(modEventBus);
         TofusThinkingDatagen.init();
 
         modEventBus.addListener(this::registerPayloads);

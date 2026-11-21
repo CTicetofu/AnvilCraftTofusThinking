@@ -2,13 +2,17 @@ package dev.anvilcraft.tofusthinking.client.event;
 
 import dev.anvilcraft.tofusthinking.client.ClientCooldownCache;
 import dev.anvilcraft.tofusthinking.client.ClientUtil;
+import dev.anvilcraft.tofusthinking.client.init.AddonKeyMappings;
 import dev.anvilcraft.tofusthinking.init.item.AddonItemTags;
+import dev.anvilcraft.tofusthinking.item.curio.EnderCharm;
 import dev.anvilcraft.tofusthinking.item.weapon.OriginalConduitStaff;
+import dev.anvilcraft.tofusthinking.network.toServer.OpenEnderCharmPacket;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
 import net.neoforged.neoforge.event.entity.living.LivingBreatheEvent;
 
@@ -30,6 +34,13 @@ public class ClientPlayerHandler {
                 event.setConsumeAirAmount(0);
                 event.setRefillAirAmount(player.getMaxAirSupply());
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onClientTick(ClientTickEvent.Post event) {
+        if(AddonKeyMappings.OPEN_ENDER_CHARM.get().consumeClick() && !ClientCooldownCache.isOnCooldown(EnderCharm.SKILL)){
+            OpenEnderCharmPacket.sendToServer();
         }
     }
 }

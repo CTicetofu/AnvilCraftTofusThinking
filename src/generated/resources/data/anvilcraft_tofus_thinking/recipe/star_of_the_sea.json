@@ -3,22 +3,22 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:arrow"
+      "item": "minecraft:nether_star"
     },
     "B": {
-      "tag": "minecraft:sand"
+      "item": "minecraft:nautilus_shell"
     },
     "C": {
-      "tag": "c:gunpowders"
+      "item": "minecraft:heart_of_the_sea"
     }
   },
   "pattern": [
-    "CBC",
+    "BCB",
     "BAB",
-    "CBC"
+    " B "
   ],
   "result": {
-    "count": 4,
+    "count": 1,
     "id": "anvilcraft_tofus_thinking:star_of_the_sea"
   }
 }

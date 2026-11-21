@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:heavy_iron_block"
+    },
+    "B": {
+      "item": "anvilcraft:crate"
+    },
+    "C": {
+      "tag": "c:barrels"
+    }
+  },
+  "pattern": [
+    "BAB",
+    "ACA",
+    "BAB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:steel_barrel"
+  }
+}

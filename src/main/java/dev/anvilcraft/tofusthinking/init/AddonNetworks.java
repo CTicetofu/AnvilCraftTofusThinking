@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.init;
 
 import dev.anvilcraft.tofusthinking.network.toClient.*;
 import dev.anvilcraft.tofusthinking.network.toServer.LeftClickPacket;
+import dev.anvilcraft.tofusthinking.network.toServer.OpenEnderCharmPacket;
 import dev.anvilcraft.tofusthinking.network.toServer.SimpleNumberUpdatePacket;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
@@ -46,6 +47,11 @@ public class AddonNetworks {
                 LeftClickPacket.TYPE,
                 LeftClickPacket.STREAM_CODEC,
                 LeftClickPacket.HANDLER
+        );
+        registrar.playToServer(
+                OpenEnderCharmPacket.TYPE,
+                OpenEnderCharmPacket.STREAM_CODEC,
+                OpenEnderCharmPacket.HANDLER
         );
     }
 }

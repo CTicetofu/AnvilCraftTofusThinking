@@ -46,6 +46,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.BOOK_OF_ENCHANTMENT.asItem(),"Book Of Enchantment");
         add(AddonItems.WATER_AMULET.asItem(),"Water Amulet");
         add(AddonItems.TINTED_SWORD.asItem(),"Tinted Sword");
+        add(AddonItems.ENDER_CHARM.asItem(),"Ender Charm");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"Stable Prismarine Bricks");
@@ -55,6 +56,8 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"Overload Generator");
         add(AddonBlocks.MUSHROOM_COW_IN_JAR.get(),"Mushroom Cow In Jar");
         add(AddonBlocks.AUTO_GRINDSTONE.get(),"Auto Grindstone");
+        add(AddonBlocks.STEEL_BARREL.get(), "Steel Barrel");
+        add("block.anvilcraft_tofus_thinking.overflow_disposal_steel_barrel","Overflow Disposal Steel Barrel");
         add(AddonBlocks.TOFU_ANVIL.get(),"Tofu Anvil");
     }
     private void tooltipLang(){
@@ -170,6 +173,12 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.auto_grindstone2","Perform a grinding operation with a grinding upon receiving a redstone signal");
         add("tooltip.anvilcraft_tofus_thing.auto_grindstone.total_xp","Temporarily Stored Experience: %s");
 
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel","The compact and tightly packed steel barrel can store a lot of items");
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel_shift","It can accommodate 432 units of items");
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel1","Contents dropped during destruction");
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel2","When storing more than 1000 items, hold down Shift to destroy");
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel3","Similar to the crate, it has an overflow disposal, but during search, it cannot access nearby steel barrel");
+
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment","When attacking, launch a string of magic characters with a maximum length of 32");
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment_charge","Absorb enchanted items to replenish energy, each level providing %s");
 
@@ -178,6 +187,12 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.tinted_sword1", "  No one knows it was you who did it");
         add("tooltip.anvilcraft_tofus_thing.tinted_sword2", "Cause damage without a entity source");
         add("tooltip.anvilcraft_tofus_thing.tinted_sword3", "Monsters dissatisfied with life may make mistakes");
+
+        add("tooltip.anvilcraft_tofus_thing.ender_charm", "Used to open the Ender Chest");
+        add("tooltip.anvilcraft_tofus_thing.ender_charm_shift", "When in use, or by right-clicking on the GUI, you can open the Ender Chest");
+        add("tooltip.anvilcraft_tofus_thing.ender_charm1", "When it is in the inventory, the Ender Chest, or the Curios slot");
+        add("tooltip.anvilcraft_tofus_thing.ender_charm2", "Pressing %s can also open it");
+        add("tooltip.anvilcraft_tofus_thing.ender_charm3", "When in the Curios Inventory, looking at EnderMan will not provoke them");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");
@@ -188,6 +203,8 @@ public class AddonEnUsLangGen extends LanguageProvider {
                 Wandering idly above the hollow Void
                 Everlasting within the crevice of Time\
                 """);
+
+        add("screen.anvilcraft_tofus_thinking.tooltip.crate.break_requires_shift", "This steel barrel is overloaded with items. Hold Shift to destroy it!");
 
         add("tooltip.anvilcraft_tofus_thinking.dense","Dense: Increases armor and protection performance by 10%");
         add("tooltip.anvilcraft_tofus_thinking.antidote","Antidote: Reduces most negative effects by 80%, with a 50% chance to immunity");
@@ -247,6 +264,11 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("jei.anvilcraft_tofus_thinking.info.original_conuit","By default, the Star Of The Sea is used to absorb the blue Wither Head of a strange Wither and inject it into an Conduit to obtain it. In its original state, it is difficult to control precisely and is not suitable for direct use as a wand material.");
         add("jei.anvilcraft_tofus_thinking.info.charm_amulet","By default, it is obtained by stamping with six different charms on an anvil");
+
+        add("anvilcraft_tofus_thinking.container.steel_barrel", "Steel Barrel");
+
+        add("key.anvilcraft_tofus_thinking.open_ender_charm", "Open Ender Charm");
+        add("key.categories.anvilcraft_tofus_thinking", "AnvilCraft: Tofu's Thinking");
 
         add("enhancedtooltips.rarity.anvilcraft_tofus_thinking_tofu","Tofu's Thinking");
     }

@@ -139,7 +139,7 @@ public class AddonItemRecipeLoader {
                 .define('A', Items.NETHER_STAR)
                 .define('B', Items.NAUTILUS_SHELL)
                 .define('C', Items.HEART_OF_THE_SEA)
-                .unlockedBy("has_heart_of_the_sea", RegistrumRecipeProvider.has(Items.HEART_OF_THE_SEA))
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.NETHER_STAR), RegistrumRecipeProvider.has(Items.NETHER_STAR))
                 .save(provider);
     }
 
@@ -201,6 +201,17 @@ public class AddonItemRecipeLoader {
                 .define('B', ModItems.CAPACITOR_EMPTY)
                 .define('C', Tags.Items.BOOKSHELVES)
                 .unlockedBy(TofusThinkingDatagen.hasItem(Items.ENCHANTED_BOOK), RegistrumRecipeProvider.has(Items.ENCHANTED_BOOK))
+                .save(provider);
+    }
+
+    public static <T extends Item> void enderCharm(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                .pattern("B")
+                .pattern("A")
+                .pattern("B")
+                .define('A', Items.ENDER_CHEST)
+                .define('B', ModItems.HARDENED_RESIN)
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.ENDER_CHEST), RegistrumRecipeProvider.has(Items.ENDER_CHEST))
                 .save(provider);
     }
 

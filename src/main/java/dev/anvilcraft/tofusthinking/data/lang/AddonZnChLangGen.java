@@ -43,6 +43,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.BOOK_OF_ENCHANTMENT.asItem(),"附魔之书");
         add(AddonItems.WATER_AMULET.asItem(),"水护符");
         add(AddonItems.TINTED_SWORD.asItem(),"影蔽剑");
+        add(AddonItems.ENDER_CHARM.asItem(),"末影护符");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"坚固海晶石砖");
@@ -52,6 +53,8 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonBlocks.OVERLOAD_GENERATOR.get(),"过载发电机");
         add(AddonBlocks.MUSHROOM_COW_IN_JAR.get(),"罐中蘑菇牛");
         add(AddonBlocks.AUTO_GRINDSTONE.get(),"自动砂轮");
+        add(AddonBlocks.STEEL_BARREL.get(), "钢桶");
+        add("block.anvilcraft_tofus_thinking.overflow_disposal_steel_barrel","溢出销毁钢桶");
         add(AddonBlocks.TOFU_ANVIL.get(),"豆腐铁砧");
     }
     private void tooltipLang(){
@@ -166,6 +169,12 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.auto_grindstone2","收到红石信号时进行一次砂轮打磨");
         add("tooltip.anvilcraft_tofus_thing.auto_grindstone.total_xp","暂存经验: %s");
 
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel","压缩紧致的钢桶，可以存储很多物品");
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel_shift","可容纳432组物品");
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel1","破坏时掉落内容物");
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel2","存储超过1000个物品时需要按住Shift破坏");
+        add("tooltip.anvilcraft_tofus_thing.steel_barrel3","类似板条箱有溢出销毁功能，但搜索时不能访问临近的钢桶");
+
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment","攻击时发射一串长度最多32格的魔法字符");
         add("tooltip.anvilcraft_tofus_thing.book_of_enchantment_charge","吸收附魔物品补充能源，每层附魔提供 %s");
 
@@ -174,6 +183,14 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.tinted_sword1", " 没人知道是你干的");
         add("tooltip.anvilcraft_tofus_thing.tinted_sword2", "造成无实体来源伤害");
         add("tooltip.anvilcraft_tofus_thing.tinted_sword3", "对于生命不满的怪物可能会失手");
+
+        add("tooltip.anvilcraft_tofus_thing.ender_charm", "用于打开末影箱");
+        add("tooltip.anvilcraft_tofus_thing.ender_charm_shift", "使用时或者在GUI界面右键以打开末影箱");
+        add("tooltip.anvilcraft_tofus_thing.ender_charm1", "当其在物品栏，末影箱，或者饰品栏中时");
+        add("tooltip.anvilcraft_tofus_thing.ender_charm2", "按下 %s 也可打开");
+        add("tooltip.anvilcraft_tofus_thing.ender_charm3", "在饰品栏中时，看向末影人时不会激怒它们");
+
+        add("screen.anvilcraft_tofus_thinking.tooltip.crate.break_requires_shift", "这个钢桶装了太多物品，按住 Shift 破坏！");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","使用时消耗 %s");
         add("tooltip.anvilcraft_tofus_thinking.not_active","未激活");
@@ -242,6 +259,11 @@ public class AddonZnChLangGen extends LanguageProvider {
 
         add("jei.anvilcraft_tofus_thinking.info.original_conuit","默认情况下，使用海洋之星吸收奇怪的凋灵的蓝色凋灵之首后将其注入普通的潮涌核心获取，原始状态的它难以精细控制而不太适合直接作为法杖材料。");
         add("jei.anvilcraft_tofus_thinking.info.charm_amulet","默认情况下，使用六个不同的护符经过铁砧冲压获得");
+
+        add("anvilcraft_tofus_thinking.container.steel_barrel", "钢桶");
+
+        add("key.anvilcraft_tofus_thinking.open_ender_charm", "打开末影护符");
+        add("key.categories.anvilcraft_tofus_thinking", "铁砧工艺：豆之思维");
 
         add("enhancedtooltips.rarity.anvilcraft_tofus_thinking_tofu","豆之思维");
     }

@@ -6,6 +6,7 @@ import dev.anvilcraft.tofusthinking.data.recipe.AddonItemRecipeLoader;
 import dev.anvilcraft.tofusthinking.item.ExtendItem;
 import dev.anvilcraft.tofusthinking.item.curio.AmethystGoldenRing;
 import dev.anvilcraft.tofusthinking.item.curio.CurioBaseItem;
+import dev.anvilcraft.tofusthinking.item.curio.EnderCharm;
 import dev.anvilcraft.tofusthinking.item.food.AutoCanItem;
 import dev.anvilcraft.tofusthinking.item.tool.HammerItem;
 import dev.anvilcraft.tofusthinking.item.tool.LightningHammer;
@@ -182,8 +183,15 @@ public class AddonItems {
     public static final ItemEntry<TintedSword> TINTED_SWORD = REGISTRUM.item("tinted_sword", TintedSword::new)
             .properties(properties -> properties.stacksTo(1).durability(731))
             .tag(ItemTags.WEAPON_ENCHANTABLE,ItemTags.SWORD_ENCHANTABLE)
-            .defaultModel()
+            .model((ctx, provider) -> provider.handheld(ctx))
             .recipe(AddonItemRecipeLoader::tintedSword)
+            .register();
+
+    public static final ItemEntry<EnderCharm> ENDER_CHARM = REGISTRUM.item("ender_charm", EnderCharm::new)
+            .properties(properties -> properties.stacksTo(1).fireResistant().rarity(Rarity.RARE))
+            .tag(AddonItemTags.CURIOS_CHARM)
+            .defaultModel()
+            .recipe(AddonItemRecipeLoader::enderCharm)
             .register();
 
     public static ItemStack enchant(ItemLike item, HolderLookup.Provider registries, EnchantmentKeyInstance... instances){

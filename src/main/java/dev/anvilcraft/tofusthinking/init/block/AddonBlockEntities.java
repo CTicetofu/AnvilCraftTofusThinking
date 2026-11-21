@@ -28,4 +28,9 @@ public class AddonBlockEntities {
     public static final BlockEntityEntry<AutoGrindstoneBlockEntity> AUTO_GRINDSTONE = REGISTRUM.<AutoGrindstoneBlockEntity>blockEntity("auto_grindstone", AutoGrindstoneBlockEntity::new)
             .validBlock(AddonBlocks.AUTO_GRINDSTONE)
             .register();
+
+    public static final BlockEntityEntry<SteelBarrelBlockEntity> STEEL_BARREL = REGISTRUM.<SteelBarrelBlockEntity>blockEntity("steel_barrel", SteelBarrelBlockEntity::new)
+            .validBlock(AddonBlocks.STEEL_BARREL)
+            .register();
+
 }

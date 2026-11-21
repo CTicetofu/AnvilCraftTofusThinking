@@ -65,6 +65,18 @@ public class AddonBlockRecipeLoader {
                 .save(provider);
     }
 
+    public static <T extends Block> void steelBarrel(DataGenContext<Block, T> ctx, RegistrumRecipeProvider provider) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get(), 1)
+                .pattern("BAB")
+                .pattern("ACA")
+                .pattern("BAB")
+                .define('A', ModBlocks.HEAVY_IRON_BLOCK)
+                .define('B', ModBlocks.CRATE)
+                .define('C', Tags.Items.BARRELS)
+                .unlockedBy(TofusThinkingDatagen.hasItem(ModBlocks.CRATE), TofusThinkingDatagen.has(ModBlocks.CRATE))
+                .save(provider);
+    }
+
     public static <T extends Block> void tofuAnvil(DataGenContext<Block, T> ctx, RegistrumRecipeProvider provider) {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get(), 1)
                 .pattern("BCD")

@@ -64,7 +64,7 @@ public class TofuAnvilMenu extends AnvilMenu {
         int resultCost = 0;
         int nameCost;
         if (!itemstack.isEmpty()) {
-            if (!net.neoforged.neoforge.common.CommonHooks.onAnvilChange(this, itemstack, this.inputSlots.getItem(1), resultSlots, itemName, 0, this.player)) {
+            if (!CommonHooks.onAnvilChange(this, itemstack, this.inputSlots.getItem(1), resultSlots, itemName, 0, this.player)) {
                 return;
             }
         }

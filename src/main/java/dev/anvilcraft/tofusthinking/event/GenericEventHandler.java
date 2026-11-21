@@ -1,15 +1,20 @@
 package dev.anvilcraft.tofusthinking.event;
 
 import dev.anvilcraft.tofusthinking.block.entity.MushroomCowInJarBlockEntity;
+import dev.anvilcraft.tofusthinking.block.entity.SteelBarrelBlockEntity;
 import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.dubhe.anvilcraft.api.event.LightningBoltStrikeEvent;
 import dev.dubhe.anvilcraft.init.item.ModItems;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -20,6 +25,7 @@ import net.neoforged.neoforge.event.AnvilUpdateEvent;
 import net.neoforged.neoforge.event.GrindstoneEvent;
 import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 
 import java.util.Iterator;
 
@@ -93,6 +99,23 @@ public class GenericEventHandler {
                     player.takeXpDelay = 0;
                 }
                 event.setDroppedExperience(0);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void preventCrateBreak(BlockEvent.BreakEvent event) {
+        Player player = event.getPlayer();
+        if (player.isShiftKeyDown()) return;
+        if (!(player.level() instanceof ServerLevel level)) {return;}
+        BlockPos pos = event.getPos();
+        if(level.getBlockState(pos).is(AddonBlocks.STEEL_BARREL) && level.getBlockEntity(pos) instanceof SteelBarrelBlockEntity blockEntity){
+            if (blockEntity.getTotalCount() > 1000) {
+                player.displayClientMessage(
+                        Component.translatable("screen.anvilcraft_tofus_thinking.tooltip.crate.break_requires_shift").withStyle(ChatFormatting.RED),
+                        true
+                );
+                event.setCanceled(true);
             }
         }
     }
