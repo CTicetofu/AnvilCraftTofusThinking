@@ -52,6 +52,10 @@ public class AddonComponents {
             "destroy_item",
             it -> it.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL)
     );
+    public static final DataComponentType<Unit> OVER_HEAVY = register(
+            "over_heavy",
+            it -> it.persistent(Unit.CODEC)
+    );
     public static final DataComponentType<Unit> DENSE = register(
             "dense",
             it -> it.persistent(Unit.CODEC)

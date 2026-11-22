@@ -180,6 +180,7 @@
   "tooltip.anvilcraft_tofus_thinking.original_conduit_staff_available_head": "Available Glass Items:",
   "tooltip.anvilcraft_tofus_thinking.original_conduit_staff_more_info": ".Can use some blocks to right-click on the item in the inventory to change its energy, and hold [Ctrl] to view available items",
   "tooltip.anvilcraft_tofus_thinking.original_conduit_warn": "Don't let it be influenced by another kind of time power",
+  "tooltip.anvilcraft_tofus_thinking.over_heavy": "Over Heavy: During an attack, the fall distance is increased by half",
   "tooltip.anvilcraft_tofus_thinking.overload_generator": "The dangerous generator that utilizes the power of abnormal time acceleration. \nFor details, please refer to JEI",
   "tooltip.anvilcraft_tofus_thinking.permanent": "Permanent: Indestructible to the world's assaults\nWandering idly above the hollow Void\nEverlasting within the crevice of Time",
   "tooltip.anvilcraft_tofus_thinking.progress": "Progress: %s %%",

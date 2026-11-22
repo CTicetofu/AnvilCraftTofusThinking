@@ -78,6 +78,9 @@ public class ClientManageHandler {
         if(stack.has(AddonComponents.MAGNETIC_ATTRACTION)){
             propertyTooltip("magnetic_attraction", list, 0x40E0D0);
         }
+        if(stack.has(AddonComponents.OVER_HEAVY)){
+            propertyTooltip("over_heavy", list, 0x5F9EA0);
+        }
     }
 
     private static void propertyTooltip(String propertyName, List<Component> tooltip, int color) {

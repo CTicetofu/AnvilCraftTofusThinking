@@ -2,7 +2,6 @@ package dev.anvilcraft.tofusthinking.entity.projectile;
 
 import dev.anvilcraft.tofusthinking.init.entity.AddonEntities;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
-import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.game.ClientboundExplodePacket;
@@ -154,6 +153,6 @@ public class ExplosionArrow extends AbstractArrow {
 
     @Override
     protected @NonNull ItemStack getDefaultPickupItem() {
-        return AddonItems.EXPLOSION_ARROW.asStack();
+        return ItemStack.EMPTY;
     }
 }

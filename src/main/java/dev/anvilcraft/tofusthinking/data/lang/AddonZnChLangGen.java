@@ -197,6 +197,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thinking.progress","进度: %s %%");
         add("tooltip.anvilcraft_tofus_thinking.hold_shift_for_more","按住 %s 获取更多信息");
         add("tooltip.anvilcraft_tofus_thinking.permanent","恒久：不灭于世界之侵，漫游于虚空之上，永存于时间之隙");
+        add("tooltip.anvilcraft_tofus_thinking.over_heavy","超重：攻击时额外增加一半的下落距离");
         add("tooltip.anvilcraft_tofus_thinking.dense","致密：提升10%护甲和保护的保护性能");
         add("tooltip.anvilcraft_tofus_thinking.antidote","抗毒：减少80%大多数负面效果时间，一半概率免疫");
         add("tooltip.anvilcraft_tofus_thinking.heavy_hit","重击：增加50%暴击伤害");

@@ -71,6 +71,15 @@ public class AddonReforgeRecipeLoader {
                 .save(provider,AnvilCraftTofusThinking.of("reforge/eternal_mutitool"));
 
         ReforgeRecipe.builder()
+                .activator(ModItems.WEATHERPROOF_SPACESUIT_BOOTS)
+                .requires(ModItems.NEUTRONIUM_INGOT)
+                .requires(ModBlocks.HEAVY_IRON_BLOCK, 8)
+                .addComponent(AddonComponents.OVER_HEAVY,Unit.INSTANCE)
+                .maxQuantity(1)
+                .unlockedBy(TofusThinkingDatagen.hasItem(ModItems.WEATHERPROOF_SPACESUIT_BOOTS), TofusThinkingDatagen.has(ModItems.WEATHERPROOF_SPACESUIT_BOOTS))
+                .save(provider,AnvilCraftTofusThinking.of("reforge/over_heavy_boots"));
+
+        ReforgeRecipe.builder()
                 .activator(ModItems.WEATHERPROOF_SPACESUIT_CHESTPLATE)
                 .requires(ModItems.TRANSCENDIUM_INGOT.asItem())
                 .requires(Items.NETHERITE_BLOCK)

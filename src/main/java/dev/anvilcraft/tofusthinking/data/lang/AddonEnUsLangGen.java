@@ -206,6 +206,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
 
         add("screen.anvilcraft_tofus_thinking.tooltip.crate.break_requires_shift", "This steel barrel is overloaded with items. Hold Shift to destroy it!");
 
+        add("tooltip.anvilcraft_tofus_thinking.over_heavy","Over Heavy: During an attack, the fall distance is increased by half");
         add("tooltip.anvilcraft_tofus_thinking.dense","Dense: Increases armor and protection performance by 10%");
         add("tooltip.anvilcraft_tofus_thinking.antidote","Antidote: Reduces most negative effects by 80%, with a 50% chance to immunity");
         add("tooltip.anvilcraft_tofus_thinking.heavy_hit","Heavy Hit: add 50% Crit Damage");

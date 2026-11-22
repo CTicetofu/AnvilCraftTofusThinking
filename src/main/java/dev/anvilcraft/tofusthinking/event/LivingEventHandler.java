@@ -41,6 +41,7 @@ import net.neoforged.neoforge.event.enchanting.EnchantedEntityLootEvent;
 import net.neoforged.neoforge.event.entity.EntityInvulnerabilityCheckEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 
 import java.util.Iterator;
@@ -150,6 +151,21 @@ public class LivingEventHandler {
             }
         }
     }
+
+    @SubscribeEvent
+    public static void onPlayerAttack(AttackEntityEvent event){
+        if(event.getEntity() instanceof ServerPlayer player){
+            if(player.getItemBySlot(EquipmentSlot.FEET).has(AddonComponents.OVER_HEAVY) && !CooldownManager.isOnCooldown(player, "over_heavy")){
+                float fall = player.fallDistance;
+                if(fall > 0){
+                    if(!player.onGround()){player.fallDistance += 2F;}
+                    player.fallDistance *= 1.5F;
+                    CooldownManager.addCooldownServer(player, "over_heavy", 2);
+                }
+            }
+        }
+    }
+
     @SubscribeEvent(priority = EventPriority.HIGH,receiveCanceled = true)
     public static void onHighLivingInComing(LivingIncomingDamageEvent event){
         DamageSource source = event.getSource();

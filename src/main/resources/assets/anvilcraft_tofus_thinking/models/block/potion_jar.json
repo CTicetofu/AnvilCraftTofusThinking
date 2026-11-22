@@ -1,0 +1,41 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"1": "minecraft:block/oak_log",
+		"2": "minecraft:block/oak_log_top",
+		"3": "anvilcraft_tofus_thinking:block/potion_jar_top",
+		"4": "anvilcraft_tofus_thinking:block/potion_jar_side",
+		"particle": "anvilcraft_tofus_thinking:block/potion_jar_top"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 3],
+			"to": [13, 12, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 0, 3]},
+			"faces": {
+				"north": {"uv": [3, 2, 13, 14], "texture": "#4"},
+				"east": {"uv": [3, 2, 13, 14], "texture": "#4"},
+				"south": {"uv": [3, 2, 13, 14], "texture": "#4"},
+				"west": {"uv": [3, 2, 13, 14], "texture": "#4"},
+				"up": {"uv": [3, 3, 13, 13], "texture": "#3"},
+				"down": {"uv": [3, 3, 13, 13], "texture": "#3"}
+			}
+		},
+		{
+			"from": [6, 12, 6],
+			"to": [10, 14, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 12, 6]},
+			"faces": {
+				"north": {"uv": [5, 4, 11, 7], "texture": "#1"},
+				"east": {"uv": [6, 4, 12, 7], "texture": "#1"},
+				"south": {"uv": [5, 4, 11, 7], "texture": "#1"},
+				"west": {"uv": [6, 4, 12, 7], "texture": "#1"},
+				"up": {"uv": [5, 5, 11, 11], "texture": "#2"},
+				"down": {"uv": [5, 5, 11, 11], "texture": "#2"}
+			}
+		}
+	]
+}
