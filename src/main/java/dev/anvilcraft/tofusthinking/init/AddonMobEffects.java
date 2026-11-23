@@ -18,7 +18,7 @@ public class AddonMobEffects {
     private static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, AnvilCraftTofusThinking.MOD_ID);
 
     public static final DeferredHolder<MobEffect, MobEffect> CURSE = EFFECTS.register("curse",
-            () -> new AddonMobEffect(MobEffectCategory.HARMFUL,0x363636));
+            () -> new AddonMobEffect(MobEffectCategory.HARMFUL,0x363636).withNoCure());
 
     public static final DeferredHolder<MobEffect, MobEffect> SHRINK = EFFECTS.register("shrink",
             () -> new AddonMobEffect(MobEffectCategory.NEUTRAL,0xFFF68F)

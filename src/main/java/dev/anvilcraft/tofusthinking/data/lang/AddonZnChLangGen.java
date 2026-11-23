@@ -44,6 +44,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.WATER_AMULET.asItem(),"水护符");
         add(AddonItems.TINTED_SWORD.asItem(),"影蔽剑");
         add(AddonItems.ENDER_CHARM.asItem(),"末影护符");
+        add(AddonItems.POTION_JAR.asItem(),"药水罐");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"坚固海晶石砖");
@@ -107,8 +108,9 @@ public class AddonZnChLangGen extends LanguageProvider {
                 当过载超过14次或者过载时下方不为激活的腐化信标时爆炸
                 其他情况下移除自身不会产生爆炸\
                 """);
-        add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","在物品栏界面右键以改变是否为 %s");
+        add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","在GUI界面右键以改变是否为 %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","自动攻击模式");
+        add("tooltip.anvilcraft_tofus_thinking.auto_drink_mode","自动饮用模式");
         add("tooltip.anvilcraft_tofus_thinking.destroy_item_explosion","破坏掉落物模式");
 
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_auto","持有时对自动对周围怪物造成伤害");
@@ -189,6 +191,11 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.ender_charm1", "当其在物品栏，末影箱，或者饰品栏中时");
         add("tooltip.anvilcraft_tofus_thing.ender_charm2", "按下 %s 也可打开");
         add("tooltip.anvilcraft_tofus_thing.ender_charm3", "在饰品栏中时，看向末影人时不会激怒它们");
+
+        add("tooltip.anvilcraft_tofus_thinking.potion_jar1", "在GUI界面右键药水以灌注（250MB）");
+        add("tooltip.anvilcraft_tofus_thinking.potion_jar2", "每次饮用消耗 %s");
+        add("tooltip.anvilcraft_tofus_thinking.potion_jar3", "灌注当超过最大容量时");
+        add("tooltip.anvilcraft_tofus_thinking.potion_jar4", "对于超过30s的可酿造的单一效果药水不再消耗");
 
         add("screen.anvilcraft_tofus_thinking.tooltip.crate.break_requires_shift", "这个钢桶装了太多物品，按住 Shift 破坏！");
 

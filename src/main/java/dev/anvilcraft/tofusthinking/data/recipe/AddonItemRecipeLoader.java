@@ -215,6 +215,18 @@ public class AddonItemRecipeLoader {
                 .save(provider);
     }
 
+    public static <T extends Item> void potionJar(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                .pattern(" B ")
+                .pattern("CAC")
+                .pattern(" C ")
+                .define('A', ModBlocks.FLUID_TANK)
+                .define('B', ItemTags.LOGS)
+                .define('C', Tags.Items.GLASS_BLOCKS)
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.ENCHANTED_BOOK), RegistrumRecipeProvider.has(Items.ENCHANTED_BOOK))
+                .save(provider);
+    }
+
     public static <T extends Item> void sonicBoomStaff(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         SmithingTransformRecipeBuilder.smithing(
                         Ingredient.of(ModItems.CAPACITOR_EMPTY),

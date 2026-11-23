@@ -10,6 +10,7 @@ import dev.anvilcraft.tofusthinking.item.curio.EnderCharm;
 import dev.anvilcraft.tofusthinking.item.food.AutoCanItem;
 import dev.anvilcraft.tofusthinking.item.tool.HammerItem;
 import dev.anvilcraft.tofusthinking.item.tool.LightningHammer;
+import dev.anvilcraft.tofusthinking.item.tool.PotionJarItem;
 import dev.anvilcraft.tofusthinking.item.weapon.*;
 import dev.anvilcraft.tofusthinking.item.weapon.ammo.ExplosionArrowItem;
 import dev.anvilcraft.tofusthinking.util.DataClass.AttributeInstance;
@@ -192,6 +193,12 @@ public class AddonItems {
             .tag(AddonItemTags.CURIOS_CHARM)
             .defaultModel()
             .recipe(AddonItemRecipeLoader::enderCharm)
+            .register();
+
+    public static final ItemEntry<PotionJarItem> POTION_JAR = REGISTRUM.item("potion_jar", PotionJarItem::new)
+            .properties(properties -> properties.stacksTo(1).rarity(Rarity.RARE))
+            .model(DataGenUtil::noExtraModelOrState)
+            .recipe(AddonItemRecipeLoader::potionJar)
             .register();
 
     public static ItemStack enchant(ItemLike item, HolderLookup.Provider registries, EnchantmentKeyInstance... instances){

@@ -47,6 +47,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.WATER_AMULET.asItem(),"Water Amulet");
         add(AddonItems.TINTED_SWORD.asItem(),"Tinted Sword");
         add(AddonItems.ENDER_CHARM.asItem(),"Ender Charm");
+        add(AddonItems.POTION_JAR.asItem(),"Potion Jar");
     }
     private void blockName(){
         add(AddonBlocks.STABLE_PRISMARINE_BRICKS.get(),"Stable Prismarine Bricks");
@@ -111,8 +112,9 @@ public class AddonEnUsLangGen extends LanguageProvider {
                 Explode when overloaded more than 14 times or when the corrupted beacon below is not activated
                 In other cases, removing oneself will not cause an explosion\
                 """);
-        add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","Right-click in the inventory to toggle whether it is in %s");
+        add("tooltip.anvilcraft_tofus_thinking.right_switch_in_inventory","Right-click in the GUI to toggle whether it is in %s");
         add("tooltip.anvilcraft_tofus_thinking.auto_hunting_mode","Auto Attack Mode");
+        add("tooltip.anvilcraft_tofus_thinking.auto_drink_mode","Auto Drink Mode");
         add("tooltip.anvilcraft_tofus_thinking.destroy_item_explosion","Destroy Item Mode");
 
         add("tooltip.anvilcraft_tofus_thinking.conduit_staff_auto","it automatically deals damage to nearby monsters when holding");
@@ -193,6 +195,11 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.ender_charm1", "When it is in the inventory, the Ender Chest, or the Curios slot");
         add("tooltip.anvilcraft_tofus_thing.ender_charm2", "Pressing %s can also open it");
         add("tooltip.anvilcraft_tofus_thing.ender_charm3", "When in the Curios Inventory, looking at EnderMan will not provoke them");
+
+        add("tooltip.anvilcraft_tofus_thinking.potion_jar1", "Right-click on the potion in the GUI to infuse(250MB)");
+        add("tooltip.anvilcraft_tofus_thinking.potion_jar2", "Each consumption consumes %s");
+        add("tooltip.anvilcraft_tofus_thinking.potion_jar3", "When the filling exceeds the maximum capacity");
+        add("tooltip.anvilcraft_tofus_thinking.potion_jar4", "No longer consume for brewing single-effect potions that last for more than 30 seconds");
 
         add("tooltip.anvilcraft_tofus_thinking.need_energy","Consume %s when use");
         add("tooltip.anvilcraft_tofus_thinking.not_active","Not Active");

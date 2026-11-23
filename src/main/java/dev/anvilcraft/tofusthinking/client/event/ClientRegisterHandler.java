@@ -46,6 +46,7 @@ public class ClientRegisterHandler {
         event.registerItem(GemStaffRenderer.GEM_STAFF_EXTENSION, AddonItems.GEM_STAFF.get());
         event.registerItem(ElectromagneticCrossbowRenderer.ELECTROMAGNETIC_CROSSBOW_EXTENSION, AddonItems.ELECTROMAGNETIC_CROSSBOW.get());
         event.registerItem(MushroomCowInJarItemRenderer.MUSHROOM_COW_IN_JAR_EXTENSION, AddonBlocks.MUSHROOM_COW_IN_JAR.asItem());
+        event.registerItem(PotionJarItemRenderer.POTION_JAR_EXTENSION, AddonItems.POTION_JAR);
     }
 
     @SubscribeEvent

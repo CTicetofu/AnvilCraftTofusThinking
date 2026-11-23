@@ -4,8 +4,8 @@
 	"parent": "minecraft:block/block",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"1": "minecraft:block/oak_log",
-		"2": "minecraft:block/oak_log_top",
+		"1": "block/oak_log",
+		"2": "block/oak_log_top",
 		"3": "anvilcraft_tofus_thinking:block/potion_jar_top",
 		"4": "anvilcraft_tofus_thinking:block/potion_jar_side",
 		"particle": "anvilcraft_tofus_thinking:block/potion_jar_top"
@@ -37,5 +37,38 @@
 				"down": {"uv": [5, 5, 11, 11], "texture": "#2"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"translation": [0, 2, 0],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -135, 0],
+			"translation": [0, 2, 0],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [30, -135, 0],
+			"translation": [0, 0.5, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"head": {
+			"translation": [0, 4.25, 0],
+			"scale": [1.35, 1.35, 1.35]
+		},
+		"fixed": {
+			"translation": [0, 1, 0]
+		}
+	}
 }

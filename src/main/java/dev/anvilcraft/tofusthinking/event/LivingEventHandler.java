@@ -5,6 +5,7 @@ import dev.anvilcraft.tofusthinking.entity.ExtraDamageSource;
 import dev.anvilcraft.tofusthinking.entity.projectile.GemMissile;
 import dev.anvilcraft.tofusthinking.entity.projectile.Meteor;
 import dev.anvilcraft.tofusthinking.init.AddonMobEffects;
+import dev.anvilcraft.tofusthinking.init.block.AddonBlocks;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
@@ -36,6 +37,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.EffectCures;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
 import net.neoforged.neoforge.event.enchanting.EnchantedEntityLootEvent;
 import net.neoforged.neoforge.event.entity.EntityInvulnerabilityCheckEvent;
@@ -80,6 +82,9 @@ public class LivingEventHandler {
         MobEffectInstance instance = event.getEffectInstance();
         MobEffect effect = instance.getEffect().value();
         LivingEntity target = event.getEntity();
+        if(target.getItemBySlot(EquipmentSlot.HEAD).is(AddonBlocks.MUSHROOM_COW_IN_JAR.asItem()) && instance.getCures().contains(EffectCures.MILK)){
+            event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+        }
         if(target.getItemBySlot(EquipmentSlot.HEAD).has(AddonComponents.ANTIDOTE) && effect.getCategory() == MobEffectCategory.HARMFUL){
             if((instance.duration <= 200 && instance.duration >= 0) || target.getRandom().nextBoolean()){event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);}
         }
@@ -158,8 +163,10 @@ public class LivingEventHandler {
             if(player.getItemBySlot(EquipmentSlot.FEET).has(AddonComponents.OVER_HEAVY) && !CooldownManager.isOnCooldown(player, "over_heavy")){
                 float fall = player.fallDistance;
                 if(fall > 0){
-                    if(!player.onGround()){player.fallDistance += 2F;}
-                    player.fallDistance *= 1.5F;
+                    if(!player.onGround()){
+                        player.fallDistance *= 1.5F;
+                        player.fallDistance += 1F;
+                    }
                     CooldownManager.addCooldownServer(player, "over_heavy", 2);
                 }
             }

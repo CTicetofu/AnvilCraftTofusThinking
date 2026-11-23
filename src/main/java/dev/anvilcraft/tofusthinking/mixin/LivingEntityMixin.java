@@ -22,7 +22,7 @@ public class LivingEntityMixin {
     protected Player lastHurtByPlayer;
 
     @WrapOperation(method = "dropExperience", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ExperienceOrb;award(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;I)V"))
-    public void l2complements_awardExp(ServerLevel level, Vec3 pos, int amount, Operation<Void> original){
+    public void awardExp(ServerLevel level, Vec3 pos, int amount, Operation<Void> original){
         if(this.lastHurtByPlayer instanceof ServerPlayer player && player.isHolding(stack -> stack.has(AddonComponents.MAGNETIC_ATTRACTION))){
             player.takeXpDelay = 0;
             pos = player.position().add(0,0.1,0);

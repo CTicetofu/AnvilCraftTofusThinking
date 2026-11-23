@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:fluid_tank"
+    },
+    "B": {
+      "tag": "minecraft:logs"
+    },
+    "C": {
+      "tag": "c:glass_blocks"
+    }
+  },
+  "pattern": [
+    " B ",
+    "CAC",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:potion_jar"
+  }
+}

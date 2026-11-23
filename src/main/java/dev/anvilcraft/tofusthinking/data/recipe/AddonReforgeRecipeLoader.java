@@ -72,7 +72,7 @@ public class AddonReforgeRecipeLoader {
 
         ReforgeRecipe.builder()
                 .activator(ModItems.WEATHERPROOF_SPACESUIT_BOOTS)
-                .requires(ModItems.NEUTRONIUM_INGOT)
+                .requires(ModItems.CHARGED_NEUTRONIUM_INGOT)
                 .requires(ModBlocks.HEAVY_IRON_BLOCK, 8)
                 .addComponent(AddonComponents.OVER_HEAVY,Unit.INSTANCE)
                 .maxQuantity(1)
