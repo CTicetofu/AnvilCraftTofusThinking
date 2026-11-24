@@ -3,6 +3,7 @@ package dev.anvilcraft.tofusthinking.data.tags;
 import dev.anvilcraft.lib.v2.registrum.providers.RegistrumTagsProvider;
 import dev.anvilcraft.tofusthinking.init.item.AddonItemTags;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
+import dev.dubhe.anvilcraft.init.item.ModItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -35,6 +36,13 @@ public class AddonItemTagLoader {
         provider.addTag(AddonItemTags.ELECTROMAGNETIC_CROSSBOW_CAN_INFINITY)
                 .addTag(Tags.Items.NUGGETS_IRON)
                 .add(findResourceKey(Items.SNOWBALL));
+
+        provider.addTag(AddonItemTags.CAN_ETERNAL)
+                .addOptional(ModItems.MULTITOOL_ITEM.getId())
+                .addOptional(ModItems.WEATHERPROOF_SPACESUIT_HELMET.getId())
+                .addOptional(ModItems.WEATHERPROOF_SPACESUIT_CHESTPLATE.getId())
+                .addOptional(ModItems.WEATHERPROOF_SPACESUIT_LEGGINGS.getId())
+                .addOptional(ModItems.WEATHERPROOF_SPACESUIT_BOOTS.getId());
     }
     private static ResourceKey<Item> findResourceKey(Item item) {
         return ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item));

@@ -1,6 +1,7 @@
 package dev.anvilcraft.tofusthinking.item.tool;
 
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
+import dev.anvilcraft.tofusthinking.item.OnEnderChestInventoryTick;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.anvilcraft.tofusthinking.util.TooltipUtil;
 import net.minecraft.ChatFormatting;
@@ -34,7 +35,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.List;
 import java.util.Objects;
 
-public class PotionJarItem extends Item {
+public class PotionJarItem extends Item implements OnEnderChestInventoryTick {
     public static final int MAX_PROGRESS = 32000;
     public static final int SINGLE_CONSUME = 50;
     public PotionJarItem(Properties properties) {
@@ -115,6 +116,8 @@ public class PotionJarItem extends Item {
                     if(rangeCount > 0){
                         itemStack.shrink(rangeCount);
                     }
+                    int progress = stack.getOrDefault(AddonComponents.PROGRESS, 0);
+                    if(progress > MAX_PROGRESS - 250){break;}
                 }
                 if(count > 0){ItemUtil.giveEnoughItem(player,new ItemStack(Items.GLASS_BOTTLE), count);}
             }

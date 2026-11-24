@@ -4,6 +4,7 @@ import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
 import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.data.TofusThinkingDatagen;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
+import dev.anvilcraft.tofusthinking.init.item.AddonItemTags;
 import dev.anvilcraft.tofusthinking.recipe.reforge.ReforgeRecipe;
 import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import dev.dubhe.anvilcraft.init.item.ModComponents;
@@ -63,7 +64,7 @@ public class AddonReforgeRecipeLoader {
                 .save(provider, AnvilCraftTofusThinking.of("reforge/providence"));
 
         ReforgeRecipe.builder()
-                .activator(ModItems.MULTITOOL_ITEM)
+                .activator(AddonItemTags.CAN_ETERNAL)
                 .requires(ModItems.MULTIPHASE_TRANSCENDIUM.asItem())
                 .addComponent(ModComponents.ETERNAL, Eternal.INSTANCE)
                 .maxQuantity(1)

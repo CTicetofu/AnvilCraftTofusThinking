@@ -1,0 +1,24 @@
+{
+  "values": [
+    {
+      "id": "anvilcraft:multitool",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:weatherproof_spacesuit_helmet",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:weatherproof_spacesuit_chestplate",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:weatherproof_spacesuit_leggings",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:weatherproof_spacesuit_boots",
+      "required": false
+    }
+  ]
+}

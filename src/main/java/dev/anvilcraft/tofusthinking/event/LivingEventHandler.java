@@ -10,6 +10,7 @@ import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypeTags;
 import dev.anvilcraft.tofusthinking.init.entity.AddonDamageTypes;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
+import dev.anvilcraft.tofusthinking.item.OnEnderChestInventoryTick;
 import dev.anvilcraft.tofusthinking.item.weapon.OriginalConduitStaff;
 import dev.anvilcraft.tofusthinking.item.weapon.StarOfTheSea;
 import dev.anvilcraft.tofusthinking.mobEffect.NotApplyEffect;
@@ -45,6 +46,7 @@ import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
@@ -169,6 +171,20 @@ public class LivingEventHandler {
                     }
                     CooldownManager.addCooldownServer(player, "over_heavy", 2);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(PlayerTickEvent.Post event){
+        Player player = event.getEntity();
+        if(player.isAlive()){
+            int index = 1000;
+            for (ItemStack stack:player.getEnderChestInventory().getItems()){
+                if(stack.getItem() instanceof OnEnderChestInventoryTick tick){
+                    tick.inventoryTick(stack, player.level(), player, index);
+                }
+                index++;
             }
         }
     }

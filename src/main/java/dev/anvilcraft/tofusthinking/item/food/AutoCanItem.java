@@ -2,6 +2,7 @@ package dev.anvilcraft.tofusthinking.item.food;
 
 import dev.anvilcraft.tofusthinking.attachment.magic.CooldownManager;
 import dev.anvilcraft.tofusthinking.init.item.AddonComponents;
+import dev.anvilcraft.tofusthinking.item.OnEnderChestInventoryTick;
 import dev.anvilcraft.tofusthinking.item.curio.CurioBaseItem;
 import dev.anvilcraft.tofusthinking.util.ItemUtil;
 import dev.dubhe.anvilcraft.api.item.IExtraItemDisplay;
@@ -28,7 +29,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.List;
 import java.util.Optional;
 
-public class AutoCanItem extends CurioBaseItem implements IExtraItemDisplay {
+public class AutoCanItem extends CurioBaseItem implements IExtraItemDisplay, OnEnderChestInventoryTick {
     public static final String SKILL = "auto_can";
     public AutoCanItem(Properties properties) {
         super(properties.component(AddonComponents.NUTRITION_VALUE,0));

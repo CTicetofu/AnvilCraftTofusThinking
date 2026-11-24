@@ -1,6 +1,5 @@
 package dev.anvilcraft.tofusthinking.mobEffect;
 
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;

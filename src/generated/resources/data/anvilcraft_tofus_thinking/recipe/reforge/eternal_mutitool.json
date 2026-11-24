@@ -1,7 +1,7 @@
 {
   "type": "anvilcraft_tofus_thinking:reforge",
   "activator": {
-    "items": "anvilcraft:multitool"
+    "items": "#anvilcraft_tofus_thinking:can_eternal"
   },
   "ingredients": [
     {

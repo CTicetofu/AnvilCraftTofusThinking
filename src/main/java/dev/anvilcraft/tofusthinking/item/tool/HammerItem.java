@@ -88,7 +88,9 @@ public class HammerItem extends TieredItem {
         if(target.getType().is(AddonEntityTypeTags.DAMAGE_TEST_ENTITY)){return 0;}
         float addDamage = 0;
         if(target instanceof LivingEntity living && damageSource.getDirectEntity() instanceof Player player){
-            addDamage += (float)(living.getArmorValue() * 0.5F + living.getAttributeValue(Attributes.ARMOR_TOUGHNESS) * 0.5F) * player.getAttackStrengthScale(0.5F);
+            float armor = living.getArmorValue() * 0.5F;
+            armor = armor < damage * 0.75F ? armor : armor * 0.2F + 0.8F * damage * 0.75F;
+            addDamage += armor * player.getAttackStrengthScale(0.5F);
         }
         if(target.getType().is(EntityTypeTags.UNDEAD)){
             addDamage += damage * 0.5F;
