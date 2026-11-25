@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:leather_leggings"
+    },
+    "B": {
+      "tag": "c:leathers"
+    },
+    "C": {
+      "item": "anvilcraft:hardened_resin"
+    }
+  },
+  "pattern": [
+    " B ",
+    "CAC",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "anvilcraft_tofus_thinking:pocket_pocket"
+  }
+}

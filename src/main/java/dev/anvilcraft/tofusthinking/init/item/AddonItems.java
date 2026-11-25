@@ -7,6 +7,7 @@ import dev.anvilcraft.tofusthinking.item.ExtendItem;
 import dev.anvilcraft.tofusthinking.item.curio.AmethystGoldenRing;
 import dev.anvilcraft.tofusthinking.item.curio.CurioBaseItem;
 import dev.anvilcraft.tofusthinking.item.curio.EnderCharm;
+import dev.anvilcraft.tofusthinking.item.curio.PocketPocket;
 import dev.anvilcraft.tofusthinking.item.food.AutoCanItem;
 import dev.anvilcraft.tofusthinking.item.tool.HammerItem;
 import dev.anvilcraft.tofusthinking.item.tool.LightningHammer;
@@ -80,6 +81,14 @@ public class AddonItems {
             .defaultModel()
             .tag(AddonItemTags.CURIOS_RING)
             .recipe(AddonItemRecipeLoader::amethystGoldenRIng)
+            .register();
+
+    public static final ItemEntry<PocketPocket> POCKET_POCKET = REGISTRUM.item("pocket_pocket", properties ->
+                    new PocketPocket(properties.stacksTo(1).rarity(Rarity.UNCOMMON))
+            )
+            .defaultModel()
+            .tag(AddonItemTags.CURIOS_BELT)
+            .recipe(AddonItemRecipeLoader::pocketPocket)
             .register();
 
     public static final ItemEntry<CurioBaseItem> SPEED_CHARM = REGISTRUM.item("speed_charm", properties ->
@@ -191,6 +200,7 @@ public class AddonItems {
     public static final ItemEntry<EnderCharm> ENDER_CHARM = REGISTRUM.item("ender_charm", EnderCharm::new)
             .properties(properties -> properties.stacksTo(1).fireResistant().rarity(Rarity.RARE))
             .tag(AddonItemTags.CURIOS_CHARM)
+            .tag(AddonItemTags.CURIOS_BELT)
             .defaultModel()
             .recipe(AddonItemRecipeLoader::enderCharm)
             .register();

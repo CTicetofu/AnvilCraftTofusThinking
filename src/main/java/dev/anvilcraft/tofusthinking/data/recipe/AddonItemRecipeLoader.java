@@ -227,6 +227,18 @@ public class AddonItemRecipeLoader {
                 .save(provider);
     }
 
+    public static <T extends Item> void pocketPocket(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+                .pattern(" B ")
+                .pattern("CAC")
+                .pattern(" B ")
+                .define('A', Items.LEATHER_LEGGINGS)
+                .define('B', Tags.Items.LEATHERS)
+                .define('C', ModItems.HARDENED_RESIN)
+                .unlockedBy(TofusThinkingDatagen.hasItem(Items.LEATHER_LEGGINGS), RegistrumRecipeProvider.has(Items.LEATHER_LEGGINGS))
+                .save(provider);
+    }
+
     public static <T extends Item> void sonicBoomStaff(DataGenContext<Item, T> ctx, RegistrumRecipeProvider provider){
         SmithingTransformRecipeBuilder.smithing(
                         Ingredient.of(ModItems.CAPACITOR_EMPTY),

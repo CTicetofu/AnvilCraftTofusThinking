@@ -47,6 +47,7 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add(AddonItems.WATER_AMULET.asItem(),"Water Amulet");
         add(AddonItems.TINTED_SWORD.asItem(),"Tinted Sword");
         add(AddonItems.ENDER_CHARM.asItem(),"Ender Charm");
+        add(AddonItems.POCKET_POCKET.asItem(),"Pocket Pocket");
         add(AddonItems.POTION_JAR.asItem(),"Potion Jar");
     }
     private void blockName(){
@@ -195,6 +196,8 @@ public class AddonEnUsLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.ender_charm1", "When it is in the inventory, the Ender Chest, or the Curios slot");
         add("tooltip.anvilcraft_tofus_thing.ender_charm2", "Pressing %s can also open it");
         add("tooltip.anvilcraft_tofus_thing.ender_charm3", "When in the Curios Inventory, looking at EnderMan will not provoke them");
+
+        add("tooltip.anvilcraft_tofus_thing.pocket_pocket", "Cant unequip when Pocket has any items");
 
         add("tooltip.anvilcraft_tofus_thinking.potion_jar1", "Right-click on the potion in the GUI to infuse(250MB)");
         add("tooltip.anvilcraft_tofus_thinking.potion_jar2", "Each consumption consumes %s");

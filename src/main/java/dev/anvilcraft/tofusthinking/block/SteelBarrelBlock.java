@@ -105,7 +105,7 @@ public class SteelBarrelBlock extends BaseEntityBlock {
             } else if (level.isClientSide()) {
                 level.playSound(player, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
                 Component title = SteelBarrelBlock.displayName(state);
-                DistExecutor.run(Dist.CLIENT, () -> () -> StorageScreen.openScreen(blockEntity.getBlockPos().above(10), title));
+                DistExecutor.run(Dist.CLIENT, () -> () -> StorageScreen.openScreen(blockEntity.getBlockPos(), title));
                 return InteractionResult.sidedSuccess(true);
             }
         }

@@ -44,6 +44,7 @@ public class AddonZnChLangGen extends LanguageProvider {
         add(AddonItems.WATER_AMULET.asItem(),"水护符");
         add(AddonItems.TINTED_SWORD.asItem(),"影蔽剑");
         add(AddonItems.ENDER_CHARM.asItem(),"末影护符");
+        add(AddonItems.POCKET_POCKET.asItem(),"口袋口袋");
         add(AddonItems.POTION_JAR.asItem(),"药水罐");
     }
     private void blockName(){
@@ -191,6 +192,8 @@ public class AddonZnChLangGen extends LanguageProvider {
         add("tooltip.anvilcraft_tofus_thing.ender_charm1", "当其在物品栏，末影箱，或者饰品栏中时");
         add("tooltip.anvilcraft_tofus_thing.ender_charm2", "按下 %s 也可打开");
         add("tooltip.anvilcraft_tofus_thing.ender_charm3", "在饰品栏中时，看向末影人时不会激怒它们");
+
+        add("tooltip.anvilcraft_tofus_thing.pocket_pocket", "口袋装有物品时不可卸下");
 
         add("tooltip.anvilcraft_tofus_thinking.potion_jar1", "在GUI界面右键药水以灌注（250MB）");
         add("tooltip.anvilcraft_tofus_thinking.potion_jar2", "每次饮用消耗 %s");

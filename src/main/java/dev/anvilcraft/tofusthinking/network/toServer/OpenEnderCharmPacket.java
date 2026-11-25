@@ -4,6 +4,7 @@ import dev.anvilcraft.tofusthinking.AnvilCraftTofusThinking;
 import dev.anvilcraft.tofusthinking.attachment.magic.CooldownManager;
 import dev.anvilcraft.tofusthinking.init.item.AddonItems;
 import dev.anvilcraft.tofusthinking.item.curio.EnderCharm;
+import dev.dubhe.anvilcraft.inventory.PocketInventory;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -27,7 +28,7 @@ public class OpenEnderCharmPacket implements CustomPacketPayload {
     public static void handler(OpenEnderCharmPacket packet, IPayloadContext context){
         context.enqueueWork(() -> {
             if(context.player() instanceof ServerPlayer player && !CooldownManager.isOnCooldown(player, EnderCharm.SKILL)){
-                if(player.getInventory().contains(PREDICATE) || player.getEnderChestInventory().hasAnyMatching(PREDICATE) || AddonItems.ENDER_CHARM.get().isEquippedBy(player)){
+                if(player.getInventory().contains(PREDICATE) || PocketInventory.get(player).hasAnyMatching(PREDICATE) || player.getEnderChestInventory().hasAnyMatching(PREDICATE) || AddonItems.ENDER_CHARM.get().isEquippedBy(player)){
                     EnderCharm.openEnderChest(player);
                 }
             }
